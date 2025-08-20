@@ -24,7 +24,7 @@ const { post } = Astro.props;
 
 const layoutData = {
 	title: post.title,
-	content: renderPayloadBody(post),
+	content: post.body || "",
 	tags: (post.tags||[]).map((x:any)=>x.value||x),
 	category: (post.category||[]).map((x:any)=>x.value||x),
 	slug: post.slug,
@@ -33,7 +33,7 @@ const layoutData = {
 	publishedAt: post.published ? new Date(post.published) : (post.publishedAt ? new Date(post.publishedAt) : new Date()),
 	description: post.description || "",
 	author: post.author || "",
-	source: 'payload'
+	source: 'supabase'
 };
 ---
 

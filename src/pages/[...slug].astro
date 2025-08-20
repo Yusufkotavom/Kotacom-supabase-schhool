@@ -47,7 +47,7 @@ export async function getStaticPaths() {
 
 type Props = {
   post: any;
-  source: 'mdx' | 'page' | 'payload' | 'supabase';
+  source: 'mdx' | 'page' | 'supabase';
 };
 
 const { post, source } = Astro.props;
@@ -95,25 +95,6 @@ if (source === 'page') {
     tags: [],
     author: post.data.author || "Kotacom.id",
     source: 'page'
-  };
-} else if (source === 'payload') {
-  // Handle Payload posts
-  Content = undefined;
-  processedContent = processContent(renderPayloadBody(post));
-  wordCount = processedContent.split(' ').length;
-  
-  layoutData = {
-    title: post.title,
-    description: post.description || "",
-    imageUrl: post.imageUrl || post.coverImage || post.image || "",
-    coverImage: post.coverImage || post.imageUrl || post.image || "",
-    image: post.imageUrl || post.coverImage || post.image || "",
-    published: post.published ? new Date(post.published) : (post.publishedAt ? new Date(post.publishedAt) : new Date()),
-    updated: post.updated ? new Date(post.updated) : (post.lastUpdated ? new Date(post.lastUpdated) : (post.published ? new Date(post.published) : new Date())),
-    tags: (post.tags||[]).map((x:any)=>x.value||x),
-    category: (post.category||[]).map((x:any)=>x.value||x),
-    author: "Kotacom.id",
-    source: 'payload'
   };
 } else if (source === 'supabase') {
   // Handle Supabase posts - convert markdown to HTML first
@@ -193,7 +174,7 @@ if (source === 'page') {
 ---
 
 <PostLayout {...layoutData} wordCount={wordCount}>
-  {source === 'payload' || source === 'supabase' ? (
+  {source === 'supabase' ? (
     <article class="prose prose-lg max-w-none" data-pagefind-body data-pagefind-filter="type:post">
       <span class="hidden" data-pagefind-meta="title">{layoutData.title}</span>
       {layoutData.image && (

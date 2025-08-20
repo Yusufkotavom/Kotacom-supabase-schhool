@@ -1,7 +1,6 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import ProjectPage from '../../layouts/ProjectPage.astro';
-import { renderPayloadBody } from '../../lib/payload-client';
 import { getProjectsDirectFromSupabase } from '../../lib/supabase-direct';
  
 
@@ -26,7 +25,7 @@ export async function getStaticPaths() {
 	return [...mdxPaths, ...supabasePaths];
 }
 
-type Props = { project: any | CollectionEntry<'projectsMdx'>; source: 'mdx'|'payload'|'supabase' };
+type Props = { project: any | CollectionEntry<'projectsMdx'>; source: 'mdx'|'supabase' };
 
 const { project, source } = Astro.props;
 
@@ -81,30 +80,6 @@ if (source === 'mdx') {
       body: project.body || '', // Use processed markdown content
       get_involved: project.get_involved || '', // Add native field for layout compatibility
       format: project.format || '',
-    }
-  };
-} else {
-  // Handle Payload projects
-  Content = undefined;
-  layoutData = {
-    properties: {
-      title: project.title,
-      country: (project.country||[]).map((x:any)=>x.value||x),
-      locale: (project.locale||[]).map((x:any)=>x.value||x),
-      category: (project.category||[]).map((x:any)=>x.value||x),
-      organiser: project.organiser || '',
-      slug: project.slug,
-      cost: (project.cost||[]).map((x:any)=>x.value||x),
-      url: project.url || '',
-      gygUrl: project.gygUrl || '',  
-      mapsUrl: project.mapsUrl || '',
-      verify: project.verify || '',
-      imageUrl: project.imageUrl || '',
-      published: project.published ? new Date(project.published) : new Date(),
-      review: project.review || renderPayloadBody(project),
-      getInvolved: project.getInvolved || project.description || '',
-      description: project.description || '',
-      body: project.body || renderPayloadBody(project),
     }
   };
 }

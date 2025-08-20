@@ -1,5 +1,5 @@
 module.exports = {
-	rOOT: true,
+	root: true,
 	env: {
 		browser: true,
 		es2022: true,

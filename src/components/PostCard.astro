@@ -18,7 +18,7 @@ const getPostData = (post: any) => {
       tags: post.tags || post.category || [],
       description: post.description || '',
       published: post.published || post.publishedAt,
-      source: post.source || 'payload'
+      source: post.source || 'supabase'
     };
   }
   
