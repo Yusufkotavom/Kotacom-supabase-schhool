@@ -1,0 +1,32 @@
+{
+  "name": "mdx-to-json-converter",
+  "version": "1.0.0",
+  "description": "Convert MDX files to JSON format with metadata extraction",
+  "main": "mdx-to-json-converter.js",
+  "scripts": {
+    "convert": "node mdx-to-json-converter.js",
+    "start": "node mdx-to-json-converter.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "mdx",
+    "json",
+    "converter",
+    "frontmatter",
+    "content",
+    "markdown"
+  ],
+  "author": "Kotacom.id",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kotacom/mdx-to-json-converter"
+  },
+  "bugs": {
+    "url": "https://github.com/kotacom/mdx-to-json-converter/issues"
+  },
+  "homepage": "https://github.com/kotacom/mdx-to-json-converter#readme"
+}

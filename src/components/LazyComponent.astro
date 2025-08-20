@@ -1,0 +1,66 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  placeholder?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  class: className = '',
+  placeholder = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E'
+} = Astro.props;
+---
+
+<div class={`lazy-component ${className}`}>
+  <img
+    src={placeholder}
+    data-src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    class="lazy-image"
+    loading="lazy"
+    decoding="async"
+  />
+</div>
+
+<style>
+  .lazy-component {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .lazy-image {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .lazy-image.loaded {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  // Lazy loading implementation
+  const lazyImages = document.querySelectorAll('.lazy-image');
+  
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.dataset.src;
+        img.classList.add('loaded');
+        observer.unobserve(img);
+      }
+    });
+  });
+  
+  lazyImages.forEach(img => imageObserver.observe(img));
+</script>

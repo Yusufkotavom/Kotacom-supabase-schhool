@@ -1,0 +1,14 @@
+---
+import { renderPayloadBody } from "../lib/payload-client";
+
+interface Props {
+  doc: { body?: string; format?: 'md' | 'html' };
+}
+
+const { doc } = Astro.props;
+const html = renderPayloadBody(doc);
+---
+
+<article class="prose prose-lg dark:prose-invert max-w-none">
+  <Fragment set:html={html} />
+</article>

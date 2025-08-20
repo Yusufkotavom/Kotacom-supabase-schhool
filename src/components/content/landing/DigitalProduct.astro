@@ -1,0 +1,97 @@
+---
+// DigitalProduct main component using partials
+import HeroSection from '../../partials/HeroSection.astro';
+import FeaturesSection from '../../partials/FeaturesSection.astro';
+import AboutSection from '../../partials/AboutSection.astro';
+import ServicesSection from '../../partials/ServicesSection.astro';
+import WhyUsSection from '../../partials/WhyUsSection.astro';
+import WhatYouGetSection from '../../partials/WhatYouGetSection.astro';
+import WhyNeedSection from '../../partials/WhyNeedSection.astro';
+import PricingSection from '../../partials/PricingSection.astro';
+import PortfolioSection from '../../partials/PortfolioSection.astro';
+import TestimonialsSection from '../../partials/TestimonialsSection.astro';
+import FAQSection from '../../partials/FAQSection.astro';
+import ContentSection from '../../partials/ContentSection.astro';
+
+export interface Props {
+  business?: any;
+  hero?: any;
+  features?: any;
+  info?: any;
+  services?: any;
+  why_us?: any;
+  what_you_get?: any;
+  why_need?: any;
+  pricing?: any;
+  portfolio?: any;
+  testimonials?: any;
+  faq?: any;
+  local?: any;
+  kabupaten_kota?: any;
+  final_cta?: any;
+  content?: any;
+}
+
+const {
+  business = {},
+  hero = {},
+  features = {},
+  info = {},
+  services = {},
+  why_us = {},
+  what_you_get = {},
+  why_need = {},
+  pricing = {},
+  portfolio = {},
+  testimonials = {},
+  faq = {},
+  local = {},
+  kabupaten_kota = [],
+  final_cta = {},
+  content = {}
+} = Astro.props;
+---
+
+<!-- Main DigitalProduct Component using Partials -->
+<main>
+  <!-- Hero Section -->
+  <HeroSection hero={hero} business={business} />
+  
+  <!-- Features Section -->
+  <FeaturesSection features={features} />
+  
+  <!-- About Us Section -->
+  <AboutSection info={info} />
+  
+  <!-- Services Section -->
+  <ServicesSection services={services} />
+  
+    <!-- Why Us Section -->
+  <WhyUsSection why_us={why_us} />
+  
+  <!-- What You Get Section -->
+  <WhatYouGetSection what_you_get={what_you_get} />
+  
+  <!-- Why Need Section -->
+  <WhyNeedSection why_need={why_need} />
+  
+  <!-- Pricing Section -->
+  <PricingSection pricing={pricing} />
+  
+  <!-- Portfolio Section -->
+  <PortfolioSection portfolio={portfolio} />
+
+  
+  <!-- Testimonials Section -->
+  <TestimonialsSection testimonials={testimonials} />
+
+  <!-- FAQ Section -->
+  <FAQSection faq={faq} />
+  
+  <!-- Combined Content Section (includes Local and Kabupaten Kota) -->
+  <ContentSection content={content} local={local} kabupaten_kota={kabupaten_kota} />
+  
+  
+</main>
+
+

@@ -1,0 +1,102 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+---
+
+<MainLayout title="Test WhatsApp Tracking" description="Test page for WhatsApp click tracking functionality">
+  <main class="max-w-4xl mx-auto py-16 px-4">
+    <h1 class="text-4xl font-bold mb-8">WhatsApp Tracking Test</h1>
+    
+    <div class="space-y-8">
+      <!-- Test Section 1: Header Navigation -->
+      <section class="bg-gray-50 p-6 rounded-lg">
+        <h2 class="text-2xl font-semibold mb-4">1. Header Navigation WhatsApp</h2>
+        <p class="mb-4">This button is in the header navigation (top right). Click it to test tracking.</p>
+        <p class="text-sm text-gray-600">Expected tracking: <code>header_nav</code></p>
+      </section>
+
+      <!-- Test Section 2: Floating Contact Buttons -->
+      <section class="bg-gray-50 p-6 rounded-lg">
+        <h2 class="text-2xl font-semibold mb-4">2. Floating Contact Buttons</h2>
+        <p class="mb-4">These buttons are fixed at bottom-right of the screen. Click the WhatsApp button to test tracking.</p>
+        <p class="text-sm text-gray-600">Expected tracking: <code>floating_button</code></p>
+      </section>
+
+      <!-- Test Section 3: Content CTAs -->
+      <section class="bg-gray-50 p-6 rounded-lg">
+        <h2 class="text-2xl font-semibold mb-4">3. Content WhatsApp Buttons</h2>
+        <p class="mb-4">These are inline WhatsApp buttons in content. Click them to test different tracking placements.</p>
+        
+        <div class="space-y-4">
+          <div>
+            <h3 class="font-medium mb-2">Hero Section CTA:</h3>
+            <WhatsAppButton 
+              placement="hero_section"
+              whatsappMessage="Halo! Saya melihat test page WhatsApp tracking. Bisa tolong jelaskan lebih detail?"
+            />
+          </div>
+          
+          <div>
+            <h3 class="font-medium mb-2">Pricing Section CTA:</h3>
+            <WhatsAppButton 
+              placement="pricing_card"
+              whatsappMessage="Halo! Saya tertarik dengan paket pricing. Bisa tolong kirimkan informasi lengkapnya?"
+            />
+          </div>
+          
+          <div>
+            <h3 class="font-medium mb-2">Footer CTA:</h3>
+            <WhatsAppButton 
+              placement="footer"
+              whatsappMessage="Halo! Saya ingin konsultasi lebih lanjut tentang layanan Anda."
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Test Section 4: Manual Tracking -->
+      <section class="bg-gray-50 p-6 rounded-lg">
+        <h2 class="text-2xl font-semibold mb-4">4. Manual Tracking Test</h2>
+        <p class="mb-4">Click this button to manually trigger tracking:</p>
+        <button 
+          onclick="trackWhatsAppClick('manual_test')"
+          class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Test Manual Tracking
+        </button>
+        <p class="text-sm text-gray-600 mt-2">Expected tracking: <code>manual_test</code></p>
+      </section>
+
+      <!-- Test Section 5: View Tracking Data -->
+      <section class="bg-gray-50 p-6 rounded-lg">
+        <h2 class="text-2xl font-semibold mb-4">5. View Tracking Data</h2>
+        <p class="mb-4">Click the button below to view all tracked WhatsApp clicks in this session:</p>
+        <button 
+          onclick="viewTrackingData()"
+          class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+        >
+          View Tracking Data
+        </button>
+        <div id="tracking-data" class="mt-4 p-4 bg-white rounded border hidden">
+          <pre id="tracking-data-content" class="text-sm overflow-auto"></pre>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    function viewTrackingData() {
+      const trackingData = JSON.parse(localStorage.getItem('whatsapp_clicks') || '[]');
+      const dataDiv = document.getElementById('tracking-data');
+      const contentDiv = document.getElementById('tracking-data-content');
+      
+      if (trackingData.length === 0) {
+        contentDiv.textContent = 'No tracking data found. Try clicking some WhatsApp buttons first!';
+      } else {
+        contentDiv.textContent = JSON.stringify(trackingData, null, 2);
+      }
+      
+      dataDiv.classList.remove('hidden');
+    }
+  </script>
+</MainLayout>

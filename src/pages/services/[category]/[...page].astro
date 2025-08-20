@@ -1,0 +1,118 @@
+---
+import { getCollection } from "astro:content";
+import MainLayout from "../../../layouts/MainLayout.astro";
+import type { GetStaticPathsOptions } from "astro";
+import ServiceCard from "../../../components/ServiceCard.astro";
+import SCategoryDropdown from "../../../components/SCategoryDropdown.astro";
+
+// Helper function to parse dates in dd/mm/yyyy format
+function parseDate(dateStr: string): Date {
+  const [day, month, year] = dateStr.split('/');
+  return new Date(`${year}-${month}-${day}`);
+}
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  // Fetch services from MDX collections only
+  const mdxServices = await getCollection('servicesMdx');
+
+  // Normalize MDX services
+  const normalizedMdxServices = mdxServices.map((entry) => ({
+    ...entry,
+    source: 'mdx',
+    data: {
+      ...entry.data,
+      properties: {
+        svTitle: entry.data.title,
+        svCategory: entry.data.category,
+        svSlug: entry.data.slug,
+        svImageURL1: entry.data.imageUrl1 || "",
+        svPublished: { start: entry.data.published },
+        svWilayah: entry.data.wilayah,
+        svProvider: entry.data.provider,
+        svType: entry.data.type,
+        svPrice: entry.data.price,
+        svURL: entry.data.url,
+        svWhatsAppURL: entry.data.whatsappUrl,
+        svMapsURL: entry.data.mapsUrl,
+        svVerify: entry.data.verify || "",
+        svImageURL2: entry.data.imageUrl2,
+        svImageURL3: entry.data.imageUrl3,
+        svReview: entry.data.review,
+      },
+    },
+  }));
+
+  // Use MDX-only
+  const allServices = [...normalizedMdxServices];
+
+  // Extract unique categories
+  const categories = Array.from(
+    new Set(
+      allServices.flatMap((service) =>
+        Array.isArray(service.data.properties.svCategory)
+          ? service.data.properties.svCategory
+          : [service.data.properties.svCategory]
+      )
+    )
+  ).map((category) => category.toLowerCase().replace(/\s+/g, "-"));
+
+  // Generate paginated paths for each category
+  const paths = categories.flatMap((category) => {
+    const categoryServices = allServices.filter((service) => {
+      const serviceCategories = Array.isArray(service.data.properties.svCategory)
+        ? service.data.properties.svCategory.map((c) =>
+            c.toLowerCase().replace(/\s+/g, "-")
+          )
+        : [service.data.properties.svCategory.toLowerCase().replace(/\s+/g, "-")];
+      return serviceCategories.includes(category);
+    });
+
+    // Sort services by date
+    const sortedCategoryServices = categoryServices.sort((a, b) => {
+      const dateA = a.data.properties.svPublished?.start 
+        ? (typeof a.data.properties.svPublished.start === 'string' 
+            ? parseDate(a.data.properties.svPublished.start) 
+            : a.data.properties.svPublished.start) 
+        : new Date(0);
+      const dateB = b.data.properties.svPublished?.start 
+        ? (typeof b.data.properties.svPublished.start === 'string' 
+            ? parseDate(b.data.properties.svPublished.start) 
+            : b.data.properties.svPublished.start) 
+        : new Date(0);
+      return dateB.getTime() - dateA.getTime();
+    });
+
+    return paginate(sortedCategoryServices, {
+      pageSize: 9,
+      params: { category },
+    });
+  });
+
+  return paths;
+}
+
+const { category } = Astro.params;
+const { page } = Astro.props;
+---
+
+<MainLayout title={`Services in ${category} - Page ${page.currentPage} of ${page.lastPage}`}>
+  <fragment slot="head">
+    {page.url.prev && (<link rel="prev" href={page.url.prev} />)}
+    {page.url.next && (<link rel="next" href={page.url.next} />)}
+    {page.currentPage > 1 && (<meta name="robots" content="noindex,follow" />)}
+  </fragment>
+  <section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+      <div class="max-w-screen-md mb-8 lg:mb-16">
+        <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+          {category}
+        </h1>
+      </div>
+      <div class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
+        {page.data.map((service) => (
+          <ServiceCard service={service} />
+        ))}
+      </div>
+    </div>
+  </section>
+</MainLayout>

@@ -1,0 +1,652 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import { SITE_TITLE } from "../consts";
+---
+
+<MainLayout title={`Search ${SITE_TITLE}`}>
+  <main>
+    <section class="bg-white dark:bg-gray-900">
+      <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+        <div class="max-w-screen-md mb-8 lg:mb-16">
+          <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+            Search
+          </h1>
+          <p class="text-gray-500 sm:text-xl dark:text-gray-400">
+            Find products, services, projects and blog posts.
+          </p>
+          <p class="mt-2 text-sm text-gray-400 dark:text-gray-500">
+            Having issues? Try the basic search UI <a href="/_search" class="underline">here</a>.
+          </p>
+        </div>
+
+        <!-- Search Input -->
+        <div class="max-w-screen-md mx-auto mb-8">
+          <form class="flex items-center" action="/search" method="get">
+            <label for="search-input" class="sr-only">Search</label>
+            <div class="relative w-full">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                </svg>
+              </div>
+              <input 
+                type="text" 
+                id="search-input" 
+                name="q"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-16 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                placeholder="Search for projects, posts, products or services..." 
+                autocomplete="off"
+              />
+              <button 
+                type="button" 
+                id="clear-search" 
+                class="absolute inset-y-0 right-0 flex items-center pr-3 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors duration-200 cursor-pointer hidden"
+                aria-label="Clear search"
+              >
+                Clear
+              </button>
+            </div>
+          </form>
+          
+          <!-- Desktop-only search instruction -->
+          <div class="hidden md:flex justify-center items-center mt-2 text-sm text-gray-500 dark:text-gray-400">
+            <span class="mr-2">Press</span>
+            <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">Enter</kbd>
+            <span class="ml-2">to search</span>
+          </div>
+        </div>
+
+        <!-- Filters and Status Section -->
+        <div class="mb-6">
+          <div id="filters-and-status" class="hidden">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 md:gap-6 mb-6">
+              <div class="order-1 md:order-2">
+                <div class="overflow-x-auto scrollbar-hide md:overflow-x-visible">
+                  <div class="flex gap-2 min-w-max md:min-w-0">
+                    <button 
+                      type="button" 
+                      id="filter-all" 
+                      class="px-4 py-2 text-sm font-medium rounded-lg border transition-colors duration-200 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-600 text-white bg-gray-900 border-gray-900 hover:bg-black hover:border-black dark:bg-gray-700 dark:border-gray-700 dark:hover:bg-gray-600 dark:hover:border-gray-600 cursor-pointer whitespace-nowrap"
+                      data-filter="all"
+                      aria-pressed="true"
+                    >
+                      All <span id="count-all" class="ml-1 opacity-75"></span>
+                    </button>
+                    <button 
+                      type="button" 
+                      id="filter-products" 
+                      class="px-4 py-2 text-sm font-medium rounded-lg border transition-colors duration-200 focus:z-10 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-800 text-gray-600 bg-white border-gray-300 hover:bg-gray-50 hover:border-gray-400 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:border-gray-500 cursor-pointer whitespace-nowrap"
+                      data-filter="products"
+                      aria-pressed="false"
+                    >
+                      Products <span id="count-products" class="ml-1 opacity-75"></span>
+                    </button>
+                    <button 
+                      type="button" 
+                      id="filter-services" 
+                      class="px-4 py-2 text-sm font-medium rounded-lg border transition-colors duration-200 focus:z-10 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-800 text-gray-600 bg-white border-gray-300 hover:bg-gray-50 hover:border-gray-400 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:border-gray-500 cursor-pointer whitespace-nowrap"
+                      data-filter="services"
+                      aria-pressed="false"
+                    >
+                      Services <span id="count-services" class="ml-1 opacity-75"></span>
+                    </button>
+                    <button 
+                      type="button" 
+                      id="filter-projects" 
+                      class="px-4 py-2 text-sm font-medium rounded-lg border transition-colors duration-200 focus:z-10 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-800 text-gray-600 bg-white border-gray-300 hover:bg-gray-50 hover:border-gray-400 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:border-gray-500 cursor-pointer whitespace-nowrap"
+                      data-filter="projects"
+                      aria-pressed="false"
+                    >
+                      Projects <span id="count-projects" class="ml-1 opacity-75"></span>
+                    </button>
+                    <button 
+                      type="button" 
+                      id="filter-posts" 
+                      class="px-4 py-2 text-sm font-medium rounded-lg border transition-colors duration-200 focus:z-10 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-800 text-gray-600 bg-white border-gray-300 hover:bg-gray-50 hover:border-gray-400 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:border-gray-500 cursor-pointer whitespace-nowrap"
+                      data-filter="posts"
+                      aria-pressed="false"
+                    >
+                      Blog Posts <span id="count-posts" class="ml-1 opacity-75"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="order-2 md:order-1 text-left">
+                <p id="status-text" class="text-sm font-normal text-gray-500 dark:text-gray-400">Enter a search term to get started</p>
+              </div>
+              
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Search Results -->
+        <div id="search-results" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <!-- Results will be populated here -->
+        </div>
+
+        <!-- No Results Section -->
+        <div id="no-results" class="hidden text-center py-12">
+          <div class="max-w-md mx-auto">
+            <svg class="w-16 h-16 mx-auto mb-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <h3 class="mb-2 text-xl font-semibold text-gray-900 dark:text-white">No results found</h3>
+            <p id="no-results-query" class="mb-6 text-gray-500 dark:text-gray-400">We couldn't find anything for your search.</p>
+            
+            <!-- Additional instructions section - ready for Concierge service info -->
+            <div id="no-results-instructions" class="space-y-4">
+              <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
+                  Can't find what you're looking for? Our human staff can help!
+                </p>
+                <a 
+                  href="/concierge" 
+                  class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-900 border border-transparent rounded-lg hover:bg-black focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+                >
+                  Try our free Concierge service
+                  <svg class="w-4 h-4 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Load More Button -->
+        <div id="load-more-container" class="hidden text-center mt-8">
+          <button 
+            id="load-more-btn" 
+            type="button"
+            class="inline-flex items-center px-6 py-3 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 cursor-pointer"
+          >
+            Load More Results
+            <svg class="w-4 h-4 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V5m0 14l-4-4m4 4 4-4"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Loading indicator -->
+        <div id="loading" class="hidden text-center py-8">
+          <div role="status">
+            <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+              <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+            </svg>
+            <span class="sr-only">Loading...</span>
+          </div>
+          <p class="mt-2 text-gray-500 dark:text-gray-400">Searching...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</MainLayout>
+
+<script>
+  let pagefind = null;
+  let currentQuery = '';
+  let allResults = [];
+  let activeFilters = new Set(['all']);
+  let displayedResults = 0;
+  const resultsPerPage = 12;
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    const searchInput = document.getElementById("search-input");
+    const searchResults = document.getElementById("search-results");
+    const statusText = document.getElementById("status-text");
+    const loading = document.getElementById("loading");
+    const loadMoreContainer = document.getElementById("load-more-container");
+    const loadMoreBtn = document.getElementById("load-more-btn");
+    const searchForm = searchInput?.closest("form");
+    const allFilterButtons = document.querySelectorAll('[data-filter]');
+    const filtersAndStatus = document.getElementById("filters-and-status");
+    const clearButton = document.getElementById("clear-search");
+    const noResults = document.getElementById("no-results");
+    const noResultsQuery = document.getElementById("no-results-query");
+
+    try {
+      const importPath = "/pagefind/pagefind.js";
+      const dynamicImport = new Function('path', 'return import(path)');
+      const mod = await dynamicImport(importPath);
+      pagefind = mod?.default || mod;
+      if (!pagefind || typeof pagefind.init !== 'function' || typeof pagefind.search !== 'function') {
+        throw new Error('Pagefind API not available');
+      }
+      await pagefind.init();
+      console.log("Pagefind initialized successfully");
+    } catch (error) {
+      console.error("Failed to initialize Pagefind:", error);
+      const isDev = import.meta.env.DEV;
+      if (isDev) {
+        showStatus("Search requires a built index. Run 'npm run build' first, then restart dev server to use search in development.");
+        showFiltersAndStatus();
+      } else {
+        showStatus("Search is currently unavailable. Make sure your site has been built with Pagefind enabled.");
+        showFiltersAndStatus();
+      }
+      return;
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialQuery = urlParams.get('q');
+    const initialFilters = urlParams.get('filters');
+    
+    if (initialFilters) {
+      const filterArray = initialFilters.split(',').filter(f => f.length > 0);
+      if (filterArray.length > 0) {
+        activeFilters.clear();
+        filterArray.forEach(filter => activeFilters.add(filter));
+        updateFilterButtons();
+      }
+    }
+    
+    if (initialQuery && searchInput) {
+      searchInput.value = initialQuery;
+      if (clearButton && initialQuery.trim().length > 0) {
+        clearButton.classList.remove("hidden");
+      }
+      performSearch(initialQuery);
+    } else {
+      hideFiltersAndStatus();
+    }
+
+    if (searchForm) {
+      searchForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const query = searchInput && 'value' in searchInput ? String(searchInput.value).trim() : '';
+        if (query) {
+          if (searchInput && typeof searchInput.blur === 'function') searchInput.blur();
+          updateURL(query);
+          performSearch(query);
+        }
+      });
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener("input", (e) => {
+        const target = e.target;
+        const query = target && 'value' in target ? String(target.value).trim() : '';
+        
+        if (clearButton) {
+          if (query.length > 0) {
+            clearButton.classList.remove("hidden");
+          } else {
+            clearButton.classList.add("hidden");
+          }
+        }
+        
+        if (query.length === 0) {
+          clearResults();
+          hideFiltersAndStatus();
+          currentQuery = '';
+          updateURL("");
+          return;
+        }
+      });
+    }
+
+    if (clearButton) {
+      clearButton.addEventListener("click", () => {
+        if (searchInput && 'value' in searchInput) {
+          searchInput.value = '';
+          if (typeof searchInput.focus === 'function') searchInput.focus();
+          clearButton.classList.add("hidden");
+          clearResults();
+          hideFiltersAndStatus();
+          currentQuery = '';
+          updateURL("");
+        }
+      });
+    }
+
+    allFilterButtons.forEach(button => {
+      button.addEventListener('click', handleFilterClick);
+    });
+
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', loadMoreResults);
+    }
+
+    window.addEventListener('popstate', () => {});
+
+    function handleFilterClick(event) {
+      const button = event.currentTarget;
+      const filterType = button.getAttribute('data-filter');
+      
+      if (!filterType || button.disabled) return;
+
+      const previousFilters = new Set(activeFilters);
+
+      if (filterType === 'all') {
+        activeFilters.clear();
+        activeFilters.add('all');
+        updateFilterButtons();
+      } else {
+        if (activeFilters.has('all')) {
+          activeFilters.delete('all');
+        }
+        
+        if (activeFilters.has(filterType)) {
+          activeFilters.delete(filterType);
+        } else {
+          activeFilters.add(filterType);
+        }
+
+        if (activeFilters.size === 0) {
+          activeFilters.add('all');
+        }
+
+        updateFilterButtons();
+      }
+
+      updateURL(currentQuery);
+
+      if (allResults.length > 0) {
+        displayFilteredResults();
+      }
+    }
+
+    function updateFilterButtons() {
+      const allButtons = document.querySelectorAll('[data-filter]');
+      allButtons.forEach(button => {
+        const filterType = button.getAttribute('data-filter');
+        const isActive = activeFilters.has(filterType || '');
+        
+        let hasResults = true;
+        if (filterType !== 'all') {
+          if (allResults.length === 0) {
+            hasResults = false;
+          } else {
+            hasResults = allResults.some(result => result.contentType === filterType);
+          }
+        }
+        
+        if (isActive) {
+          button.className = 'px-4 py-2 text-sm font-medium rounded-lg border transition-colors duration-200 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-600 text-white bg-gray-900 border-gray-900 hover:bg-black hover:border-black dark:bg-gray-700 dark:border-gray-700 dark:hover:bg-gray-600 dark:hover:border-gray-600 cursor-pointer whitespace-nowrap';
+          button.setAttribute('aria-pressed', 'true');
+        } else {
+          button.className = 'px-4 py-2 text-sm font-medium rounded-lg border transition-colors duration-200 focus:z-10 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-800 text-gray-600 bg-white border-gray-300 hover:bg-gray-50 hover:border-gray-400 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:border-gray-500 cursor-pointer whitespace-nowrap';
+          button.setAttribute('aria-pressed', 'false');
+        }
+
+        if (!hasResults && filterType !== 'all') {
+          button.disabled = true;
+          button.className = button.className + ' opacity-50 cursor-not-allowed';
+        } else {
+          button.disabled = false;
+          button.className = button.className.replace(' opacity-50 cursor-not-allowed', '');
+        }
+      });
+    }
+
+    function updateURL(query) {
+      const newUrl = new URL(window.location.href);
+      if (query) {
+        newUrl.searchParams.set('q', query);
+      } else {
+        newUrl.searchParams.delete('q');
+      }
+      
+      const filtersArray = Array.from(activeFilters);
+      if (filtersArray.length === 1 && filtersArray[0] === 'all') {
+        newUrl.searchParams.delete('filters');
+      } else {
+        newUrl.searchParams.set('filters', filtersArray.join(','));
+      }
+      
+      window.history.replaceState(null, '', newUrl.toString());
+    }
+
+    function showLoading() { if (loading) loading.classList.remove("hidden"); }
+    function hideLoading() { if (loading) loading.classList.add("hidden"); }
+    function showFiltersAndStatus() { if (filtersAndStatus) filtersAndStatus.classList.remove("hidden"); if (noResults) noResults.classList.add("hidden"); }
+    function hideFiltersAndStatus() { if (filtersAndStatus) filtersAndStatus.classList.add("hidden"); if (noResults) noResults.classList.add("hidden"); }
+
+    function showNoResults(query) {
+      if (noResults) noResults.classList.remove("hidden");
+      if (filtersAndStatus) filtersAndStatus.classList.add("hidden");
+      if (noResultsQuery) noResultsQuery.textContent = `We couldn't find anything for "${query}". Try different keywords or check your spelling.`;
+    }
+
+    function showStatus(message) {
+      let formattedMessage = message;
+      formattedMessage = formattedMessage.replace(/Found (\d+) result/g, 'Found <span class="font-semibold text-gray-900 dark:text-white">$1</span> result');
+      formattedMessage = formattedMessage.replace(/Showing (\d+) of (\d+) results/g, 'Showing <span class="font-semibold text-gray-900 dark:text-white">$1</span> of <span class="font-semibold text-gray-900 dark:text-white">$2</span> results');
+      if (statusText) { statusText.className = "text-sm font-normal text-gray-500 dark:text-gray-400"; statusText.innerHTML = formattedMessage; }
+      showFiltersAndStatus();
+      hideLoading();
+    }
+
+    function clearResults() {
+      if (searchResults) searchResults.innerHTML = "";
+      if (noResults) noResults.classList.add("hidden");
+      displayedResults = 0;
+      allResults = [];
+      updateFilterButtons();
+      if (loadMoreContainer) loadMoreContainer.classList.add("hidden");
+    }
+
+    function loadMoreResults() { displayFilteredResults(false); }
+
+    async function performSearch(query) {
+      if (!pagefind || query === currentQuery) return;
+      console.log('Performing search for:', query);
+      currentQuery = query;
+      showLoading();
+      showFiltersAndStatus();
+      clearResults();
+
+      try {
+        const search = await pagefind.search(query);
+        console.log('Search results:', search.results.length);
+        hideLoading();
+        
+        if (search.results.length === 0) {
+          allResults = [];
+          updateFilterButtons();
+          showNoResults(query);
+          return;
+        }
+
+        const processedResults = await Promise.all(
+          search.results.map(async (result) => {
+            try {
+              const data = await result.data();
+              console.log('Result metadata:', data.meta);
+              return {
+                data,
+                contentType: getContentType(data),
+                card: createResultCard(data)
+              };
+            } catch (error) {
+              console.error("Error processing result:", error);
+              return null;
+            }
+          })
+        );
+
+        allResults = processedResults.filter(result => result !== null);
+        console.log('Processed results:', allResults.length);
+        updateResultCounts();
+        updateFilterButtons();
+        displayFilteredResults();
+
+      } catch (error) {
+        hideLoading();
+        console.error("Search error:", error);
+        showStatus("An error occurred while searching. Please try again.");
+      }
+    }
+
+    function getContentType(data) {
+      if (data.filters && data.filters.type) {
+        const type = data.filters.type[0];
+        if (type === 'product') return 'products';
+        if (type === 'service') return 'services';
+        if (type === 'project') return 'projects';
+        if (type === 'post') return 'posts';
+      }
+      if (data.url.includes('/products/')) return 'products';
+      if (data.url.includes('/services/')) return 'services';
+      if (data.url.includes('/projects/')) return 'projects';
+      if (data.url.includes('/blog/')) return 'posts';
+      return 'page';
+    }
+
+    function updateResultCounts() {
+      if (allResults.length === 0) {
+        const countAll = document.getElementById('count-all');
+        const countProducts = document.getElementById('count-products');
+        const countServices = document.getElementById('count-services');
+        const countProjects = document.getElementById('count-projects');
+        const countPosts = document.getElementById('count-posts');
+        if (countAll) countAll.textContent = '';
+        if (countProducts) countProducts.textContent = '';
+        if (countServices) countServices.textContent = '';
+        if (countProjects) countProjects.textContent = '';
+        if (countPosts) countPosts.textContent = '';
+        return;
+      }
+
+      const counts = { products: 0, services: 0, projects: 0, posts: 0, page: 0 };
+      allResults.forEach(result => { if (counts.hasOwnProperty(result.contentType)) { counts[result.contentType]++; }});
+      const total = allResults.length;
+
+      const countAll = document.getElementById('count-all');
+      const countProducts = document.getElementById('count-products');
+      const countServices = document.getElementById('count-services');
+      const countProjects = document.getElementById('count-projects');
+      const countPosts = document.getElementById('count-posts');
+      const totalText = `(${total})`;
+      const productsText = counts.products > 0 ? `(${counts.products})` : '';
+      const servicesText = counts.services > 0 ? `(${counts.services})` : '';
+      const projectsText = counts.projects > 0 ? `(${counts.projects})` : '';
+      const postsText = counts.posts > 0 ? `(${counts.posts})` : '';
+      if (countAll) countAll.textContent = totalText;
+      if (countProducts) countProducts.textContent = productsText;
+      if (countServices) countServices.textContent = servicesText;
+      if (countProjects) countProjects.textContent = projectsText;
+      if (countPosts) countPosts.textContent = postsText;
+    }
+
+    function displayFilteredResults(replace = true) {
+      if (allResults.length === 0) return;
+      let filteredResults = allResults;
+      if (!activeFilters.has('all')) {
+        filteredResults = allResults.filter(result => activeFilters.has(result.contentType));
+      }
+
+      const totalCount = allResults.length;
+      const filteredCount = filteredResults.length;
+      if (activeFilters.has('all')) { showStatus(`Found ${totalCount} result${totalCount !== 1 ? 's' : ''} for "${currentQuery}"`); }
+      else { showStatus(`Showing ${filteredCount} of ${totalCount} results for "${currentQuery}"`); }
+
+      const startIndex = replace ? 0 : displayedResults;
+      const endIndex = replace ? resultsPerPage : displayedResults + resultsPerPage;
+      const resultsToShow = filteredResults.slice(startIndex, endIndex);
+      const resultCards = resultsToShow.map(result => result.card).filter(card => card !== null);
+      if (searchResults) {
+        if (replace) { searchResults.innerHTML = resultCards.join(''); displayedResults = resultsToShow.length; }
+        else { searchResults.innerHTML += resultCards.join(''); displayedResults += resultsToShow.length; }
+      }
+
+      if (loadMoreContainer) {
+        if (displayedResults < filteredResults.length) { loadMoreContainer.classList.remove("hidden"); }
+        else { loadMoreContainer.classList.add("hidden"); }
+      }
+
+      if (filteredResults.length === 0 && totalCount > 0) {
+        showStatus(`No results found for the selected filters. Try selecting different content types.`);
+        if (loadMoreContainer) loadMoreContainer.classList.add("hidden");
+      }
+    }
+
+    function createResultCard(data) {
+      if (!data) return null;
+      let contentType = 'Page';
+      let contentTypeSlug = 'page';
+      
+      if (data.filters && data.filters.type) {
+        const type = data.filters.type[0];
+        if (type === 'project') { contentType = 'Project'; contentTypeSlug = 'projects'; }
+        else if (type === 'product') { contentType = 'Product'; contentTypeSlug = 'products'; }
+        else if (type === 'service') { contentType = 'Service'; contentTypeSlug = 'services'; }
+        else if (type === 'post') { contentType = 'Blog Post'; contentTypeSlug = 'posts'; }
+      } else {
+        if (data.url.includes('/products/')) { contentType = 'Product'; contentTypeSlug = 'products'; }
+        else if (data.url.includes('/services/')) { contentType = 'Service'; contentTypeSlug = 'services'; }
+        else if (data.url.includes('/projects/')) { contentType = 'Project'; contentTypeSlug = 'projects'; }
+        else if (data.url.includes('/blog/')) { contentType = 'Blog Post'; contentTypeSlug = 'posts'; }
+      }
+
+      const image = data.meta?.image || data.meta?.thumbnail || '/https://res.cloudinary.com/dxyjku3eh/image/upload/v1754820661/Tanpa_judul_Presentasi__20250810_170926_0000_vdiibn.png';
+      const title = data.meta?.title || data.title || 'Untitled';
+      const organiser = data.meta?.organiser || '';
+      const locale = data.meta?.locale || '';
+      const countries = data.meta?.countries || '';
+      const categories = data.meta?.categories || '';
+
+      let badgesLine = '';
+      if (contentTypeSlug === 'projects' && countries) {
+        const countryArray = countries.split(',').map((c) => String(c).trim());
+        badgesLine = `<p>
+          ${countryArray.map((country) => 
+            `<span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium border border-solid border-gray-300 bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-300 ml-2 mt-4 mb-2">
+              ${country}
+            </span>`
+          ).join('')}
+        </p>`;
+      } else if (contentTypeSlug === 'posts' && categories) {
+        const categoryArray = categories.split(',').map((cat) => String(cat).trim()).filter((cat) => cat.length > 0);
+        badgesLine = `<p>
+          ${categoryArray.map((category) => 
+            `<span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium border border-solid border-gray-300 bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-300 ml-2 mt-4 mb-2">
+              ${category}
+            </span>`
+          ).join('')}
+        </p>`;
+      }
+
+      let metadataLine = '';
+      if (contentTypeSlug === 'projects' && organiser && locale) {
+        metadataLine = `<p class="mt-2 text-sm font-normal text-gray-400 dark:text-gray-400 px-4">
+          By <span class="text-gray-800 dark:text-gray-200">${organiser}</span> in <span class="text-gray-900 dark:text-gray-100">${locale}</span>
+        </p>`;
+      }
+
+      return `
+        <article class="rounded-lg">
+          <div class="relative">
+            <a href="${data.url}">
+              <img 
+                class="w-full rounded-lg h-64 object-cover" 
+                src="${image}" 
+                alt="${title}"
+                loading="lazy"
+                onerror="this.src='/https://res.cloudinary.com/dxyjku3eh/image/upload/v1754820661/Tanpa_judul_Presentasi__20250810_170926_0000_vdiibn.png'"
+              />
+            </a>
+            <span class="absolute top-2 left-2 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium border border-solid border-blue-300 bg-blue-50 text-blue-800 dark:bg-blue-900 dark:text-blue-300">
+              ${contentType}
+            </span>
+          </div>
+          ${badgesLine}
+          <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white px-4">
+            <a href="${data.url}">
+              ${title}
+            </a>
+          </h2>
+          ${metadataLine}
+        </article>
+      `;
+    }
+  });
+</script>
+
+<style>
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+</style>

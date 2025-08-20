@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import MainLayout from "../layouts/MainLayout.astro";
+
+export async function getStaticPaths() {
+  const mdxPages = await getCollection("pagesMdx");
+  const pagePaths = mdxPages.map((page) => {
+    const slug = page.id.replace(/\.(md|mdx)$/i, '');
+    return { params: { page: slug }, props: { page } };
+  });
+  return pagePaths;
+}
+
+type Props = {
+  page: any;
+};
+
+const { page } = Astro.props;
+
+const { render } = await import("astro:content");
+const { Content } = await render(page);
+
+const layoutData = {
+  title: page.data.title,
+  description: page.data.description || "",
+  image: page.data.image || "",
+  published: page.data.publishDate || new Date(),
+  updated: page.data.publishDate || new Date(),
+  author: page.data.author || "Kotacom.id",
+};
+---
+
+<MainLayout {...layoutData}>
+  <article class="prose prose-lg max-w-none">
+    <Content />
+  </article>
+</MainLayout>

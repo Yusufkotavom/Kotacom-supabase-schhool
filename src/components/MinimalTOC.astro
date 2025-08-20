@@ -1,0 +1,58 @@
+---
+interface Props {
+  content?: string; // raw HTML content optional, otherwise use slot
+}
+
+const { content } = Astro.props;
+let html = content || '';
+
+function extractTOC(html: string): { toc: { id: string; text: string }[]; body: string } {
+  // Ensure heading ids; create anchors for h2/h3 only
+  const container = globalThis.document ? undefined : undefined;
+  // Run a simple regex-based approach since server-side without DOM
+  const headingRegex = /<h([23])([^>]*)>([\s\S]*?)<\/h\1>/gi;
+  const ids: Set<string> = new Set();
+  const toc: { id: string; text: string }[] = [];
+  function slugify(text: string): string {
+    return text.toLowerCase().replace(/<[^>]+>/g, '').trim().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').slice(0, 64);
+  }
+  const newHtml = html.replace(headingRegex, (_m, level, attrs, inner) => {
+    const text = String(inner).replace(/<[^>]+>/g, '').trim();
+    let idMatch = String(attrs).match(/id\s*=\s*"([^"]+)"/i);
+    let id = idMatch ? idMatch[1] : slugify(text) || `h${level}-${toc.length}`;
+    let base = id;
+    let n = 1;
+    while (ids.has(id)) { id = `${base}-${n++}`; }
+    ids.add(id);
+    toc.push({ id, text });
+    return `<h${level} id="${id}"${String(attrs).replace(/\s*id\s*=\s*"([^"]+)"/i,'')}>${inner}</h${level}>`;
+  });
+  return { toc, body: newHtml };
+}
+
+const { toc, body } = extractTOC(html);
+
+function injectTocAfterFirstParagraph(html: string, tocItems: { id: string; text: string }[]): string {
+  if (!tocItems.length) return html;
+  const tocHtml = `<nav class="minimal-toc"><div class="toc-title">Daftar isi</div><ul>${tocItems.map(i => `<li><a href="#${i.id}">${i.text}</a></li>`).join('')}</ul></nav>`;
+  const pIndex = html.indexOf('</p>');
+  if (pIndex !== -1) {
+    return html.slice(0, pIndex + 4) + tocHtml + html.slice(pIndex + 4);
+  }
+  return tocHtml + html;
+}
+
+const finalHtml = injectTocAfterFirstParagraph(body || html, toc);
+---
+
+<div class="prose prose-lg max-w-none" set:html={finalHtml} />
+
+<style>
+  .minimal-toc { margin: 1.25rem 0 2rem; padding: 1rem; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: .75rem; }
+  .dark .minimal-toc { background: #0f172a; border-color: #1f2937; }
+  .minimal-toc .toc-title { font-weight: 700; font-size: .95rem; color: #334155; margin-bottom: .5rem; }
+  .dark .minimal-toc .toc-title { color: #cbd5e1; }
+  .minimal-toc ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .25rem; }
+  .minimal-toc a { color: #2563eb; text-decoration: none; font-size: .95rem; border-bottom: 0; }
+  .minimal-toc a:hover { text-decoration: underline; }
+</style>

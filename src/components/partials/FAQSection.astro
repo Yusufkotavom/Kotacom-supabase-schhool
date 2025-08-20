@@ -1,0 +1,42 @@
+---
+// FAQSection partial component
+export interface Props {
+  faq?: any;
+}
+
+const { faq } = Astro.props;
+---
+
+<!-- FAQ Section -->
+{faq && (
+  <section class="border-t border-b border-gray-100 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+    <div class="max-w-screen-xl px-4 py-8 mx-auto sm:py-16 lg:py-24">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl dark:text-white">
+          {faq.title}
+        </h2>
+      </div>
+      {faq.points && faq.points.length > 0 && (
+        <div class="mt-8 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+          {faq.points.map((faq_item: any, index: number) => (
+            <div class="flex items-start gap-2.5">
+              <div class="flex items-center justify-center w-5 h-5 mt-0.5 text-gray-400 shrink-0">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div class="space-y-1">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                  {faq_item.question}
+                </h3>
+                <p class="text-gray-500 dark:text-gray-400">
+                  {faq_item.answer}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+)} 

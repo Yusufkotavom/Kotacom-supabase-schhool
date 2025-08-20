@@ -1,0 +1,170 @@
+---
+import ResponsiveImage from './ResponsiveImage.astro';
+
+interface Props {
+  post: any; // Support both old and new schemas
+}
+
+const { post } = Astro.props;
+
+// Modern schema mapping function
+const getPostData = (post: any) => {
+  // New Payload schema (direct properties)
+  if (post.title && post.slug) {
+    return {
+      title: post.title,
+      slug: post.slug,
+      imageUrl: post.imageUrl || post.coverImage,
+      tags: post.tags || post.category || [],
+      description: post.description || '',
+      published: post.published || post.publishedAt,
+      source: post.source || 'payload'
+    };
+  }
+  
+  // Old schema (nested properties)
+  if (post.data?.properties) {
+    return {
+      title: post.data.properties.bTitle,
+      slug: post.data.properties.bSlug,
+      imageUrl: post.data.properties.bCoverImage,
+      tags: post.data.properties.bTags || [],
+      description: post.data.properties.bDescription || '',
+      published: post.data.properties.bPublished,
+      source: post.source || 'legacy'
+    };
+  }
+  
+  // Fallback
+  return {
+    title: post.title || 'Untitled',
+    slug: post.slug || '#',
+    imageUrl: post.imageUrl || '',
+    tags: [],
+    description: '',
+    published: null,
+    source: 'unknown'
+  };
+};
+
+// Safe tag processing function
+const getTagValue = (tag: any): string => {
+  if (typeof tag === 'string') return tag;
+  if (tag && typeof tag === 'object' && tag.value) return tag.value;
+  return String(tag || '');
+};
+
+const postData = getPostData(post);
+
+// Modern URL routing
+const getPostUrl = (slug: string, source: string) => {
+  // All posts use root-level routing now
+  return `/${slug}/`;
+};
+
+const postUrl = getPostUrl(postData.slug, postData.source);
+
+// Random gradient colors for modern look
+const gradients = [
+  'from-purple-600 via-blue-600 to-blue-700',
+  'from-pink-500 via-red-500 to-yellow-500', 
+  'from-green-400 via-blue-500 to-purple-600',
+  'from-yellow-400 via-red-500 to-pink-500',
+  'from-indigo-500 via-purple-500 to-pink-500',
+  'from-blue-500 via-teal-500 to-green-500',
+  'from-rose-400 via-fuchsia-500 to-indigo-500',
+  'from-orange-400 via-red-400 to-pink-400'
+];
+
+const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
+---
+
+<article class="group relative rounded-2xl overflow-hidden bg-white dark:bg-gray-900 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+  <!-- Gradient Overlay Background -->
+  <div class={`absolute inset-0 bg-gradient-to-br ${randomGradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
+  
+  <!-- Image Container -->
+  <div class="relative overflow-hidden">
+    <a href={postUrl} class="block">
+      <ResponsiveImage
+        class="w-full h-48 md:h-52 lg:h-56 object-cover transition-transform duration-300 group-hover:scale-105"
+        src={postData.imageUrl}
+        alt={postData.title}
+        preset="card"
+        fallbackWidth={600}
+      />
+      <!-- Gradient overlay on image -->
+      <div class={`absolute inset-0 bg-gradient-to-t ${randomGradient} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}></div>
+    </a>
+  </div>
+
+  <!-- Content -->
+  <div class="relative p-6">
+    <!-- Tags -->
+    {Array.isArray(postData.tags) && postData.tags.length > 0 && (
+      <div class="flex flex-wrap gap-2 mb-3">
+        {postData.tags.slice(0, 3).map((tag: any) => {
+          const tagValue = getTagValue(tag);
+          return tagValue ? (
+            <a
+              href={`/kategori/${tagValue.toLowerCase().replace(/\s+/g, "-")}/`}
+              class={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-white bg-gradient-to-r ${randomGradient} hover:opacity-80 transition-opacity duration-200`}
+            >
+              {tagValue}
+            </a>
+          ) : null;
+        })}
+        {postData.tags.length > 3 && (
+          <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-gray-500 bg-gray-100 dark:bg-gray-800 dark:text-gray-400">
+            +{postData.tags.length - 3}
+          </span>
+        )}
+      </div>
+    )}
+
+    <!-- Title -->
+    <h2 class="mb-3 text-xl font-bold tracking-tight text-gray-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-pink-600 transition-all duration-300">
+      <a href={postUrl} class="block">
+        {postData.title}
+      </a>
+    </h2>
+
+    <!-- Description -->
+    {postData.description && (
+      <p class="text-gray-600 dark:text-gray-300 text-sm line-clamp-3 mb-4">
+        {postData.description}
+      </p>
+    )}
+
+    <!-- Footer -->
+    <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+      <!-- Published Date -->
+      {postData.published && (
+        <time class="flex items-center">
+          <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+          </svg>
+          {new Date(postData.published).toLocaleDateString('id-ID', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+          })}
+        </time>
+      )}
+
+      <!-- Read More Arrow -->
+      <a 
+        href={postUrl}
+        class={`inline-flex items-center text-sm font-medium text-transparent bg-clip-text bg-gradient-to-r ${randomGradient} hover:underline group-hover:translate-x-1 transition-transform duration-200`}
+      >
+        Baca Selengkapnya
+        <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Modern Border Glow Effect -->
+  <div class={`absolute inset-0 rounded-2xl bg-gradient-to-r ${randomGradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300 -z-10`}></div>
+</article>

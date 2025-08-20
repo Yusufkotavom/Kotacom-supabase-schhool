@@ -1,0 +1,128 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import ProductPage from '../../layouts/ProductPage.astro';
+import { render } from 'astro:content';
+import { renderPayloadBody } from '../../lib/payload-client';
+import { getProductsDirectFromSupabase } from '../../lib/supabase-direct';
+
+export async function getStaticPaths() {
+	// MD + Supabase Direct (much faster than Payload API)
+	const mdxProducts = await getCollection('productsMdx');
+	const supabaseProducts = await getProductsDirectFromSupabase(10000);
+	console.log(`� Building static paths for ${supabaseProducts?.length || 0} products (direct from Supabase)`);
+	
+	const mdxPaths = mdxProducts.map((product: any) => ({
+		params: { slug: product.data.slug },
+		props: { product, source: 'mdx' as const },
+	}));
+	
+	const supabasePaths = (supabaseProducts||[])
+		.filter((product:any) => product.slug && typeof product.slug === 'string')
+		.map((product:any)=> ({
+			params: { slug: product.slug },
+			props: { product, source: 'supabase' as const }
+		}));
+	
+	return [...mdxPaths, ...supabasePaths];
+}
+
+type Props = { product: any | CollectionEntry<'productsMdx'>; source: 'mdx'|'payload'|'supabase' };
+
+const { product, source } = Astro.props;
+
+let layoutData: any = {};
+let Content: any;
+
+if (source === 'mdx') {
+  const { Content: C } = await render(product as any);
+  Content = C;
+  layoutData = {
+    ...(product as any).data,
+    title: (product as any).data.title,
+    price: (product as any).data.price,
+    content: (product as any).data.content || "",
+    country: (product as any).data.country || [],
+    locale: (product as any).data.locale || [],
+    category: (product as any).data.category || [],
+    slug: (product as any).data.slug,
+    imageUrl: (product as any).data.imageUrl || "",
+    published: { start: (product as any).data.published },
+    description: (product as any).data.description || "",
+    verify: "",
+    imageUrl2: "",
+    imageUrl3: "",
+    review: "",
+    features: [],
+    name: "",
+    type: [],
+    url: "",
+    otherUrl: "",
+    tokopediaUrl: "",
+    shopeeUrl: "",
+    blibliUrl: "",
+    bukalapakUrl: "",
+    lazadaUrl: "",
+    mapsUrl: "",
+    affiliateCode: "",
+    commissionRate: "",
+    affiliateProvider: "",
+    discountCode: "",
+    specialOffer: "",
+    ctaText: "",
+    priority: "",
+    externalRating: "",
+    soldCount: "",
+    originalPrice: "",
+    isSponsored: false,
+    targetAudience: [],
+  };
+} else {
+  // payload product
+  Content = undefined;
+  layoutData = {
+    properties: {
+      title: product.title,
+      price: product.price,
+      content: renderPayloadBody(product),
+      country: (product.country||[]).map((x:any)=>x.value||x),
+      locale: (product.locale||[]).map((x:any)=>x.value||x),
+      category: (product.category||[]).map((x:any)=>x.value||x),
+      slug: product.slug,
+      imageUrl: product.imageUrl || "",
+      published: product.published ? new Date(product.published) : new Date(),
+      description: product.description || "",
+      verify: product.verify || "",
+      imageUrl2: product.imageUrl2 || "",
+      imageUrl3: product.imageUrl3 || "",
+      review: product.review || "",
+      features: product.features || [],
+      name: product.name || "",
+      type: product.type || [],
+      url: product.url || "",
+      otherUrl: product.otherUrl || "",
+      tokopediaUrl: product.tokopediaUrl || "",
+      shopeeUrl: product.shopeeUrl || "",
+      blibliUrl: product.blibliUrl || "",
+      bukalapakUrl: product.bukalapakUrl || "",
+      lazadaUrl: product.lazadaUrl || "",
+      mapsUrl: product.mapsUrl || "",
+      affiliateCode: product.affiliateCode || "",
+      commissionRate: product.commissionRate || "",
+      affiliateProvider: product.affiliateProvider || "",
+      discountCode: product.discountCode || "",
+      specialOffer: product.specialOffer || "",
+      ctaText: product.ctaText || "",
+      priority: product.priority || "",
+      externalRating: product.externalRating || "",
+      soldCount: product.soldCount || "",
+      originalPrice: product.originalPrice || "",
+      isSponsored: !!product.isSponsored,
+      targetAudience: product.targetAudience || [],
+    }
+  };
+}
+---
+
+<ProductPage {...layoutData}>
+  {Content && <Content />}
+</ProductPage>

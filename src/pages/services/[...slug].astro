@@ -1,0 +1,108 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import ServicePage from '../../layouts/ServicePage.astro';
+import { renderPayloadBody } from '../../lib/payload-client';
+import { getServicesDirectFromSupabase } from '../../lib/supabase-direct';
+
+export async function getStaticPaths() {
+	// MD + Supabase Direct (much faster than Payload API)
+	const mdxServices = await getCollection('servicesMdx');
+	const supabaseServices = await getServicesDirectFromSupabase(10000);
+	console.log(`� Building static paths for ${supabaseServices?.length || 0} services (direct from Supabase)`);
+	
+	const mdxPaths = mdxServices.map((service) => ({
+		params: { slug: service.data.slug },
+		props: { service, source: 'mdx' as const },
+	}));
+	
+	const supabasePaths = (supabaseServices||[])
+		.filter((service:any) => service.slug && typeof service.slug === 'string')
+		.map((service:any)=> ({
+			params: { slug: service.slug },
+			props: { service, source: 'supabase' as const },
+		}));
+	
+	return [...mdxPaths, ...supabasePaths];
+}
+
+type Props = { service: any | CollectionEntry<'servicesMdx'>; source: 'mdx'|'payload'|'supabase' };
+
+const { service, source } = Astro.props;
+
+let layoutData: any = {};
+let Content: any;
+
+if (source === 'mdx') {
+  const { Content: C } = await render(service as any);
+  Content = C;
+  layoutData = {
+    ...service.data,
+    title: service.data.title,
+    category: service.data.category,
+    slug: service.data.slug,
+    imageUrl1: service.data.imageUrl1,
+    published: service.data.published,
+    wilayah: service.data.wilayah,
+    provider: service.data.provider,
+    type: service.data.type,
+    price: service.data.price,
+    url: service.data.url,
+    whatsappUrl: service.data.whatsappUrl,
+    mapsUrl: service.data.mapsUrl,
+    verify: service.data.verify,
+    imageUrl2: service.data.imageUrl2,
+    imageUrl3: service.data.imageUrl3,
+    review: service.data.review,
+  };
+} else if (source === 'supabase') {
+  // Handle Supabase services (already converted)
+  Content = null;
+  layoutData = {
+    title: service.title,
+    category: service.category || [],
+    slug: service.slug,
+    imageUrl1: service.imageUrl1 || '',
+    published: service.published,
+    wilayah: service.wilayah || [],
+    provider: service.provider,
+    type: service.type || [],
+    price: service.price,
+    url: service.url,
+    whatsappUrl: service.whatsappUrl,
+    mapsUrl: service.mapsUrl,
+    verify: service.verify || '',
+    imageUrl2: service.imageUrl2 || '',
+    imageUrl3: service.imageUrl3 || '',
+    review: service.review || '',
+    body: service.body || '',
+    description: service.description || '',
+  };
+} else {
+  // For Payload services, we'll render content directly in the layout
+  Content = null;
+  layoutData = {
+    title: service.title,
+    category: (service.category||[]).map((x:any)=>x.value||x),
+    slug: service.slug,
+    imageUrl1: service.imageUrl1 || '',
+    published: service.published ? new Date(service.published) : new Date(),
+    wilayah: (service.wilayah||[]).map((x:any)=>x.value||x),
+    provider: service.provider,
+    type: (service.type||[]).map((x:any)=>x.value||x),
+    price: service.price,
+    url: service.url,
+    whatsappUrl: service.whatsappUrl,
+    mapsUrl: service.mapsUrl,
+    verify: service.verify || '',
+    imageUrl2: service.imageUrl2 || '',
+    imageUrl3: service.imageUrl3 || '',
+    review: service.review || '',
+    body: service.body || '',
+    description: service.description || '',
+  };
+}
+---
+
+<ServicePage {...layoutData}>
+  {Content && <Content />}
+</ServicePage>

@@ -1,0 +1,111 @@
+---
+// filepath: /Users/matthewmorelli/Documents/Dev/giveback-guide/src/components/LatestPosts.astro
+
+import { getCollection } from "astro:content";
+import PostCard from "../PostCard.astro";
+import BCategoryDropdown from "../BCategoryDropdown.astro";
+import { getPostsDirectFromSupabase, convertSupabasePost } from "../../lib/supabase-direct";
+
+// Props: limit specifies the number of posts to display
+interface Props {
+  limit: number;
+}
+
+const { limit } = Astro.props;
+
+// Helper function to parse dates in dd/mm/yyyy format
+function parseDate(dateStr: string): Date {
+  const [day, month, year] = dateStr.split('/');
+  return new Date(`${year}-${month}-${day}`);
+}
+
+// Fetch posts from local MD and Supabase Direct (much faster!)
+let mdxPosts: any[] = [];
+try { mdxPosts = await getCollection("postsMdx"); } catch (_) { mdxPosts = []; }
+const supabasePosts = await getPostsDirectFromSupabase(1000); // Get more to ensure enough after filtering
+
+// Normalize MD posts
+const normalizedMdxPosts = mdxPosts.map((entry) => ({
+  ...entry,
+  source: 'mdx',
+  data: {
+    ...entry.data,
+    properties: {
+      bTitle: entry.data.title,
+      bTags: entry.data.tags,
+      bSlug: entry.data.slug,
+      bCoverImage: entry.data.coverImage || "",
+      bPublished: { start: entry.data.published },
+      bLastUpdated: entry.data.lastUpdated ? { start: entry.data.lastUpdated } : { start: entry.data.published },
+      bDescription: entry.data.description,
+    },
+  },
+}));
+
+// Normalize Payload posts
+const normalizedSupabase = (supabasePosts || [])
+  .map(convertSupabasePost)
+  .map((p:any) => ({
+  source: 'payload',
+  data: {
+    properties: {
+      bTitle: p.title,
+      bTags: (p.tags||[]).map((x:any)=>x.value||x),
+      bSlug: p.slug,
+      bCoverImage: p.coverImage || "",
+      bPublished: { start: p.published ? new Date(p.published) : new Date(0) },
+      bLastUpdated: p.lastUpdated ? { start: new Date(p.lastUpdated) } : undefined,
+      bDescription: p.description,
+    }
+  }
+}));
+
+// Merge
+const allPosts = [...normalizedMdxPosts, ...normalizedSupabase];
+
+// Sort posts by bPublished date (descending order)
+const sortedEntries = allPosts.sort((a, b) => {
+  const dateA = a.data.properties.bPublished
+    ? a.data.properties.bPublished.start
+    : new Date(0); // Fallback to epoch if date is missing
+  const dateB = b.data.properties.bPublished
+    ? b.data.properties.bPublished.start
+    : new Date(0); // Fallback to epoch if date is missing
+  return dateB.getTime() - dateA.getTime(); // Most recent first
+});
+
+// Limit the number of posts based on the limit prop
+const limitedEntries = sortedEntries.slice(0, limit);
+---
+
+<section class="bg-white dark:bg-gray-900">
+  <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+    <div class="flex flex-col items-start justify-between p-2 space-y-3 md:flex-row md:space-y-0 mb-4">
+      <div class="max-w-screen-md">
+        <h2
+          class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+        >
+          Artikel & Tips Teknologi
+        </h2>
+        <p class="text-gray-500 sm:text-xl dark:text-gray-400">
+          Insights terbaru tentang teknologi, tips IT, dan panduan digital untuk mengoptimalkan bisnis Anda.
+        </p>
+      </div>
+      <div
+        id="3"
+        class="w-full md:w-1/4 p-2 order-2 md:order-3"
+      >
+        <BCategoryDropdown />
+      </div>
+    </div>
+    <div
+      class="flex flex-row overflow-x-auto hide-scrollbar space-x-4 md:space-x-0 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12"
+    >
+      {limitedEntries.map((post) => (
+        <div class="w-[70%] sm:w-[50%] md:w-auto flex-shrink-0 md:flex-shrink">
+          <PostCard post={post} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,12 @@
+---
+// Redirect component for meta refresh redirects
+export interface Props {
+  url: string;
+  delay?: number;
+}
+
+const { url, delay = 0 } = Astro.props;
+---
+
+<meta http-equiv="refresh" content={`${delay};url=${url}`} />
+<link rel="canonical" href={url} /> 

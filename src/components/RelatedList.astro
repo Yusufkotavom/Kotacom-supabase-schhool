@@ -1,0 +1,84 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  type: 'post' | 'project' | 'product';
+  limit?: number;
+}
+
+const { type, limit = 5 } = Astro.props as Props;
+
+function toSlug(value: any): string {
+  if (!value) return '';
+  if (typeof value === 'string') return value;
+  return String(value);
+}
+
+const currentPath = Astro.url.pathname;
+
+let items: { title: string; href: string; date?: Date }[] = [];
+
+if (type === 'post') {
+  // MDX posts
+  const mdx = await getCollection('postsMdx').catch(() => []);
+  const mdxItems = mdx.map((p: any) => ({
+    title: p.data?.title,
+    slug: p.data?.slug,
+    date: p.data?.published ? new Date(p.data.published) : undefined,
+  })).filter((x: any) => x.slug).map((x: any) => ({ title: x.title, href: `/blog/${x.slug}/`, date: x.date }));
+
+  items = [...mdxItems];
+}
+
+if (type === 'project') {
+  const mdx = await getCollection('projectsMdx').catch(() => []);
+  const mdxItems = mdx.map((p: any) => ({
+    title: p.data?.title,
+    slug: p.data?.slug,
+    date: p.data?.published ? new Date(p.data.published) : undefined,
+  })).filter((x: any) => x.slug).map((x: any) => ({ title: x.title, href: `/projects/${x.slug}/`, date: x.date }));
+
+  items = [...mdxItems];
+}
+
+if (type === 'product') {
+  const mdx = await getCollection('productsMdx').catch(() => []);
+  const mdxItems = mdx.map((p: any) => ({
+    title: p.data?.title,
+    slug: p.data?.slug,
+    date: p.data?.published ? new Date(p.data.published) : undefined,
+  })).filter((x: any) => x.slug).map((x: any) => ({ title: x.title, href: `/products/${x.slug}/`, date: x.date }));
+
+  items = [...mdxItems];
+}
+
+// Exclude current page
+items = items.filter((it) => it.href !== currentPath);
+
+// Sort by date desc then title
+items.sort((a, b) => {
+  const da = a.date ? a.date.getTime() : 0;
+  const db = b.date ? b.date.getTime() : 0;
+  if (db !== da) return db - da;
+  return a.title.localeCompare(b.title);
+});
+
+items = items.slice(0, limit);
+---
+
+{items.length > 0 && (
+  <section class="bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">
+        {type === 'post' ? 'Artikel Terbaru' : type === 'project' ? 'Project Terbaru' : 'Produk Terbaru'}
+      </h2>
+      <ul class="grid gap-2 list-disc pl-4 text-gray-700 dark:text-gray-300">
+        {items.map((it) => (
+          <li>
+            <a href={it.href} class="text-blue-600 dark:text-blue-400 hover:underline">{it.title}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}

@@ -1,0 +1,124 @@
+---
+// filepath: /Users/matthewmorelli/Documents/Dev/giveback-guide/src/components/Homepage/LatestProducts.astro
+
+import { getCollection } from "astro:content";
+import { getProductsDirectFromSupabase } from "../../lib/supabase-direct";
+import ProductCard from "../ProductCard.astro";
+import PCountryDropdown from "../PCountryDropdown.astro";
+
+// Props: limit specifies the number of products to display
+interface Props {
+  limit: number;
+}
+
+const { limit } = Astro.props;
+
+// Helper function to parse dates in dd/mm/yyyy format
+function parseDate(dateStr: string): Date {
+  const [day, month, year] = dateStr.split("/");
+  return new Date(`${year}-${month}-${day}`);
+}
+
+// Fetch from MD and Supabase Direct (much faster!)
+let mdxProducts = [] as any[];
+try { mdxProducts = await getCollection("productsMdx"); } catch {}
+const supabaseProducts = await getProductsDirectFromSupabase(1000); // Get more to ensure enough after filtering
+
+// Normalize MDX products
+const normalizedMdxProducts = mdxProducts.map((entry) => ({
+  ...entry,
+  source: 'mdx',
+  data: {
+    ...entry.data,
+    properties: {
+      pTitle: entry.data.title,
+      pPrice: entry.data.price,
+      pCountry: entry.data.country,
+      pLocale: entry.data.locale,
+      pCategory: entry.data.category,
+      pSlug: entry.data.slug,
+      pImageURL1: entry.data.imageUrl || "",
+      pPublished: { start: entry.data.published },
+      pDescription: entry.data.description,
+      pVerify: "",
+      pImageURL2: "",
+      pImageURL3: "",
+      pReview: "",
+    },
+  },
+}));
+
+// Normalize Payload products
+const normalizedSupabase = supabaseProducts.map((p: any) => ({
+  source: 'payload',
+  data: { properties: {
+    pTitle: p.title,
+    pPrice: p.price,
+    pCountry: (p.country||[]).map((x:any)=>x.value||x),
+    pLocale: (p.locale||[]).map((x:any)=>x.value||x),
+    pCategory: (p.category||[]).map((x:any)=>x.value||x),
+    pSlug: p.slug,
+    pImageURL1: p.imageUrl || "",
+    pPublished: { start: p.published ? new Date(p.published) : new Date(0) },
+    pDescription: p.description,
+    pVerify: "",
+  } }
+}));
+
+// Merge
+const allProducts = [...normalizedMdxProducts, ...normalizedSupabase];
+
+// Sort by pPublished date (descending)
+const sortedEntries = allProducts.sort((a, b) => {
+  const dateA = a.data.properties.pPublished?.start || new Date(0);
+  const dateB = b.data.properties.pPublished?.start || new Date(0);
+  return dateB.getTime() - dateA.getTime();
+});
+
+// Limit
+const limitedEntries = sortedEntries.slice(0, limit);
+
+// Debug info
+console.log(`LatestProducts: Found ${mdxProducts.length} MD products, supabase ${supabaseProducts.length}, showing ${limitedEntries.length} total`);
+---
+
+<section class="bg-white dark:bg-gray-900">
+  <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+    <div class="flex flex-col items-start justify-between p-2 space-y-3 md:flex-row md:space-y-0 mb-4">
+      <div class="max-w-screen-md">
+        <h2
+          class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+        >
+          Produk & Solusi Terbaru
+        </h2>
+        <p class="text-gray-500 sm:text-xl dark:text-gray-400">
+          Hardware, software, dan solusi teknologi terkini untuk mendukung kebutuhan bisnis modern.
+        </p>
+      </div>
+      <div
+        id="3"
+        class="w-full md:w-1/4 p-2 order-2 md:order-3"
+      >
+        <PCountryDropdown />
+      </div>
+    </div>
+    
+    {limitedEntries.length > 0 ? (
+      <div
+        class="flex flex-row overflow-x-auto hide-scrollbar space-x-4 md:space-x-0 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12"
+      >
+        {limitedEntries.map((product) => (
+          <div class="w-[70%] sm:w-[50%] md:w-auto flex-shrink-0 md:flex-shrink">
+            <ProductCard product={product} />
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-12">
+        <p class="text-gray-500 dark:text-gray-400 text-lg">
+          Tidak ada produk yang tersedia saat ini.
+        </p>
+      </div>
+    )}
+  </div>
+</section>

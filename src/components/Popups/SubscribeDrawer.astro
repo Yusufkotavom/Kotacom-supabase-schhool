@@ -1,0 +1,110 @@
+---
+---
+<!-- Request Drawer component -->
+<div id="subscribe-drawer-bottom" class="hidden fixed bottom-0 left-0 right-0 z-40 w-full p-4 overflow-y-auto border-t border-gray-300 border-solid transition-transform bg-white dark:bg-gray-800 transform-none" tabindex="-1" aria-labelledby="subscribe-drawer-bottom">
+  <div id="subscribe-content">
+    <button id="subscribe-drawer-close" type="button" aria-controls="subscribe-drawer-bottom" class="cursor-pointer text-gray-400 bg-transparent hover:bg-white hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white" >
+      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+      </svg>
+      <span class="sr-only">Close menu</span>
+    </button>
+    <h2
+      id="request-heading"
+      class="mb-2 text-2xl text-left sm:text-center tracking-tight font-extrabold text-gray-900 dark:text-white"
+    >
+      Minta Penawaran / Diskon
+    </h2>
+    <p
+      class="mx-auto mb-4 max-w-2xl text-left sm:text-center text-md font-light text-gray-500 dark:text-gray-400"
+    >
+      Isi form singkat ini untuk mendapatkan penawaran harga, diskon, atau konsultasi produk.
+    </p>
+    <form id="request-form" class="w-100%" action="/api/request-quote" method="post">
+      <div
+        class="items-center mx-auto mb-3 space-y-3 max-w-screen-sm grid grid-cols-1 sm:grid-cols-2 gap-3"
+      >
+        <div class="relative w-full">
+          <input class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="Nama" type="text" id="name" name="name" required />
+        </div>
+        <div class="relative w-full">
+          <input class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="Produk (opsional)" type="text" id="product" name="product" />
+        </div>
+        <div class="relative w-full">
+          <select id="request" name="request" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <option value="quote">Penawaran</option>
+            <option value="discount">Diskon</option>
+            <option value="consult">Konsultasi</option>
+          </select>
+        </div>
+        <div class="relative w-full">
+          <input class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="Email (opsional)" type="email" id="email" name="email" />
+        </div>
+        <button type="submit" aria-label="Kirim permintaan" class="py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border cursor-pointer bg-blue-600 border-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700">Kirim</button>
+        <a href="https://wa.me/62085799520350?text=Halo,%20saya%20ingin%20minta%20penawaran/diskon/konsultasi" target="_blank" rel="noopener noreferrer" class="py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border cursor-pointer bg-green-600 border-green-600 hover:bg-green-700">Chat WA</a>
+      </div>
+      <div class="mx-auto max-w-screen-sm text-xs text-center text-gray-500 dark:text-gray-300">Dengan mengirimkan form ini Anda setuju untuk dihubungi oleh tim kami. <a href="/privacy" class="font-medium text-black hover:underline">Kebijakan Privasi</a>.</div>
+    </form>
+  </div>
+  <div id="subscribe-confirmation" class="hidden mx-auto max-w-screen-sm text-center text-black dark:text-white text-md font-semibold mt-4">Permintaan terkirim! Tim kami akan segera menghubungi Anda.</div>
+  <div id="subscribe-error" class="hidden mx-auto max-w-screen-sm text-center text-red-600 dark:text-red-400 text-md font-semibold mt-4">Maaf, terjadi masalah saat mengirimkan permintaan. Coba lagi.</div>
+</div>
+ 
+ <script is:inline>
+   // Helper functions for cookies
+   function setCookie(name, value, days) {
+     const d = new Date();
+     d.setTime(d.getTime() + (days*24*60*60*1000));
+     document.cookie = name + "=" + value + ";expires=" + d.toUTCString() + ";path=/";
+   }
+   function getCookie(name) {
+     const v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+     return v ? v[2] : null;
+   }
+ 
+   // Show the drawer after 8 seconds if cookie not set
+   setTimeout(() => {
+   if (!getCookie('subscribe_dismissed')) {
+     const drawer = document.getElementById('subscribe-drawer-bottom');
+     if (drawer) {
+       drawer.classList.remove('hidden');
+     }
+   }
+ }, 8000);
+ 
+   document.addEventListener('DOMContentLoaded', () => {
+     // Hide the drawer and set cookie for 2 days (48 hours) when closed
+     const closeBtn = document.getElementById('subscribe-drawer-close');
+     if (closeBtn) {
+       closeBtn.addEventListener('click', () => {
+         const drawer = document.getElementById('subscribe-drawer-bottom');
+         if (drawer) drawer.classList.add('hidden');
+         setCookie('subscribe_dismissed', 'true', 2); // 2 days
+       });
+     }
+     // AJAX form submission using fetch
+     const form = document.getElementById('request-form');
+     const confirmation = document.getElementById('subscribe-confirmation');
+     const errorMsg = document.getElementById('subscribe-error');
+     const content = document.getElementById('subscribe-content');
+     if (form) {
+       form.addEventListener('submit', async function(e) {
+         e.preventDefault();
+         confirmation.classList.add('hidden');
+         errorMsg.classList.add('hidden');
+         const formData = new FormData(form);
+         const body = Object.fromEntries(formData.entries());
+         try {
+           await fetch('/api/request-quote', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+           if (form && 'reset' in form && typeof (form as any).reset === 'function') {
+             (form as any).reset();
+           }
+           content.classList.add('hidden');
+           confirmation.classList.remove('hidden');
+         } catch (error) {
+           errorMsg.classList.remove('hidden');
+         }
+       });
+     }
+   });
+ </script>

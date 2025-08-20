@@ -1,0 +1,15 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Search from "astro-pagefind/components/Search";
+
+const q = Astro.url.searchParams.get("q") ?? undefined;
+---
+
+<MainLayout title="Search">
+  <section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+      <h1 class="mb-6 text-3xl font-bold text-gray-900 dark:text-white">Search</h1>
+      <Search id="search" className="pagefind-ui" query={q} uiOptions={{ showImages: true }} />
+    </div>
+  </section>
+</MainLayout>

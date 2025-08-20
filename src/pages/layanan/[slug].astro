@@ -1,0 +1,100 @@
+---
+// JSON Business Pages in services folder (lower priority than WordPress)
+import Layout from '../../layouts/Layout.astro';
+import HeroSection from '../../components/partials/HeroSection.astro';
+import FeaturesSection from '../../components/partials/FeaturesSection.astro';
+import AboutSection from '../../components/partials/AboutSection.astro';
+import ServicesSection from '../../components/partials/ServicesSection.astro';
+import WhyUsSection from '../../components/partials/WhyUsSection.astro';
+import WhatYouGetSection from '../../components/partials/WhatYouGetSection.astro';
+import WhyNeedSection from '../../components/partials/WhyNeedSection.astro';
+import PricingSection from '../../components/partials/PricingSection.astro'; 
+import PortfolioSection from '../../components/partials/PortfolioSection.astro';
+import TestimonialsSection from '../../components/partials/TestimonialsSection.astro';
+import ContentSection from '../../components/partials/ContentSection.astro';
+import CTASection from '../../components/partials/CTASection.astro';
+import FAQSection from '../../components/partials/FAQSection.astro';
+
+// Enable static generation
+export const prerender = true;
+
+// Generate paths for all JSON files
+export async function getStaticPaths(): Promise<any[]> {
+  // Get all JSON files using import.meta.glob
+  const jsonFiles = await import.meta.glob('/src/data/json_usaha/*.json', { eager: true });
+  
+  const paths = Object.entries(jsonFiles).map(([filePath, fileData]: [string, any]) => {
+    // Extract slug from filename (remove .json and convert to kebab-case)
+    const filename = filePath.split('/').pop()?.replace('.json', '') || '';
+    
+    // Convert to kebab-case: replace underscores with hyphens and convert to lowercase
+    let slug = filename
+      .replace(/_/g, '-') // Replace underscores with hyphens
+      .toLowerCase(); // Convert to lowercase
+    
+    console.log(`File: ${filename} -> Slug: ${slug}`); // Debug log
+    
+    return {
+      params: { slug },
+      props: { data: fileData.default || fileData }
+    };
+  });
+  
+  console.log('Generated paths:', paths.map(p => p.params.slug)); // Debug log
+  
+  return paths;
+}
+
+const { slug } = Astro.params;
+const { data } = Astro.props;
+
+// Check if data exists (for JSON business pages)
+if (!data) {
+  return Astro.redirect('/404');
+}
+
+// Extract data from JSON
+const {
+  hero,
+  features,
+  info,
+  services,
+  why_us,
+  what_you_get,
+  why_need,
+  pricing,
+  portfolio,
+  testimonials,
+  faq,
+  final_cta,
+  content,
+  local,
+  kabupaten_kota,
+  seo_meta
+} = data;
+
+// Generate page title and description
+const pageTitle = seo_meta?.seo_data?.metadata?.meta_title || hero?.title || 'Jasa Pembuatan Website';
+const pageDescription = seo_meta?.seo_data?.metadata?.meta_description || hero?.subtitle || 'Jasa pembuatan website profesional';
+---
+
+<Layout 
+  title={pageTitle} 
+  description={pageDescription} 
+>
+  <main>
+    <HeroSection hero={hero} />
+    <FeaturesSection features={features} />
+    <AboutSection info={info} />
+    <ServicesSection services={services} />
+    <WhyUsSection why_us={why_us} />
+    <WhatYouGetSection what_you_get={what_you_get} />
+    <WhyNeedSection why_need={why_need} />
+    <PricingSection pricing={pricing} />
+    <PortfolioSection portfolio={portfolio} />
+    <TestimonialsSection testimonials={testimonials} />
+    <ContentSection content={content} local={local} kabupaten_kota={kabupaten_kota} />
+    <FAQSection faq={faq} />
+    <CTASection final_cta={final_cta} />
+  </main>
+</Layout> 

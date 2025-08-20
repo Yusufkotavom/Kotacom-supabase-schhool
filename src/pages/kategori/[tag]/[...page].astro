@@ -1,0 +1,158 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import PostCard from '../../../components/PostCard.astro';
+import { getPostsDirectFromSupabase } from '../../../lib/supabase-direct';
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  // Get MDX posts from pages/posts directory
+  const postFiles = await import.meta.glob('../../posts/*.mdx');
+  const mdxPosts = await Promise.all(
+    Object.entries(postFiles).map(async ([path, loader]) => {
+      const post = await loader();
+      return {
+        data: post.frontmatter,
+        slug: path.split('/').pop()?.replace('.mdx', '') || '',
+        url: path.replace('../../posts/', '/posts/').replace('.mdx', '/')
+      };
+    })
+  );
+  
+      const supabasePosts = await getPostsDirectFromSupabase(10000); // Load all posts to capture all tags
+  
+  // Extract unique tags from all sources
+  const allTags = new Set<string>();
+  
+  // Extract tags from MDX posts
+  mdxPosts.forEach((post: any) => {
+    (post.data.tags || []).forEach((tag: string) => {
+      if (tag && typeof tag === 'string') {
+        allTags.add(tag);
+      }
+    });
+  });
+  
+  // Extract tags from Supabase posts
+  (supabasePosts || []).forEach((post: any) => {
+    const tags = post.tags || [];
+    if (Array.isArray(tags)) {
+      tags.forEach((tag: any) => {
+        const tagValue = typeof tag === 'string' ? tag : tag?.value || tag?.name;
+        if (tagValue && typeof tagValue === 'string') {
+          allTags.add(tagValue);
+        }
+      });
+    }
+  });
+
+  const paths: any[] = [];
+  
+  for (const tag of allTags) {
+    // Filter MDX posts by tag
+    const mdxPostsWithTag = mdxPosts.filter((post: any) => {
+      return (post.data.tags || []).includes(tag);
+    });
+    
+    // Filter Supabase posts by tag
+    const supabasePostsWithTag = (supabasePosts || []).filter((post: any) => {
+      const tags = post.tags || [];
+      return Array.isArray(tags) && tags.some((postTag: any) => {
+        const tagValue = typeof postTag === 'string' ? postTag : postTag?.value || postTag?.name;
+        return tagValue === tag;
+      });
+    });
+    
+    // Combine all posts with this tag
+    const allPostsWithTag = [
+      ...mdxPostsWithTag.map((post: any) => ({ ...post, source: 'mdx' })),
+      ...supabasePostsWithTag.map((post: any) => ({ ...post, source: 'supabase' }))
+    ];
+    
+    // Create path for this tag
+    paths.push({
+      params: { 
+        tag: tag,
+        page: undefined
+      },
+      props: { 
+        posts: allPostsWithTag,
+        tag: tag,
+        totalPosts: allPostsWithTag.length
+      },
+    });
+  }
+  
+  return paths;
+}
+
+type Props = {
+  posts: any[];
+  tag: string;
+  totalPosts: number;
+};
+
+const { posts, tag, totalPosts } = Astro.props;
+---
+
+<Layout title={`Kategori: ${tag} - Kotacom.id`}>
+  <main class="container mx-auto px-4 py-8">
+    <div class="mb-8">
+      <nav class="text-sm breadcrumbs mb-4">
+        <a href="/" class="text-blue-600 hover:underline">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/kategori/" class="text-blue-600 hover:underline">Kategori</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-600">{tag}</span>
+      </nav>
+      
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+        Kategori: {tag}
+      </h1>
+      <p class="text-gray-600 dark:text-gray-400">
+        {totalPosts} artikel ditemukan
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      {posts.map((post) => {
+        // Normalize post data for PostCard
+        if (post.source === 'mdx') {
+          return (
+            <PostCard 
+              post={{
+                source: 'mdx',
+                data: {
+                  properties: {
+                    bSlug: post.data.slug,
+                    bCoverImage: post.data.coverImage || "",
+                    bTags: post.data.tags || [],
+                    bTitle: post.data.title
+                  }
+                }
+              }}
+            />
+          );
+        } else {
+          // Supabase posts
+          return (
+            <PostCard 
+              post={{
+                source: 'supabase',
+                data: {
+                  properties: {
+                    bSlug: post.slug,
+                    bCoverImage: post.imageUrl || post.coverImage || "",
+                    bTags: Array.isArray(post.tags) ? post.tags.map((tag: any) => 
+                      typeof tag === 'string' ? tag : tag?.value || tag?.name || tag
+                    ) : [],
+                    bTitle: post.title
+                  }
+                }
+              }}
+            />
+          );
+        }
+      })}
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,333 @@
+---
+interface Props {
+  content: string;
+  Content?: any;
+}
+
+const { content, Content } = Astro.props;
+---
+
+<div class="html-content">
+  {Content ? <Content /> : <div set:html={content} />}
+</div>
+
+<script>
+  // Add fallback image handling for all images in the content
+  document.addEventListener('DOMContentLoaded', function() {
+    const htmlContent = document.querySelector('.html-content');
+    if (!htmlContent) return;
+    
+    const images = htmlContent.querySelectorAll('img');
+    images.forEach(img => {
+      // Add error handling for each image
+      img.addEventListener('error', function() {
+        this.onerror = null; // Prevent infinite loop
+        this.src = '/data/image/default.jpg';
+      });
+      
+      // Add loading state
+      img.addEventListener('load', function() {
+        this.style.opacity = '1';
+      });
+      
+      // Set initial opacity for smooth loading
+      img.style.opacity = '0';
+      img.style.transition = 'opacity 0.3s ease-in-out';
+    });
+  });
+</script>
+
+<style>
+  .html-content {
+    /* Ensure proper styling for HTML content */
+    line-height: 1.6;
+  }
+  
+  .html-content h1,
+  .html-content h2,
+  .html-content h3,
+  .html-content h4,
+  .html-content h5,
+  .html-content h6 {
+    font-weight: bold;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    line-height: 1.2;
+  }
+  
+  .html-content h1 {
+    font-size: 2.25rem;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .html-content h2 {
+    font-size: 1.875rem;
+    border-bottom: 1px solid #f3f4f6;
+    padding-bottom: 0.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .html-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .html-content h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .html-content h5 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .html-content h6 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .html-content p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+  
+  .html-content a {
+    color: #3b82f6;
+    text-decoration: none;
+  }
+  
+  .html-content a:hover {
+    text-decoration: underline;
+  }
+  
+  .html-content ul,
+  .html-content ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+  
+  .html-content li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .html-content blockquote {
+    border-left: 4px solid #3b82f6;
+    padding-left: 1rem;
+    margin: 1rem 0;
+    font-style: italic;
+  }
+  
+  .html-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+  }
+  
+  .html-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+  }
+  
+  .html-content th,
+  .html-content td {
+    border: 1px solid #e5e7eb;
+    padding: 0.75rem;
+    text-align: left;
+  }
+  
+  .html-content th {
+    background-color: #f9fafb;
+    font-weight: bold;
+  }
+  
+  /* WordPress-specific class replacements */
+  .html-content .gemini-blue {
+    color: #3b82f6 !important;
+  }
+  
+  .html-content .gemini-yellow {
+    color: #f59e0b !important;
+  }
+  
+  .html-content .gemini-green {
+    color: #10b981 !important;
+  }
+  
+  .html-content .gemini-purple {
+    color: #8b5cf6 !important;
+  }
+  
+  .html-content .bg-gemini-blue {
+    background-color: #3b82f6 !important;
+  }
+  
+  .html-content .bg-gemini-yellow {
+    background-color: #f59e0b !important;
+  }
+  
+  .html-content .bg-gemini-green {
+    background-color: #10b981 !important;
+  }
+  
+  .html-content .bg-gemini-purple {
+    background-color: #8b5cf6 !important;
+  }
+  
+  .html-content .text-gemini-blue {
+    color: #3b82f6 !important;
+  }
+  
+  .html-content .text-gemini-yellow {
+    color: #f59e0b !important;
+  }
+  
+  .html-content .text-gemini-green {
+    color: #10b981 !important;
+  }
+  
+  .html-content .text-gemini-purple {
+    color: #8b5cf6 !important;
+  }
+  
+  .html-content .hover\\:text-gemini-blue:hover {
+    color: #3b82f6 !important;
+  }
+  
+  .html-content .hover\\:text-gemini-purple:hover {
+    color: #8b5cf6 !important;
+  }
+  
+  .html-content .hover\\:bg-gemini-blue:hover {
+    background-color: #3b82f6 !important;
+  }
+  
+  .html-content .hover\\:bg-gemini-yellow:hover {
+    background-color: #f59e0b !important;
+  }
+  
+  .html-content .hover\\:bg-gemini-green:hover {
+    background-color: #10b981 !important;
+  }
+  
+  .html-content .hover\\:bg-gemini-purple:hover {
+    background-color: #8b5cf6 !important;
+  }
+  
+  /* Replace dashicons with FontAwesome or remove */
+  .html-content .dashicons {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  .html-content .dashicons-book-alt::before {
+    content: "📚";
+  }
+  
+  .html-content .dashicons-money-alt::before {
+    content: "💰";
+  }
+  
+  .html-content .dashicons-media-text::before {
+    content: "📄";
+  }
+  
+  .html-content .dashicons-book::before {
+    content: "📖";
+  }
+  
+  .html-content .dashicons-format-image::before {
+    content: "🖼️";
+  }
+  
+  .html-content .dashicons-shield-alt::before {
+    content: "🛡️";
+  }
+  
+  /* Replace rh-icon classes */
+  .html-content .rh-icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+  }
+  
+  .html-content .rh-25-lightbulb::before {
+    content: "💡";
+  }
+  
+  .html-content .rh-98-money::before {
+    content: "💵";
+  }
+  
+  .html-content .rh-33-truck::before {
+    content: "🚚";
+  }
+  
+  /* Dark mode support */
+  .dark .html-content {
+    color: #e5e7eb;
+  }
+  
+  .dark .html-content h1,
+  .dark .html-content h2,
+  .dark .html-content h3,
+  .dark .html-content h4,
+  .dark .html-content h5,
+  .dark .html-content h6 {
+    color: #f9fafb;
+  }
+  
+  .dark .html-content h1 {
+    border-bottom-color: #374151;
+  }
+  
+  .dark .html-content h2 {
+    border-bottom-color: #4b5563;
+  }
+  
+  .dark .html-content a {
+    color: #60a5fa;
+  }
+  
+  .dark .html-content a:hover {
+    color: #93c5fd;
+  }
+  
+  .dark .html-content blockquote {
+    border-left-color: #60a5fa;
+  }
+  
+  .dark .html-content th,
+  .dark .html-content td {
+    border-color: #374151;
+  }
+  
+  .dark .html-content th {
+    background-color: #374151;
+    color: #f9fafb;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .html-content h1 {
+      font-size: 1.875rem;
+    }
+    
+    .html-content h2 {
+      font-size: 1.5rem;
+    }
+    
+    .html-content h3 {
+      font-size: 1.25rem;
+    }
+  }
+</style> 

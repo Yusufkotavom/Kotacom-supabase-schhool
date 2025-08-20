@@ -1,0 +1,84 @@
+---
+// Enhanced Layout component with comprehensive SEO integration
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SubscribeDrawer from "../components/Popups/SubscribeDrawer.astro";
+import ContactButtons from "../components/ContactButtons.astro";
+import { getCollection } from 'astro:content';
+import SpeedInsights from "@vercel/speed-insights/astro";
+import Analytics from "@vercel/analytics/astro";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  author?: string;
+  publishDate?: string;
+  updateDate?: string;
+  image?: string;
+  imageAlt?: string;
+  category?: string;
+  tags?: string[];
+  type?: 'website' | 'article' | 'product' | 'service' | 'project' | 'page';
+  schemaMarkup?: string;
+  robots?: string;
+  socialTitle?: string;
+  socialDescription?: string;
+  socialImage?: string;
+  socialType?: string;
+}
+
+const { 
+  title = 'Kotacom - Professional Web Development',
+  description = 'Professional web development services for your business. We create modern, responsive websites that help you grow your online presence.',
+  canonical,
+  author = 'Kotacom Team',
+  publishDate,
+  updateDate,
+  image = '/og-image.jpg',
+  imageAlt,
+  category,
+  tags,
+  type = 'website',
+  schemaMarkup,
+  robots = 'index, follow',
+  socialTitle,
+  socialDescription,
+  socialImage,
+  socialType
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <BaseHead 
+      title={title}
+      description={description}
+      canonical={canonical}
+      author={author}
+      publishDate={publishDate}
+      updateDate={updateDate}
+      category={category}
+      tags={tags}
+      image={image}
+      imageAlt={imageAlt}
+      type={type}
+      schemaMarkup={schemaMarkup}
+      robots={robots}
+    />
+    
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+    <Header />
+    <main id="main-content" class="pt-16">
+      <slot />
+    </main>
+    
+    <Footer />
+    <ContactButtons />
+    <Analytics />
+    <SpeedInsights />
+  </body>
+</html>

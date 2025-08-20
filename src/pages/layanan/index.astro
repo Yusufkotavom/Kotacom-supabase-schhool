@@ -1,0 +1,10 @@
+---
+import Services1 from '../../components/content/services/Services1.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import ServicesSection from '../../components/partials/ServicesSection.astro';
+import main_web from '../../data/main_web.json';
+---
+
+<MainLayout>
+    <Services1 services={main_web.services} />
+</MainLayout>

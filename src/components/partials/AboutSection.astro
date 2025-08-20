@@ -1,0 +1,221 @@
+---
+// AboutSection partial component
+export interface Props {
+  info?: any;
+  why_need?: any;
+}
+
+const { info, why_need } = Astro.props;
+---
+
+<!-- About Us Section -->
+<section class="bg-white dark:bg-gray-900">
+  <div class="max-w-screen-xl px-4 py-8 mx-auto sm:py-16 lg:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Info Content -->
+      <div>
+        {info?.badge_text && (
+          <span class="inline-flex items-center justify-center px-3 py-1 text-sm font-medium text-orange-600 bg-orange-100 rounded-full dark:bg-orange-900 dark:text-orange-300 mb-4">
+            {info.badge_text}
+          </span>
+        )}
+        <h2 class="text-3xl font-extrabold leading-tight text-gray-900 sm:text-4xl dark:text-white">
+          {info?.title || "Tentang Digital Kreasi"}
+        </h2>
+        <p class="mt-4 text-base font-normal text-gray-500 dark:text-gray-400 sm:text-xl">
+          {info?.subtitle || "Kami adalah tim ahli berpengalaman dengan total lebih dari 30 tahun pengalaman dalam industri pengembangan website."}
+        </p>
+        <div class="pt-8 border-t border-gray-200 sm:pt-10 lg:pt-12 dark:border-gray-800">
+          <ul class="space-y-4">
+            {info?.point && info.point.length > 0 && info.point.map((pt: any) => (
+              <li class="flex items-center gap-2.5">
+                <div class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary-100 text-primary-700 shrink-0 dark:bg-primary-900 dark:text-primary-400">
+                  <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <span class="text-base font-medium text-gray-900 dark:text-white">{pt.title || pt}</span>
+              </li>
+            ))}
+          </ul>
+          {info?.description && (
+            <h3 class="mt-6 text-xl font-normal text-gray-500 dark:text-gray-400">
+              {info.description}
+            </h3>
+          )}
+          {info?.button_text && (
+            <div class="mt-8">
+              <a href="#" title=""
+                class="inline-flex items-center text-base font-medium text-primary-700 hover:underline dark:text-primary-500">
+                {info.button_text}
+                <svg aria-hidden="true" class="w-5 h-5 ml-1.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+      <!-- Image Column -->
+      <div class="flex justify-center lg:justify-end">
+        {info?.image_url && (
+          <img src={info.image_url} alt={info?.title || 'About Us'} class="w-full max-w-md rounded-lg shadow-lg object-cover" loading="lazy" />
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--  why need section -->
+<section class="bg-white dark:bg-gray-900">
+  <div class="max-w-screen-xl px-4 py-8 mx-auto sm:py-16 lg:py-24">
+    <div class="items-center gap-8 mx-auto lg:grid lg:grid-cols-2 xl:gap-16">
+      <div class="hidden lg:block">
+        <img class="w-full rounded-lg dark:hidden" src="https://res.cloudinary.com/dwxw1h9my/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1753726249/kotacom/website-images/Web_Development_about_us.jpg" alt="">
+        <img class="hidden w-full rounded-lg dark:block" src="https://res.cloudinary.com/dwxw1h9my/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1753726249/kotacom/website-images/Web_Development_about_us.jpg" alt="">
+      </div>
+
+      <div>
+        <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl dark:text-white">
+          {why_need?.title || "Mengapa Bisnis Anda Membutuhkan Website?"}
+        </h2>
+        <p class="mt-4 text-base text-gray-500 sm:text-xl dark:text-gray-400">
+          {why_need?.description || "Di era digital saat ini, website menjadi aset penting bagi setiap bisnis."}
+        </p>
+
+        <div class="pt-8 mt-8 space-y-8 border-t border-gray-200 dark:border-gray-800">
+          <div class="flex gap-4">
+            <div
+              class="flex items-center justify-center w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900 shrink-0">
+              <svg class="w-5 h-5 text-primary-700 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                  clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+                {why_need?.point[0]?.title || "Meningkatkan Visibilitas"}
+              </h3>
+              <p class="mt-3 text-gray-500 dark:text-gray-400">
+                {why_need?.point[0]?.description || "Website meningkatkan visibilitas bisnis Anda di internet."}
+              </p>
+              <div class="mt-3">
+                <a href="/contact"
+                  class="inline-flex items-center font-medium text-primary-700 hover:underline dark:text-primary-500">
+                  {why_need?.button_text || "Pelajari Lebih Lanjut"}
+                  <svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div
+              class="flex items-center justify-center w-8 h-8 bg-purple-100 rounded-full dark:bg-purple-900 shrink-0">
+              <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+                {why_need?.point[1]?.title || "Menjangkau Pasar yang Lebih Luas"}
+              </h3>
+              <p class="mt-3 text-gray-500 dark:text-gray-400">
+                {why_need?.point[1]?.description || "Website memungkinkan Anda menjangkau pelanggan di seluruh Indonesia, bahkan internasional."}
+              </p>
+              <div class="mt-3">
+                <a href="/contact"
+                  class="inline-flex items-center font-medium text-purple-600 hover:underline dark:text-purple-500">
+                  {why_need?.button_text || "Pelajari Lebih Lanjut"}
+                  <svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex items-center justify-center w-8 h-8 bg-teal-100 rounded-full dark:bg-teal-900 shrink-0">
+              <svg class="w-5 h-5 text-teal-600 dark;text-teal-300" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+                {why_need?.point[2]?.title || "Meningkatkan Kepercayaan Pelanggan"}
+              </h3>
+              <p class="mt-3 text-gray-500 dark:text-gray-400">
+                {why_need?.point[2]?.description || "Website profesional membangun kepercayaan dan kredibilitas bisnis Anda."}
+              </p>
+              <div class="mt-3">
+                <a href="/contact"
+                  class="inline-flex items-center font-medium text-teal-600 hover:underline dark:text-teal-500">
+                  {why_need?.button_text || "Pelajari Lebih Lanjut"}
+                  <svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--  logo section -->
+<section class="border-t border-b border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+  <div class="max-w-screen-xl px-4 py-8 mx-auto sm:py-16 lg:py-24">
+    <h2
+      class="text-3xl font-extrabold leading-tight tracking-tight text-center text-gray-900 dark:text-white sm:text-4xl">
+      You'll be in good company
+    </h2>
+
+    <div
+      class="grid grid-cols-2 gap-8 mt-8 text-gray-500 sm:mt-12 lg:mt-16 sm:gap-12 md:grid-cols-3 lg:grid-cols-6 dark:text-gray-400">
+      <a href="#" class="flex items-center justify-center">
+        <img class="w-auto h-12" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/customers/shell.svg" alt="">
+      </a>
+
+      <a href="#" class="flex items-center justify-center">
+        <img class="w-auto h-12" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/customers/zoom.svg" alt="">
+      </a>
+
+      <a href="#" class="flex items-center justify-center">
+        <img class="w-auto h-12" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/customers/zapier.svg"
+          alt="">
+      </a>
+
+      <a href="#" class="flex items-center justify-center">
+        <img class="w-auto h-12 dark:invert"
+          src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/customers/disney.svg" alt="">
+      </a>
+
+      <a href="#" class="flex items-center justify-center">
+        <img class="w-auto h-12" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/customers/intel.svg" alt="">
+      </a>
+
+      <a href="#" class="flex items-center justify-center">
+        <img class="w-auto h-12" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/customers/twitch.svg"
+          alt="">
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,49 @@
+---
+// Enhanced Social component for Open Graph and social media meta tags
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
+  type?: string;
+  siteName?: string;
+  socialTitle?: string;
+  socialDescription?: string;
+  socialImage?: string;
+  socialType?: string;
+}
+
+const { 
+  title = 'Kotacom - Professional Web Development',
+  description = 'Professional web development services for your business. We create modern, responsive websites that help you grow your online presence.',
+  image = '/og-image.jpg',
+  url = Astro.url.href,
+  type = 'website',
+  siteName = 'Kotacom',
+  socialTitle,
+  socialDescription,
+  socialImage,
+  socialType
+} = Astro.props;
+
+// Use social-specific data if provided, otherwise fall back to general data
+const ogTitle = socialTitle || title;
+const ogDescription = socialDescription || description;
+const ogImage = socialImage || image;
+const ogType = socialType || type;
+---
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={url} />
+<meta property="og:title" content={ogTitle} />
+<meta property="og:description" content={ogDescription} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content={siteName} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={url} />
+<meta property="twitter:title" content={ogTitle} />
+<meta property="twitter:description" content={ogDescription} />
+<meta property="twitter:image" content={ogImage} /> 

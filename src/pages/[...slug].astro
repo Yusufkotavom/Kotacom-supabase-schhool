@@ -1,0 +1,219 @@
+---
+import { getCollection } from "astro:content";
+import PostLayout from "../layouts/PostLayout.astro";
+import MinimalTOC from "../components/MinimalTOC.astro";
+import { renderPayloadBody } from "../lib/payload-client";
+import { getPostsDirectFromSupabase } from "../lib/supabase-direct";
+import { marked } from 'marked';
+
+export async function getStaticPaths() {
+  // Get MDX posts from pages/posts directory
+  const postFiles = await Astro.glob('./posts/*.{md,mdx}');
+  const mdxPosts = postFiles.map((post: any) => ({
+    data: post.frontmatter,
+    slug: post.frontmatter.slug || post.file?.split('/').pop()?.replace(/\.(md|mdx)$/, '') || '',
+    url: post.url,
+    file: post.file,
+    Content: post.default // Store the component
+  }));
+  
+  // Get MDX pages from pages directory (if any) - skip for now since pagesMdx collection doesn't exist
+  let mdxPages: any[] = [];
+  // try { mdxPages = await getCollection("pagesMdx"); } catch (_) { mdxPages = []; }
+  
+  // Get Supabase posts for root level access
+  const supabasePostsData = await getPostsDirectFromSupabase(10000);
+  console.log(`🚀 Building root static paths - MDX posts: ${mdxPosts.length}, Supabase posts: ${supabasePostsData?.length || 0}`);
+
+  const mdxPostPaths = mdxPosts.map((post: any) => ({
+    params: { slug: post.slug },
+    props: { post, source: 'mdx' as const },
+  }));
+
+  const pagePaths: any[] = []; // Skip pages for now since pagesMdx collection doesn't exist
+  // const pagePaths = mdxPages.map((page) => ({
+  //   params: { slug: page.data.slug || page.id },
+  //   props: { post: page, source: 'page' as const },
+  // }));
+  
+  // Add Supabase posts to root level
+  const supabasePostPaths = supabasePostsData
+    .filter((post: any) => post.slug && typeof post.slug === 'string')
+    .map((post: any) => ({
+      params: { slug: post.slug },
+      props: { post, source: 'supabase' as const },
+    }));
+  
+  return [...mdxPostPaths, ...pagePaths, ...supabasePostPaths];
+}
+
+type Props = {
+  post: any;
+  source: 'mdx' | 'page' | 'payload' | 'supabase';
+};
+
+const { post, source } = Astro.props;
+
+// Helper function untuk memproses konten HTML (applies Tailwind classes)
+const processContent = (content: string): string => {
+  return content
+    .replace(/<h1>/g, '<h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 mt-8">')
+    .replace(/<h2>/g, '<h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4 mt-6">')
+    .replace(/<h3>/g, '<h3 class="text-xl font-medium text-gray-700 dark:text-gray-200 mb-3 mt-5">')
+    .replace(/<h4>/g, '<h4 class="text-lg font-medium text-gray-600 dark:text-gray-300 mb-2 mt-4">')
+    .replace(/<p>/g, '<p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">')
+    .replace(/<ul>/g, '<ul class="list-disc list-inside mb-4 space-y-2">')
+    .replace(/<ol>/g, '<ol class="list-decimal list-inside mb-4 space-y-2">')
+    .replace(/<li>/g, '<li class="text-gray-600 dark:text-gray-300">')
+    .replace(/<blockquote>/g, '<blockquote class="border-l-4 border-blue-500 pl-4 italic text-gray-700 dark:text-gray-300 mb-4">')
+    .replace(/<code>/g, '<code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm font-mono">')
+    .replace(/<pre>/g, '<pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto mb-4">')
+    .replace(/<a /g, '<a class="text-blue-600 dark:text-blue-400 hover:underline" ')
+    .replace(/<img /g, '<img class="max-w-full h-auto rounded-lg shadow-md mb-4" ')
+    .replace(/<table>/g, '<table class="min-w-full border border-gray-300 dark:border-gray-600 mb-4">')
+    .replace(/<th>/g, '<th class="border border-gray-300 dark:border-gray-600 px-4 py-2 bg-gray-100 dark:bg-gray-800">')
+    .replace(/<td>/g, '<td class="border border-gray-300 dark:border-gray-600 px-4 py-2">');
+};
+
+// Prepare layout data based on source
+let layoutData: any;
+let processedContent: string = "";
+let wordCount: number;
+let Content: any;
+
+if (source === 'page') {
+  // Handle MDX pages (WordPress pages)
+  const { render } = await import("astro:content");
+  const { Content: C } = await render(post);
+  Content = C;
+  wordCount = 0;
+  
+  layoutData = {
+    title: post.data.title,
+    description: post.data.description || "",
+    image: post.data.image || "",
+    published: post.data.publishDate || new Date(),
+    updated: post.data.publishDate || new Date(),
+    tags: [],
+    author: post.data.author || "Kotacom.id",
+    source: 'page'
+  };
+} else if (source === 'payload') {
+  // Handle Payload posts
+  Content = undefined;
+  processedContent = processContent(renderPayloadBody(post));
+  wordCount = processedContent.split(' ').length;
+  
+  layoutData = {
+    title: post.title,
+    description: post.description || "",
+    imageUrl: post.imageUrl || post.coverImage || post.image || "",
+    coverImage: post.coverImage || post.imageUrl || post.image || "",
+    image: post.imageUrl || post.coverImage || post.image || "",
+    published: post.published ? new Date(post.published) : (post.publishedAt ? new Date(post.publishedAt) : new Date()),
+    updated: post.updated ? new Date(post.updated) : (post.lastUpdated ? new Date(post.lastUpdated) : (post.published ? new Date(post.published) : new Date())),
+    tags: (post.tags||[]).map((x:any)=>x.value||x),
+    category: (post.category||[]).map((x:any)=>x.value||x),
+    author: "Kotacom.id",
+    source: 'payload'
+  };
+} else if (source === 'supabase') {
+  // Handle Supabase posts - convert markdown to HTML first
+  Content = undefined;
+  console.log(`🔍 Supabase post debug:`, {
+    title: post.title,
+    tags: post.tags,
+    category: post.category,
+    categories: post.categories,
+    image: post.image,
+    imageUrl: post.imageUrl,
+    coverImage: post.coverImage,
+    featured_image: post.featured_image,
+    cover_image: post.cover_image,
+    thumbnail: post.thumbnail
+  });
+  
+  const rawContent = post.body || post.content || "";
+  const htmlContent = marked(rawContent); // Convert markdown to HTML
+  processedContent = processContent(htmlContent);
+  wordCount = processedContent.split(' ').length;
+  
+  // Process tags/categories - now they should be available from Supabase
+  let tags: string[] = [];
+  let categories: string[] = [];
+  
+  // Use tags from Supabase if available, otherwise use defaults
+  if (post.tags && Array.isArray(post.tags) && post.tags.length > 0) {
+    tags = post.tags;
+  } else if (post.title?.toLowerCase().includes('jilid')) {
+    tags = ['Percetakan', 'Jilid Buku', 'Publishing'];
+  } else if (post.title?.toLowerCase().includes('cetak')) {
+    tags = ['Percetakan', 'Cetak Buku', 'Publishing'];
+  } else {
+    tags = ['Business', 'Tips'];
+  }
+  
+  // Use categories from Supabase if available
+  if (post.categories && Array.isArray(post.categories) && post.categories.length > 0) {
+    categories = post.categories;
+  } else {
+    categories = ['Blog'];
+  }
+  
+  // Process image - check multiple possible fields
+  const imageUrl = post.cover_image || post.featured_image || post.imageUrl || post.coverImage || post.image || post.thumbnail || "";
+  
+  layoutData = {
+    title: post.title,
+    description: post.description || post.excerpt || "",
+    imageUrl: imageUrl,
+    coverImage: imageUrl,
+    image: imageUrl,
+    published: post.published ? new Date(post.published) : (post.created_at ? new Date(post.created_at) : (post.created ? new Date(post.created) : new Date())),
+    updated: post.updated ? new Date(post.updated) : (post.updated_at ? new Date(post.updated_at) : (post.last_updated ? new Date(post.last_updated) : (post.published ? new Date(post.published) : new Date()))),
+    tags: tags,
+    category: categories,
+    author: post.author || "Kotacom.id",
+    source: 'supabase'
+  };
+} else {
+  // Handle MDX posts - use the pre-loaded component
+  Content = post.Content; // Use the component from Astro.glob
+  wordCount = 0;
+  
+  layoutData = {
+    title: post.data.title,
+    description: post.data.description || "",
+    image: post.data.coverImage || "",
+    published: post.data.published,
+    updated: post.data.lastUpdated || post.data.published,
+    tags: post.data.tags || [],
+    author: "Kotacom.id",
+    source: 'mdx'
+  };
+}
+---
+
+<PostLayout {...layoutData} wordCount={wordCount}>
+  {source === 'payload' || source === 'supabase' ? (
+    <article class="prose prose-lg max-w-none" data-pagefind-body data-pagefind-filter="type:post">
+      <span class="hidden" data-pagefind-meta="title">{layoutData.title}</span>
+      {layoutData.image && (
+        <img src={layoutData.image} alt={layoutData.title} class="hidden" data-pagefind-meta="image[src], image_alt[alt]" />
+      )}
+      <MinimalTOC content={processedContent} />
+      <div set:html={processedContent} />
+    </article>
+  ) : (
+    <div class="prose prose-lg max-w-none">
+      <Content />
+    </div>
+  )}
+</PostLayout>
+
+<style>
+  /* Override breadcrumb untuk post Sanity/Directus */
+  .breadcrumb-directus {
+    display: none;
+  }
+</style>

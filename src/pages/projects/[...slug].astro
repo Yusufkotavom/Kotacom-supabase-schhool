@@ -1,0 +1,115 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import ProjectPage from '../../layouts/ProjectPage.astro';
+import { renderPayloadBody } from '../../lib/payload-client';
+import { getProjectsDirectFromSupabase } from '../../lib/supabase-direct';
+ 
+
+export async function getStaticPaths() {
+	// MD + Supabase Direct (much faster than Payload API)
+	const mdxProjects = await getCollection('projectsMdx');
+	const supabaseProjects = await getProjectsDirectFromSupabase(10000);
+	console.log(`� Building static paths for ${supabaseProjects?.length || 0} projects (direct from Supabase)`);
+	
+	const mdxPaths = mdxProjects.map((project) => ({
+		params: { slug: project.data.slug },
+		props: { project, source: 'mdx' as const },
+	}));
+	
+	const supabasePaths = (supabaseProjects||[])
+		.filter((project:any) => project.slug && typeof project.slug === 'string')
+		.map((project:any)=> ({
+			params: { slug: project.slug },
+			props: { project, source: 'supabase' as const },
+		}));
+	
+	return [...mdxPaths, ...supabasePaths];
+}
+
+type Props = { project: any | CollectionEntry<'projectsMdx'>; source: 'mdx'|'payload'|'supabase' };
+
+const { project, source } = Astro.props;
+
+let layoutData: any = {};
+let Content: any;
+
+if (source === 'mdx') {
+  const { Content: C } = await render(project as any);
+  Content = C;
+  layoutData = {
+    ...(project as any).data,
+    properties: {
+      title: (project as any).data.title,
+      country: (project as any).data.country,
+      locale: (project as any).data.locale,
+      category: (project as any).data.category,
+      organiser: (project as any).data.organiser,
+      slug: (project as any).data.slug,
+      cost: (project as any).data.cost,
+      url: (project as any).data.url,
+      gygUrl: (project as any).data.gygUrl,
+      mapsUrl: (project as any).data.mapsUrl,
+      verify: (project as any).data.verify,
+      imageUrl: (project as any).data.imageUrl,
+      published: (project as any).data.published,
+      review: (project as any).data.review,
+      getInvolved: (project as any).data.getInvolved,
+      description: (project as any).data.description,
+    }
+  };
+} else if (source === 'supabase') {
+  // Handle Supabase projects (already converted)
+  Content = undefined;
+  layoutData = {
+    properties: {
+      title: project.title,
+      country: project.country || [],
+      locale: project.locale || [],
+      category: project.category || [],
+      organiser: project.organiser || '',
+      slug: project.slug,
+      cost: project.cost || [],
+      url: project.url || '',
+      gygUrl: project.gyg_url || '', // Map gyg_url from Supabase
+      mapsUrl: project.maps_url || '', // Map maps_url from Supabase
+      verify: project.verify || '',
+      imageUrl: project.imageUrl || '', // Already mapped from image_url
+      published: project.published,
+      review: project.review || '', // Use processed markdown content
+      getInvolved: project.get_involved || '', // Map get_involved from Supabase
+      description: project.description || '', // Use processed markdown content
+      body: project.body || '', // Use processed markdown content
+      get_involved: project.get_involved || '', // Add native field for layout compatibility
+      format: project.format || '',
+    }
+  };
+} else {
+  // Handle Payload projects
+  Content = undefined;
+  layoutData = {
+    properties: {
+      title: project.title,
+      country: (project.country||[]).map((x:any)=>x.value||x),
+      locale: (project.locale||[]).map((x:any)=>x.value||x),
+      category: (project.category||[]).map((x:any)=>x.value||x),
+      organiser: project.organiser || '',
+      slug: project.slug,
+      cost: (project.cost||[]).map((x:any)=>x.value||x),
+      url: project.url || '',
+      gygUrl: project.gygUrl || '',  
+      mapsUrl: project.mapsUrl || '',
+      verify: project.verify || '',
+      imageUrl: project.imageUrl || '',
+      published: project.published ? new Date(project.published) : new Date(),
+      review: project.review || renderPayloadBody(project),
+      getInvolved: project.getInvolved || project.description || '',
+      description: project.description || '',
+      body: project.body || renderPayloadBody(project),
+    }
+  };
+}
+---
+
+<ProjectPage {...layoutData}>
+	{Content && <Content />}
+</ProjectPage>

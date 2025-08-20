@@ -1,0 +1,119 @@
+---
+// HeroSection component with fallback data handling
+export interface Props {
+  hero?: {
+    badge_text?: string;
+    title?: string;
+    subtitle?: string;
+    feature?: Array<{
+      point?: string;
+      description?: string;
+    }>;
+    image_url?: string;
+  };
+  // Additional props for pages that don't have hero in JSON
+  customBadge?: string;
+  customTitle?: string;
+  customSubtitle?: string;
+  customFeatures?: Array<{
+    point: string;
+    description: string;
+  }>;
+  customImage?: string;
+}
+
+const { 
+  hero = {}, 
+  customBadge,
+  customTitle,
+  customSubtitle,
+  customFeatures,
+  customImage
+} = Astro.props;
+
+// Fallback data - akan digunakan jika data tidak ada di JSON
+const fallbackData = {
+  badge_text: "Jasa Pembuatan Website Terbaik",
+  title: "Jasa Pembuatan Website Profesional",
+  subtitle: "Tingkatkan bisnis Anda dengan website profesional yang dirancang untuk konversi.",
+  feature: [
+    { point: "500+", description: "Website Dibuat" },
+    { point: "98%", description: "Kepuasan Klien" },
+    { point: "10+", description: "Tahun Pengalaman" },
+    { point: "24/7", description: "Dukungan Teknis" }
+  ],
+  image_url: "https://res.cloudinary.com/dwxw1h9my/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1753726244/kotacom/website-images/Web_Development_hero.jpg"
+};
+
+// Merge strategy: JSON data > Custom props > Fallback data
+const finalData = {
+  badge_text: hero.badge_text || customBadge || fallbackData.badge_text,
+  title: hero.title || customTitle || fallbackData.title,
+  subtitle: hero.subtitle || customSubtitle || fallbackData.subtitle,
+  feature: hero.feature || customFeatures || fallbackData.feature,
+  image_url: hero.image_url || customImage || fallbackData.image_url
+};
+---
+
+<section class="bg-white dark:bg-gray-900">
+  <div class="max-w-screen-xl px-4 py-8 mx-auto sm:py-16 lg:py-24 pt-8 sm:pt-12 lg:pt-16">
+    <div class="flex flex-col gap-8 lg:items-center lg:gap-16 xl:gap-32 lg:flex-row">
+      <div class="lg:max-w-xl xl:shrink-0">
+        <div>
+          <a href="#" class="inline-flex items-center justify-between px-1 py-1 pr-4 mb-6 text-sm text-gray-700 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700" role="alert">
+            <span class="px-3 py-1 mr-3 text-xs text-white rounded-full bg-primary-700">New</span> 
+            <span class="text-sm font-medium">{finalData.badge_text}</span>
+            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+            </svg>
+          </a>
+          <h2 class="text-3xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white sm:text-5xl">
+            {finalData.title}
+          </h2>
+          <p class="mt-5 text-base font-normal text-gray-500 dark:text-gray-400 md:max-w-3xl sm:text-xl">
+            {finalData.subtitle}
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-4 mt-8 sm:flex-row">
+          <a href="https://wa.me/6285799520350" title="" target="_blank" rel="noopener noreferrer"
+            class="sm:w-[182px] px-5 py-3 w-full text-base font-medium text-center text-white bg-primary-700 rounded-lg shrink-0 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-blue-800"
+            role="button">
+            Hubungi Kami
+          </a>
+
+          <a href="/services" title="" target="_blank" rel="noopener noreferrer"
+            class="sm:w-[182px] inline-flex w-full justify-center items-center px-5 py-3 text-base font-medium text-center text-gray-900 bg-white border border-gray-200 rounded-lg shrink-0 focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+            role="button">
+            <svg aria-hidden="true" class="w-5 h-5 mr-2 -ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+              fill="currentColor">
+              <path
+                d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
+            </svg>
+            Lihat Jasa Kami
+          </a>
+        </div>
+      </div>
+      <div class="relative w-full">
+        <div class="relative h-56 overflow-hidden rounded-lg sm:h-96">
+          <img src={finalData.image_url}
+            class="w-full h-full object-cover" alt="Web Development">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="bg-white dark:bg-gray-900">
+  <div class="max-w-screen-xl px-4 pb-8 mx-auto sm:pb-16 lg:pb-24">
+    <dl class="grid max-w-5xl gap-8 px-4 py-6 mx-auto text-center text-gray-900 bg-white border border-gray-200 rounded-lg shadow-lg sm:grid-cols-2 md:grid-cols-4 dark:text-white dark:border-gray-700 dark:bg-gray-800">
+      {finalData.feature.map((item, index) => (
+        <div class={`flex flex-col items-center justify-center ${index > 0 ? 'border-gray-200 lg:border-l dark:border-gray-700' : ''}`}>
+          <dt class="mb-2 text-3xl font-extrabold sm:text-4xl">{item.point}</dt>
+          <dd class="text-gray-500 dark:text-gray-400">{item.description}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section> 

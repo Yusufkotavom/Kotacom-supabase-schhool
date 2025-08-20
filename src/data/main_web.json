@@ -1,0 +1,497 @@
+{
+  "business": {
+    "name": "KOTACOM",
+    "type": "web development",
+    "address": "Jl. Raya KH Noer Ali, No. 123, Bekasi Timur, Jawa Barat 17111",
+    "phone": "085799520350",
+    "description": "Digital Kreasi adalah perusahaan pengembangan website terkemuka di Bekasi, berpengalaman membangun website berkualitas tinggi untuk bisnis berbagai skala. Kami fokus pada solusi website yang efektif dan peningkatan konversi penjualan."
+  },
+  "hero": {
+    "badge_text": "Pembuat Website Terbaik Bekasi 2023",
+    "title": "Jasa Pembuatan Website Bekasi Terbaik & Terpercaya",
+    "subtitle": "Tingkatkan bisnis Anda dengan website profesional yang dirancang untuk konversi. Dapatkan solusi website terbaik di Bekasi bersama Digital Kreasi.",
+    "feature": [
+      {
+        "point": "500+",
+        "description": "Website Dibuat"
+      },
+      {
+        "point": "98%",
+        "description": "Kepuasan Klien"
+      },
+      {
+        "point": "5+",
+        "description": "Tahun Pengalaman"
+      },
+      {
+        "point": "24/7",
+        "description": "Dukungan Teknis"
+      }
+    ],
+    "image_url": "https://res.cloudinary.com/dwxw1h9my/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1753726244/kotacom/website-images/Web_Development_hero.jpg"
+  },
+  "features": {
+    "badge_text": "Fitur Unggulan",
+    "title": "Fitur Website yang Membantu Bisnis Anda Berkembang",
+    "subtitle": "Kami menawarkan berbagai fitur unggulan untuk memastikan website Anda efektif dan efisien.",
+    "point": [
+      {
+        "title": "Desain Custom",
+        "description": "Website yang dirancang khusus sesuai dengan brand dan kebutuhan bisnis Anda.  Kami berkolaborasi untuk memahami visi dan kebutuhan Anda secara mendalam, memastikan hasil akhir sesuai harapan."
+      },
+      {
+        "title": "SEO Optimization",
+        "description": "Kami mengoptimalkan website Anda agar mudah ditemukan di mesin pencari Google. Hal ini meningkatkan visibilitas dan mendatangkan lebih banyak pelanggan potensial. Kami menggunakan strategi SEO terkini dan analisis data terperinci untuk memastikan hasil terbaik."
+      },
+      {
+        "title": "Integrasi Pembayaran",
+        "description": "Mudah menerima pembayaran online melalui berbagai metode pembayaran populer seperti GoPay, OVO, dan kartu kredit. Ini memudahkan pelanggan bertransaksi dan meningkatkan peluang penjualan."
+      },
+      {
+        "title": "Sistem Manajemen Konten (CMS)",
+        "description": "Mudah mengelola dan memperbarui konten website Anda sendiri, tanpa perlu keahlian coding. Kami menggunakan CMS user-friendly seperti WordPress, sehingga Anda dapat mengelola konten secara efisien dan intuitif."
+      },
+      {
+        "title": "Responsif & Mobile-Friendly",
+        "description": "Website Anda akan terlihat sempurna di semua perangkat, memastikan pengalaman pengguna terbaik bagi semua pengunjung.  Ini penting karena sebagian besar pengunjung mengakses website melalui smartphone."
+      },
+      {
+        "title": "Analitik Website",
+        "description": "Lacak performa website Anda dengan analitik real-time.  Kami menggunakan Google Analytics untuk memberikan laporan yang komprehensif, sehingga Anda bisa melihat performa website dan melakukan optimasi lebih lanjut. Data tersebut akan membantu pengambilan keputusan berbasis data untuk meningkatkan bisnis Anda."
+      }
+    ],
+    "image_url": "https://res.cloudinary.com/dwxw1h9my/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1753726246/kotacom/website-images/Web_Development_features.jpg"
+  },
+  "info": {
+    "img_alt": "Tim Ahli Digital Kreasi",
+    "badge_text": "Tim Profesional & Berpengalaman",
+    "title": "Tentang Digital Kreasi",
+    "subtitle": "Kami adalah tim ahli berpengalaman dengan total lebih dari 30 tahun pengalaman dalam industri pengembangan website.",
+    "description": "Digital Kreasi didirikan pada tahun 2015 dengan visi untuk membantu bisnis di Bekasi berkembang pesat melalui website profesional.  Kami telah menerima penghargaan 'Website Developer Terbaik Bekasi' dari Asosiasi Bisnis Digital Indonesia pada tahun 2022",
+    "point": [
+      "Keahlian dalam berbagai platform website",
+      "Fokus pada solusi yang berorientasi pada hasil",
+      "Komitmen terhadap kualitas dan kepuasan klien",
+      "Proses kerja yang transparan dan terstruktur",
+      "Dukungan purna jual yang handal"
+    ],
+    "image_url": "https://res.cloudinary.com/dwxw1h9my/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1753726249/kotacom/website-images/Web_Development_about_us.jpg"
+  },
+  "services": {
+    "badge_text": "Layanan Unggulan",
+    "title": "Jasa Pembuatan Website Sesuai Kebutuhan Bisnis Anda",
+    "subtitle": "Kami menawarkan berbagai solusi website untuk memenuhi kebutuhan spesifik bisnis Anda.",
+    "point": [
+      {
+          "title": "Website Company Profile",
+          "description": "Tampilkan profil perusahaan Anda secara profesional dan menarik, membangun kredibilitas dan kepercayaan pelanggan.",
+          "link": "/jasa-pembuatan-website-company-profile-bekasi",
+          "feature": [
+            "Desain Modern",
+            "Informasi Perusahaan Lengkap",
+            "Kontak yang Mudah Dihubungi",
+            "SEO Optimized",
+            "Responsif"
+          ]
+        },
+        {
+          "title": "Website E-commerce",
+          "description": "Jual produk Anda secara online dengan mudah dan aman, jangkau pasar yang lebih luas dan tingkatkan penjualan.",
+          "link": "/jasa-pembuatan-website-e-commerce-bekasi",
+          "feature": [
+            "Integrasi Pembayaran",
+            "Keranjang Belanja",
+            "Manajemen Produk",
+            "Sistem Pengiriman",
+            "Laporan Penjualan"
+          ]
+        },
+        {
+          "title": "Website Portfolio",
+          "description": "Tampilkan karya-karya terbaik Anda dan bangun portofolio online yang profesional.",
+          "link": "/jasa-pembuatan-website-portfolio-bekasi",
+          "feature": [
+            "Galeri Gambar & Video",
+            "Deskripsi Proyek",
+            "Testimonial Klien",
+            "Kontak",
+            "SEO Optimized"
+          ]
+        },
+        {
+          "title": "Website Company Profile",
+          "description": "Tampilkan profil perusahaan Anda secara profesional dan menarik, membangun kredibilitas dan kepercayaan pelanggan.",
+          "link": "/jasa-pembuatan-website-company-profile-bekasi",
+          "feature": [
+          "Desain Modern",
+          "Informasi Perusahaan Lengkap",
+          "Kontak yang Mudah Dihubungi",
+            "SEO Optimized",
+            "Responsif"
+          ] 
+        },
+      {
+          "title": "Website E-commerce",
+          "description": "Jual produk Anda secara online dengan mudah dan aman, jangkau pasar yang lebih luas dan tingkatkan penjualan.",
+          "link": "/jasa-pembuatan-website-e-commerce-bekasi",
+          "feature": [
+          "Integrasi Pembayaran",
+          "Keranjang Belanja",
+          "Manajemen Produk",
+          "Sistem Pengiriman",
+          "Laporan Penjualan"
+        ]
+      },
+      {
+          "title": "Website Portfolio",
+          "description": "Tampilkan karya-karya terbaik Anda dan bangun portofolio online yang profesional.",
+          "link": "/jasa-pembuatan-website-portfolio-bekasi",
+          "feature": [
+          "Galeri Gambar & Video",
+          "Deskripsi Proyek",
+          "Testimonial Klien",
+          "Kontak",
+          "SEO Optimized"
+        ]
+      }
+    ]
+  },
+  "why_us": {
+    "badge_text": "Keunggulan Kami",
+    "title": "Mengapa Memilih Digital Kreasi?",
+    "subtitle": "Kami menawarkan solusi terbaik dengan komitmen penuh terhadap kualitas dan kepuasan klien.",
+    "description": "Digital Kreasi berkomitmen untuk memberikan layanan terbaik dan tercepat di Bekasi.  Kami memberikan garansi kepuasan 100% dan revisi tanpa batas hingga Anda puas. Transparansi adalah nilai utama kami; kami akan selalu mengupdate progress proyek Anda secara berkala.",
+    "point": [
+      {
+        "title": "Harga Terjangkau",
+        "description": "Dapatkan website berkualitas tinggi dengan harga yang kompetitif."
+      },
+      {
+        "title": "Garansi Kepuasan 100%",
+        "description": "Kami menjamin kepuasan Anda dengan revisi tanpa batas."
+      },
+      {
+        "title": "Tim Ahli & Profesional",
+        "description": "Dikerjakan oleh tim berpengalaman dan ahli di bidangnya."
+      },
+      {
+        "title": "Proses Kerja Transparan",
+        "description": "Kami akan selalu mengupdate progress proyek Anda secara berkala."
+      }
+    ]
+  },
+  "what_you_get": {
+    "badge_text": "Apa yang Anda Dapatkan?",
+    "title": "Apa yang Anda Dapatkan?",
+    "subtitle": "Berikut adalah detail yang akan Anda terima setelah website Anda selesai:",
+    "points": [
+      {
+        "title": "Website Profesional",
+        "description": "Website yang dirancang dengan desain modern dan responsif."
+      },
+      {
+        "title": "Konten Website",
+        "description": "Kami akan membantu Anda dalam pembuatan konten website."
+      },
+      {
+        "title": "Optimasi SEO",
+        "description": "Website Anda akan dioptimalkan agar mudah ditemukan di Google."
+      },
+      {
+        "title": "Pelatihan Penggunaan Website",
+        "description": "Kami akan memberikan pelatihan singkat cara mengelola website Anda."
+      }
+    ]
+  },
+  "why_need": {
+    "badge_text": "Pentingnya Website untuk Bisnis Anda",
+    "title": "Mengapa Bisnis Anda Membutuhkan Website?",
+    "subtitle": "Di era digital saat ini, website menjadi aset penting bagi setiap bisnis.",
+    "description": "Sebuah studi menunjukkan bahwa 70% konsumen melakukan riset online sebelum membeli produk atau layanan.  Jika bisnis Anda tidak memiliki website, Anda kehilangan peluang besar untuk mendapatkan pelanggan baru.  Dengan website yang profesional, Anda dapat menjangkau lebih banyak pelanggan potensial, meningkatkan brand awareness, dan menumbuhkan bisnis Anda.",
+    "point": [
+      {
+        "title": "Meningkatkan Visibilitas",
+        "description": "Website meningkatkan visibilitas bisnis Anda di internet."
+      },
+      {
+        "title": "Menjangkau Pasar yang Lebih Luas",
+        "description": "Website memungkinkan Anda menjangkau pelanggan di seluruh Indonesia, bahkan internasional."
+      },
+      {
+        "title": "Meningkatkan Kepercayaan Pelanggan",
+        "description": "Website profesional membangun kepercayaan dan kredibilitas bisnis Anda."
+      }
+    ]
+  },
+  "pricing": {
+    "badge_text": "Paket Harga",
+    "title": "Paket Pembuatan Website",
+    "description": "Tanpa Biaya Tersembunyi! Konsultasi Gratis!",
+    "plan": [
+      {
+        "badge": "Paling Populer",
+        "title": "Paket Basic",
+        "price": "Rp 5.000.000",
+        "description": "Ideal untuk bisnis kecil dan UMKM dengan kebutuhan website sederhana.",
+        "feature": [
+          "5 Halaman Website",
+          "Desain Standar",
+          "SEO Basic",
+          "Hosting & Domain 1 Tahun",
+          "Responsif",
+          "CMS WordPress",
+          "1 Revisi"
+        ]
+      },
+      {
+        "badge": "Rekomendasi",
+        "title": "Paket Standard",
+        "price": "Rp 10.000.000",
+        "description": "Solusi lengkap untuk bisnis yang ingin meningkatkan penjualan online.",
+        "feature": [
+          "10 Halaman Website",
+          "Desain Custom",
+          "SEO Optimized",
+          "Hosting & Domain 1 Tahun",
+          "Responsif",
+          "CMS WordPress",
+          "3 Revisi",
+          "Integrasi Pembayaran"
+        ]
+      },
+      {
+        "badge": "Enterprise",
+        "title": "Paket Premium",
+        "price": "Rp 25.000.000",
+        "description": "Paket lengkap untuk bisnis besar yang membutuhkan website canggih dan fitur lengkap.",
+        "feature": [
+          "Jumlah Halaman Tidak Terbatas",
+          "Desain Custom Eksklusif",
+          "SEO Premium",
+          "Hosting & Domain 1 Tahun",
+          "Responsif",
+          "CMS WordPress",
+          "Revisi Tidak Terbatas",
+          "Integrasi Pembayaran",
+          "Fitur Tambahan Sesuai Kebutuhan"
+        ]
+      }
+    ]
+  },
+  "portfolio": {
+    "badge_text": "Portofolio Kami",
+    "title": "Portofolio Kami",
+    "description": "Lihat beberapa contoh website yang telah kami buat.",
+    "list": [
+      {
+        "type": "E-commerce",
+        "title": "Toko Online Baju Muslim",
+        "description": "Meningkatkan penjualan online hingga 200% dalam 6 bulan."
+      },
+      {
+        "type": "E-commerce",
+        "title": "Toko Online Baju Muslim",
+        "description": "Meningkatkan penjualan online hingga 200% dalam 6 bulan."
+      },
+      {
+        "type": "E-commerce",
+        "title": "Toko Online Baju Muslim",
+        "description": "Meningkatkan penjualan online hingga 200% dalam 6 bulan."
+      },
+      {
+        "type": "Company Profile",
+        "title": "Website Perusahaan Konstruksi Jaya",
+        "description": "Membangun citra perusahaan yang lebih profesional dan terpercaya."
+      },
+      {
+        "type": "Portfolio",
+        "title": "Website Desain Grafis Kreatif",
+        "description": "Menarik klien baru dan meningkatkan awareness merek."
+      },
+      {
+        "type": "Portfolio",
+        "title": "Website Desain Grafis Kreatif",
+        "description": "Menarik klien baru dan meningkatkan awareness merek."
+      }
+    ]
+  },
+  "testimonials": {
+    "badge_text": "Testimonial",
+    "title": "Apa Kata Klien Kami?",
+    "subtitle": "Lihat testimoni dari klien yang puas dengan layanan kami.",
+    "card": [
+      {
+        "headline": "Solusi Website yang Luar Biasa!",
+        "quote": "Digital Kreasi memberikan solusi website yang luar biasa untuk bisnis saya.  Website saya sekarang terlihat profesional dan mudah digunakan. Terima kasih!",
+        "name": "Budi Santoso",
+        "position": "Owner, Toko Online Sepatu"
+      },
+      {
+        "headline": "Pelayanan yang Ramah dan Profesional",
+        "quote": "Saya sangat terkesan dengan pelayanan yang ramah dan profesional dari tim Digital Kreasi.  Mereka selalu siap membantu dan menjawab pertanyaan saya.",
+        "name": "Ani Lestari",
+        "position": "Marketing Manager, Perusahaan Jasa Konsultan"
+      },
+      {
+        "headline": "Website Saya Sekarang Mendapatkan Banyak Pengunjung!",
+        "quote": "Setelah website saya dibuat oleh Digital Kreasi, jumlah pengunjung meningkat drastis.  Terima kasih atas kerja kerasnya!",
+        "name": "Rudi Hartono",
+        "position": "Owner, Restoran Nusantara"
+      }
+    ]
+  },
+  "faq": {
+    "badge_text": "Pertanyaan Umum",
+    "title": "Pertanyaan yang Sering Diajukan",
+    "subtitle": "Temukan jawaban atas pertanyaan umum Anda tentang jasa pembuatan website kami.",
+    "points": [
+      {
+        "question": "Berapa lama waktu yang dibutuhkan untuk membuat website?",
+        "answer": "Waktu pembuatan website tergantung pada kompleksitas proyek, biasanya berkisar antara 2-4 minggu."
+      },
+      {
+        "question": "Bagaimana proses kerjanya?",
+        "answer": "Prosesnya dimulai dengan konsultasi, desain, pengembangan, pengujian, dan peluncuran website.  Kami akan selalu mengupdate progress proyek Anda secara berkala."
+      },
+      {
+        "question": "Apakah ada garansi revisi?",
+        "answer": "Ya, kami memberikan garansi revisi hingga Anda puas."
+      },
+      {
+        "question": "Apa saja metode pembayaran yang diterima?",
+        "answer": "Kami menerima pembayaran melalui transfer bank dan kartu kredit."
+      },
+      {
+        "question": "Bagaimana cara menghubungi tim Digital Kreasi?",
+        "answer": "Anda bisa menghubungi kami melalui telepon, email, atau WhatsApp."
+      },
+      {
+        "question": "Berapa lama waktu yang dibutuhkan untuk membuat website?",
+        "answer": "Waktu pembuatan website tergantung pada kompleksitas proyek, biasanya berkisar antara 2-4 minggu."
+      },
+      {
+        "question": "Bagaimana proses kerjanya?",
+        "answer": "Prosesnya dimulai dengan konsultasi, desain, pengembangan, pengujian, dan peluncuran website.  Kami akan selalu mengupdate progress proyek Anda secara berkala."
+      },
+      {
+        "question": "Apakah ada garansi revisi?",
+        "answer": "Ya, kami memberikan garansi revisi hingga Anda puas."
+      },
+      {
+        "question": "Apa saja metode pembayaran yang diterima?",
+        "answer": "Kami menerima pembayaran melalui transfer bank dan kartu kredit."
+      },
+      {
+        "question": "Bagaimana cara menghubungi tim Digital Kreasi?",
+        "answer": "Anda bisa menghubungi kami melalui telepon, email, atau WhatsApp."
+      },
+      {
+        "question": "Berapa lama waktu yang dibutuhkan untuk membuat website?",
+        "answer": "Waktu pembuatan website tergantung pada kompleksitas proyek, biasanya berkisar antara 2-4 minggu."
+      },
+      {
+        "question": "Bagaimana proses kerjanya?",
+        "answer": "Prosesnya dimulai dengan konsultasi, desain, pengembangan, pengujian, dan peluncuran website.  Kami akan selalu mengupdate progress proyek Anda secara berkala."
+      },
+      {
+        "question": "Apakah ada garansi revisi?",
+        "answer": "Ya, kami memberikan garansi revisi hingga Anda puas."
+      },
+      {
+        "question": "Apa saja metode pembayaran yang diterima?",
+        "answer": "Kami menerima pembayaran melalui transfer bank dan kartu kredit."
+      },
+      {
+        "question": "Bagaimana cara menghubungi tim Digital Kreasi?",
+        "answer": "Anda bisa menghubungi kami melalui telepon, email, atau WhatsApp."
+      }
+    ]
+  },
+  "final_cta": {
+    "badge_text": "Hubungi Kami Sekarang!",
+    "title": "Mulailah Proyek Website Anda Hari Ini!",
+    "subtitle": "Hubungi kami untuk konsultasi gratis dan dapatkan penawaran terbaik."
+  },
+  "content": {
+    "title": "Keuntungan Memiliki Website Profesional untuk Bisnis di Bekasi",
+    "subtitle": "Di era digital, website bukan lagi pilihan, melainkan keharusan.",
+    "description": "Memiliki website profesional adalah kunci kesuksesan bisnis di Bekasi.  Dengan website, Anda dapat menjangkau pasar yang lebih luas, meningkatkan brand awareness, dan membangun kepercayaan pelanggan.  Data menunjukkan bahwa bisnis dengan website cenderung lebih sukses dibandingkan bisnis tanpa website. Di Bekasi, yang merupakan kota dengan pertumbuhan ekonomi yang pesat, memiliki website profesional akan memberikan keunggulan kompetitif yang signifikan.  Website yang dirancang dengan baik akan membantu Anda menarik pelanggan, meningkatkan penjualan, dan memperkuat posisi Anda di pasar yang kompetitif.  Jangan lewatkan kesempatan untuk memaksimalkan potensi bisnis Anda. Hubungi Digital Kreasi sekarang juga untuk solusi website terbaik di Bekasi!  Kami akan membantu Anda dalam membangun website yang profesional, efektif, dan sesuai dengan kebutuhan bisnis Anda.  Kami menawarkan berbagai paket layanan dengan harga yang kompetitif dan terjangkau, sehingga Anda dapat memilih paket yang sesuai dengan budget dan kebutuhan Anda.  Kualitas dan kepuasan klien adalah prioritas utama kami. Dengan pengalaman kami yang luas, kami yakin dapat membantu Anda mencapai kesuksesan bisnis online Anda. Dalam beberapa tahun terakhir, perkembangan digital telah mentransformasi cara bisnis beroperasi di Bekasi.  Website telah menjadi alat yang tak ternilai harganya bagi bisnis lokal untuk menjangkau pelanggan secara luas dan meningkatkan interaksi pelanggan.  Jika bisnis Anda belum memiliki website, Anda kehilangan potensi pelanggan yang signifikan. Kami memahami hal tersebut dan berkomitmen untuk membantu bisnis di Bekasi dalam memanfaatkan teknologi digital secara efektif.  Dalam dunia yang semakin terhubung, sebuah website yang baik adalah investasi penting untuk pertumbuhan jangka panjang.  Jadi, jangan ragu untuk menghubungi Digital Kreasi dan mulai membangun website Anda hari ini!",
+    "image_url": "https://res.cloudinary.com/dwxw1h9my/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1753726258/kotacom/website-images/Web_Development_content.jpg"
+  },
+  "local": {
+    "title": "Jangkauan Layanan di Bekasi dan Sekitarnya",
+    "subtitle": "Kami melayani pembuatan website di seluruh wilayah Bekasi.",
+    "description": "Digital Kreasi hadir untuk membantu bisnis lokal di Bekasi dalam menghadapi persaingan bisnis yang semakin ketat. Dengan pertumbuhan ekonomi yang pesat di Bekasi,  UMKM dan bisnis lokal perlu beradaptasi dengan era digital untuk mempertahankan daya saing.  Website profesional menjadi solusi tepat untuk meningkatkan visibilitas dan jangkauan pasar. Kami memahami kebutuhan spesifik bisnis di Bekasi dan berkomitmen untuk memberikan solusi website terbaik yang disesuaikan dengan karakteristik bisnis lokal.  Kami siap membantu Anda untuk mendigitalisasi bisnis Anda dan meningkatkan pertumbuhan bisnis Anda di wilayah Bekasi.",
+    "city": [
+      {
+        "title": "Bekasi Timur",
+        "description": "Layanan pembuatan website di Bekasi Timur dan sekitarnya."
+      },
+      {
+        "title": "Bekasi Selatan",
+        "description": "Layanan pembuatan website di Bekasi Selatan dan sekitarnya."
+      },
+      {
+        "title": "Bekasi Barat",
+        "description": "Layanan pembuatan website di Bekasi Barat dan sekitarnya."
+      }
+    ]
+  },
+  "kabupaten_kota": [
+    {
+      "nama": "Kota Bekasi",
+      "description": "Layanan Pembuatan Website di Kota Bekasi",
+      "kecamatan": [
+        {
+          "nama": "Bekasi Selatan",
+          "link": "/kota-bekasi/bekasi-selatan"
+        },
+        {
+          "nama": "Bekasi Timur",
+          "link": "/kota-bekasi/bekasi-timur"
+        },
+        {
+          "nama": "Bekasi Utara",
+          "link": "/kota-bekasi/bekasi-utara"
+        }
+      ]
+    },
+    {
+      "nama": "Kabupaten Bekasi",
+      "description": "Layanan Pembuatan Website di Kabupaten Bekasi",
+      "kecamatan": [
+        {
+          "nama": "Cikarang Selatan",
+          "link": "/kabupaten-bekasi/cikarang-selatan"
+        },
+        {
+          "nama": "Cikarang Utara",
+          "link": "/kabupaten-bekasi/cikarang-utara"
+        },
+        {
+          "nama": "Cikarang Barat",
+          "link": "/kabupaten-bekasi/cikarang-barat"
+        }
+      ]
+    }
+  ],
+  "seo_meta": {
+    "seo_data": {
+      "metadata": {
+        "meta_title": "Jasa Pembuatan Website Bekasi | Kotacom",
+        "meta_description": "Butuh jasa pembuatan website di Bekasi yang profesional? Kotacom adalah solusi terbaik! Dapatkan website berkualitas, responsif, dan SEO-friendly. Hubungi kami sekarang!",
+        "canonical_url": "https://www.kotacom.id"
+      },
+      "schema_markup": {
+        "json_ld_script": "{\n  \"@context\": \"https://schema.org\",\n  \"@graph\": [\n    {\n      \"@type\": \"ProfessionalService\",\n      \"@id\": \"https://www.kotacom.id#service\",\n      \"name\": \"jasa pembuatan website bekasi\",\n      \"description\": \"Kotacom menyediakan jasa pembuatan website profesional di Bekasi dengan desain modern, responsif, dan SEO-friendly.  Kami membantu bisnis Anda meningkatkan kehadiran online dan meraih sukses. \",\n      \"provider\": {\n        \"@id\": \"https://www.kotacom.id#organization\"\n      },\n      \"serviceArea\": {\n        \"@type\": \"AdministrativeArea\",\n        \"name\": \"Bekasi\"\n      },\n      \"aggregateRating\": {\n        \"@id\": \"https://www.kotacom.id#rating\"\n      },\n      \"review\": {\n        \"@id\": \"https://www.kotacom.id#review-yusuf\"\n      }\n    },\n    {\n      \"@type\": \"LocalBusiness\",\n      \"@id\": \"https://www.kotacom.id#organization\",\n      \"name\": \"kotacom\",\n      \"url\": \"https://www.kotacom.id\",\n      \"telephone\": \"+6281234567890\",\n      \"priceRange\": \"$$$\",\n      \"address\": {\n        \"@type\": \"PostalAddress\",\n        \"streetAddress\": \"Jl. Pahlawan No. 1\",\n        \"addressLocality\": \"Bekasi\",\n        \"addressRegion\": \"Jawa Barat\",\n        \"postalCode\": \"17111\",\n        \"addressCountry\": \"ID\"\n      }\n    },\n    {\n      \"@type\": \"AggregateRating\",\n      \"@id\": \"https://www.kotacom.id#rating\",\n      \"itemReviewed\": {\n        \"@id\": \"https://www.kotacom.id#organization\"\n      },\n      \"ratingValue\": \"4.9\",\n      \"bestRating\": \"5\",\n      \"worstRating\": \"1\",\n      \"ratingCount\": \"137\"\n    },\n    {\n      \"@type\": \"Review\",\n      \"@id\": \"https://www.kotacom.id#review-yusuf\",\n      \"itemReviewed\": {\n        \"@id\": \"https://www.kotacom.id#organization\"\n      },\n      \"author\": {\n        \"@type\": \"Person\",\n        \"name\": \"Yusuf Bahtiyar\"\n      },\n      \"reviewRating\": {\n        \"@type\": \"Rating\",\n        \"ratingValue\": \"5\",\n        \"bestRating\": \"5\"\n      },\n      \"datePublished\": \"2025-07-15\",\n      \"reviewBody\": \"Luar biasa! Proses kerjanya sangat transparan dan timnya benar-benar ahli. Website yang dihasilkan tidak hanya cepat dan bagus, tapi juga langsung terasa dampaknya pada bisnis saya. Pengalaman terbaik sejauh ini. Sangat direkomendasikan!\"\n    }\n  ]\n}"
+      }
+    }
+  },
+  "keyword": "web development",
+  "generated_images": {
+    "generated_at": "2025-07-29T01:11:01.054823",
+    "total_images": 7,
+    "search_keyword": "web development",
+    "source": "Unsplash API"
+  }
+}

@@ -1,0 +1,64 @@
+---
+export interface Props {
+  class?: string;
+  hoverEffect?: 'lift' | 'scale' | 'glow' | 'border';
+}
+
+const { class: className = '', hoverEffect = 'lift' } = Astro.props;
+
+const effectClasses = {
+  'lift': 'hover-lift',
+  'scale': 'hover-scale',
+  'glow': 'hover-glow',
+  'border': 'hover-border'
+};
+---
+
+<div class={`hover-card ${effectClasses[hoverEffect]} ${className}`}>
+  <slot />
+</div>
+
+<style>
+  .hover-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+
+  /* Lift effect */
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Scale effect */
+  .hover-scale:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Glow effect */
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    transform: translateY(-2px);
+  }
+
+  /* Border effect */
+  .hover-border {
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .hover-border:hover {
+    border-color: #3b82f6;
+    transform: translateY(-2px);
+  }
+
+  /* Dark mode adjustments */
+  .dark .hover-lift:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  .dark .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+</style> 

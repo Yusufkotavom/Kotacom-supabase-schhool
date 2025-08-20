@@ -1,0 +1,134 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SubscribeDrawer from "../components/Popups/SubscribeDrawer.astro";
+import ContactButtons from "../components/ContactButtons.astro";
+import { getCollection } from 'astro:content';
+import SpeedInsights from "@vercel/speed-insights/astro";
+import Analytics from "@vercel/analytics/astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article' | 'product' | 'service' | 'project' | 'page';
+  published?: string;
+  modified?: string;
+  section?: string;
+  tags?: string[];
+}
+
+const { title, description, type = 'website', published, modified, section, tags } = Astro.props;
+
+let image = Astro.props.image as string | undefined;
+// LCP-friendly fallback: pick a deterministic random product image if none provided
+if (!image) {
+  try {
+    const products = await getCollection('productsMdx');
+    const candidates = products
+      .map((p: any) => [p.data?.imageUrl])
+      .flat()
+      .filter((u: string | undefined) => typeof u === 'string' && u.length > 0);
+    if (candidates.length > 0) {
+      // Deterministic pick based on pathname hash to avoid layout shift
+      const h = Array.from(Astro.url.pathname).reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
+      image = candidates[h % candidates.length];
+    }
+  } catch {}
+}
+
+// Only load tracking in production for better performance
+const isProduction = import.meta.env.PROD;
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <BaseHead title={title} description={description} image={image} type={type} published={published} modified={modified} section={section} tags={tags} />
+    <!-- Font Awesome for WordPress content -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <slot name="head" />
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+    <ContactButtons />
+    <script
+      is:inline
+      src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"
+    ></script>
+    
+    <!-- WhatsApp Tracking Script (Production Only) -->
+    {isProduction && (
+      <script is:inline>
+        // Optimized WhatsApp tracking with minimal performance impact
+        function trackWhatsAppClick(placement) {
+          // Use requestIdleCallback for better performance
+          if (window.requestIdleCallback) {
+            requestIdleCallback(() => {
+              trackWhatsAppEvent(placement);
+            });
+          } else {
+            // Fallback for older browsers
+            setTimeout(() => {
+              trackWhatsAppEvent(placement);
+            }, 0);
+          }
+        }
+
+        function trackWhatsAppEvent(placement) {
+          try {
+            // GA4 tracking
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'generate_lead', {
+                method: 'whatsapp',
+                content_name: `whatsapp_click_${placement}`,
+                value: 1,
+                currency: 'IDR'
+              });
+              
+              gtag('event', 'whatsapp_click', {
+                placement: placement,
+                page_url: window.location.href,
+                page_title: document.title,
+                timestamp: new Date().toISOString()
+              });
+            }
+            
+            // Local storage for development tracking
+            const clickData = {
+              placement: placement,
+              timestamp: new Date().toISOString(),
+              page: window.location.href,
+              title: document.title
+            };
+            
+            const existingClicks = JSON.parse(localStorage.getItem('whatsapp_clicks') || '[]');
+            existingClicks.push(clickData);
+            
+            // Keep only last 100 clicks to prevent storage bloat
+            if (existingClicks.length > 100) {
+              existingClicks.splice(0, existingClicks.length - 100);
+            }
+            
+            localStorage.setItem('whatsapp_clicks', JSON.stringify(existingClicks));
+            
+            // Console log for development
+            console.log('WhatsApp click tracked:', clickData);
+            
+          } catch (error) {
+            console.error('Error tracking WhatsApp click:', error);
+          }
+        }
+
+        // Expose function globally for onclick handlers
+        window.trackWhatsAppClick = trackWhatsAppClick;
+      </script>
+    )}
+    
+    <SubscribeDrawer />
+    <SpeedInsights />
+  </body>
+</html>

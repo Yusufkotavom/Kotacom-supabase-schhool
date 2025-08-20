@@ -1,0 +1,22 @@
+{
+  "redirects": [
+    {
+      "from": "old-post-slug",
+      "to": "/new-page-url",
+      "type": "permanent",
+      "description": "Redirect old post to new page"
+    },
+    {
+      "from": "deprecated-service",
+      "to": "/services",
+      "type": "permanent",
+      "description": "Redirect deprecated service to main services page"
+    },
+    {
+      "from": "temporary-page",
+      "to": "/wordpress-blog/new-post",
+      "type": "temporary",
+      "description": "Temporary redirect to new blog post"
+    }
+  ]
+} 

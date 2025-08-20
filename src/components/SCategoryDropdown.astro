@@ -1,0 +1,128 @@
+---
+import { getCollection } from "astro:content";
+
+// Get the current category from the URL path (not query parameter)
+const currentCategoryPromise = (async () => {
+  const pathSegments = Astro.url.pathname.split("/");
+  const potentialCategory = pathSegments[2]; // Extract the category slug from the URL
+
+  // Validate if the extracted segment matches a known category slug
+  const mdxServices = await getCollection('servicesMdx');
+
+  // Normalize services
+  const normalizedMdxServices = mdxServices.map((entry) => ({
+    ...entry,
+    source: 'mdx',
+    data: {
+      ...entry.data,
+      properties: {
+        svTitle: entry.data.title,
+        svCategory: entry.data.category,
+        svSlug: entry.data.slug,
+        svImageURL1: entry.data.imageUrl1 || "",
+        svPublished: { start: entry.data.published },
+        svWilayah: entry.data.wilayah,
+        svProvider: entry.data.provider,
+        svType: entry.data.type,
+        svPrice: entry.data.price,
+        svURL: entry.data.url,
+        svWhatsAppURL: entry.data.whatsappUrl,
+        svMapsURL: entry.data.mapsUrl,
+        svVerify: entry.data.verify || "",
+        svImageURL2: entry.data.imageUrl2,
+        svImageURL3: entry.data.imageUrl3,
+        svReview: entry.data.review,
+      },
+    },
+  }));
+
+  const allServices = [...normalizedMdxServices];
+  
+  const validCategories = allServices.reduce((acc: Set<string>, service) => {
+    const categories = Array.isArray(service.data.properties.svCategory)
+      ? service.data.properties.svCategory.map((c: string) => c.toLowerCase().replace(/\s+/g, "-"))
+      : [String(service.data.properties.svCategory).toLowerCase().replace(/\s+/g, "-")];
+    categories.forEach((category) => acc.add(category));
+    return acc;
+  }, new Set<string>());
+
+  return validCategories.has(potentialCategory) ? potentialCategory : null;
+})();
+const currentCategory = await currentCategoryPromise;
+
+// Fetch services from MDX collection
+const mdxServices = await getCollection('servicesMdx');
+
+// Normalize services (reuse the same logic)
+const normalizedMdxServices = mdxServices.map((entry) => ({
+  ...entry,
+  source: 'mdx',
+  data: {
+    ...entry.data,
+    properties: {
+      svTitle: entry.data.title,
+      svCategory: entry.data.category,
+      svSlug: entry.data.slug,
+      svImageURL1: entry.data.imageUrl1 || "",
+      svPublished: { start: entry.data.published },
+      svWilayah: entry.data.wilayah,
+      svProvider: entry.data.provider,
+      svType: entry.data.type,
+      svPrice: entry.data.price,
+      svURL: entry.data.url,
+      svWhatsAppURL: entry.data.whatsappUrl,
+      svMapsURL: entry.data.mapsUrl,
+      svVerify: entry.data.verify || "",
+      svImageURL2: entry.data.imageUrl2,
+      svImageURL3: entry.data.imageUrl3,
+      svReview: entry.data.review,
+    },
+  },
+}));
+
+// Combine
+const allServices = [...normalizedMdxServices];
+
+// Count the number of services for each category
+const categoryCounts = allServices.reduce((acc: Record<string, number>, service) => {
+  const categories = Array.isArray(service.data.properties.svCategory)
+    ? service.data.properties.svCategory
+    : [service.data.properties.svCategory];
+
+  categories.forEach((category) => {
+    if (category) {
+      acc[category] = (acc[category] || 0) + 1;
+    }
+  });
+
+  return acc;
+}, {} as Record<string, number>);
+
+// Extract unique categories and sort alphabetically
+const uniqueCategories = Object.keys(categoryCounts).sort();
+---
+<form class="w-100%">
+  <select
+    id="categories"
+    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    onchange="if (this.value) window.location.href = this.value"
+  >
+    <option 
+      value="/services/"
+      selected={!currentCategory}
+    >
+      Semua Kategori
+    </option>
+    {uniqueCategories.map((category) => {
+      const categorySlug = category.toLowerCase().replace(/\s+/g, "-");
+      return (
+        <option
+          value={`/services/${categorySlug}/`}
+          selected={currentCategory === categorySlug}
+        >
+          {category} ({categoryCounts[category]})
+        </option>
+      );
+    })}
+  </select>
+</form>

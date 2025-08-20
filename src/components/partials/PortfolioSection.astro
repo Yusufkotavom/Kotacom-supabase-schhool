@@ -1,0 +1,134 @@
+---
+// Portfolio Section component
+export interface Props {
+  portfolio?: any;
+}
+
+const { portfolio = {} } = Astro.props;
+---
+<!-- Portfolio Section -->
+<section class="border-t border-b border-gray-100 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+  <div class="max-w-screen-xl px-4 py-8 mx-auto sm:py-16 lg:py-24">
+    <!-- Portfolio Second -->
+    {portfolio && (portfolio.title || portfolio.badge_text || (portfolio.list && portfolio.list.length > 0)) && (
+      <div>
+        <div class="max-w-3xl mx-auto text-center">
+          {portfolio.badge_text && (
+            <a href="#" class="inline-flex items-center justify-between px-1 py-1 pr-4 mb-6 text-sm text-gray-700 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700" role="alert">
+              <span class="px-3 py-1 mr-3 text-xs text-white rounded-full bg-primary-700">Portfolio</span> 
+              <span class="text-sm font-medium">{portfolio.badge_text}</span>
+              <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+              </svg>
+            </a>
+          )}
+          
+          {portfolio.title && (
+            <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl dark:text-white">
+              {portfolio.title}
+            </h2>
+          )}
+          
+          {portfolio.description && (
+            <p class="text-gray-500 dark:text-gray-400 sm:text-xl">
+              {portfolio.description}
+            </p>
+          )}
+        </div>
+
+        {portfolio.list && portfolio.list.length > 0 && (
+          <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:mt-12 lg:mt-16 [column-count:1] sm:[column-count:2] lg:[column-count:3]">
+            {portfolio.list.map((item: any, idx: number) => (
+              <div
+                class="break-inside-avoid p-6 bg-white rounded-lg shadow dark:bg-gray-700 transition-transform transition-shadow duration-200 hover:shadow-lg hover:-translate-y-1 hover:bg-gray-50 dark:hover:bg-gray-600 flex flex-col"
+                style="margin-bottom: 1.5rem;"
+              >
+                {/* Badge for each card */}
+                <span class="inline-block mb-2 px-2 py-0.5 text-xs font-semibold rounded-full bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-300 self-start">
+                  {item.type}
+                </span>
+                
+                {/* Icon container */}
+                <div class="flex items-center justify-center w-10 h-10 mb-4 rounded-lg bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900 transition-transform duration-200 group-hover:scale-110">
+                  <svg class="w-5 h-5 text-primary-700 lg:w-8 lg:h-8 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                
+                <h3 class="mb-2 text-xl font-bold dark:text-white">
+                  {item.title}
+                </h3>
+                
+                <p class="text-gray-500 dark:text-gray-400">
+                  {item.description}
+                </p>
+                
+                {/* Features list if available */}
+                {item.features && item.features.length > 0 && (
+                  <ul class="space-y-4 mt-4">
+                    {item.features.map((feature: string) => (
+                      <li class="flex items-center gap-2.5">
+                        <div class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary-100 text-primary-700 shrink-0 dark:bg-primary-900 dark:text-primary-400">
+                          <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                          </svg>
+                        </div>
+                        <span class="text-base font-light text-gray-900 dark:text-white">
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                
+                {/* Action buttons */}
+                <div class="mt-4 flex flex-wrap gap-2">
+                  {/* Live Preview button */}
+                  <a
+                    href={item.link || "#"}
+                    class="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded bg-green-500 text-white hover:bg-green-600 dark:bg-green-900 dark:text-white dark:hover:bg-green-800 transition-colors duration-150 border border-green-100 dark:border-green-800"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Live Preview
+                    <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
+                  
+                  {/* View Project button if link is available */}
+                  {item.link && (
+                    <a
+                      href={item.link}
+                      class="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-900 dark:text-white dark:hover:bg-blue-800 transition-colors duration-150 border border-blue-100 dark:border-blue-800"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View Project
+                      <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        
+        {/* Bottom CTA Button */}
+        <div class="text-center mt-12">
+          <a
+            href="/portfolio"
+            class="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 transition-colors duration-200"
+          >
+            Lihat Portfolio Lainnya
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    )}
+  </div>
+</section>

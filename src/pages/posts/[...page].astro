@@ -1,0 +1,158 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import PostCard from "../../components/PostCard.astro";
+import type { GetStaticPathsOptions } from "astro";
+import { getCollection } from "astro:content";
+import { getPostsDirectFromSupabase, convertSupabasePost } from "../../lib/supabase-direct";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  // Ambil semua post dari MDX dan Supabase
+  const mdxPosts = await getCollection('postsMdx').catch(() => [] as any[]);
+  const supabasePosts = await getPostsDirectFromSupabase(10000); // Get all posts from Supabase
+  
+  const normalizedMdxPosts = mdxPosts.map((entry) => ({
+    ...entry,
+    source: 'mdx',
+    data: {
+      ...entry.data,
+      properties: {
+        bTitle: entry.data.title,
+        bTags: entry.data.tags,
+        bSlug: entry.data.slug,
+        bCoverImage: entry.data.coverImage || "",
+        bPublished: { start: entry.data.published },
+        bLastUpdated: { start: entry.data.lastUpdated || entry.data.published },
+        bDescription: entry.data.description,
+      },
+    },
+  }));
+
+  // Ambil semua post dari Supabase (converted)
+  const normalizedSupabasePosts = supabasePosts
+    .filter((post:any) => post.slug && typeof post.slug === 'string')
+    .map(convertSupabasePost)
+    .map((post: any) => ({
+      id: post.id,
+      slug: post.slug,
+      source: 'supabase',
+      // Direct properties for modern PostCard mapping
+      title: post.title,
+      description: post.description || '',
+      published: post.published,
+      lastUpdated: post.updated,
+      body: post.body || '',
+      format: post.format || 'md',
+      imageUrl: post.coverImage || post.imageUrl || '',
+      coverImage: post.coverImage || post.imageUrl || '',
+      tags: post.tags || [],
+      category: post.category || [],
+      data: {
+        title: post.title,
+        description: post.description || '',
+        published: post.published,
+        lastUpdated: post.updated,
+        body: post.body || '',
+        format: post.format || 'md',
+        properties: {
+          bTitle: post.title,
+          bTags: post.tags || [],
+          bSlug: post.slug,
+          bCoverImage: post.coverImage || post.imageUrl || "",
+          bPublished: { start: post.published || post.created },
+          bLastUpdated: { start: post.updated || post.created },
+          bDescription: post.description || '',
+        },
+      },
+    }));  // Gabungkan dan urutkan berdasarkan tanggal publish
+  const allPosts = [...normalizedMdxPosts, ...normalizedSupabasePosts].sort((a, b) => {
+    const dateA = new Date(a.data.published || a.data.properties.bPublished.start);
+    const dateB = new Date(b.data.published || b.data.properties.bPublished.start);
+    return dateB.getTime() - dateA.getTime();
+  });
+
+  return paginate(allPosts, {
+    pageSize: 12,
+  });
+}
+
+const { page } = Astro.props;
+---
+
+<MainLayout
+  title={`All Posts - Page ${page.currentPage} of ${page.lastPage}`}
+>
+  <fragment slot="head">
+    {page.url.prev && (<link rel="prev" href={page.url.prev} />)}
+    {page.url.next && (<link rel="next" href={page.url.next} />)}
+    {page.currentPage > 1 && (<meta name="robots" content="noindex,follow" />)}
+  </fragment>
+  
+  <section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+      <div class="max-w-screen-md mb-8 lg:mb-16">
+        <h1
+          class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+        >
+          Semua Artikel
+        </h1>
+        <p class="text-gray-500 sm:text-xl dark:text-gray-400">
+          Kumpulan artikel terbaru dari tim kotacom.id
+        </p>
+      </div>
+      
+      <div class="mb-4">
+        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+          Menampilkan <span class="font-semibold text-gray-900 dark:text-white">
+            {page.start + 1}-{page.end + 1}
+          </span> dari <span class="font-semibold text-gray-900 dark:text-white">
+            {page.total}
+          </span> artikel
+        </span>
+      </div>
+      
+      <div
+        class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0"
+      >
+        {page.data.map((post) => <PostCard post={post} />)}
+      </div>
+    </div>
+  </section>
+  
+  <section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+      <!-- Pagination -->
+      <nav class="flex justify-center items-center space-x-1">
+        {page.url.prev && (
+          <a
+            href={page.url.prev}
+            class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+          >
+            Previous
+          </a>
+        )}
+        
+        {Array.from({ length: page.lastPage }, (_, i) => i + 1).map((pageNum) => (
+          <a
+            href={pageNum === 1 ? '/posts/' : `/posts/${pageNum}/`}
+            class={`flex items-center justify-center px-3 h-8 leading-tight border ${
+              pageNum === page.currentPage
+                ? 'text-blue-600 bg-blue-50 border-blue-300 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white'
+                : 'text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
+            }`}
+          >
+            {pageNum}
+          </a>
+        ))}
+        
+        {page.url.next && (
+          <a
+            href={page.url.next}
+            class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+          >
+            Next
+          </a>
+        )}
+      </nav>
+    </div>
+  </section>
+</MainLayout>

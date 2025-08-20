@@ -1,0 +1,30 @@
+---
+// Critical resources that should be preloaded
+// Note: Favicons are excluded as they're already loaded via regular favicon links
+interface CriticalResource {
+  href: string;
+  as: string;
+  type: string;
+}
+
+const criticalResources: CriticalResource[] = [
+  // Add other critical resources here if needed
+  // {
+  //   href: '/path/to/critical/resource',
+  //   as: 'image',
+  //   type: 'image/png'
+  // }
+];
+---
+
+{criticalResources.map((resource) => (
+  <link
+    rel="preload"
+    href={resource.href}
+    as={resource.as}
+    type={resource.type}
+  />
+))}
+
+<!-- Preload critical fonts if available -->
+<!-- <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin> -->
