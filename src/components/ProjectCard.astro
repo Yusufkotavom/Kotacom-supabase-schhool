@@ -18,7 +18,7 @@ const props = isMdx
   : project.data.properties;
 ---
 
-<article class="rounded-lg">
+<article class="rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 overflow-hidden">
     <div class="relative">
         <a href={`/projects/${props.pSlug}/`}>
           <ResponsiveImage
@@ -29,7 +29,7 @@ const props = isMdx
             fallbackWidth={600}
           />
           {props.pVerify && (
-            <div class="absolute top-2 left-2 bg-gbgyellow bg-opacity-80 rounded-md px-2 py-1 flex items-center gap-1">
+            <div class="absolute top-2 left-2 bg-gbgyellow/90 dark:bg-yellow-500/90 rounded-md px-2 py-1 flex items-center gap-1">
               <svg
                 class="h-5 w-5 text-black"
                 aria-hidden="true"
@@ -45,7 +45,7 @@ const props = isMdx
                   clip-rule="evenodd"
                 />
               </svg>
-              <p class="text-xs font-medium text-black dark:text-white">{props.pVerify}</p>
+              <p class="text-xs font-medium text-black dark:text-gray-900">{props.pVerify}</p>
             </div>
           )}
         </a>
@@ -54,7 +54,7 @@ const props = isMdx
     {Array.isArray(props.pCountry)
       ? props.pCountry.map((country: string) => (
           <span
-            class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium border border-solid border-gray-300 bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-300 ml-2 mt-4 mb-2"
+            class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium border border-solid border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-300 ml-2 mt-4 mb-2"
           >
             <a
               href={`/projects/${country.toLowerCase().replace(/\s+/g, "-")}`}
@@ -70,8 +70,8 @@ const props = isMdx
       {props.pTitle}
     </a>
   </h2>
-  <p class="mt-2 text-sm font-normal text-gray-400 dark:text-gray-400 px-4">
-           By <span class="text-gray-800">{props.pOrganiser}</span> in <span class="text-gray-900">{
+  <p class="mt-2 text-sm font-normal text-gray-500 dark:text-gray-400 px-4">
+           By <span class="text-gray-800 dark:text-gray-200">{props.pOrganiser}</span> in <span class="text-gray-900 dark:text-gray-100">{
             Array.isArray(props.pLocale)
               ? props.pLocale.map((locale: string, index: number) => (
                   <>

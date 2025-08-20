@@ -32,7 +32,7 @@ const DEFAULT_IMAGE = 'https://res.cloudinary.com/dxyjku3eh/image/upload/v175482
 const imageUrl = p.svImageURL1 || DEFAULT_IMAGE;
 ---
 
-<article class="rounded-lg">
+<article class="rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 overflow-hidden">
   <div class="relative">
     <a href={`/services/${p.svSlug}/`}>
       <ResponsiveImage
@@ -66,11 +66,11 @@ const imageUrl = p.svImageURL1 || DEFAULT_IMAGE;
     <p class="px-4 mb-2 text-lg font-semibold text-green-600">{formattedPrice}</p>
   )}
 
-  <p class="mt-2 text-sm font-normal text-gray-400 dark:text-gray-400 px-4">
-    {p.svProvider && (<span class="text-gray-800">{p.svProvider}</span>)}
-    {p.svType && (<span> adalah <span class="text-gray-900">{p.svType}</span></span>)}
+  <p class="mt-2 text-sm font-normal text-gray-500 dark:text-gray-400 px-4">
+    {p.svProvider && (<span class="text-gray-800 dark:text-gray-200">{p.svProvider}</span>)}
+    {p.svType && (<span> adalah <span class="text-gray-900 dark:text-gray-100">{p.svType}</span></span>)}
     {p.svWilayah && (
-      <span> di <span class="text-gray-900">
+      <span> di <span class="text-gray-900 dark:text-gray-100">
         {Array.isArray(p.svWilayah) ? p.svWilayah.join(', ') : p.svWilayah}
       </span></span>
     )}
