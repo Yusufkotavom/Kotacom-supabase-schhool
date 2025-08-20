@@ -1,0 +1,8 @@
+[build]
+  command = "pnpm run build"
+  publish = "dist"
+
+[build.environment]
+  PNPM_FLAGS = "--no-frozen-lockfile"
+  NODE_VERSION = "22.18.0"
+
