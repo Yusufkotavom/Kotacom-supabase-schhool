@@ -1,5 +1,5 @@
 ---
-// filepath: /Users/matthewmorelli/Documents/Dev/giveback-guide/src/components/LatestProjects.astro
+// Latest Projects section for homepage
 
 import { getCollection } from "astro:content";
 import { getProjectsDirectFromSupabase } from "../../lib/supabase-direct";
@@ -49,9 +49,9 @@ const normalizedMdxProjects = mdxProjects.map((entry) => ({
   },
 }));
 
-// Normalize Payload
+// Normalize Supabase
 const normalizedSupabase = supabaseProjects.map((entry: any) => ({
-  source: 'payload',
+  source: 'supabase',
   data: { properties: {
     pTitle: entry.title,
     pCountry: (entry.country||[]).map((x:any)=>x.value||x),

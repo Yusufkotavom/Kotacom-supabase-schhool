@@ -2,7 +2,6 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
 import ProductPage from '../../layouts/ProductPage.astro';
 import { render } from 'astro:content';
-import { renderPayloadBody } from '../../lib/payload-client';
 import { getProductsDirectFromSupabase } from '../../lib/supabase-direct';
 
 export async function getStaticPaths() {
@@ -26,7 +25,7 @@ export async function getStaticPaths() {
 	return [...mdxPaths, ...supabasePaths];
 }
 
-type Props = { product: any | CollectionEntry<'productsMdx'>; source: 'mdx'|'payload'|'supabase' };
+type Props = { product: any | CollectionEntry<'productsMdx'>; source: 'mdx'|'supabase' };
 
 const { product, source } = Astro.props;
 
@@ -76,19 +75,18 @@ if (source === 'mdx') {
     isSponsored: false,
     targetAudience: [],
   };
-} else {
-  // payload product
+} else if (source === 'supabase') {
   Content = undefined;
   layoutData = {
     properties: {
       title: product.title,
       price: product.price,
-      content: renderPayloadBody(product),
+      content: product.body || "",
       country: (product.country||[]).map((x:any)=>x.value||x),
       locale: (product.locale||[]).map((x:any)=>x.value||x),
       category: (product.category||[]).map((x:any)=>x.value||x),
       slug: product.slug,
-      imageUrl: product.imageUrl || "",
+      imageUrl: product.imageUrl || product.cover_image || "",
       published: product.published ? new Date(product.published) : new Date(),
       description: product.description || "",
       verify: product.verify || "",
@@ -97,7 +95,7 @@ if (source === 'mdx') {
       review: product.review || "",
       features: product.features || [],
       name: product.name || "",
-      type: product.type || [],
+      type: (product.type||[]).map((x:any)=>x.value||x),
       url: product.url || "",
       otherUrl: product.otherUrl || "",
       tokopediaUrl: product.tokopediaUrl || "",

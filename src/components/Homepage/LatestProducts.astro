@@ -48,9 +48,9 @@ const normalizedMdxProducts = mdxProducts.map((entry) => ({
   },
 }));
 
-// Normalize Payload products
+// Normalize Supabase products
 const normalizedSupabase = supabaseProducts.map((p: any) => ({
-  source: 'payload',
+  source: 'supabase',
   data: { properties: {
     pTitle: p.title,
     pPrice: p.price,

@@ -128,7 +128,7 @@ const pageMdxSchema = z.object({
 
 // MDX Posts collection
 const postsMdx = defineCollection({
-    loader: glob({ pattern: '**/*.md', base: './src/pages/posts' }),
+    loader: glob({ pattern: '**/*.{md,mdx}', base: './src/pages/posts' }),
     schema: postMdxSchema,
   });
 
@@ -136,7 +136,7 @@ const postsMdx = defineCollection({
 
 // MDX Projects collection
 const projectsMdx = defineCollection({
-    loader: glob({ pattern: '**/*.md', base: './src/pages/projects' }),
+    loader: glob({ pattern: '**/*.{md,mdx}', base: './src/pages/projects' }),
     schema: projectMdxSchema,
   });
 
@@ -148,7 +148,7 @@ const projectsMdx = defineCollection({
 // MDX Products collection - Handle empty directories gracefully  
 const productsMdx = defineCollection({
       loader: glob({ 
-      pattern: '**/*.md', 
+      pattern: '**/*.{md,mdx}', 
       base: './src/pages/products'
     }),
     schema: productMdxSchema,
@@ -158,7 +158,7 @@ const productsMdx = defineCollection({
 
 // MDX Services collection
 const servicesMdx = defineCollection({
-    loader: glob({ pattern: '**/*.md', base: './src/pages/services' }),
+    loader: glob({ pattern: '**/*.{md,mdx}', base: './src/pages/services' }),
     schema: serviceMdxSchema,
   });
 
