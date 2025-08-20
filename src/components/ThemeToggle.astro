@@ -1,0 +1,90 @@
+---
+// Simple theme toggle with localStorage persistence and system preference support
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  class="cursor-pointer inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 bg-white text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-300 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-600"
+  aria-label="Toggle dark mode"
+  title="Toggle dark mode"
+>
+  <!-- Sun icon -->
+  <svg id="icon-sun" class="w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm0 4a1 1 0 0 1-1-1v-1a1 1 0 1 1 2 0v1a1 1 0 0 1-1 1Zm0-18a1 1 0 0 1-1-1V2a1 1 0 1 1 2 0v1a1 1 0 0 1-1 1Zm10 8a1 1 0 0 1-1 1h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1ZM4 12a1 1 0 0 1-1 1H2a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1Zm14.95 6.364a1 1 0 0 1-1.414 1.414l-.707-.707a1 1 0 0 1 1.414-1.414l.707.707Zm-12.728 0 .707.707A1 1 0 1 1 5.515 21.9l-.707-.707A1 1 0 0 1 6.222 19.78Zm12.728-12.728a1 1 0 0 1 0 1.414l-.707.707A1 1 0 1 1 16.829 7.76l.707-.707a1 1 0 0 1 1.414 0ZM4.222 4.222a1 1 0 0 1 1.414 0l.707.707A1 1 0 0 1 4.93 7.05l-.707-.707a1 1 0 0 1 0-1.414Z"/>
+  </svg>
+  <!-- Moon icon -->
+  <svg id="icon-moon" class="w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79Z"/>
+  </svg>
+</button>
+
+<script>
+  (function attachThemeToggle(){
+    const root = document.documentElement;
+    const btn = document.getElementById('theme-toggle');
+    const iconSun = document.getElementById('icon-sun');
+    const iconMoon = document.getElementById('icon-moon');
+
+    function currentPrefersDark(){
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
+    function getStoredTheme(){
+      try { return localStorage.getItem('theme'); } catch { return null; }
+    }
+    function storeTheme(theme){
+      try { localStorage.setItem('theme', theme); } catch {}
+    }
+
+    function applyTheme(theme){
+      if (theme === 'dark' || (theme === 'system' && currentPrefersDark())) {
+        root.classList.add('dark');
+      } else {
+        root.classList.remove('dark');
+      }
+      root.setAttribute('data-theme', theme);
+      // Update icons
+      const darkActive = root.classList.contains('dark');
+      if (iconSun && iconMoon) {
+        iconSun.classList.toggle('hidden', !darkActive);
+        iconMoon.classList.toggle('hidden', darkActive);
+      }
+    }
+
+    function init(){
+      const stored = getStoredTheme();
+      const theme = stored || 'system';
+      applyTheme(theme);
+    }
+
+    function nextTheme(){
+      const theme = root.getAttribute('data-theme') || 'system';
+      if (theme === 'system') return 'light';
+      if (theme === 'light') return 'dark';
+      return 'system';
+    }
+
+    init();
+    if (btn) {
+      btn.addEventListener('click', () => {
+        const theme = nextTheme();
+        storeTheme(theme);
+        applyTheme(theme);
+      });
+    }
+
+    // React to OS scheme changes when on 'system'
+    if (window.matchMedia) {
+      const mq = window.matchMedia('(prefers-color-scheme: dark)');
+      if (mq && mq.addEventListener) {
+        mq.addEventListener('change', () => {
+          if ((root.getAttribute('data-theme') || 'system') === 'system') {
+            applyTheme('system');
+          }
+        });
+      }
+    }
+  })();
+</script>
+
