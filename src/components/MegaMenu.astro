@@ -1,0 +1,265 @@
+---
+export interface MegaMenuSection {
+  title: string;
+  icon?: string;
+  items: MegaMenuItem[];
+}
+
+export interface MegaMenuItem {
+  title: string;
+  url: string;
+  description?: string;
+  icon?: string;
+  badge?: string;
+  isExternal?: boolean;
+}
+
+export interface MegaMenuProps {
+  trigger: string;
+  sections: MegaMenuSection[];
+  className?: string;
+}
+
+const { trigger, sections, className = '' } = Astro.props as MegaMenuProps;
+const menuId = `mega-menu-${trigger.toLowerCase().replace(/\s+/g, '-')}`;
+---
+
+<div class={`relative group ${className}`}>
+  <!-- Trigger Button -->
+  <button
+    type="button"
+    class="flex items-center gap-1 px-3 py-2 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md"
+    aria-expanded="false"
+    aria-haspopup="true"
+    aria-controls={menuId}
+    data-mega-menu-trigger={menuId}
+  >
+    <span>{trigger}</span>
+    <svg 
+      class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" 
+      fill="none" 
+      stroke="currentColor" 
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </button>
+
+  <!-- Mega Menu Dropdown -->
+  <div
+    id={menuId}
+    class="absolute left-0 top-full mt-1 w-screen max-w-screen-xl opacity-0 invisible transform scale-95 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:visible group-hover:scale-100 z-50"
+    role="menu"
+    aria-labelledby={`${menuId}-trigger`}
+    data-mega-menu-content={menuId}
+  >
+    <!-- Backdrop -->
+    <div class="absolute inset-0 bg-black/5 dark:bg-black/20 backdrop-blur-sm"></div>
+    
+    <!-- Content Container -->
+    <div class="relative bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+      <!-- Grid Layout -->
+      <div class={`grid gap-8 p-8 ${sections.length === 1 ? 'grid-cols-1' : sections.length === 2 ? 'grid-cols-1 lg:grid-cols-2' : 'grid-cols-1 lg:grid-cols-3'}`}>
+        {sections.map((section) => (
+          <div class="space-y-4">
+            <!-- Section Header -->
+            <div class="flex items-center gap-2">
+              {section.icon && (
+                <div class="text-blue-600 dark:text-blue-400" set:html={section.icon}></div>
+              )}
+              <h3 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider">
+                {section.title}
+              </h3>
+            </div>
+            
+            <!-- Section Items -->
+            <div class="space-y-2">
+              {section.items.map((item) => (
+                <a
+                  href={item.url}
+                  class="group/item flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                  role="menuitem"
+                  {...(item.isExternal && {
+                    target: "_blank",
+                    rel: "noopener noreferrer"
+                  })}
+                >
+                  <!-- Item Icon -->
+                  {item.icon && (
+                    <div class="flex-shrink-0 mt-0.5 text-gray-400 group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400 transition-colors" set:html={item.icon}></div>
+                  )}
+                  
+                  <!-- Item Content -->
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-2">
+                      <span class="text-sm font-medium text-gray-900 dark:text-white group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400 transition-colors">
+                        {item.title}
+                      </span>
+                      {item.badge && (
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
+                          {item.badge}
+                        </span>
+                      )}
+                      {item.isExternal && (
+                        <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                      )}
+                    </div>
+                    {item.description && (
+                      <p class="mt-1 text-xs text-gray-500 dark:text-gray-400 line-clamp-2">
+                        {item.description}
+                      </p>
+                    )}
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <!-- Footer CTA (optional) -->
+      <div class="bg-gray-50 dark:bg-gray-800 px-8 py-4 border-t border-gray-200 dark:border-gray-700">
+        <div class="flex items-center justify-between">
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            Butuh bantuan? Hubungi tim kami
+          </p>
+          <a
+            href="/contact"
+            class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-800"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+            </svg>
+            Konsultasi Gratis
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Handle mega menu interactions
+    const megaMenus = document.querySelectorAll('[data-mega-menu-trigger]');
+    
+    megaMenus.forEach(trigger => {
+      const menuId = trigger.getAttribute('data-mega-menu-trigger');
+      const menuContent = document.querySelector(`[data-mega-menu-content="${menuId}"]`);
+      const parentGroup = trigger.closest('.group');
+      
+      if (!menuContent || !parentGroup) return;
+      
+      let timeout: NodeJS.Timeout;
+      
+      // Show menu on hover
+      const showMenu = () => {
+        clearTimeout(timeout);
+        trigger.setAttribute('aria-expanded', 'true');
+        parentGroup.classList.add('menu-open');
+      };
+      
+      // Hide menu with delay
+      const hideMenu = () => {
+        timeout = setTimeout(() => {
+          trigger.setAttribute('aria-expanded', 'false');
+          parentGroup.classList.remove('menu-open');
+        }, 150);
+      };
+      
+      // Mouse events
+      parentGroup.addEventListener('mouseenter', showMenu);
+      parentGroup.addEventListener('mouseleave', hideMenu);
+      
+      // Keyboard events
+      trigger.addEventListener('keydown', (e) => {
+        const keyEvent = e as KeyboardEvent;
+        if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
+          keyEvent.preventDefault();
+          const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+          if (isOpen) {
+            hideMenu();
+          } else {
+            showMenu();
+          }
+        } else if (keyEvent.key === 'Escape') {
+          hideMenu();
+          (trigger as HTMLElement).focus();
+        } else if (keyEvent.key === 'ArrowDown') {
+          keyEvent.preventDefault();
+          showMenu();
+          // Focus first menu item
+          const firstMenuItem = menuContent.querySelector('a[role="menuitem"]') as HTMLElement;
+          if (firstMenuItem) firstMenuItem.focus();
+        }
+      });
+      
+      // Handle menu item navigation
+      const menuItems = menuContent.querySelectorAll('a[role="menuitem"]');
+      menuItems.forEach((item, index) => {
+        item.addEventListener('keydown', (e) => {
+          const keyEvent = e as KeyboardEvent;
+          if (keyEvent.key === 'ArrowDown') {
+            keyEvent.preventDefault();
+            const nextItem = menuItems[index + 1] as HTMLElement;
+            if (nextItem) nextItem.focus();
+          } else if (keyEvent.key === 'ArrowUp') {
+            keyEvent.preventDefault();
+            if (index === 0) {
+              (trigger as HTMLElement).focus();
+            } else {
+              const prevItem = menuItems[index - 1] as HTMLElement;
+              if (prevItem) prevItem.focus();
+            }
+          } else if (keyEvent.key === 'Escape') {
+            hideMenu();
+            (trigger as HTMLElement).focus();
+          }
+        });
+      });
+    });
+    
+    // Close menus on outside click
+    document.addEventListener('click', (e) => {
+      const target = e.target as Element;
+      if (!target.closest('.group')) {
+        megaMenus.forEach(trigger => {
+          trigger.setAttribute('aria-expanded', 'false');
+          const parentGroup = trigger.closest('.group');
+          if (parentGroup) parentGroup.classList.remove('menu-open');
+        });
+      }
+    });
+  });
+</script>
+
+<style>
+  /* Enhanced hover states */
+  .group:hover [data-mega-menu-content] {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+  
+  .group.menu-open [data-mega-menu-content] {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+  
+  /* Smooth transitions */
+  [data-mega-menu-content] {
+    transition: opacity 0.2s ease-out, visibility 0.2s ease-out, transform 0.2s ease-out;
+  }
+  
+  /* Line clamp utility for description text */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

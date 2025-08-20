@@ -2,23 +2,17 @@
 import { Image } from "astro:assets";
 import KotacomLogo from "../assets/kotacom-logo.svg";
 import ThemeToggle from "./ThemeToggle.astro";
+import MegaMenu from "./MegaMenu.astro";
+import { MEGA_MENU_CONFIG, SIMPLE_NAV_ITEMS, MOBILE_MENU_CONFIG } from "../data/mega-menu-config";
 
-const primaryNav = [
-  { title: 'Layanan', url: '/services' },
-  { title: 'Portfolio', url: '/projects' },
-  { title: 'Produk', url: '/products' },
-  { title: 'Artikel', url: '/posts' },
-  { title: 'Tentang', url: '/about' },
-  { title: 'Kontak', url: '/contact' },
-];
 const companyWhatsapp = '085799520350';
 ---
 
 <a href="#main-content" class="sr-only focus:not-sr-only absolute left-2 top-2 bg-white text-black p-2 z-50 rounded">
   Skip to main content
 </a>
-<header role="banner" class="sticky top-0 z-40 lg:relative lg:z-auto">
-  <nav role="navigation" aria-label="Main navigation" class="bg-white border-gray-200 w-full px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+<header role="banner" class="sticky top-0 z-40 backdrop-blur-md bg-white/95 dark:bg-gray-800/95 border-b border-gray-200 dark:border-gray-700 shadow-sm">
+  <nav role="navigation" aria-label="Main navigation" class="w-full px-4 lg:px-6 py-2.5">
     <div
       class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl"
     >
@@ -122,19 +116,67 @@ const companyWhatsapp = '085799520350';
         class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
         id="mobile-menu-2"
       >
-        <ul
-          class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0"
-        >
-        {primaryNav.map((item: any) => (
-          <li>
-            <a
-              href={item.url}
-              class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-gray-500 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded cursor-pointer"
-              >{item.title}</a
-            >
-          </li>
-        ))}
-        </ul>
+        <nav class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-2 lg:mt-0" role="navigation">
+          <!-- Desktop: Mega Menu Items -->
+          <div class="hidden lg:flex lg:space-x-2">
+            <MegaMenu 
+              trigger={MEGA_MENU_CONFIG.layanan.trigger}
+              sections={MEGA_MENU_CONFIG.layanan.sections}
+            />
+            <MegaMenu 
+              trigger={MEGA_MENU_CONFIG.portfolio.trigger}
+              sections={MEGA_MENU_CONFIG.portfolio.sections}
+            />
+            <MegaMenu 
+              trigger={MEGA_MENU_CONFIG.produk.trigger}
+              sections={MEGA_MENU_CONFIG.produk.sections}
+            />
+          </div>
+          
+          <!-- Mobile: Simple Links -->
+          <div class="flex flex-col space-y-2 lg:hidden">
+            {MOBILE_MENU_CONFIG.mainItems.map((item) => (
+              <a
+                href={item.url}
+                class="flex items-center gap-3 py-3 px-4 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md border-b border-gray-100 dark:border-gray-700"
+              >
+                <div class="text-gray-400 dark:text-gray-500" set:html={item.icon}></div>
+                <span>{item.title}</span>
+              </a>
+            ))}
+            
+            <!-- Mobile Menu Footer -->
+            <div class="pt-4 mt-4 border-t border-gray-200 dark:border-gray-700">
+              <div class="text-center">
+                <h4 class="text-sm font-medium text-gray-900 dark:text-white mb-2">
+                  {MOBILE_MENU_CONFIG.footer.title}
+                </h4>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">
+                  {MOBILE_MENU_CONFIG.footer.description}
+                </p>
+                <a
+                  href={MOBILE_MENU_CONFIG.footer.cta.url}
+                  class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                >
+                  <div class="text-white" set:html={MOBILE_MENU_CONFIG.footer.cta.icon}></div>
+                  {MOBILE_MENU_CONFIG.footer.cta.text}
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Simple Navigation Items (Both Mobile & Desktop) -->
+          <div class="flex flex-col lg:flex-row lg:space-x-2 space-y-2 lg:space-y-0">
+            {MOBILE_MENU_CONFIG.secondaryItems.map((item) => (
+              <a
+                href={item.url}
+                class="block py-2 px-3 text-gray-700 hover:bg-gray-50 lg:hover:bg-transparent hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 lg:dark:hover:bg-transparent dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md border-b border-gray-100 dark:border-gray-700 lg:border-0"
+              >
+                {item.title}
+              </a>
+            ))}
+          </div>
+        </nav>
       </div>
     </div>
   </nav>
@@ -252,8 +294,8 @@ const companyWhatsapp = '085799520350';
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const searchModal = document.getElementById("search-modal");
-    const modalSearchInput = document.getElementById("modal-search-input");
-    const modalSearchForm = document.getElementById("modal-search-form");
+    const modalSearchInput = document.getElementById("modal-search-input") as HTMLInputElement;
+    const modalSearchForm = document.getElementById("modal-search-form") as HTMLFormElement;
     const searchSuggestions = document.querySelectorAll(".search-suggestion");
     const searchButton = document.getElementById("search-button");
 
@@ -346,8 +388,10 @@ const companyWhatsapp = '085799520350';
       button.addEventListener("click", () => {
         const query = button.getAttribute("data-query");
         if (query && modalSearchInput) {
-          if ('value' in modalSearchInput) modalSearchInput.value = query;
-          if (modalSearchForm && typeof modalSearchForm.submit === 'function') modalSearchForm.submit();
+          modalSearchInput.value = query;
+          if (modalSearchForm && typeof modalSearchForm.submit === 'function') {
+            modalSearchForm.submit();
+          }
         }
       });
     });
