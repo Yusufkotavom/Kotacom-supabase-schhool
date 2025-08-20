@@ -1,0 +1,154 @@
+---
+import MainLayout from "./MainLayout.astro";
+import ResponsiveImage from "../components/ResponsiveImage.astro";
+
+type MaybeString = string | { value?: string };
+
+type Props = {
+	// Direct props (MDX / Supabase)
+	title?: string;
+	description?: string;
+	imageUrl?: string;
+	coverImage?: string;
+	image?: string;
+	published?: Date | string;
+	publishedAt?: Date | string;
+	updated?: Date | string;
+	lastUpdated?: Date | string;
+	tags?: MaybeString[];
+	category?: MaybeString[];
+	author?: string;
+	source?: 'mdx' | 'supabase' | 'page' | 'directus' | 'sanity' | 'notion';
+	wordCount?: number;
+	content?: string; // optional pre-rendered HTML content
+	slug?: string;
+
+	// Legacy props container (Notion-style)
+	properties?: any;
+};
+
+const props = Astro.props as Props;
+
+const toArrayOfStrings = (arr?: MaybeString[]): string[] => {
+	if (!arr) return [];
+	return arr
+		.map((t) => (typeof t === 'string' ? t : (t?.value ?? '')))
+		.filter(Boolean) as string[];
+};
+
+// Normalize incoming data into a single shape
+let postData: {
+	title: string;
+	description: string;
+	image: string;
+	published: Date;
+	updated: Date;
+	tags: string[];
+	author: string;
+	slug?: string;
+	content?: string;
+};
+
+if (props.properties) {
+	// Legacy/Notion-like structure
+	const p = props.properties as any;
+	postData = {
+		title: p.bTitle || p.title || props.title || 'Untitled',
+		description: p.bDescription || p.description || props.description || '',
+		image: p.bCoverImage || p.coverImage || props.imageUrl || props.coverImage || props.image || '',
+		published: new Date(p.bPublished?.start || p.published || props.published || new Date()),
+		updated: new Date(p.bLastUpdated?.start || p.lastUpdated || props.updated || props.published || new Date()),
+		tags: Array.isArray(p.bTags) ? (p.bTags as string[]).filter(Boolean) : [],
+		author: props.author || 'Kotacom.id',
+		slug: p.bSlug || p.slug || props.slug,
+		content: props.content,
+	};
+} else {
+	// Direct (MDX / Supabase)
+	postData = {
+		title: props.title || 'Untitled',
+		description: props.description || '',
+		image: props.imageUrl || props.coverImage || props.image || '',
+		published: new Date((props.publishedAt as any) || (props.published as any) || new Date()),
+		updated: new Date((props.updated as any) || (props.lastUpdated as any) || (props.publishedAt as any) || (props.published as any) || new Date()),
+		tags: [...toArrayOfStrings(props.tags), ...toArrayOfStrings(props.category)],
+		author: props.author || 'Kotacom.id',
+		slug: props.slug,
+		content: props.content,
+	};
+}
+
+const publishedDateISO = postData.published instanceof Date ? postData.published.toISOString() : new Date(postData.published).toISOString();
+const updatedDateISO = postData.updated instanceof Date ? postData.updated.toISOString() : new Date(postData.updated).toISOString();
+---
+
+<MainLayout title={postData.title} description={postData.description} image={postData.image} type="article" published={publishedDateISO} modified={updatedDateISO} section={postData.tags?.[0]} tags={postData.tags}>
+	<!-- Breadcrumbs -->
+	<section class="bg-gray-50 dark:bg-gray-800 py-4">
+		<div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+			<nav class="flex" aria-label="Breadcrumb">
+				<ol class="inline-flex items-center space-x-1 md:space-x-3">
+					<li class="inline-flex items-center">
+						<a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+							<svg class="w-3 h-3 mr-2.5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+								<path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+							</svg>
+							Home
+						</a>
+					</li>
+					<li aria-current="page">
+						<div class="flex items-center">
+							<svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" fill="none" viewBox="0 0 6 10">
+								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+							</svg>
+							<span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">{postData.title}</span>
+						</div>
+					</li>
+				</ol>
+			</nav>
+		</div>
+	</section>
+
+	<!-- Hero -->
+	<section class="relative bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
+		<div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+			<div class="space-y-4 order-2 lg:order-1">
+				<h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white" data-pagefind-meta="title">{postData.title}</h1>
+				{postData.description && (
+					<p class="text-gray-600 dark:text-gray-300 text-lg">{postData.description}</p>
+				)}
+				<div class="flex flex-wrap items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+					<time datetime={publishedDateISO} class="inline-flex items-center gap-1">
+						<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" /></svg>
+						{new Date(publishedDateISO).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
+					</time>
+					{postData.tags?.length > 0 && (
+						<div class="flex flex-wrap gap-2">
+							{postData.tags.slice(0, 4).map((tag) => (
+								<a href={`/kategori/${tag.toLowerCase().replace(/\s+/g, '-')}/`} class="px-2 py-1 rounded-full text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">{tag}</a>
+							))}
+						</div>
+					)}
+				</div>
+			<div class="order-1 lg:order-2">
+				{postData.image && (
+					<ResponsiveImage src={postData.image} alt={postData.title} class="rounded-xl w-full object-cover" loading="eager" fetchpriority="high" />
+				)}
+			</div>
+		</div>
+	</section>
+
+	<!-- Content -->
+	<section class="bg-white dark:bg-gray-900">
+		<div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+			<article class="prose prose-lg max-w-none" data-pagefind-body>
+				{Astro.slots.has('default') ? (
+					<slot />
+				) : (
+					props.content ? <Fragment set:html={props.content} /> : null
+				)}
+			</article>
+		</div>
+	</section>
+</MainLayout>
+
