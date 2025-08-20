@@ -2,6 +2,7 @@
 dist/
 # generated types
 .astro/
+image-fallback/
 
 # dependencies
 node_modules/
