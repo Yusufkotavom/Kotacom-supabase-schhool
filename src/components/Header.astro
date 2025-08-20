@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import KotacomLogo from "../assets/kotacom-logo.svg";
+import ThemeToggle from "./ThemeToggle.astro";
 
 const primaryNav = [
   { title: 'Layanan', url: '/services' },
@@ -25,6 +26,10 @@ const companyWhatsapp = '085799520350';
   <Image src={KotacomLogo} class="h-10 w-auto" alt="kotacom.id" />
 </a>
       <div class="flex items-center lg:order-2">
+  <!-- Theme toggle -->
+  <div class="mr-2">
+    <ThemeToggle />
+  </div>
   <!-- Search Modal Trigger -->
   <button
     id="search-button"
