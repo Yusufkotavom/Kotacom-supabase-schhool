@@ -29,7 +29,7 @@ const props = isMdx
             fallbackWidth={600}
           />
           {props.pVerify && (
-            <div class="absolute top-2 left-2 bg-gbgyellow bg-opacity-80 rounded-md px-2 py-1 flex items-center gap-1">
+            <div class="absolute top-2 left-2 bg-gbgyellow/90 dark:bg-yellow-500/90 rounded-md px-2 py-1 flex items-center gap-1">
               <svg
                 class="h-5 w-5 text-black"
                 aria-hidden="true"
@@ -45,7 +45,7 @@ const props = isMdx
                   clip-rule="evenodd"
                 />
               </svg>
-              <p class="text-xs font-medium text-black dark:text-white">{props.pVerify}</p>
+              <p class="text-xs font-medium text-black dark:text-gray-900">{props.pVerify}</p>
             </div>
           )}
         </a>
