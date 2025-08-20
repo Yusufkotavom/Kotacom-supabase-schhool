@@ -162,11 +162,6 @@ const servicesMdx = defineCollection({
     schema: serviceMdxSchema,
   });
 
-// MDX Pages collection (WordPress pages)
-const pagesMdx = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/pages' }),
-  schema: pageMdxSchema,
-});
 
 // Create an alias for 'blog' collection to maintain backward compatibility (MDX posts)
 const blog = postsMdx;
@@ -176,5 +171,4 @@ export const collections = {
   projectsMdx,
   productsMdx,
   servicesMdx,
-  pagesMdx,
 };

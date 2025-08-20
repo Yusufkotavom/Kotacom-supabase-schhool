@@ -4,12 +4,12 @@ import PostCard from '../../../components/PostCard.astro';
 import { getPostsDirectFromSupabase } from '../../../lib/supabase-direct';
 import { getCollection } from "astro:content";
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ paginate }: any) {
   // Get MDX posts from pages/posts directory
   const postFiles = await import.meta.glob('../../posts/*.mdx');
   const mdxPosts = await Promise.all(
     Object.entries(postFiles).map(async ([path, loader]) => {
-      const post = await loader();
+      const post: any = await loader();
       return {
         data: post.frontmatter,
         slug: path.split('/').pop()?.replace('.mdx', '') || '',
@@ -18,7 +18,7 @@ export async function getStaticPaths() {
     })
   );
   
-      const supabasePosts = await getPostsDirectFromSupabase(10000); // Load all posts to capture all tags
+  const supabasePosts = await getPostsDirectFromSupabase(10000); // Load all posts to capture all tags
   
   // Extract unique tags from all sources
   const allTags = new Set<string>();
@@ -32,7 +32,7 @@ export async function getStaticPaths() {
     });
   });
   
-  // Extract tags from Supabase posts
+  // Extract tags from Supabase posts - improved extraction
   (supabasePosts || []).forEach((post: any) => {
     const tags = post.tags || [];
     if (Array.isArray(tags)) {
@@ -53,13 +53,16 @@ export async function getStaticPaths() {
       return (post.data.tags || []).includes(tag);
     });
     
-    // Filter Supabase posts by tag
+    // Filter Supabase posts by tag - improved filtering
     const supabasePostsWithTag = (supabasePosts || []).filter((post: any) => {
       const tags = post.tags || [];
-      return Array.isArray(tags) && tags.some((postTag: any) => {
-        const tagValue = typeof postTag === 'string' ? postTag : postTag?.value || postTag?.name;
-        return tagValue === tag;
-      });
+      if (Array.isArray(tags)) {
+        return tags.some((postTag: any) => {
+          const tagValue = typeof postTag === 'string' ? postTag : postTag?.value || postTag?.name;
+          return tagValue === tag;
+        });
+      }
+      return false;
     });
     
     // Combine all posts with this tag
@@ -68,30 +71,28 @@ export async function getStaticPaths() {
       ...supabasePostsWithTag.map((post: any) => ({ ...post, source: 'supabase' }))
     ];
     
-    // Create path for this tag
-    paths.push({
-      params: { 
-        tag: tag,
-        page: undefined
-      },
-      props: { 
-        posts: allPostsWithTag,
-        tag: tag,
-        totalPosts: allPostsWithTag.length
-      },
-    });
+    // Only create pages for tags that have posts
+    if (allPostsWithTag.length > 0) {
+      // Use paginate for proper pagination
+      const paginatedPosts = paginate(allPostsWithTag, {
+        params: { tag },
+        pageSize: 12
+      });
+      
+      paths.push(...paginatedPosts);
+    }
   }
   
   return paths;
 }
 
 type Props = {
-  posts: any[];
-  tag: string;
-  totalPosts: number;
+  page: any;
+  tag?: string;
 };
 
-const { posts, tag, totalPosts } = Astro.props;
+const { page } = Astro.props;
+const tag = page.params?.tag || Astro.params.tag;
 ---
 
 <Layout title={`Kategori: ${tag} - Kotacom.id`}>
@@ -109,12 +110,12 @@ const { posts, tag, totalPosts } = Astro.props;
         Kategori: {tag}
       </h1>
       <p class="text-gray-600 dark:text-gray-400">
-        {totalPosts} artikel ditemukan
+        {page.total} artikel ditemukan
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-      {posts.map((post) => {
+      {page.data.map((post: any) => {
         // Normalize post data for PostCard
         if (post.source === 'mdx') {
           return (
@@ -154,5 +155,32 @@ const { posts, tag, totalPosts } = Astro.props;
         }
       })}
     </div>
+
+    <!-- Pagination -->
+    {page.url.prev || page.url.next ? (
+      <div class="flex justify-center items-center space-x-4 mt-8">
+        {page.url.prev && (
+          <a 
+            href={page.url.prev}
+            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+          >
+            ← Sebelumnya
+          </a>
+        )}
+        
+        <span class="text-gray-600 dark:text-gray-400">
+          Halaman {page.currentPage} dari {page.lastPage}
+        </span>
+        
+        {page.url.next && (
+          <a 
+            href={page.url.next}
+            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+          >
+            Selanjutnya →
+          </a>
+        )}
+      </div>
+    ) : null}
   </main>
 </Layout>
