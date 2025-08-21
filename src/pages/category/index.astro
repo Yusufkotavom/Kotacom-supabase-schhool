@@ -1,0 +1,54 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getPostsDirectFromSupabase } from '../../lib/supabase-direct';
+
+const postFiles = await Astro.glob('../posts/*.{md,mdx}');
+const mdxPosts = postFiles.map(post => ({
+  data: post.frontmatter,
+  slug: post.file?.split('/').pop()?.replace(/\.(md|mdx)$/, '') || '',
+  url: post.url
+}));
+
+const supabasePosts = await getPostsDirectFromSupabase(10000);
+
+const allCats = new Set<string>();
+
+mdxPosts.forEach((post: any) => {
+  (post.data.tags || []).forEach((tag: string) => {
+    if (tag && typeof tag === 'string') allCats.add(tag);
+  });
+});
+
+(supabasePosts || []).forEach((post: any) => {
+  const tags = post.tags || [];
+  if (Array.isArray(tags)) {
+    tags.forEach((t: any) => {
+      const v = typeof t === 'string' ? t : t?.value || t?.name;
+      if (v) allCats.add(v);
+    });
+  }
+  const cats = post.category || post.categories || [];
+  if (Array.isArray(cats)) {
+    cats.forEach((c: any) => {
+      const v = typeof c === 'string' ? c : c?.value || c?.name;
+      if (v) allCats.add(v);
+    });
+  }
+});
+
+const categories = Array.from(allCats).sort();
+---
+
+<Layout title="Category - Kotacom.id">
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Category</h1>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {categories.map((cat) => (
+        <a href={`/category/${cat}/`} class="block p-4 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition-shadow border border-gray-200 dark:border-gray-700">
+          <span class="text-gray-900 dark:text-white font-medium">{cat}</span>
+        </a>
+      ))}
+    </div>
+  </main>
+</Layout>
+
