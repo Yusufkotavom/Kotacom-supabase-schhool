@@ -492,7 +492,7 @@ import { SITE_TITLE } from "../consts";
       if (data.url.includes('/products/')) return 'products';
       if (data.url.includes('/services/')) return 'services';
       if (data.url.includes('/projects/')) return 'projects';
-      if (data.url.includes('/blog/')) return 'posts';
+      if (data.url.includes('/posts/')) return 'posts';
       return 'page';
     }
 
@@ -579,7 +579,7 @@ import { SITE_TITLE } from "../consts";
         if (data.url.includes('/products/')) { contentType = 'Product'; contentTypeSlug = 'products'; }
         else if (data.url.includes('/services/')) { contentType = 'Service'; contentTypeSlug = 'services'; }
         else if (data.url.includes('/projects/')) { contentType = 'Project'; contentTypeSlug = 'projects'; }
-        else if (data.url.includes('/blog/')) { contentType = 'Post'; contentTypeSlug = 'posts'; }
+        else if (data.url.includes('/posts/')) { contentType = 'Post'; contentTypeSlug = 'posts'; }
       }
 
       const image = data.meta?.image || data.meta?.thumbnail || '/https://res.cloudinary.com/dxyjku3eh/image/upload/v1754820661/Tanpa_judul_Presentasi__20250810_170926_0000_vdiibn.png';
