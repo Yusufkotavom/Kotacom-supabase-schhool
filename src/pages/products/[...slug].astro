@@ -3,6 +3,7 @@ import { type CollectionEntry, getCollection } from 'astro:content';
 import ProductPage from '../../layouts/ProductPage.astro';
 import { render } from 'astro:content';
 import { getProductsDirectFromSupabase } from '../../lib/supabase-direct';
+import { marked } from 'marked';
 
 export async function getStaticPaths() {
 	// MD + Supabase Direct (much faster than Payload API)
@@ -95,11 +96,14 @@ if (source === 'mdx') {
   };
 } else if (source === 'supabase') {
   Content = undefined;
+  const rawContent = product.body || product.content || "";
+  const htmlContent = rawContent ? await marked(rawContent) : "";
+  const reviewHtml = product.review ? await marked(product.review) : "";
   layoutData = {
     properties: {
       title: product.title,
       price: product.price,
-      content: product.body || product.content || "",
+      content: htmlContent,
       country: (product.country||[]).map((x:any)=>x.value||x),
       locale: (product.locale||[]).map((x:any)=>x.value||x),
       category: (product.category||[]).map((x:any)=>x.value||x),
@@ -110,7 +114,7 @@ if (source === 'mdx') {
       verify: product.verify || "",
       imageUrl2: product.imageUrl2 || product.image_url_2 || "",
       imageUrl3: product.imageUrl3 || product.image_url_3 || "",
-      review: product.review || "",
+      review: reviewHtml || "",
       features: product.features || [],
       name: product.name || product.product_name || "",
       type: (product.type||[]).map((x:any)=>x.value||x),
