@@ -19,9 +19,9 @@ export async function getStaticPaths(): Promise<Array<{params: {slug: string}, p
   let mdxPages: any[] = [];
   // try { mdxPages = await getCollection("pagesMdx"); } catch (_) { mdxPages = []; }
   
-  // Get Supabase posts for root level access
-  const supabasePostsData = await getPostsDirectFromSupabase(10000);
-  console.log(`🚀 Building root static paths - MDX posts: ${mdxPosts.length}, Supabase posts: ${supabasePostsData?.length || 0}`);
+  // Get ONLY PUBLISHED Supabase posts untuk production
+  const supabasePostsData = await getPostsDirectFromSupabase(1000, 'published');
+  console.log(`🚀 Building root static paths - MDX posts: ${mdxPosts.length}, Published Supabase posts: ${supabasePostsData?.length || 0}`);
 
   const mdxPostPaths: Array<{params: {slug: string}, props: any}> = mdxPosts.map((post: any) => ({
     params: { slug: post.slug },
