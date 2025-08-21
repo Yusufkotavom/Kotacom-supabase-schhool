@@ -1,16 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getPostsDirectFromSupabase } from '../../lib/supabase-direct';
-import { getCollection } from "astro:content";
-
-// Get all posts from different sources
-import { glob } from 'astro/loaders';
-
 // Get MDX posts from pages/posts directory
-const postFiles = await Astro.glob('../posts/*.mdx');
+const postFiles = await Astro.glob('../posts/*.{md,mdx}');
 const mdxPosts = postFiles.map(post => ({
   data: post.frontmatter,
-  slug: post.file?.split('/').pop()?.replace('.mdx', '') || '',
+  slug: post.file?.split('/').pop()?.replace(/\.(md|mdx)$/, '') || '',
   url: post.url
 }));
 
@@ -18,7 +13,7 @@ const supabasePosts = await getPostsDirectFromSupabase(10000); // Load all posts
 console.log(`📋 MDX posts found: ${mdxPosts.length}`);
 console.log(`📋 Supabase posts found: ${supabasePosts?.length || 0}`);
 
-// Extract unique tags from all posts (MDX + Supabase)
+// Extract unique categories from all posts (MDX tags + Supabase tags/categories)
 const allTags = new Set<string>();
 
 // Extract tags from MDX posts
@@ -30,7 +25,7 @@ mdxPosts.forEach((post: any) => {
   });
 });
 
-// Extract tags from Supabase posts
+// Extract tags/categories from Supabase posts
 (supabasePosts || []).forEach((post: any) => {
   console.log(`📝 Supabase post "${post.title}": tags =`, post.tags);
   const tags = post.tags || [];
@@ -60,20 +55,27 @@ mdxPosts.forEach((post: any) => {
       allTags.add(tags);
     }
   }
+  const categories = post.category || post.categories || [];
+  if (Array.isArray(categories)) {
+    categories.forEach((cat: any) => {
+      const value = typeof cat === 'string' ? cat : cat?.value || cat?.name;
+      if (value) allTags.add(value);
+    });
+  }
 });
 
 const uniqueTags = Array.from(allTags).sort();
 console.log(`🏷️ Final unique tags (${uniqueTags.length}):`, uniqueTags);
 ---
 
-<Layout title="Kategori - Kotacom.id">
+<Layout title="Category - Kotacom.id">
   <main class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Kategori</h1>
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Category</h1>
     
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {uniqueTags.map((tag) => (
         <a 
-          href={`/kategori/${tag}/`}
+          href={`/category/${tag}/`}
           class="block p-4 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition-shadow border border-gray-200 dark:border-gray-700"
         >
           <span class="text-gray-900 dark:text-white font-medium">{tag}</span>
