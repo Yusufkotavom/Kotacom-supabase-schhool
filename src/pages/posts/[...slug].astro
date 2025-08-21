@@ -1,6 +1,6 @@
----
 import PostLayout from '../../layouts/PostLayout.astro';
 import { getPostsDirectFromSupabase, convertSupabasePost } from '../../lib/supabase-direct';
+import { marked } from 'marked';
 
 export async function getStaticPaths() {
 	// Get ALL posts directly from Supabase - MUCH faster!
@@ -22,17 +22,20 @@ type Props = { post: any };
 
 const { post } = Astro.props;
 
+const rawBody = post.body || post.content || "";
+const contentHtml = rawBody ? await marked(rawBody) : "";
+
 const layoutData = {
 	title: post.title,
-	content: post.body || "",
+	content: contentHtml,
 	tags: (post.tags||[]).map((x:any)=>x.value||x),
 	category: (post.category||[]).map((x:any)=>x.value||x),
 	slug: post.slug,
 	imageUrl: post.imageUrl || post.coverImage || post.image || "",
 	coverImage: post.coverImage || post.imageUrl || post.image || "",
-	publishedAt: post.published ? new Date(post.published) : (post.publishedAt ? new Date(post.publishedAt) : new Date()),
+	published: post.published ? new Date(post.published) : (post.publishedAt ? new Date(post.publishedAt) : new Date()),
 	description: post.description || "",
-	author: post.author || "",
+	author: post.author || "Kotacom.id",
 	source: 'supabase'
 };
 ---
