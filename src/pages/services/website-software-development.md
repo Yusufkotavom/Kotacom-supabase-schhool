@@ -1,6 +1,6 @@
 ---
 title: "Jasa Pembuatan Website & Software Development Profesional"
-slug: "website-software-development"
+slug: "website-software-development-terbaik"
 category: ["Website Development", "Software Development"]
 published: 2025-01-27
 imageUrl1: "https://res.cloudinary.com/dnxl7wsnx/image/upload/v1747306362/group-people_gsydcz.jpg"
