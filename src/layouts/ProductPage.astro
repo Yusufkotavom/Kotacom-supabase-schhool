@@ -1,20 +1,70 @@
-  {productData.content && (
+---
+import MainLayout from "./MainLayout.astro";
+import SchemaMarkup from "../components/SchemaMarkup.astro";
+
+const props = Astro.props as any;
+const raw = (props && (props as any).properties) ? (props as any).properties : props;
+
+function toISO(d: any) {
+  try {
+    if (!d) return new Date().toISOString();
+    const dd = d?.start ? d.start : d;
+    const dt = dd instanceof Date ? dd : new Date(dd);
+    return dt.toISOString();
+  } catch { return new Date().toISOString(); }
+}
+
+const title = raw?.title || "Untitled";
+const description = raw?.description || "";
+const image = raw?.imageUrl || raw?.coverImage || raw?.image || 'https://res.cloudinary.com/dxyjku3eh/image/upload/v1754820661/Tanpa_judul_Presentasi__20250810_170926_0000_vdiibn.png';
+const publishedISO = toISO(raw?.published);
+const modifiedISO = toISO(raw?.updated || raw?.lastUpdated || raw?.published);
+
+const category = Array.isArray(raw?.category)
+  ? raw.category.filter(Boolean)
+  : (raw?.category ? [raw.category] : []);
+
+const contentHtml: string = typeof raw?.content === 'string' ? raw.content : '';
+const reviewHtml: string = typeof raw?.review === 'string' ? raw.review : '';
+---
+
+<MainLayout title={title} description={description} image={image} type="product" published={publishedISO} modified={modifiedISO} section={category?.[0]} tags={category}>
+  <SchemaMarkup
+    type="product"
+    title={title}
+    description={description}
+    image={image}
+    breadcrumbs={[{ name: 'Home', url: '/' }, { name: 'Products', url: '/products' }, { name: title, url: Astro.url.toString() }]}
+    datePublished={publishedISO}
+    dateModified={modifiedISO}
+    category={category}
+  />
+
+  <section class="bg-white dark:bg-gray-900">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <article class="prose prose-lg max-w-none" data-pagefind-body data-pagefind-filter="type:product">
+        <slot />
+      </article>
+    </div>
+  </section>
+
+  {contentHtml && (
     <section class="bg-white dark:bg-gray-900">
       <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Informasi Tambahan</h2>
-        <div class="prose md:prose-lg max-w-none text-gray-700 dark:text-gray-300" set:html={productData.content} />
+        <div class="prose md:prose-lg max-w-none text-gray-700 dark:text-gray-300" set:html={contentHtml} />
       </div>
     </section>
   )}
 
-  <!-- Product Review -->
-  {productData.review && (
+  {reviewHtml && (
     <section class="bg-blue-50 dark:bg-blue-900">
       <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="text-center">
-          <h2 class="text-2xl font-bold text-blue-900 dark:text-white mb-6">Ulasan / Review</h2>
-          <div class="prose md:prose-lg max-w-3xl mx-auto text-blue-900 dark:text-blue-100" set:html={productData.review} />
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Customer Review</h2>
+          <div class="prose md:prose-lg max-w-3xl mx-auto text-blue-900 dark:text-blue-100" set:html={reviewHtml} />
         </div>
       </div>
     </section>
   )}
+</MainLayout>
