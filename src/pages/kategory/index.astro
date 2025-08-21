@@ -60,6 +60,17 @@ mdxPosts.forEach((post: any) => {
       allTags.add(tags);
     }
   }
+  // Also include categories from Supabase
+  const categories = post.category || post.categories || [];
+  if (Array.isArray(categories)) {
+    categories.forEach((cat: any) => {
+      const value = typeof cat === 'string' ? cat : cat?.value || cat?.name;
+      if (value && typeof value === 'string') {
+        console.log(`  ✅ Adding category: "${value}"`);
+        allTags.add(value);
+      }
+    });
+  }
 });
 
 const uniqueTags = Array.from(allTags).sort();

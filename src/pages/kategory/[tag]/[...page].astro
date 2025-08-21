@@ -18,7 +18,7 @@ export async function getStaticPaths({ paginate }: any) {
     })
   );
   
-  const supabasePosts = await getPostsDirectFromSupabase(10000); // Load all posts to capture all tags
+  const supabasePosts = await getPostsDirectFromSupabase(10000); // Load all posts to capture all tags/categories
   
   // Extract unique tags from all sources
   const allTags = new Set<string>();
@@ -32,7 +32,7 @@ export async function getStaticPaths({ paginate }: any) {
     });
   });
   
-  // Extract tags from Supabase posts - improved extraction
+  // Extract tags and categories from Supabase posts - improved extraction
   (supabasePosts || []).forEach((post: any) => {
     const tags = post.tags || [];
     if (Array.isArray(tags)) {
@@ -40,6 +40,15 @@ export async function getStaticPaths({ paginate }: any) {
         const tagValue = typeof tag === 'string' ? tag : tag?.value || tag?.name;
         if (tagValue && typeof tagValue === 'string') {
           allTags.add(tagValue);
+        }
+      });
+    }
+    const cats = post.category || post.categories || [];
+    if (Array.isArray(cats)) {
+      cats.forEach((cat: any) => {
+        const catValue = typeof cat === 'string' ? cat : cat?.value || cat?.name;
+        if (catValue && typeof catValue === 'string') {
+          allTags.add(catValue);
         }
       });
     }
@@ -53,16 +62,19 @@ export async function getStaticPaths({ paginate }: any) {
       return (post.data.tags || []).includes(tag);
     });
     
-    // Filter Supabase posts by tag - improved filtering
+    // Filter Supabase posts by tag/category - improved filtering
     const supabasePostsWithTag = (supabasePosts || []).filter((post: any) => {
       const tags = post.tags || [];
-      if (Array.isArray(tags)) {
-        return tags.some((postTag: any) => {
-          const tagValue = typeof postTag === 'string' ? postTag : postTag?.value || postTag?.name;
-          return tagValue === tag;
-        });
-      }
-      return false;
+      const cats = post.category || post.categories || [];
+      const matchTags = Array.isArray(tags) && tags.some((postTag: any) => {
+        const tagValue = typeof postTag === 'string' ? postTag : postTag?.value || postTag?.name;
+        return tagValue === tag;
+      });
+      const matchCats = Array.isArray(cats) && cats.some((c: any) => {
+        const catValue = typeof c === 'string' ? c : c?.value || c?.name;
+        return catValue === tag;
+      });
+      return matchTags || matchCats;
     });
     
     // Combine all posts with this tag
