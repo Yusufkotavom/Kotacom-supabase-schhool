@@ -66,6 +66,16 @@ const formattedOriginalPrice = formatAffiliatePrice(affiliateProduct.originalPri
 const discountPercentage = calculateDiscountPercentage(affiliateProduct.originalPrice || '', affiliateProduct.price || '');
 const priorityBadge = getPriorityBadge(affiliateProduct.priority);
 const sponsored = isSponsored(affiliateProduct);
+
+function getMarketplaceClass(name: string): string {
+  const key = (name || '').toLowerCase();
+  if (key === 'tokopedia') return 'bg-green-500 hover:bg-green-600 text-white';
+  if (key === 'shopee') return 'bg-orange-500 hover:bg-orange-600 text-white';
+  if (key === 'blibli') return 'bg-blue-500 hover:bg-blue-600 text-white';
+  if (key === 'bukalapak') return 'bg-red-500 hover:bg-red-600 text-white';
+  if (key === 'lazada') return 'bg-purple-500 hover:bg-purple-600 text-white';
+  return '';
+}
 ---
 
 <MainLayout title={title} description={description} image={image} type="product" published={publishedISO} modified={modifiedISO} section={category?.[0]} tags={category}>
@@ -161,12 +171,7 @@ const sponsored = isSponsored(affiliateProduct);
                   href={m.affiliateUrl}
                   target="_blank"
                   rel="noopener noreferrer sponsored"
-                  class={`w-full inline-flex items-center justify-between gap-2 px-4 py-3 rounded-lg font-semibold text-sm transition-all duration-200 hover:scale-[1.01] 
-                    ${m.marketplace === 'tokopedia' ? 'bg-green-500 hover:bg-green-600 text-white' : ''}
-                    ${m.marketplace === 'shopee' ? 'bg-orange-500 hover:bg-orange-600 text-white' : ''}
-                    ${m.marketplace === 'blibli' ? 'bg-blue-500 hover:bg-blue-600 text-white' : ''}
-                    ${m.marketplace === 'bukalapak' ? 'bg-red-500 hover:bg-red-600 text-white' : ''}
-                    ${m.marketplace === 'lazada' ? 'bg-purple-500 hover:bg-purple-600 text-white' : ''}`}
+                  class={`w-full inline-flex items-center justify-between gap-2 px-4 py-3 rounded-lg font-semibold text-sm transition-all duration-200 hover:scale-[1.01] ${getMarketplaceClass(m.marketplace)}`}
                 >
                   <span class="truncate">{getCTAText(affiliateProduct, m.marketplace)}</span>
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
