@@ -1,0 +1,63 @@
+---
+import MainLayout from "./MainLayout.astro";
+
+const props = Astro.props as any;
+
+const title = props.title || props.properties?.bTitle || "Untitled";
+const description = props.description || props.properties?.bDescription || "";
+const image = props.image || props.imageUrl || props.coverImage || props.properties?.bCoverImage || "";
+
+function toISO(d: any) {
+  try {
+    if (!d) return new Date().toISOString();
+    const dd = d instanceof Date ? d : new Date(d);
+    return dd.toISOString();
+  } catch { return new Date().toISOString(); }
+}
+
+const publishedISO = toISO(props.published || props.publishedAt || props.properties?.bPublished?.start);
+const updatedISO = toISO(props.updated || props.lastUpdated || props.properties?.bLastUpdated?.start || props.published || props.publishedAt);
+
+const tags: string[] = Array.isArray(props.tags) ? props.tags.map((t: any) => (typeof t === 'string' ? t : t?.value || "")).filter(Boolean)
+  : Array.isArray(props.properties?.bTags) ? props.properties.bTags.filter(Boolean) : [];
+---
+
+<MainLayout title={title} description={description} image={image} type="article" published={publishedISO} modified={updatedISO} section={tags?.[0]} tags={tags}>
+  <section class="bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <nav class="text-sm mb-3 text-gray-600 dark:text-gray-400">
+        <a href="/" class="hover:underline">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/posts/" class="hover:underline">Posts</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-800 dark:text-gray-200">{title}</span>
+      </nav>
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{title}</h1>
+      {description && (
+        <p class="mt-2 text-gray-600 dark:text-gray-300">{description}</p>
+      )}
+      <div class="mt-3 text-xs text-gray-500 dark:text-gray-400 flex items-center gap-3">
+        <time datetime={publishedISO}>Published {new Date(publishedISO).toLocaleDateString('id-ID')}</time>
+        <span>•</span>
+        <time datetime={updatedISO}>Updated {new Date(updatedISO).toLocaleDateString('id-ID')}</time>
+      </div>
+      {tags?.length > 0 && (
+        <div class="mt-4 flex flex-wrap gap-2">
+          {tags.slice(0, 6).map((t) => (
+            <a href={`/category/${t.toLowerCase().replace(/\s+/g, '-')}/`} class="px-2 py-1 rounded-full text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">{t}</a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="bg-white dark:bg-gray-900">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="prose prose-lg max-w-none dark:prose-invert">
+        <slot />
+        {props.content && <Fragment set:html={props.content} />}
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
