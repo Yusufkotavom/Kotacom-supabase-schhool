@@ -38,32 +38,32 @@ export class LinkAnalyzer {
   // Content clusters
   private clusters = {
     'website-development': [
-      '/blog/web-design-responsive-surabaya',
-      '/blog/jasa-pembuatan-website-surabaya-terbaik',
-      '/blog/jasa-pembuatan-website-surabaya',
-      '/blog/toko-online-surabaya',
-      '/blog/software-development-surabaya',
-      '/blog/software-development-surabaya-terbaik'
+      '/web-design-responsive-surabaya',
+      '/jasa-pembuatan-website-surabaya-terbaik',
+      '/jasa-pembuatan-website-surabaya',
+      '/toko-online-surabaya',
+      '/software-development-surabaya',
+      '/software-development-surabaya-terbaik'
     ],
     'it-support': [
-      '/blog/it-infrastructure-planning-surabaya',
-      '/blog/server-maintenance-surabaya',
-      '/blog/backup-recovery-sistem-surabaya',
-      '/blog/sistem-keamanan-jaringan-surabaya',
-      '/blog/troubleshooting-komputer-surabaya',
-      '/blog/konsultan-it-sidoarjo-terpercaya',
-      '/blog/jasa-it-support-surabaya-terpercaya'
+      '/it-infrastructure-planning-surabaya',
+      '/server-maintenance-surabaya',
+      '/backup-recovery-sistem-surabaya',
+      '/sistem-keamanan-jaringan-surabaya',
+      '/troubleshooting-komputer-surabaya',
+      '/konsultan-it-sidoarjo-terpercaya',
+      '/jasa-it-support-surabaya-terpercaya'
     ],
     'umkm-digital': [
-      '/blog/digital-transformation-umkm-surabaya',
-      '/blog/digitalisasi-umkm-surabaya-terbaik',
-      '/blog/sistem-pos-surabaya-terbaik-untuk-umkm',
-      '/blog/panduan-memilih-sistem-pos-untuk-umkm',
-      '/blog/smart-city-surabaya-teknologi'
+      '/digital-transformation-umkm-surabaya',
+      '/digitalisasi-umkm-surabaya-terbaik',
+      '/sistem-pos-surabaya-terbaik-untuk-umkm',
+      '/panduan-memilih-sistem-pos-untuk-umkm',
+      '/smart-city-surabaya-teknologi'
     ],
     'tech-ecosystem': [
-      '/blog/startup-tech-surabaya-sidoarjo',
-      '/blog/coworking-space-tech-surabaya'
+      '/startup-tech-surabaya-sidoarjo',
+      '/coworking-space-tech-surabaya'
     ]
   };
 

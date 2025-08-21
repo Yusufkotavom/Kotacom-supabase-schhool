@@ -38,7 +38,7 @@ export interface AffiliateLink {
 
 export interface UTMParameters {
   source: string;      // utm_source (e.g., 'kotacom-id')
-  medium: string;      // utm_medium (e.g., 'affiliate', 'blog-embed')
+  medium: string;      // utm_medium (e.g., 'affiliate', 'post-embed')
   campaign: string;    // utm_campaign (e.g., 'product-recommendation')
   term?: string;       // utm_term (product category/keywords)
   content?: string;    // utm_content (specific placement/context)
@@ -62,7 +62,7 @@ export const AFFILIATE_CONFIG = {
   defaultMedium: 'affiliate',
   campaigns: {
     productCard: 'product-card',
-    blogEmbed: 'blog-embed',
+    blogEmbed: 'post-embed',
     homepage: 'homepage-featured',
     singlePage: 'product-page',
     categoryPage: 'category-listing'
@@ -327,7 +327,7 @@ export function getPriorityBadge(priority: string | undefined): { text: string; 
 }
 
 /**
- * Generate product embed code for blog posts
+ * Generate product embed code for posts
  */
 export function generateProductEmbedCode(product: AffiliateProduct, style: 'card' | 'inline' | 'banner' = 'card'): string {
   const embedId = `product-embed-${product.slug}-${Date.now()}`;

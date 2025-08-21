@@ -95,7 +95,7 @@ const affiliateProduct: AffiliateProduct = {
 };
 
 // Get affiliate data
-const affiliateMarketplaces = getAffiliateMarketplaces(affiliateProduct, 'blog-embed');
+const affiliateMarketplaces = getAffiliateMarketplaces(affiliateProduct, 'post-embed');
 const displayMarketplaces = showMarketplaces > 0 ? affiliateMarketplaces.slice(0, showMarketplaces) : affiliateMarketplaces;
 const formattedPrice = formatAffiliatePrice(productData.price);
 const formattedOriginalPrice = formatAffiliatePrice(productData.originalPrice);
@@ -201,7 +201,7 @@ const sponsored = isSponsored(affiliateProduct);
                     marketplace.marketplace === 'bukalapak' ? 'bg-red-500 hover:bg-red-600 text-white' :
                     'bg-purple-500 hover:bg-purple-600 text-white'
                   }`}
-                  onclick={`window.affiliateUtils?.trackClick('${productData.slug}', '${marketplace.marketplace}', 'blog-embed')`}
+                  onclick={`window.affiliateUtils?.trackClick('${productData.slug}', '${marketplace.marketplace}', 'post-embed')`}
                 >
                   {getCTAText(affiliateProduct, marketplace.marketplace)}
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -277,7 +277,7 @@ const sponsored = isSponsored(affiliateProduct);
                     displayMarketplaces[0].marketplace === 'bukalapak' ? 'bg-red-500 hover:bg-red-600 text-white' :
                     'bg-purple-500 hover:bg-purple-600 text-white'
                   }`}
-                  onclick={`window.affiliateUtils?.trackClick('${productData.slug}', '${displayMarketplaces[0].marketplace}', 'blog-embed')`}
+                  onclick={`window.affiliateUtils?.trackClick('${productData.slug}', '${displayMarketplaces[0].marketplace}', 'post-embed')`}
                 >
                   Beli
                 </a>
@@ -369,7 +369,7 @@ const sponsored = isSponsored(affiliateProduct);
                       marketplace.marketplace === 'bukalapak' ? 'bg-red-500 hover:bg-red-600 text-white' :
                       'bg-purple-500 hover:bg-purple-600 text-white'
                     }`}
-                    onclick={`window.affiliateUtils?.trackClick('${productData.slug}', '${marketplace.marketplace}', 'blog-embed')`}
+                    onclick={`window.affiliateUtils?.trackClick('${productData.slug}', '${marketplace.marketplace}', 'post-embed')`}
                   >
                     {getCTAText(affiliateProduct, marketplace.marketplace)}
                   </a>
@@ -387,6 +387,6 @@ const sponsored = isSponsored(affiliateProduct);
 <script define:vars={{ productSlug: productData?.slug, embedStyle: style }}>
   if (typeof window !== 'undefined' && window.affiliateUtils && productSlug) {
     // Track embed view
-    window.affiliateUtils.trackView(productSlug, 'blog-embed');
+    window.affiliateUtils.trackView(productSlug, 'post-embed');
   }
 </script>

@@ -25,7 +25,7 @@ if (type === 'post') {
     title: p.data?.title,
     slug: p.data?.slug,
     date: p.data?.published ? new Date(p.data.published) : undefined,
-  })).filter((x: any) => x.slug).map((x: any) => ({ title: x.title, href: `/blog/${x.slug}/`, date: x.date }));
+  })).filter((x: any) => x.slug).map((x: any) => ({ title: x.title, href: `/${x.slug}/`, date: x.date }));
 
   items = [...mdxItems];
 }

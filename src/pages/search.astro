@@ -12,7 +12,7 @@ import { SITE_TITLE } from "../consts";
             Search
           </h1>
           <p class="text-gray-500 sm:text-xl dark:text-gray-400">
-            Find products, services, projects and blog posts.
+            Find products, services, projects and posts.
           </p>
           <p class="mt-2 text-sm text-gray-400 dark:text-gray-500">
             Having issues? Try the basic search UI <a href="/_search" class="underline">here</a>.
@@ -579,7 +579,7 @@ import { SITE_TITLE } from "../consts";
         if (data.url.includes('/products/')) { contentType = 'Product'; contentTypeSlug = 'products'; }
         else if (data.url.includes('/services/')) { contentType = 'Service'; contentTypeSlug = 'services'; }
         else if (data.url.includes('/projects/')) { contentType = 'Project'; contentTypeSlug = 'projects'; }
-        else if (data.url.includes('/blog/')) { contentType = 'Blog Post'; contentTypeSlug = 'posts'; }
+        else if (data.url.includes('/blog/')) { contentType = 'Post'; contentTypeSlug = 'posts'; }
       }
 
       const image = data.meta?.image || data.meta?.thumbnail || '/https://res.cloudinary.com/dxyjku3eh/image/upload/v1754820661/Tanpa_judul_Presentasi__20250810_170926_0000_vdiibn.png';

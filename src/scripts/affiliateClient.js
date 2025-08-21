@@ -55,7 +55,7 @@ class ProductEmbedManager {
       element.classList.add('loaded');
 
       if (window.affiliateUtils) {
-        window.affiliateUtils.trackView(slug, 'blog-embed');
+        window.affiliateUtils.trackView(slug, 'post-embed');
       }
     } catch (error) {
       console.error('Failed to load embed:', error);

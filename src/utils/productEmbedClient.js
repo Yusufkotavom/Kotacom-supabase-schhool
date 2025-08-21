@@ -59,7 +59,7 @@ class ProductEmbedManager {
 
       // Track embed view
       if (window.affiliateUtils) {
-        window.affiliateUtils.trackView(slug, 'blog-embed');
+        window.affiliateUtils.trackView(slug, 'post-embed');
       }
     } catch (error) {
       console.error('Failed to load embed:', error);
@@ -127,7 +127,7 @@ class ProductEmbedManager {
       const marketplace = this.detectMarketplace(link.href);
       
       if (window.affiliateUtils && slug && marketplace) {
-        window.affiliateUtils.trackClick(slug, marketplace, 'blog-embed');
+        window.affiliateUtils.trackClick(slug, marketplace, 'post-embed');
       }
     });
   }
