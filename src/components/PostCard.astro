@@ -107,7 +107,7 @@ const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
           const tagValue = getTagValue(tag);
           return tagValue ? (
             <a
-              href={`/kategori/${tagValue.toLowerCase().replace(/\s+/g, "-")}/`}
+              href={`/category/${tagValue.toLowerCase().replace(/\s+/g, "-")}/`}
               class={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-white bg-gradient-to-r ${randomGradient} hover:opacity-80 transition-opacity duration-200`}
             >
               {tagValue}
