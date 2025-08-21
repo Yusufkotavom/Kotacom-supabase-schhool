@@ -41,7 +41,7 @@ const readingTime = normalized.contentHtml
 
 <MainLayout
   title={normalized.title}
-  description={normalized.description || `Artikel tentang ${normalized.title}`}
+  description={normalized.description || ("Artikel tentang " + normalized.title)}
   image={normalized.image}
   type="article"
   published={normalized.publishedISO}
