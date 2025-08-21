@@ -90,7 +90,7 @@ const readingTime = normalized.contentHtml
     <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <article class="prose prose-lg max-w-none dark:prose-invert" data-pagefind-body>
         <slot />
-        {normalized.contentHtml && <Fragment set:html={normalized.contentHtml} />}
+        {normalized.contentHtml && <div set:html={normalized.contentHtml} />}
         {normalized.tags?.length > 0 && (
           <span class="hidden" data-pagefind-meta="categories">{normalized.tags.join(', ')}</span>
         )}
