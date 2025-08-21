@@ -22,7 +22,7 @@ function parseDate(dateStr: string): Date {
 // Fetch from MD and Supabase Direct (much faster!)
 let mdxProducts = [] as any[];
 try { mdxProducts = await getCollection("productsMdx"); } catch {}
-const supabaseProducts = await getProductsDirectFromSupabase(1000); // Get more to ensure enough after filtering
+const supabaseProducts = await getProductsDirectFromSupabase(1000, 'published'); // Only published products
 
 // Normalize MDX products
 const normalizedMdxProducts = mdxProducts.map((entry) => ({
@@ -40,10 +40,16 @@ const normalizedMdxProducts = mdxProducts.map((entry) => ({
       pImageURL1: entry.data.imageUrl || "",
       pPublished: { start: entry.data.published },
       pDescription: entry.data.description,
-      pVerify: "",
-      pImageURL2: "",
-      pImageURL3: "",
-      pReview: "",
+      pVerify: entry.data.verify || "",
+      pImageURL2: entry.data.imageUrl2 || "",
+      pImageURL3: entry.data.imageUrl3 || "",
+      pReview: entry.data.review || "",
+      // Key affiliate fields for homepage display
+      pOriginalPrice: entry.data.originalPrice || "",
+      pIsSponsored: !!entry.data.isSponsored,
+      pPriority: entry.data.priority || "",
+      pDiscountCode: entry.data.discountCode || "",
+      pSpecialOffer: entry.data.specialOffer || "",
     },
   },
 }));
@@ -58,10 +64,19 @@ const normalizedSupabase = supabaseProducts.map((p: any) => ({
     pLocale: (p.locale||[]).map((x:any)=>x.value||x),
     pCategory: (p.category||[]).map((x:any)=>x.value||x),
     pSlug: p.slug,
-    pImageURL1: p.imageUrl || "",
+    pImageURL1: p.imageUrl || p.cover_image || "",
     pPublished: { start: p.published ? new Date(p.published) : new Date(0) },
     pDescription: p.description,
-    pVerify: "",
+    pVerify: p.verify || "",
+    pImageURL2: p.imageUrl2 || "",
+    pImageURL3: p.imageUrl3 || "",
+    pReview: p.review || "",
+    // Key affiliate fields for homepage display
+    pOriginalPrice: p.originalPrice || "",
+    pIsSponsored: !!p.isSponsored,
+    pPriority: p.priority || "",
+    pDiscountCode: p.discountCode || "",
+    pSpecialOffer: p.specialOffer || "",
   } }
 }));
 

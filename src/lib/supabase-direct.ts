@@ -82,16 +82,25 @@ async function getCategoriesForPosts(postIds: number[]): Promise<Map<number, str
   return categoriesMap;
 }
 
-export async function getPostsDirectFromSupabase(limit: number = 10000): Promise<SupabasePost[]> {
+export async function getPostsDirectFromSupabase(
+  limit: number = 100, 
+  status: 'published' | 'draft' | 'all' = 'published' // Default hanya published
+): Promise<SupabasePost[]> {
   try {
-    console.log(`🔄 Fetching ${limit} posts directly from Supabase...`);
+    console.log(`🔄 Fetching ${limit} posts directly from Supabase with status: ${status}...`);
     
-    // Get posts with basic data first
-    const { data, error } = await supabase
+    // Build query with status filter
+    let query = supabase
       .from('posts')
       .select('*')
-      .limit(limit)
       .order('published', { ascending: false });
+
+    // Filter by status - hanya ambil published posts untuk production
+    if (status !== 'all') {
+      query = query.eq('status', status);
+    }
+
+    const { data, error } = await query.limit(limit);
 
     if (error) {
       console.error('❌ Supabase error:', error);
@@ -182,15 +191,25 @@ export async function getPostsDirectFromSupabase(limit: number = 10000): Promise
   }
 }
 
-export async function getProductsDirectFromSupabase(limit: number = 10000): Promise<any[]> {
+export async function getProductsDirectFromSupabase(
+  limit: number = 10000,
+  status: 'published' | 'draft' | 'all' = 'published' // Default hanya published
+): Promise<any[]> {
   try {
-    console.log(`🔄 Fetching ${limit} products directly from Supabase...`);
+    console.log(`🔄 Fetching ${limit} products directly from Supabase with status: ${status}...`);
     
-    const { data, error } = await supabase
+    // Build query with status filter
+    let query = supabase
       .from('products')
       .select('*')
-      .limit(limit)
       .order('published', { ascending: false });
+
+    // Filter by status - hanya ambil published products untuk production
+    if (status !== 'all') {
+      query = query.eq('status', status);
+    }
+
+    const { data, error } = await query.limit(limit);
 
     if (error) {
       console.error('❌ Supabase error:', error);
@@ -263,15 +282,22 @@ async function getCategoriesForServices(serviceIds: number[]): Promise<Map<numbe
   return categoriesMap;
 }
 
-export async function getServicesDirectFromSupabase(limit: number = 10000): Promise<any[]> {
+export async function getServicesDirectFromSupabase(limit: number = 10000, status: 'published' | 'draft' | 'all' = 'published'): Promise<any[]> {
   try {
-    console.log(`🔄 Fetching ${limit} services directly from Supabase...`);
+    console.log(`🔄 Fetching ${limit} services directly from Supabase with status: ${status}...`);
     
-    const { data, error } = await supabase
+    let query = supabase
       .from('services')
       .select('*')
       .limit(limit)
       .order('published', { ascending: false });
+
+    // Add status filtering if not 'all'
+    if (status !== 'all') {
+      query = query.eq('status', status);
+    }
+
+    const { data, error } = await query;
 
     if (error) {
       console.error('❌ Supabase error:', error);
@@ -343,15 +369,22 @@ export async function getServicesDirectFromSupabase(limit: number = 10000): Prom
   }
 }
 
-export async function getProjectsDirectFromSupabase(limit: number = 10000): Promise<any[]> {
+export async function getProjectsDirectFromSupabase(limit: number = 10000, status: 'published' | 'draft' | 'all' = 'published'): Promise<any[]> {
   try {
-    console.log(`🔄 Fetching ${limit} projects directly from Supabase...`);
+    console.log(`🔄 Fetching ${limit} projects directly from Supabase with status: ${status}...`);
     
-    const { data, error } = await supabase
+    let query = supabase
       .from('projects')
       .select('*')
       .limit(limit)
       .order('published', { ascending: false });
+
+    // Add status filtering if not 'all'
+    if (status !== 'all') {
+      query = query.eq('status', status);
+    }
+
+    const { data, error } = await query;
 
     if (error) {
       console.error('❌ Supabase error:', error);

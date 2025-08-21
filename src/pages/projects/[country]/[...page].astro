@@ -5,30 +5,96 @@ import type { GetStaticPathsOptions } from "astro";
 import ProjectCard from "../../../components/ProjectCard.astro";
 import PCountryDropdown from "../../../components/PCountryDropdown.astro";
 import PLocaleDropdown from "../../../components/PLocaleDropdown.astro";
+import { getProjectsDirectFromSupabase } from "../../../lib/supabase-direct";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  // Fetch all projects (MDX only)
-  const projects = await getCollection("projectsMdx");
+  // Fetch all projects from MDX and Supabase
+  const mdxProjects = await getCollection("projectsMdx");
+  const supabaseProjects = await getProjectsDirectFromSupabase(10000, 'published'); // Only published projects
+
+  // Normalize MDX projects
+  const normalizedMdxProjects = mdxProjects.map((entry) => ({
+    ...entry,
+    source: 'mdx',
+    data: {
+      ...entry.data,
+      properties: {
+        pTitle: entry.data.title,
+        pCountry: entry.data.country,
+        pSlug: entry.data.slug,
+        pImageURL: entry.data.imageUrl || "",
+        pPublished: { start: entry.data.published },
+        pLocale: entry.data.locale,
+        pCategory: entry.data.category,
+        pOrganiser: entry.data.organiser,
+        pCost: entry.data.cost,
+        pURL: entry.data.url,
+        pGYGURL: entry.data.gygUrl,
+        pMapsURL: entry.data.mapsUrl,
+        pVerify: entry.data.verify || "",
+        pReview: entry.data.review,
+        pGetInvolved: entry.data.getInvolved,
+      },
+    },
+  }));
+
+  // Normalize Supabase projects
+  const normalizedSupabaseProjects = supabaseProjects
+    .filter((project: any) => project.slug && typeof project.slug === 'string')
+    .map((project: any) => ({
+      source: 'supabase',
+      data: { 
+        properties: {
+          pTitle: project.title,
+          pCountry: project.country || [],
+          pSlug: project.slug,
+          pImageURL: project.imageUrl || '',
+          pPublished: { start: project.published ? new Date(project.published) : new Date(0) },
+          pLocale: project.locale || [],
+          pCategory: project.category || [],
+          pOrganiser: project.organiser,
+          pCost: project.cost || [],
+          pURL: project.url || '',
+          pGYGURL: project.gygUrl || '',
+          pMapsURL: project.mapsUrl || '',
+          pVerify: project.verify || '',
+          pReview: project.description || '',
+          pGetInvolved: project.getInvolved || '',
+        } 
+      }
+    }));
+
+  // Merge all projects
+  const allProjects = [...normalizedMdxProjects, ...normalizedSupabaseProjects];
 
   // Extract unique countries
   const countries = Array.from(
     new Set(
-      projects.flatMap((project) =>
-        Array.isArray(project.data.country)
-          ? project.data.country
-          : [project.data.country]
-      )
+      allProjects.flatMap((project) => {
+        const pCountry = project.data.properties.pCountry;
+        if (Array.isArray(pCountry)) {
+          return pCountry.filter(country => country && String(country).trim() !== "");
+        } else if (pCountry && String(pCountry).trim() !== "") {
+          return [pCountry];
+        }
+        return [];
+      })
     )
-  ).map((country) => country.toLowerCase().replace(/\s+/g, "-"));
+  ).map((country) => String(country).toLowerCase().replace(/\s+/g, "-"));
 
   // Generate paginated paths for each country
   const paths = countries.map((country) => {
-    const countryProjects = projects.filter((project) => {
-      const projectCountries = Array.isArray(project.data.country)
-        ? project.data.country.map((c) =>
-            String(c).toLowerCase().replace(/\s+/g, "-")
-          )
-        : [String(project.data.country).toLowerCase().replace(/\s+/g, "-")];
+    const countryProjects = allProjects.filter((project) => {
+      const pCountry = project.data.properties.pCountry;
+      let projectCountries: string[] = [];
+      
+      if (Array.isArray(pCountry)) {
+        projectCountries = pCountry.map((c) =>
+          String(c).toLowerCase().replace(/\s+/g, "-")
+        );
+      } else if (pCountry) {
+        projectCountries = [String(pCountry).toLowerCase().replace(/\s+/g, "-")];
+      }
 
       return projectCountries.includes(country);
     });

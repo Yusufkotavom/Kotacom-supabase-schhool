@@ -4,6 +4,7 @@ import MainLayout from "../../../layouts/MainLayout.astro";
 import type { GetStaticPathsOptions } from "astro";
 import ProjectCard from "../../../components/ProjectCard.astro";
 import PCategoryDropdown from "../../../components/PCategoryDropdown.astro";
+import { getProjectsDirectFromSupabase } from "../../../lib/supabase-direct";
 
 // Helper function to parse dates in dd/mm/yyyy format
 function parseDate(dateStr: string): Date {
@@ -12,8 +13,9 @@ function parseDate(dateStr: string): Date {
 }
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  // Fetch projects from MDX collection only
+  // Fetch projects from MDX and Supabase
   const mdxProjects = await getCollection('projectsMdx');
+  const supabaseProjects = await getProjectsDirectFromSupabase(10000, 'published'); // Only published projects
 
   // Normalize MDX projects to match Notion structure
   const normalizedMdxProjects = mdxProjects.map((entry) => ({
@@ -41,28 +43,63 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     },
   }));
 
-  // Use MDX-only
-  const allProjects = [...normalizedMdxProjects];
+  // Normalize Supabase projects
+  const normalizedSupabaseProjects = supabaseProjects
+    .filter((project: any) => project.slug && typeof project.slug === 'string')
+    .map((project: any) => ({
+      source: 'supabase',
+      data: { 
+        properties: {
+          pTitle: project.title,
+          pCategory: project.category || [],
+          pSlug: project.slug,
+          pImageURL: project.imageUrl || '',
+          pPublished: { start: project.published ? new Date(project.published) : new Date(0) },
+          pCountry: project.country || [],
+          pLocale: project.locale || [],
+          pOrganiser: project.organiser,
+          pCost: project.cost || [],
+          pURL: project.url || '',
+          pGYGURL: project.gygUrl || '',
+          pMapsURL: project.mapsUrl || '',
+          pVerify: project.verify || '',
+          pReview: project.description || '',
+          pGetInvolved: project.getInvolved || '',
+        } 
+      }
+    }));
+
+  // Use MDX + Supabase
+  const allProjects = [...normalizedMdxProjects, ...normalizedSupabaseProjects];
 
   // Extract unique categories
   const categories = Array.from(
     new Set(
-      allProjects.flatMap((project) =>
-        Array.isArray(project.data.properties.pCategory)
-          ? project.data.properties.pCategory
-          : [project.data.properties.pCategory]
-      ).filter(cat => cat && cat.trim() !== "")
+      allProjects.flatMap((project) => {
+        const pCategory = project.data.properties.pCategory;
+        if (Array.isArray(pCategory)) {
+          return pCategory.filter(cat => cat && String(cat).trim() !== "");
+        } else if (pCategory && String(pCategory).trim() !== "") {
+          return [pCategory];
+        }
+        return [];
+      })
     )
-  ).map((category) => category.toLowerCase().replace(/\s+/g, "-"));
+  ).map((category) => String(category).toLowerCase().replace(/\s+/g, "-"));
 
   // Generate paginated paths for each category
   const paths = categories.flatMap((category) => {
     const categoryProjects = allProjects.filter((project) => {
-      const projectCategories = Array.isArray(project.data.properties.pCategory)
-        ? project.data.properties.pCategory.map((c) =>
-            c.toLowerCase().replace(/\s+/g, "-")
-          )
-        : [project.data.properties.pCategory.toLowerCase().replace(/\s+/g, "-")];
+      const pCategory = project.data.properties.pCategory;
+      let projectCategories: string[] = [];
+      
+      if (Array.isArray(pCategory)) {
+        projectCategories = pCategory.map((c) =>
+          String(c).toLowerCase().replace(/\s+/g, "-")
+        );
+      } else if (pCategory) {
+        projectCategories = [String(pCategory).toLowerCase().replace(/\s+/g, "-")];
+      }
 
       return projectCategories.includes(category);
     });

@@ -1,15 +1,19 @@
 ---
 import { getCollection } from "astro:content";
+import { getPostsDirectFromSupabase, convertSupabasePost } from '../lib/supabase-direct';
 
 // Get the current category from the URL path
 const currentCategoryPromise = (async () => {
   const pathSegments = Astro.url.pathname.split("/");
   const potentialCategory = pathSegments[2]; // Extract the category slug from the URL
 
-  // Validate if the extracted segment matches a known category slug
-  const mdxPosts = await getCollection('postsMdx').catch(() => [] as any[]);
+  // Fetch posts from both sources
+  const [mdxPosts, supabasePosts] = await Promise.all([
+    getCollection('postsMdx').catch(() => [] as any[]),
+    getPostsDirectFromSupabase(1000, 'published').catch(() => [] as any[])
+  ]);
 
-  // Normalize posts
+  // Normalize MDX posts
   const normalizedMdxPosts = mdxPosts.map((entry) => ({
     ...entry,
     source: 'mdx',
@@ -27,13 +31,33 @@ const currentCategoryPromise = (async () => {
     },
   }));
 
-  const allPosts = [...normalizedMdxPosts];
+  // Normalize Supabase posts
+  const normalizedSupabasePosts = supabasePosts.map((post) => {
+    const converted = convertSupabasePost(post);
+    return {
+      id: converted.id,
+      source: 'supabase',
+      data: {
+        properties: {
+          bTitle: converted.title,
+          bTags: converted.tags,
+          bSlug: converted.slug,
+          bCoverImage: converted.coverImage,
+          bPublished: { start: converted.published },
+          bLastUpdated: { start: converted.updated },
+          bDescription: converted.description,
+        },
+      },
+    };
+  });
+
+  const allPosts = [...normalizedMdxPosts, ...normalizedSupabasePosts];
   
   const validCategories = allPosts.reduce((acc: Set<string>, post) => {
     const tags = Array.isArray(post.data.properties.bTags)
       ? post.data.properties.bTags.map((t: string) => t.toLowerCase().replace(/\s+/g, "-"))
       : [String(post.data.properties.bTags || "").toLowerCase().replace(/\s+/g, "-")];
-    tags.forEach((tag) => {
+    tags.forEach((tag: string) => {
       if (tag && tag !== "") acc.add(tag);
     });
     return acc;
@@ -43,10 +67,13 @@ const currentCategoryPromise = (async () => {
 })();
 const currentCategory = await currentCategoryPromise;
 
-// Fetch posts from local MD collection
-const mdxPosts = await getCollection('postsMdx').catch(() => [] as any[]);
+// Fetch posts from both sources
+const [mdxPosts, supabasePosts] = await Promise.all([
+  getCollection('postsMdx').catch(() => [] as any[]),
+  getPostsDirectFromSupabase(1000, 'published').catch(() => [] as any[])
+]);
 
-// Normalize posts (reuse the same logic)
+// Normalize MDX posts (reuse the same logic)
 const normalizedMdxPosts = mdxPosts.map((entry) => ({
   ...entry,
   source: 'mdx',
@@ -64,8 +91,28 @@ const normalizedMdxPosts = mdxPosts.map((entry) => ({
   },
 }));
 
+// Normalize Supabase posts
+const normalizedSupabasePosts = supabasePosts.map((post) => {
+  const converted = convertSupabasePost(post);
+  return {
+    id: converted.id,
+    source: 'supabase',
+    data: {
+      properties: {
+        bTitle: converted.title,
+        bTags: converted.tags,
+        bSlug: converted.slug,
+        bCoverImage: converted.coverImage,
+        bPublished: { start: converted.published },
+        bLastUpdated: { start: converted.updated },
+        bDescription: converted.description,
+      },
+    },
+  };
+});
+
 // Combine all collections
-const allPosts = [...normalizedMdxPosts];
+const allPosts = [...normalizedMdxPosts, ...normalizedSupabasePosts];
 
 // Count the number of posts for each tag
 const tagCounts = allPosts.reduce((acc: Record<string, number>, post) => {
@@ -73,7 +120,7 @@ const tagCounts = allPosts.reduce((acc: Record<string, number>, post) => {
     ? post.data.properties.bTags
     : [post.data.properties.bTags];
 
-  tags.forEach((tag) => {
+  tags.forEach((tag: any) => {
     if (tag && tag.trim() !== "") {
       acc[tag] = (acc[tag] || 0) + 1;
     }
@@ -92,7 +139,7 @@ const uniqueTags = Object.keys(tagCounts).sort();
     onchange="if (this.value) window.location.href = this.value"
   >
     <option 
-      value="/blog/"
+      value="/"
       selected={!currentCategory}
     >
       Semua Kategori
@@ -101,7 +148,7 @@ const uniqueTags = Object.keys(tagCounts).sort();
       const tagSlug = tag.toLowerCase().replace(/\s+/g, "-");
       return (
         <option
-          value={`/blog/category/${tagSlug}/`}
+          value={`/category/${tagSlug}/`}
           selected={currentCategory === tagSlug}
         >
           {tag} ({tagCounts[tag]})

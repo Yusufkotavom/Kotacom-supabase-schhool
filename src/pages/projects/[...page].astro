@@ -16,7 +16,7 @@ function parseDate(dateStr: string): Date {
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   // Fetch projects from MD and Supabase
   const mdxProjects = await getCollection('projectsMdx');
-  const supabaseProjects = await getProjectsDirectFromSupabase(10000);
+  const supabaseProjects = await getProjectsDirectFromSupabase(10000, 'published'); // Only published projects
 
   // Sanity removed – use only local MD and Supabase
 

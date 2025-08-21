@@ -127,8 +127,8 @@ Langkah internal:
 4. Konversi body markdown → HTML bila mendeteksi karakter `#` (heading) via `marked`.
 5. Mapping field tambahan: `coverImage`, `imageUrl`, `publishedAt`, `updatedAt`, `createdAt`.
 
-### 5.2 `getProductsDirectFromSupabase(limit)`
-Query langsung tabel `products`, order `published desc` tanpa saat ini enrichment.
+### 5.2 `getProductsDirectFromSupabase(limit, status)`
+Query langsung tabel `products`, order `published desc`, dengan filtering status `'published' | 'draft' | 'all'` (default: `'published'`).
 
 ### 5.3 `getServicesDirectFromSupabase(limit)`
 Mirip posts: fetch utama + junction `services_tags` & `services_categories`, konversi markdown body, mapping `imageUrl1`, normalisasi array.

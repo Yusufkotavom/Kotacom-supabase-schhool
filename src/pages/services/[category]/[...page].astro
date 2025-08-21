@@ -4,6 +4,7 @@ import MainLayout from "../../../layouts/MainLayout.astro";
 import type { GetStaticPathsOptions } from "astro";
 import ServiceCard from "../../../components/ServiceCard.astro";
 import SCategoryDropdown from "../../../components/SCategoryDropdown.astro";
+import { getServicesDirectFromSupabase } from "../../../lib/supabase-direct";
 
 // Helper function to parse dates in dd/mm/yyyy format
 function parseDate(dateStr: string): Date {
@@ -12,8 +13,9 @@ function parseDate(dateStr: string): Date {
 }
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  // Fetch services from MDX collections only
+  // Fetch services from MDX and Supabase
   const mdxServices = await getCollection('servicesMdx');
+  const supabaseServices = await getServicesDirectFromSupabase(10000, 'published'); // Only published services
 
   // Normalize MDX services
   const normalizedMdxServices = mdxServices.map((entry) => ({
@@ -42,28 +44,65 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     },
   }));
 
-  // Use MDX-only
-  const allServices = [...normalizedMdxServices];
+  // Normalize Supabase services
+  const normalizedSupabaseServices = (supabaseServices || [])
+    .filter((service: any) => service.slug && typeof service.slug === 'string')
+    .map((service: any) => ({
+      source: 'supabase',
+      data: {
+        properties: {
+          svTitle: service.title,
+          svCategory: service.category || [],
+          svSlug: service.slug,
+          svImageURL1: service.imageUrl1 || service.cover_image || "",
+          svPublished: { start: service.published ? new Date(service.published) : new Date() },
+          svWilayah: service.wilayah || [],
+          svProvider: service.provider,
+          svType: service.type || [],
+          svPrice: service.price,
+          svURL: service.url,
+          svWhatsAppURL: service.whatsappUrl,
+          svMapsURL: service.mapsUrl,
+          svVerify: service.verify || "",
+          svImageURL2: service.imageUrl2 || "",
+          svImageURL3: service.imageUrl3 || "",
+          svReview: service.review || "",
+        },
+      },
+    }));
+
+  // Use MDX + Supabase
+  const allServices = [...normalizedMdxServices, ...normalizedSupabaseServices];
 
   // Extract unique categories
   const categories = Array.from(
     new Set(
-      allServices.flatMap((service) =>
-        Array.isArray(service.data.properties.svCategory)
-          ? service.data.properties.svCategory
-          : [service.data.properties.svCategory]
-      )
+      allServices.flatMap((service) => {
+        const svCategory = service.data.properties.svCategory;
+        if (Array.isArray(svCategory)) {
+          return svCategory.filter(cat => cat && String(cat).trim() !== "");
+        } else if (svCategory && String(svCategory).trim() !== "") {
+          return [svCategory];
+        }
+        return [];
+      })
     )
-  ).map((category) => category.toLowerCase().replace(/\s+/g, "-"));
+  ).map((category) => String(category).toLowerCase().replace(/\s+/g, "-"));
 
   // Generate paginated paths for each category
   const paths = categories.flatMap((category) => {
     const categoryServices = allServices.filter((service) => {
-      const serviceCategories = Array.isArray(service.data.properties.svCategory)
-        ? service.data.properties.svCategory.map((c) =>
-            c.toLowerCase().replace(/\s+/g, "-")
-          )
-        : [service.data.properties.svCategory.toLowerCase().replace(/\s+/g, "-")];
+      const svCategory = service.data.properties.svCategory;
+      let serviceCategories: string[] = [];
+      
+      if (Array.isArray(svCategory)) {
+        serviceCategories = svCategory.map((c) =>
+          String(c).toLowerCase().replace(/\s+/g, "-")
+        );
+      } else if (svCategory) {
+        serviceCategories = [String(svCategory).toLowerCase().replace(/\s+/g, "-")];
+      }
+
       return serviceCategories.includes(category);
     });
 

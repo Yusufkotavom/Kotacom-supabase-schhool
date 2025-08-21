@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import KotacomLogo from "../assets/kotacom-logo.svg";
 import ThemeToggle from "./ThemeToggle.astro";
 import MegaMenu from "./MegaMenu.astro";
+import MobileMegaMenu from "./MobileMegaMenu.astro";
 import { MEGA_MENU_CONFIG, SIMPLE_NAV_ITEMS, MOBILE_MENU_CONFIG } from "../data/mega-menu-config";
 
 const companyWhatsapp = '085799520350';
@@ -133,17 +134,32 @@ const companyWhatsapp = '085799520350';
             />
           </div>
           
-          <!-- Mobile: Simple Links -->
-          <div class="flex flex-col space-y-2 lg:hidden">
-            {MOBILE_MENU_CONFIG.mainItems.map((item) => (
-              <a
-                href={item.url}
-                class="flex items-center gap-3 py-3 px-4 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md border-b border-gray-100 dark:border-gray-700"
-              >
-                <div class="text-gray-400 dark:text-gray-500" set:html={item.icon}></div>
-                <span>{item.title}</span>
-              </a>
-            ))}
+          <!-- Mobile: Mega Menu Items -->
+          <div class="flex flex-col lg:hidden">
+            <MobileMegaMenu 
+              trigger={MEGA_MENU_CONFIG.layanan.trigger}
+              sections={MEGA_MENU_CONFIG.layanan.sections}
+            />
+            <MobileMegaMenu 
+              trigger={MEGA_MENU_CONFIG.portfolio.trigger}
+              sections={MEGA_MENU_CONFIG.portfolio.sections}
+            />
+            <MobileMegaMenu 
+              trigger={MEGA_MENU_CONFIG.produk.trigger}
+              sections={MEGA_MENU_CONFIG.produk.sections}
+            />
+            
+            <!-- Simple Navigation Items on Mobile -->
+            <div class="pt-4 mt-4 border-t border-gray-200 dark:border-gray-700">
+              {MOBILE_MENU_CONFIG.secondaryItems.map((item) => (
+                <a
+                  href={item.url}
+                  class="block py-3 px-4 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md border-b border-gray-100 dark:border-gray-700 last:border-b-0"
+                >
+                  {item.title}
+                </a>
+              ))}
+            </div>
             
             <!-- Mobile Menu Footer -->
             <div class="pt-4 mt-4 border-t border-gray-200 dark:border-gray-700">
@@ -165,12 +181,12 @@ const companyWhatsapp = '085799520350';
             </div>
           </div>
           
-          <!-- Simple Navigation Items (Both Mobile & Desktop) -->
-          <div class="flex flex-col lg:flex-row lg:space-x-2 space-y-2 lg:space-y-0">
+          <!-- Simple Navigation Items (Desktop Only) -->
+          <div class="hidden lg:flex lg:flex-row lg:space-x-2">
             {MOBILE_MENU_CONFIG.secondaryItems.map((item) => (
               <a
                 href={item.url}
-                class="block py-2 px-3 text-gray-700 hover:bg-gray-50 lg:hover:bg-transparent hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 lg:dark:hover:bg-transparent dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md border-b border-gray-100 dark:border-gray-700 lg:border-0"
+                class="block py-2 px-3 text-gray-700 hover:bg-gray-50 lg:hover:bg-transparent hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 lg:dark:hover:bg-transparent dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md"
               >
                 {item.title}
               </a>
