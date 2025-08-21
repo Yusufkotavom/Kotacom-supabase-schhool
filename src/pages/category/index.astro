@@ -1,82 +1,71 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getPostsDirectFromSupabase } from '../../lib/supabase-direct';
-import { getCollection } from "astro:content";
 
-// Get all posts from different sources
-import { glob } from 'astro/loaders';
-
-// Get MDX posts from pages/posts directory
-const postFiles = await Astro.glob('../posts/*.mdx');
-const mdxPosts = postFiles.map(post => ({
+// Collect MD/MDX posts
+const postFiles = await Astro.glob('../posts/*.{md,mdx}');
+const mdxPosts = postFiles.map((post) => ({
   data: post.frontmatter,
-  slug: post.file?.split('/').pop()?.replace('.mdx', '') || '',
-  url: post.url
+  slug: post.file?.split('/').pop()?.replace(/\.(md|mdx)$/, '') || '',
+  url: post.url,
 }));
 
-const supabasePosts = await getPostsDirectFromSupabase(10000); // Load all posts to ensure all tags are captured
-console.log(`📋 MDX posts found: ${mdxPosts.length}`);
-console.log(`📋 Supabase posts found: ${supabasePosts?.length || 0}`);
+// Collect Supabase posts
+const supabasePosts = await getPostsDirectFromSupabase(10000);
 
-// Extract unique tags from all posts (MDX + Supabase)
-const allTags = new Set<string>();
+// Build category set (backend: tags act as categories; frontend: category only)
+const categorySet = new Set<string>();
 
-// Extract tags from MDX posts
+// From MDX tags
 mdxPosts.forEach((post: any) => {
   (post.data.tags || []).forEach((tag: string) => {
-    if (tag && typeof tag === 'string') {
-      allTags.add(tag);
-    }
+    if (typeof tag === 'string' && tag) categorySet.add(tag);
   });
 });
 
-// Extract tags from Supabase posts
+// From Supabase tags and category fields
 (supabasePosts || []).forEach((post: any) => {
-  console.log(`📝 Supabase post "${post.title}": tags =`, post.tags);
   const tags = post.tags || [];
   if (Array.isArray(tags)) {
-    tags.forEach((tag: any) => {
-      const tagValue = typeof tag === 'string' ? tag : tag?.value || tag?.name;
-      if (tagValue && typeof tagValue === 'string') {
-        console.log(`  ✅ Adding tag: "${tagValue}"`);
-        allTags.add(tagValue);
-      }
+    tags.forEach((t: any) => {
+      const v = typeof t === 'string' ? t : t?.value || t?.name;
+      if (typeof v === 'string' && v) categorySet.add(v);
     });
-  } else if (typeof tags === 'string') {
-    // Try to parse as JSON if it's a string
+  } else if (typeof tags === 'string' && tags) {
     try {
-      const parsedTags = JSON.parse(tags);
-      if (Array.isArray(parsedTags)) {
-        parsedTags.forEach((tag: string) => {
-          if (tag && typeof tag === 'string') {
-            console.log(`  ✅ Adding parsed tag: "${tag}"`);
-            allTags.add(tag);
-          }
-        });
-      }
+      const parsed = JSON.parse(tags);
+      if (Array.isArray(parsed)) parsed.forEach((v: any) => { if (typeof v === 'string' && v) categorySet.add(v); });
+      else categorySet.add(tags);
     } catch {
-      // If not JSON, treat as single tag
-      console.log(`  ✅ Adding single tag: "${tags}"`);
-      allTags.add(tags);
+      categorySet.add(tags);
     }
+  }
+
+  const cats = post.category || post.categories || [];
+  if (Array.isArray(cats)) {
+    cats.forEach((c: any) => {
+      const v = typeof c === 'string' ? c : c?.value || c?.name;
+      if (typeof v === 'string' && v) categorySet.add(v);
+    });
   }
 });
 
-const uniqueTags = Array.from(allTags).sort();
-console.log(`🏷️ Final unique tags (${uniqueTags.length}):`, uniqueTags);
+const categories = Array.from(categorySet)
+  .sort()
+  .map((label: string) => ({ label, slug: label.toLowerCase().replace(/\s+/g, '-') }));
 ---
 
-<Layout title="Kategori - Kotacom.id">
+<Layout title="Category - Kotacom.id">
   <main class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Kategori</h1>
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Category</h1>
     
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {uniqueTags.map((tag) => (
+      {categories.map(({ label, slug }) => (
         <a 
-          href={`/kategori/${tag}/`}
+          href={`/category/${slug}/`}
           class="block p-4 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition-shadow border border-gray-200 dark:border-gray-700"
         >
-          <span class="text-gray-900 dark:text-white font-medium">{tag}</span>
+          <span class="text-gray-900 dark:text-white font-medium">{label}</span>
         </a>
       ))}
     </div>

@@ -5,8 +5,8 @@ import { getPostsDirectFromSupabase } from '../../../lib/supabase-direct';
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths({ paginate }: any) {
-  // Get MDX posts from pages/posts directory
-  const postFiles = await import.meta.glob('../../posts/*.mdx');
+  // Get MD/MDX posts from pages/posts directory
+  const postFiles = await import.meta.glob('../../posts/*.{md,mdx}');
   const mdxPosts = await Promise.all(
     Object.entries(postFiles).map(async ([path, loader]) => {
       const post: any = await loader();
@@ -18,10 +18,11 @@ export async function getStaticPaths({ paginate }: any) {
     })
   );
   
-  const supabasePosts = await getPostsDirectFromSupabase(10000); // Load all posts to capture all tags
+  const supabasePosts = await getPostsDirectFromSupabase(10000); // Load all posts to capture all tags/categories
   
   // Extract unique tags from all sources
   const allTags = new Set<string>();
+  const slugify = (s: string) => s.toLowerCase().trim().replace(/\s+/g, '-');
   
   // Extract tags from MDX posts
   mdxPosts.forEach((post: any) => {
@@ -32,7 +33,7 @@ export async function getStaticPaths({ paginate }: any) {
     });
   });
   
-  // Extract tags from Supabase posts - improved extraction
+  // Extract tags and categories from Supabase posts - improved extraction
   (supabasePosts || []).forEach((post: any) => {
     const tags = post.tags || [];
     if (Array.isArray(tags)) {
@@ -43,43 +44,54 @@ export async function getStaticPaths({ paginate }: any) {
         }
       });
     }
+    const cats = post.category || post.categories || [];
+    if (Array.isArray(cats)) {
+      cats.forEach((cat: any) => {
+        const catValue = typeof cat === 'string' ? cat : cat?.value || cat?.name;
+        if (catValue && typeof catValue === 'string') {
+          allTags.add(catValue);
+        }
+      });
+    }
   });
 
   const paths: any[] = [];
   
-  for (const tag of allTags) {
-    // Filter MDX posts by tag
+  for (const label of allTags) {
+    const slug = slugify(label);
+    // Filter MDX posts by category (from tags) normalized by slug
     const mdxPostsWithTag = mdxPosts.filter((post: any) => {
-      return (post.data.tags || []).includes(tag);
+      const tags = post.data.tags || [];
+      return Array.isArray(tags) && tags.some((t: string) => slugify(String(t)) === slug);
     });
-    
-    // Filter Supabase posts by tag - improved filtering
+
+    // Filter Supabase posts by tag/category normalized by slug
     const supabasePostsWithTag = (supabasePosts || []).filter((post: any) => {
       const tags = post.tags || [];
-      if (Array.isArray(tags)) {
-        return tags.some((postTag: any) => {
-          const tagValue = typeof postTag === 'string' ? postTag : postTag?.value || postTag?.name;
-          return tagValue === tag;
-        });
-      }
-      return false;
+      const cats = post.category || post.categories || [];
+      const matchTags = Array.isArray(tags) && tags.some((postTag: any) => {
+        const v = typeof postTag === 'string' ? postTag : postTag?.value || postTag?.name;
+        return v && slugify(String(v)) === slug;
+      });
+      const matchCats = Array.isArray(cats) && cats.some((c: any) => {
+        const v = typeof c === 'string' ? c : c?.value || c?.name;
+        return v && slugify(String(v)) === slug;
+      });
+      return matchTags || matchCats;
     });
-    
-    // Combine all posts with this tag
+
     const allPostsWithTag = [
       ...mdxPostsWithTag.map((post: any) => ({ ...post, source: 'mdx' })),
-      ...supabasePostsWithTag.map((post: any) => ({ ...post, source: 'supabase' }))
+      ...supabasePostsWithTag.map((post: any) => ({ ...post, source: 'supabase' })),
     ];
-    
-    // Only create pages for tags that have posts
+
     if (allPostsWithTag.length > 0) {
-      // Use paginate for proper pagination
-      const paginatedPosts = paginate(allPostsWithTag, {
-        params: { tag },
-        pageSize: 12
-      });
-      
-      paths.push(...paginatedPosts);
+      paths.push(
+        ...paginate(allPostsWithTag, {
+          params: { tag: slug },
+          pageSize: 12,
+        })
+      );
     }
   }
   
@@ -101,7 +113,7 @@ const tag = page.params?.tag || Astro.params.tag;
       <nav class="text-sm breadcrumbs mb-4">
         <a href="/" class="text-blue-600 hover:underline">Home</a>
         <span class="mx-2">/</span>
-        <a href="/kategori/" class="text-blue-600 hover:underline">Kategori</a>
+        <a href="/category/" class="text-blue-600 hover:underline">Category</a>
         <span class="mx-2">/</span>
         <span class="text-gray-600">{tag}</span>
       </nav>
