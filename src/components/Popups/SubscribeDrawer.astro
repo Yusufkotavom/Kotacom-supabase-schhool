@@ -96,8 +96,8 @@
          const body = Object.fromEntries(formData.entries());
          try {
            await fetch('/api/request-quote', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-           if (form && 'reset' in form && typeof (form as any).reset === 'function') {
-             (form as any).reset();
+           if (form && 'reset' in form && typeof form.reset === 'function') {
+             form.reset();
            }
            content.classList.add('hidden');
            confirmation.classList.remove('hidden');

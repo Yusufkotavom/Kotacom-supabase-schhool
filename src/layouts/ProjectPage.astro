@@ -8,7 +8,10 @@ import RelatedList from "../components/RelatedList.astro";
 
 type Props = CollectionEntry<"projectsMdx">["data"];
 
-const { properties } = Astro.props as any;
+// Get frontmatter data directly from Astro.props for MDX files
+const frontmatter = Astro.props.frontmatter || Astro.props;
+const properties = frontmatter.properties || frontmatter;
+
 // MDX-only normalized data
 const projectData = {
   title: properties.title,
@@ -26,6 +29,7 @@ const projectData = {
   verify: properties.verify,
   review: properties.review,
   getInvolved: properties.getInvolved,
+  get_involved: properties.get_involved, // Supabase version
   description: properties.description, // Add description field
   body: properties.body, // Add body field
   // Case study fields
@@ -42,7 +46,11 @@ const projectData = {
   roiPercentage: properties.roiPercentage,
   clientTestimonial: properties.clientTestimonial,
   clientName: properties.clientName,
-  clientPosition: properties.clientPosition
+  clientPosition: properties.clientPosition,
+  // Additional fields
+  beforeImage: properties.beforeImage,
+  afterImage: properties.afterImage,
+  additionalImages: Array.isArray(properties.additionalImages) ? properties.additionalImages.filter(Boolean) : (properties.additionalImages ? [properties.additionalImages] : [])
 };
 
 const title = projectData.title + " - Projects";
@@ -162,6 +170,29 @@ const images: string[] = oneSec.length > 0 ? oneSec : [fallbackImage];
               <span class="text-lg font-semibold text-blue-600 dark:text-blue-400">
                 {projectData.organiser}
               </span>
+            </div>
+          )}
+          
+          {projectData.cost && projectData.cost.length > 0 && (
+            <div class="mb-4">
+              <span class="text-lg text-gray-600 dark:text-gray-400">Cost: </span>
+              <span class="text-lg font-semibold text-green-600 dark:text-green-400">
+                {projectData.cost.length === 1 
+                  ? `Rp ${parseInt(projectData.cost[0]).toLocaleString('id-ID')}`
+                  : `Rp ${parseInt(projectData.cost[0]).toLocaleString('id-ID')} - ${parseInt(projectData.cost[1]).toLocaleString('id-ID')}`
+                }
+              </span>
+            </div>
+          )}
+          
+          {projectData.verify && (
+            <div class="mb-4">
+              <div class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 border border-green-200 dark:bg-green-900 dark:text-green-300 dark:border-green-700">
+                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                {projectData.verify}
+              </div>
             </div>
           )}
           
@@ -403,6 +434,144 @@ const images: string[] = oneSec.length > 0 ? oneSec : [fallbackImage];
               )}
             </div>
           )}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Before/After Metrics -->
+  {(projectData.beforeMetrics || projectData.afterMetrics) && (
+    <section class="bg-gray-50 dark:bg-gray-800">
+      <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">Performance Metrics</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          {projectData.beforeMetrics && (
+            <div class="bg-white p-6 rounded-lg shadow dark:bg-gray-900">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">Before</h3>
+              <div class="space-y-3">
+                {projectData.beforeMetrics.traffic && (
+                  <div class="flex justify-between">
+                    <span class="text-gray-600 dark:text-gray-400">Traffic:</span>
+                    <span class="font-medium text-gray-900 dark:text-white">{projectData.beforeMetrics.traffic}</span>
+                  </div>
+                )}
+                {projectData.beforeMetrics.conversions && (
+                  <div class="flex justify-between">
+                    <span class="text-gray-600 dark:text-gray-400">Conversions:</span>
+                    <span class="font-medium text-gray-900 dark:text-white">{projectData.beforeMetrics.conversions}</span>
+                  </div>
+                )}
+                {projectData.beforeMetrics.revenue && (
+                  <div class="flex justify-between">
+                    <span class="text-gray-600 dark:text-gray-400">Revenue:</span>
+                    <span class="font-medium text-gray-900 dark:text-white">{projectData.beforeMetrics.revenue}</span>
+                  </div>
+                )}
+                {projectData.beforeMetrics.performance && (
+                  <div class="flex justify-between">
+                    <span class="text-gray-600 dark:text-gray-400">Performance:</span>
+                    <span class="font-medium text-gray-900 dark:text-white">{projectData.beforeMetrics.performance}</span>
+                  </div>
+                )}
+                {projectData.beforeMetrics.other && (
+                  <div class="flex justify-between">
+                    <span class="text-gray-600 dark:text-gray-400">Other:</span>
+                    <span class="font-medium text-gray-900 dark:text-white">{projectData.beforeMetrics.other}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+          
+          {projectData.afterMetrics && (
+            <div class="bg-white p-6 rounded-lg shadow dark:bg-gray-900 border-l-4 border-green-500">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">After</h3>
+              <div class="space-y-3">
+                {projectData.afterMetrics.traffic && (
+                  <div class="flex justify-between">
+                    <span class="text-gray-600 dark:text-gray-400">Traffic:</span>
+                    <span class="font-medium text-green-600 dark:text-green-400">{projectData.afterMetrics.traffic}</span>
+                  </div>
+                )}
+                {projectData.afterMetrics.conversions && (
+                  <div class="flex justify-between">
+                    <span class="text-gray-600 dark:text-gray-400">Conversions:</span>
+                    <span class="font-medium text-green-600 dark:text-green-400">{projectData.afterMetrics.conversions}</span>
+                  </div>
+                )}
+                {projectData.afterMetrics.revenue && (
+                  <div class="flex justify-between">
+                    <span class="text-gray-600 dark:text-gray-400">Revenue:</span>
+                    <span class="font-medium text-green-600 dark:text-green-400">{projectData.afterMetrics.revenue}</span>
+                  </div>
+                )}
+                {projectData.afterMetrics.performance && (
+                  <div class="flex justify-between">
+                    <span class="text-gray-600 dark:text-gray-400">Performance:</span>
+                    <span class="font-medium text-green-600 dark:text-green-400">{projectData.afterMetrics.performance}</span>
+                  </div>
+                )}
+                {projectData.afterMetrics.other && (
+                  <div class="flex justify-between">
+                    <span class="text-gray-600 dark:text-gray-400">Other:</span>
+                    <span class="font-medium text-green-600 dark:text-green-400">{projectData.afterMetrics.other}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Before/After Images -->
+  {(projectData.beforeImage || projectData.afterImage) && (
+    <section class="bg-white dark:bg-gray-900">
+      <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">Before & After</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          {projectData.beforeImage && (
+            <div class="text-center">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Before</h3>
+              <ResponsiveImage
+                src={projectData.beforeImage}
+                alt={`${projectData.title} - Before`}
+                class="rounded-lg shadow-lg"
+              />
+            </div>
+          )}
+          
+          {projectData.afterImage && (
+            <div class="text-center">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">After</h3>
+              <ResponsiveImage
+                src={projectData.afterImage}
+                alt={`${projectData.title} - After`}
+                class="rounded-lg shadow-lg border-4 border-green-200"
+              />
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Additional Images Gallery -->
+  {projectData.additionalImages && projectData.additionalImages.length > 0 && (
+    <section class="bg-gray-50 dark:bg-gray-800">
+      <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">Project Gallery</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projectData.additionalImages.map((image: string, index: number) => (
+            <div class="relative">
+              <ResponsiveImage
+                src={image}
+                alt={`${projectData.title} - Gallery ${index + 1}`}
+                class="rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -58,18 +58,18 @@ const { product, placement = 'card', showFullDescription = false } = Astro.props
 const isMdx = !product?.data?.properties || !product.data.properties.pTitle;
 const properties = isMdx
   ? {
-      pSlug: product.data.slug,
-      pTitle: product.data.title,
-      pImageURL1: product.data.imageUrl,
-      pPrice: product.data.price,
+      pSlug: (product as any).data?.slug || (product as any).slug || '',
+      pTitle: (product as any).data?.title || (product as any).title || '',
+      pImageURL1: (product as any).data?.imageUrl || (product as any).imageUrl || '',
+      pPrice: (product as any).data?.price || (product as any).price || '',
       pOriginalPrice: '',
-      pDescription: product.data.description,
+      pDescription: (product as any).data?.description || (product as any).description || '',
       pVerify: '',
-      pCountry: product.data.country,
-      pLocale: product.data.locale,
-      pCategory: product.data.category,
-      pName: product.data.name,
-      pType: product.data.type,
+      pCountry: (product as any).data?.country || (product as any).country || [],
+      pLocale: (product as any).data?.locale || (product as any).locale || [],
+      pCategory: (product as any).data?.category || (product as any).category || [],
+      pName: (product as any).data?.name || (product as any).name || '',
+      pType: (product as any).data?.type || (product as any).type || [],
       pAffiliateCode: '',
       pCommissionRate: '',
       pDiscountCode: '',
@@ -133,7 +133,7 @@ const DEFAULT_IMAGE = 'https://res.cloudinary.com/dxyjku3eh/image/upload/v175482
 const imageUrl = properties.pImageURL1 || DEFAULT_IMAGE;
 ---
 
-<article class="group relative bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200 dark:border-gray-700 overflow-hidden">
+<article class="group relative bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl dark:shadow-gray-900/50 transition-all duration-300 transform hover:-translate-y-1 border border-gray-200 dark:border-gray-700 overflow-hidden">
   <!-- Sponsored Badge -->
   {sponsored && (
     <div class="absolute top-2 right-2 z-10 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full">
@@ -185,7 +185,7 @@ const imageUrl = properties.pImageURL1 || DEFAULT_IMAGE;
     {Array.isArray(properties.pCategory) && properties.pCategory.length > 0 && (
       <div class="flex flex-wrap gap-1 mb-2">
         {properties.pCategory.slice(0, 2).map((category: string) => (
-          <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
             {category}
           </span>
         ))}
@@ -229,14 +229,14 @@ const imageUrl = properties.pImageURL1 || DEFAULT_IMAGE;
       
       <!-- Special Offer -->
       {properties.pSpecialOffer && (
-        <div class="mt-1 text-xs text-red-600 font-medium">
+        <div class="mt-1 text-xs text-red-600 dark:text-red-400 font-medium">
           🔥 {properties.pSpecialOffer}
         </div>
       )}
       
       <!-- Discount Code -->
       {properties.pDiscountCode && (
-        <div class="mt-1 text-xs text-blue-600 font-medium">
+        <div class="mt-1 text-xs text-blue-600 dark:text-blue-400 font-medium">
           💳 Kode: {properties.pDiscountCode}
         </div>
       )}
@@ -252,7 +252,7 @@ const imageUrl = properties.pImageURL1 || DEFAULT_IMAGE;
     <!-- Store Info -->
     <div class="text-xs text-gray-500 dark:text-gray-400 mb-3">
       {properties.pName && (
-        <span class="font-medium text-gray-700 dark:text-gray-200">{properties.pName}</span>
+        <span class="font-medium text-gray-700 dark:text-gray-300">{properties.pName}</span>
       )}
       {properties.pLocale && (
         <span class="ml-1">

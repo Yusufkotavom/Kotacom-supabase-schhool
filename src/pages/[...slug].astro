@@ -4,10 +4,10 @@ import PostLayout from "../layouts/PostLayout.astro";
 import { getPostsDirectFromSupabase } from "../lib/supabase-direct";
 import { marked } from 'marked';
 
-export async function getStaticPaths() {
+export async function getStaticPaths(): Promise<Array<{params: {slug: string}, props: any}>> {
   // Get MDX posts from pages/posts directory
-  const postFiles = await Astro.glob('./posts/*.{md,mdx}');
-  const mdxPosts = postFiles.map((post: any) => ({
+  const postFiles: any[] = await Astro.glob('./posts/*.{md,mdx}');
+  const mdxPosts: any[] = postFiles.map((post: any) => ({
     data: post.frontmatter,
     slug: post.frontmatter.slug || post.file?.split('/').pop()?.replace(/\.(md|mdx)$/, '') || '',
     url: post.url,
@@ -19,11 +19,11 @@ export async function getStaticPaths() {
   let mdxPages: any[] = [];
   // try { mdxPages = await getCollection("pagesMdx"); } catch (_) { mdxPages = []; }
   
-  // Get Supabase posts for root level access
-  const supabasePostsData = await getPostsDirectFromSupabase(10000);
-  console.log(`🚀 Building root static paths - MDX posts: ${mdxPosts.length}, Supabase posts: ${supabasePostsData?.length || 0}`);
+  // Get ONLY PUBLISHED Supabase posts untuk production
+  const supabasePostsData = await getPostsDirectFromSupabase(1000, 'published');
+  console.log(`🚀 Building root static paths - MDX posts: ${mdxPosts.length}, Published Supabase posts: ${supabasePostsData?.length || 0}`);
 
-  const mdxPostPaths = mdxPosts.map((post: any) => ({
+  const mdxPostPaths: Array<{params: {slug: string}, props: any}> = mdxPosts.map((post: any) => ({
     params: { slug: post.slug },
     props: { post, source: 'mdx' as const },
   }));
@@ -52,25 +52,31 @@ type Props = {
 
 const { post, source } = Astro.props;
 
-// Helper function untuk memproses konten HTML (applies Tailwind classes)
+// Helper function untuk memproses konten HTML (cleanup for prose styles)
 const processContent = (content: string): string => {
   return content
-    .replace(/<h1>/g, '<h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 mt-8">')
-    .replace(/<h2>/g, '<h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4 mt-6">')
-    .replace(/<h3>/g, '<h3 class="text-xl font-medium text-gray-700 dark:text-gray-200 mb-3 mt-5">')
-    .replace(/<h4>/g, '<h4 class="text-lg font-medium text-gray-600 dark:text-gray-300 mb-2 mt-4">')
-    .replace(/<p>/g, '<p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">')
-    .replace(/<ul>/g, '<ul class="list-disc list-inside mb-4 space-y-2">')
-    .replace(/<ol>/g, '<ol class="list-decimal list-inside mb-4 space-y-2">')
-    .replace(/<li>/g, '<li class="text-gray-600 dark:text-gray-300">')
-    .replace(/<blockquote>/g, '<blockquote class="border-l-4 border-blue-500 pl-4 italic text-gray-700 dark:text-gray-300 mb-4">')
-    .replace(/<code>/g, '<code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm font-mono">')
-    .replace(/<pre>/g, '<pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto mb-4">')
-    .replace(/<a /g, '<a class="text-blue-600 dark:text-blue-400 hover:underline" ')
-    .replace(/<img /g, '<img class="max-w-full h-auto rounded-lg shadow-md mb-4" ')
-    .replace(/<table>/g, '<table class="min-w-full border border-gray-300 dark:border-gray-600 mb-4">')
-    .replace(/<th>/g, '<th class="border border-gray-300 dark:border-gray-600 px-4 py-2 bg-gray-100 dark:bg-gray-800">')
-    .replace(/<td>/g, '<td class="border border-gray-300 dark:border-gray-600 px-4 py-2">');
+    // Clean up any existing classes to let prose handle styling
+    .replace(/<h1[^>]*>/g, '<h1>')
+    .replace(/<h2[^>]*>/g, '<h2>')
+    .replace(/<h3[^>]*>/g, '<h3>')
+    .replace(/<h4[^>]*>/g, '<h4>')
+    .replace(/<h5[^>]*>/g, '<h5>')
+    .replace(/<h6[^>]*>/g, '<h6>')
+    .replace(/<p[^>]*>/g, '<p>')
+    .replace(/<ul[^>]*>/g, '<ul>')
+    .replace(/<ol[^>]*>/g, '<ol>')
+    .replace(/<li[^>]*>/g, '<li>')
+    .replace(/<blockquote[^>]*>/g, '<blockquote>')
+    .replace(/<pre[^>]*>/g, '<pre>')
+    .replace(/<code[^>]*>/g, '<code>')
+    .replace(/<table[^>]*>/g, '<table>')
+    .replace(/<th[^>]*>/g, '<th>')
+    .replace(/<td[^>]*>/g, '<td>')
+    // Ensure images have proper attributes for lazy loading
+    .replace(/<img([^>]*?)src="([^"]*)"([^>]*?)>/g, '<img$1src="$2"$3 loading="lazy">')
+    // Clean up whitespace
+    .replace(/\s+/g, ' ')
+    .trim();
 };
 
 // Prepare layout data based on source
@@ -113,7 +119,7 @@ if (source === 'page') {
   });
   
   const rawContent = post.body || post.content || "";
-  const htmlContent = marked(rawContent); // Convert markdown to HTML
+  const htmlContent = await marked(rawContent); // Convert markdown to HTML
   processedContent = processContent(htmlContent);
   wordCount = processedContent.split(' ').length;
   

@@ -79,7 +79,7 @@ const gradients = [
 const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
 ---
 
-<article class="group relative rounded-2xl overflow-hidden bg-white dark:bg-gray-900 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+<article class="group relative rounded-xl overflow-hidden bg-white dark:bg-gray-900 shadow-lg hover:shadow-xl dark:shadow-gray-900/50 transition-all duration-300 transform hover:-translate-y-1 border border-gray-200 dark:border-gray-700">
   <!-- Gradient Overlay Background -->
   <div class={`absolute inset-0 bg-gradient-to-br ${randomGradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
   
@@ -107,7 +107,7 @@ const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
           const tagValue = getTagValue(tag);
           return tagValue ? (
             <a
-              href={`/category/${tagValue.toLowerCase().replace(/\s+/g, "-")}/`}
+              href={`/kategori/${tagValue.toLowerCase().replace(/\s+/g, "-")}/`}
               class={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-white bg-gradient-to-r ${randomGradient} hover:opacity-80 transition-opacity duration-200`}
             >
               {tagValue}

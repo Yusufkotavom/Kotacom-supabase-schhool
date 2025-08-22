@@ -2,79 +2,185 @@
 import Layout from '../../../layouts/Layout.astro';
 import PostCard from '../../../components/PostCard.astro';
 import { getPostsDirectFromSupabase } from '../../../lib/supabase-direct';
+import { getCollection } from "astro:content";
 
 export async function getStaticPaths({ paginate }: any) {
-  const postFiles = await import.meta.glob('../../posts/*.{md,mdx}');
+  // Get MDX posts from pages/posts directory
+  const postFiles = await import.meta.glob('../../posts/*.mdx');
   const mdxPosts = await Promise.all(
     Object.entries(postFiles).map(async ([path, loader]) => {
       const post: any = await loader();
       return {
         data: post.frontmatter,
-        slug: path.split('/').pop()?.replace(/\.(md|mdx)$/, '') || '',
-        url: path.replace('../../posts/', '/posts/').replace(/\.(md|mdx)$/, '/')
+        slug: path.split('/').pop()?.replace('.mdx', '') || '',
+        url: path.replace('../../posts/', '/posts/').replace('.mdx', '/')
       };
     })
   );
-
-  const supabasePosts = await getPostsDirectFromSupabase(10000);
+  
+  const supabasePosts = await getPostsDirectFromSupabase(10000); // Load all posts to capture all tags
+  
+  // Extract unique tags from all sources
   const allTags = new Set<string>();
-
+  
+  // Extract tags from MDX posts
   mdxPosts.forEach((post: any) => {
-    (post.data.tags || []).forEach((tag: string) => { if (tag) allTags.add(tag); });
+    (post.data.tags || []).forEach((tag: string) => {
+      if (tag && typeof tag === 'string') {
+        allTags.add(tag);
+      }
+    });
   });
-
+  
+  // Extract tags from Supabase posts - improved extraction
   (supabasePosts || []).forEach((post: any) => {
     const tags = post.tags || [];
-    Array.isArray(tags) && tags.forEach((t: any) => { const v = typeof t === 'string' ? t : t?.value || t?.name; if (v) allTags.add(v); });
-    const cats = post.category || post.categories || [];
-    Array.isArray(cats) && cats.forEach((c: any) => { const v = typeof c === 'string' ? c : c?.value || c?.name; if (v) allTags.add(v); });
+    if (Array.isArray(tags)) {
+      tags.forEach((tag: any) => {
+        const tagValue = typeof tag === 'string' ? tag : tag?.value || tag?.name;
+        if (tagValue && typeof tagValue === 'string') {
+          allTags.add(tagValue);
+        }
+      });
+    }
   });
 
   const paths: any[] = [];
+  
   for (const tag of allTags) {
-    const mdxWith = mdxPosts.filter((p: any) => (p.data.tags || []).includes(tag));
-    const supaWith = (supabasePosts || []).filter((post: any) => {
-      const tags = post.tags || [];
-      const cats = post.category || post.categories || [];
-      const matchTag = Array.isArray(tags) && tags.some((t: any) => (typeof t === 'string' ? t : t?.value || t?.name) === tag);
-      const matchCat = Array.isArray(cats) && cats.some((c: any) => (typeof c === 'string' ? c : c?.value || c?.name) === tag);
-      return matchTag || matchCat;
+    // Filter MDX posts by tag
+    const mdxPostsWithTag = mdxPosts.filter((post: any) => {
+      return (post.data.tags || []).includes(tag);
     });
-    const combined = [...mdxWith.map((p:any)=>({...p, source:'mdx'})), ...supaWith.map((p:any)=>({...p, source:'supabase'}))];
-    if (combined.length > 0) {
-      paths.push(...paginate(combined, { params: { tag }, pageSize: 12 }));
+    
+    // Filter Supabase posts by tag - improved filtering
+    const supabasePostsWithTag = (supabasePosts || []).filter((post: any) => {
+      const tags = post.tags || [];
+      if (Array.isArray(tags)) {
+        return tags.some((postTag: any) => {
+          const tagValue = typeof postTag === 'string' ? postTag : postTag?.value || postTag?.name;
+          return tagValue === tag;
+        });
+      }
+      return false;
+    });
+    
+    // Combine all posts with this tag
+    const allPostsWithTag = [
+      ...mdxPostsWithTag.map((post: any) => ({ ...post, source: 'mdx' })),
+      ...supabasePostsWithTag.map((post: any) => ({ ...post, source: 'supabase' }))
+    ];
+    
+    // Only create pages for tags that have posts
+    if (allPostsWithTag.length > 0) {
+      // Use paginate for proper pagination
+      const paginatedPosts = paginate(allPostsWithTag, {
+        params: { tag },
+        pageSize: 12
+      });
+      
+      paths.push(...paginatedPosts);
     }
   }
+  
   return paths;
 }
 
-const { page } = Astro.props as any;
+type Props = {
+  page: any;
+  tag?: string;
+};
+
+const { page } = Astro.props;
 const tag = page.params?.tag || Astro.params.tag;
 ---
 
-<Layout title={`Category: ${tag} - Kotacom.id`}>
+<Layout title={`Kategori: ${tag} - Kotacom.id`}>
   <main class="container mx-auto px-4 py-8">
     <div class="mb-8">
       <nav class="text-sm breadcrumbs mb-4">
         <a href="/" class="text-blue-600 hover:underline">Home</a>
         <span class="mx-2">/</span>
-        <a href="/category/" class="text-blue-600 hover:underline">Category</a>
+        <a href="/kategori/" class="text-blue-600 hover:underline">Kategori</a>
         <span class="mx-2">/</span>
         <span class="text-gray-600">{tag}</span>
       </nav>
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Category: {tag}</h1>
-      <p class="text-gray-600 dark:text-gray-400">{page.total} artikel ditemukan</p>
+      
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+        Kategori: {tag}
+      </h1>
+      <p class="text-gray-600 dark:text-gray-400">
+        {page.total} artikel ditemukan
+      </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-      {page.data.map((post: any) => (
-        post.source === 'mdx' ? (
-          <PostCard post={{ source:'mdx', data:{ properties: { bSlug: post.data.slug, bCoverImage: post.data.coverImage || '', bTags: post.data.tags || [], bTitle: post.data.title } } }} />
-        ) : (
-          <PostCard post={{ source:'supabase', data:{ properties: { bSlug: post.slug, bCoverImage: post.imageUrl || post.coverImage || '', bTags: Array.isArray(post.tags) ? post.tags.map((t:any)=> typeof t==='string'? t : t?.value || t?.name || t) : [], bTitle: post.title } } }} />
-        )
-      ))}
+      {page.data.map((post: any) => {
+        // Normalize post data for PostCard
+        if (post.source === 'mdx') {
+          return (
+            <PostCard 
+              post={{
+                source: 'mdx',
+                data: {
+                  properties: {
+                    bSlug: post.data.slug,
+                    bCoverImage: post.data.coverImage || "",
+                    bTags: post.data.tags || [],
+                    bTitle: post.data.title
+                  }
+                }
+              }}
+            />
+          );
+        } else {
+          // Supabase posts
+          return (
+            <PostCard 
+              post={{
+                source: 'supabase',
+                data: {
+                  properties: {
+                    bSlug: post.slug,
+                    bCoverImage: post.imageUrl || post.coverImage || "",
+                    bTags: Array.isArray(post.tags) ? post.tags.map((tag: any) => 
+                      typeof tag === 'string' ? tag : tag?.value || tag?.name || tag
+                    ) : [],
+                    bTitle: post.title
+                  }
+                }
+              }}
+            />
+          );
+        }
+      })}
     </div>
+
+    <!-- Pagination -->
+    {page.url.prev || page.url.next ? (
+      <div class="flex justify-center items-center space-x-4 mt-8">
+        {page.url.prev && (
+          <a 
+            href={page.url.prev}
+            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+          >
+            ← Sebelumnya
+          </a>
+        )}
+        
+        <span class="text-gray-600 dark:text-gray-400">
+          Halaman {page.currentPage} dari {page.lastPage}
+        </span>
+        
+        {page.url.next && (
+          <a 
+            href={page.url.next}
+            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+          >
+            Selanjutnya →
+          </a>
+        )}
+      </div>
+    ) : null}
   </main>
 </Layout>
-

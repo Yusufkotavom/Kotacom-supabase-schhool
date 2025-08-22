@@ -82,16 +82,25 @@ async function getCategoriesForPosts(postIds: number[]): Promise<Map<number, str
   return categoriesMap;
 }
 
-export async function getPostsDirectFromSupabase(limit: number = 10000): Promise<SupabasePost[]> {
+export async function getPostsDirectFromSupabase(
+  limit: number = 100, 
+  status: 'published' | 'draft' | 'all' = 'published' // Default hanya published
+): Promise<SupabasePost[]> {
   try {
-    console.log(`🔄 Fetching ${limit} posts directly from Supabase...`);
+    console.log(`🔄 Fetching ${limit} posts directly from Supabase with status: ${status}...`);
     
-    // Get posts with basic data first
-    const { data, error } = await supabase
+    // Build query with status filter
+    let query = supabase
       .from('posts')
       .select('*')
-      .limit(limit)
       .order('published', { ascending: false });
+
+    // Filter by status - hanya ambil published posts untuk production
+    if (status !== 'all') {
+      query = query.eq('status', status);
+    }
+
+    const { data, error } = await query.limit(limit);
 
     if (error) {
       console.error('❌ Supabase error:', error);
@@ -112,13 +121,33 @@ export async function getPostsDirectFromSupabase(limit: number = 10000): Promise
       
       // Attach tags and categories to posts and process markdown
       const { marked } = await import('marked');
+      
+      // Configure marked for better HTML output
+      marked.setOptions({
+        breaks: true,
+        gfm: true,
+        headerIds: false,
+        mangle: false
+      });
+      
       const postsWithMetadata = data.map((post: any) => {
         let processedBody = post.body || '';
         
-        // Convert markdown to HTML if content looks like markdown
-        if (processedBody && typeof processedBody === 'string' && processedBody.includes('#')) {
+        // Convert markdown to HTML if content exists
+        if (processedBody && typeof processedBody === 'string') {
           try {
+            // Always process through marked for consistent HTML output
             processedBody = marked(processedBody);
+            
+            // Clean up the HTML for better prose rendering
+            processedBody = processedBody
+              .replace(/\n\s*\n/g, '</p>\n<p>')
+              .replace(/^(?!<[ph])/gm, '<p>')
+              .replace(/(?<!>)$/gm, '</p>')
+              .replace(/<p><\/p>/g, '')
+              .replace(/<p>(<[h|u|o|b])/g, '$1')
+              .replace(/(<\/[h|u|o|b][^>]*>)<\/p>/g, '$1')
+              .trim();
           } catch (error) {
             console.log('⚠️ Could not process markdown for post:', post.slug, error);
           }
@@ -162,15 +191,25 @@ export async function getPostsDirectFromSupabase(limit: number = 10000): Promise
   }
 }
 
-export async function getProductsDirectFromSupabase(limit: number = 10000): Promise<any[]> {
+export async function getProductsDirectFromSupabase(
+  limit: number = 10000,
+  status: 'published' | 'draft' | 'all' = 'published' // Default hanya published
+): Promise<any[]> {
   try {
-    console.log(`🔄 Fetching ${limit} products directly from Supabase...`);
+    console.log(`🔄 Fetching ${limit} products directly from Supabase with status: ${status}...`);
     
-    const { data, error } = await supabase
+    // Build query with status filter
+    let query = supabase
       .from('products')
       .select('*')
-      .limit(limit)
       .order('published', { ascending: false });
+
+    // Filter by status - hanya ambil published products untuk production
+    if (status !== 'all') {
+      query = query.eq('status', status);
+    }
+
+    const { data, error } = await query.limit(limit);
 
     if (error) {
       console.error('❌ Supabase error:', error);
@@ -243,15 +282,22 @@ async function getCategoriesForServices(serviceIds: number[]): Promise<Map<numbe
   return categoriesMap;
 }
 
-export async function getServicesDirectFromSupabase(limit: number = 10000): Promise<any[]> {
+export async function getServicesDirectFromSupabase(limit: number = 10000, status: 'published' | 'draft' | 'all' = 'published'): Promise<any[]> {
   try {
-    console.log(`🔄 Fetching ${limit} services directly from Supabase...`);
+    console.log(`🔄 Fetching ${limit} services directly from Supabase with status: ${status}...`);
     
-    const { data, error } = await supabase
+    let query = supabase
       .from('services')
       .select('*')
       .limit(limit)
       .order('published', { ascending: false });
+
+    // Add status filtering if not 'all'
+    if (status !== 'all') {
+      query = query.eq('status', status);
+    }
+
+    const { data, error } = await query;
 
     if (error) {
       console.error('❌ Supabase error:', error);
@@ -269,13 +315,32 @@ export async function getServicesDirectFromSupabase(limit: number = 10000): Prom
 
     // Process markdown content for services
     const { marked } = await import('marked');
+    
+    // Configure marked for better HTML output
+    marked.setOptions({
+      breaks: true,
+      gfm: true,
+      headerIds: false,
+      mangle: false
+    });
+    
     const processedServices = data.map((service: any) => {
       let processedBody = service.body || '';
       
-      // Convert markdown to HTML if content looks like markdown
-      if (processedBody && typeof processedBody === 'string' && processedBody.includes('#')) {
+      // Convert markdown to HTML if content exists
+      if (processedBody && typeof processedBody === 'string') {
         try {
           processedBody = marked(processedBody);
+          
+          // Clean up the HTML for better prose rendering
+          processedBody = processedBody
+            .replace(/\n\s*\n/g, '</p>\n<p>')
+            .replace(/^(?!<[ph])/gm, '<p>')
+            .replace(/(?<!>)$/gm, '</p>')
+            .replace(/<p><\/p>/g, '')
+            .replace(/<p>(<[h|u|o|b])/g, '$1')
+            .replace(/(<\/[h|u|o|b][^>]*>)<\/p>/g, '$1')
+            .trim();
         } catch (error) {
           console.log('⚠️ Could not process markdown for service:', service.slug, error);
         }
@@ -304,15 +369,22 @@ export async function getServicesDirectFromSupabase(limit: number = 10000): Prom
   }
 }
 
-export async function getProjectsDirectFromSupabase(limit: number = 10000): Promise<any[]> {
+export async function getProjectsDirectFromSupabase(limit: number = 10000, status: 'published' | 'draft' | 'all' = 'published'): Promise<any[]> {
   try {
-    console.log(`🔄 Fetching ${limit} projects directly from Supabase...`);
+    console.log(`🔄 Fetching ${limit} projects directly from Supabase with status: ${status}...`);
     
-    const { data, error } = await supabase
+    let query = supabase
       .from('projects')
       .select('*')
       .limit(limit)
       .order('published', { ascending: false });
+
+    // Add status filtering if not 'all'
+    if (status !== 'all') {
+      query = query.eq('status', status);
+    }
+
+    const { data, error } = await query;
 
     if (error) {
       console.error('❌ Supabase error:', error);
@@ -323,6 +395,15 @@ export async function getProjectsDirectFromSupabase(limit: number = 10000): Prom
 
     // Process markdown content for projects
     const { marked } = await import('marked');
+    
+    // Configure marked for better HTML output
+    marked.setOptions({
+      breaks: true,
+      gfm: true,
+      headerIds: false,
+      mangle: false
+    });
+    
     const processedProjects = data.map((project: any) => {
       // Process body, description, review, and get_involved content
       let processedBody = project.body || '';
@@ -330,22 +411,35 @@ export async function getProjectsDirectFromSupabase(limit: number = 10000): Prom
       let processedReview = project.review || '';
       let processedGetInvolved = project.get_involved || '';
       
-      // Convert markdown to HTML for each field
-      [processedBody, processedDescription, processedReview, processedGetInvolved].forEach((content, index) => {
-        if (content && typeof content === 'string' && content.includes('#')) {
-          try {
-            const processed = marked(content);
-            switch(index) {
-              case 0: processedBody = processed; break;
-              case 1: processedDescription = processed; break;
-              case 2: processedReview = processed; break;
-              case 3: processedGetInvolved = processed; break;
-            }
-          } catch (error) {
-            console.log('⚠️ Could not process markdown for project field:', project.slug, error);
-          }
+      // Helper function to process markdown with cleanup
+      const processMarkdownField = (content: string): string => {
+        if (!content || typeof content !== 'string') return '';
+        
+        try {
+          let processed = marked(content);
+          
+          // Clean up the HTML for better prose rendering
+          processed = processed
+            .replace(/\n\s*\n/g, '</p>\n<p>')
+            .replace(/^(?!<[ph])/gm, '<p>')
+            .replace(/(?<!>)$/gm, '</p>')
+            .replace(/<p><\/p>/g, '')
+            .replace(/<p>(<[h|u|o|b])/g, '$1')
+            .replace(/(<\/[h|u|o|b][^>]*>)<\/p>/g, '$1')
+            .trim();
+          
+          return processed;
+        } catch (error) {
+          console.log('⚠️ Could not process markdown for project field:', project.slug, error);
+          return content;
         }
-      });
+      };
+      
+      // Convert markdown to HTML for each field
+      processedBody = processMarkdownField(processedBody);
+      processedDescription = processMarkdownField(processedDescription);
+      processedReview = processMarkdownField(processedReview);
+      processedGetInvolved = processMarkdownField(processedGetInvolved);
 
       return {
         id: project.id,
