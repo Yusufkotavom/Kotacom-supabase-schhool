@@ -244,6 +244,7 @@ export const MEGA_MENU_CONFIG = {
 
 // Simple navigation items (without mega menu)
 export const SIMPLE_NAV_ITEMS = [
+  { title: 'Shop', url: '/shop' },
   { title: 'Artikel', url: '/posts' },
   { title: 'Tentang', url: '/about' },
   { title: 'Kontak', url: '/contact' }

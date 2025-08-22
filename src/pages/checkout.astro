@@ -1,60 +1,30 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-
 <Layout title="Checkout">
   <div class="container mx-auto px-4 py-8 max-w-2xl">
     <h1 class="text-3xl font-bold text-gray-900 mb-8 text-center">Checkout</h1>
-    
     <div class="bg-white rounded-lg shadow-md p-6">
       <h2 class="text-lg font-semibold text-gray-900 mb-4">Detail Pesanan</h2>
-      
       <div id="order-summary" class="mb-6">
         <!-- Will be populated by JavaScript -->
       </div>
-      
       <hr class="my-6">
-      
       <h3 class="text-lg font-semibold text-gray-900 mb-4">Informasi Pembeli</h3>
-      
       <form id="checkout-form" class="space-y-4">
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
-          <input
-            type="text"
-            id="name"
-            required
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Masukkan nama lengkap"
-          >
+          <input type="text" id="name" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan nama lengkap">
         </div>
-        
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-          <input
-            type="email"
-            id="email"
-            required
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="email@example.com"
-          >
+          <input type="email" id="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="email@example.com">
         </div>
-        
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-2">WhatsApp</label>
-          <input
-            type="text"
-            id="whatsapp"
-            required
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="08xxxxxxxxxx"
-          >
+          <input type="text" id="whatsapp" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="08xxxxxxxxxx">
         </div>
-        
-        <button
-          type="submit"
-          class="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-md font-medium transition-colors duration-200"
-        >
+        <button type="submit" id="submit-btn" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-md font-medium transition-colors duration-200">
           Kirim Pesanan
         </button>
       </form>
@@ -63,42 +33,63 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <script>
-  // Load cart from localStorage
+  // Load cart data from localStorage
   const cart = JSON.parse(localStorage.getItem('cart') || '[]');
   
   // Display order summary
   const orderSummary = document.getElementById('order-summary');
-  if (cart.length > 0) {
-    const total = cart.reduce((sum, item) => sum + item.price, 0);
+  const cartTotal = document.getElementById('cart-total');
+  
+  if (cart.length === 0) {
+    orderSummary.innerHTML = '<p class="text-gray-500">Keranjang kosong. Silakan kembali ke halaman produk.</p>';
+  } else {
+    let total = 0;
+    const itemsHtml = cart.map(item => {
+      total += item.price * item.quantity;
+      return `
+        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+          <div>
+            <div class="font-medium text-gray-900">${item.title}</div>
+            <div class="text-sm text-gray-500">Qty: ${item.quantity}</div>
+          </div>
+          <div class="text-right">
+            <div class="font-medium text-gray-900">Rp ${(item.price * item.quantity).toLocaleString()}</div>
+            <div class="text-sm text-gray-500">@ Rp ${item.price.toLocaleString()}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+    
     orderSummary.innerHTML = `
       <div class="space-y-2">
-        ${cart.map(item => `
-          <div class="flex justify-between">
-            <span>${item.title}</span>
-            <span>Rp ${item.price.toLocaleString()}</span>
-          </div>
-        `).join('')}
-        <hr class="my-2">
-        <div class="flex justify-between font-semibold">
+        ${itemsHtml}
+        <div class="flex justify-between items-center py-2 font-semibold text-lg">
           <span>Total:</span>
           <span>Rp ${total.toLocaleString()}</span>
         </div>
       </div>
     `;
-  } else {
-    orderSummary.innerHTML = '<p class="text-gray-500">Keranjang kosong</p>';
   }
   
   // Handle form submission
-  document.getElementById('checkout-form').addEventListener('submit', async (e) => {
+  const form = document.getElementById('checkout-form');
+  const submitBtn = document.getElementById('submit-btn');
+  
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    const formData = {
-      name: document.getElementById('name').value,
-      email: document.getElementById('email').value,
-      whatsapp: document.getElementById('whatsapp').value,
-      products: cart
-    };
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const whatsapp = document.getElementById('whatsapp').value;
+    
+    if (cart.length === 0) {
+      alert('Keranjang kosong. Silakan tambahkan produk terlebih dahulu.');
+      return;
+    }
+    
+    // Disable submit button
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Mengirim Pesanan...';
     
     try {
       const response = await fetch('/api/checkout', {
@@ -106,19 +97,45 @@ import Layout from '../layouts/Layout.astro';
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          name,
+          email,
+          whatsapp,
+          products: cart
+        })
       });
       
-      if (response.ok) {
-        alert('Pesanan berhasil dikirim! Kami akan menghubungi Anda segera.');
+      const data = await response.json();
+      
+      if (data.success) {
+        // Store order data for the success page
+        const orderData = {
+          orderId: data.orderId,
+          name,
+          email,
+          whatsapp,
+          products: cart,
+          total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+          timestamp: new Date().toISOString()
+        };
+        
+        localStorage.setItem('lastOrder', JSON.stringify(orderData));
+        
+        // Clear cart
         localStorage.removeItem('cart');
-        window.location.href = '/products';
+        
+        // Redirect to order success page
+        window.location.href = '/order-success';
       } else {
-        alert('Terjadi kesalahan. Silakan coba lagi.');
+        alert(`Gagal membuat pesanan: ${data.message}`);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Checkout error:', error);
       alert('Terjadi kesalahan. Silakan coba lagi.');
+    } finally {
+      // Re-enable submit button
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Kirim Pesanan';
     }
   });
 </script>
