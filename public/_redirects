@@ -1,0 +1,15 @@
+/blog/* /:splat 301
+/posts/:slug /:slug 301
+https://www.kotacom.id/* https://kotacom.id/:splat 301
+*.html /:splat 301
+/home / 301
+/about-us /about 301
+/contact-us /contact 301
+/portfolio /projects 301
+/portfolio/* /projects/:splat 301
+/service /services 301
+/product /products 301
+/project /projects 301
+/wa https://wa.me/6285799520350?text=Halo%20kotacom.id%2C%20saya%20tertarik%20dengan%20layanan%20Anda 302
+/wa/service https://wa.me/6285799520350?text=Halo%2C%20saya%20ingin%20konsultasi%20tentang%20layanan%20IT%20kotacom.id 302
+/wa/website https://wa.me/6285799520350?text=Halo%2C%20saya%20tertarik%20dengan%20jasa%20pembuatan%20website%20kotacom.id 302

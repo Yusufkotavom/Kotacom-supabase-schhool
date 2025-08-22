@@ -1,0 +1,48 @@
+# Generated redirects from kotacom.id redirect management
+RewriteEngine On
+
+# Redirect old blog URLs to root level posts
+RewriteRule ^blog/(.*)$ /$1 [R=301,L]
+
+# Redirect /posts/slug to root level /slug
+RewriteRule ^posts/([^/]+)$ /$1 [R=301,L]
+
+# Canonical URL - redirect www to non-www
+RewriteRule ^https://www.kotacom.id/(.*)$ https://kotacom.id/$1 [R=301,L]
+
+# Remove .html extensions from URLs
+RewriteRule ^(.*).html$ /$1 [R=301,L]
+
+# Redirect /home to homepage
+RewriteRule ^home$ / [R=301,L]
+
+# Redirect /about-us to /about
+RewriteRule ^about-us$ /about [R=301,L]
+
+# Redirect /contact-us to /contact
+RewriteRule ^contact-us$ /contact [R=301,L]
+
+# Redirect portfolio to projects
+RewriteRule ^portfolio$ /projects [R=301,L]
+
+# Redirect portfolio sub-pages to projects
+RewriteRule ^portfolio/(.*)$ /projects/$1 [R=301,L]
+
+# Redirect singular to plural form
+RewriteRule ^service$ /services [R=301,L]
+
+# Redirect singular to plural form
+RewriteRule ^product$ /products [R=301,L]
+
+# Redirect singular to plural form
+RewriteRule ^project$ /projects [R=301,L]
+
+# Quick WhatsApp contact link
+RewriteRule ^wa$ https://wa.me/6285799520350?text=Halo%20kotacom.id%2C%20saya%20tertarik%20dengan%20layanan%20Anda [R=302,L]
+
+# WhatsApp service inquiry
+RewriteRule ^wa/service$ https://wa.me/6285799520350?text=Halo%2C%20saya%20ingin%20konsultasi%20tentang%20layanan%20IT%20kotacom.id [R=302,L]
+
+# WhatsApp website inquiry
+RewriteRule ^wa/website$ https://wa.me/6285799520350?text=Halo%2C%20saya%20tertarik%20dengan%20jasa%20pembuatan%20website%20kotacom.id [R=302,L]
+

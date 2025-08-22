@@ -1,0 +1,79 @@
+{
+  "redirects": [
+    {
+      "source": "/blog/*",
+      "destination": "/:splat",
+      "permanent": true
+    },
+    {
+      "source": "/posts/:slug",
+      "destination": "/:slug",
+      "permanent": true
+    },
+    {
+      "source": "https://www.kotacom.id/*",
+      "destination": "https://kotacom.id/:splat",
+      "permanent": true
+    },
+    {
+      "source": "*.html",
+      "destination": "/:splat",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/about-us",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio",
+      "destination": "/projects",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/*",
+      "destination": "/projects/:splat",
+      "permanent": true
+    },
+    {
+      "source": "/service",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/product",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/project",
+      "destination": "/projects",
+      "permanent": true
+    },
+    {
+      "source": "/wa",
+      "destination": "https://wa.me/6285799520350?text=Halo%20kotacom.id%2C%20saya%20tertarik%20dengan%20layanan%20Anda",
+      "permanent": false
+    },
+    {
+      "source": "/wa/service",
+      "destination": "https://wa.me/6285799520350?text=Halo%2C%20saya%20ingin%20konsultasi%20tentang%20layanan%20IT%20kotacom.id",
+      "permanent": false
+    },
+    {
+      "source": "/wa/website",
+      "destination": "https://wa.me/6285799520350?text=Halo%2C%20saya%20tertarik%20dengan%20jasa%20pembuatan%20website%20kotacom.id",
+      "permanent": false
+    }
+  ]
+}
