@@ -5,6 +5,7 @@ import type { GetStaticPathsOptions } from "astro";
 import PostCard from "../components/PostCard.astro";
 import { getPostsDirectFromSupabase, convertSupabasePost } from "../lib/supabase-direct";
 import SeoPaginationHead from "../components/partials/SeoPaginationHead.astro";
+import ItemListJsonLd from "../components/partials/ItemListJsonLd.astro";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   // Ambil semua post dari MDX (postsMdx) dan Supabase
@@ -83,6 +84,12 @@ const { page } = Astro.props;
 >
   <fragment slot="head">
     <SeoPaginationHead currentPage={page.currentPage} lastPage={page.lastPage} />
+    <ItemListJsonLd elements={page.data.map((post, idx) => ({
+      position: (page.start || 0) + idx + 1,
+      url: `/${(post as any).data?.properties?.bSlug || (post as any).slug || ''}/`,
+      name: (post as any).data?.properties?.bTitle || (post as any).title || 'Untitled',
+      image: (post as any).data?.properties?.bCoverImage || (post as any).coverImage || (post as any).imageUrl || undefined,
+    }))} />
   </fragment>
   
   <section class="bg-white dark:bg-gray-900">

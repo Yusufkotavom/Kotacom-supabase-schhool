@@ -1,0 +1,27 @@
+---
+interface ListItemElement {
+  position: number;
+  url: string;
+  name: string;
+  image?: string;
+}
+
+interface Props {
+  elements: ListItemElement[];
+}
+
+const { elements } = Astro.props as Props;
+
+const json = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: elements.map((e) => ({
+    '@type': 'ListItem',
+    position: e.position,
+    url: e.url,
+    name: e.name,
+    ...(e.image ? { image: e.image } : {}),
+  })),
+};
+---
+<script type="application/ld+json">{JSON.stringify(json)}</script>

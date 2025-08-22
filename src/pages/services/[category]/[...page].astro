@@ -5,6 +5,8 @@ import type { GetStaticPathsOptions } from "astro";
 import ServiceCard from "../../../components/ServiceCard.astro";
 import SCategoryDropdown from "../../../components/SCategoryDropdown.astro";
 import { getServicesDirectFromSupabase } from "../../../lib/supabase-direct";
+import SeoPaginationHead from "../../../components/partials/SeoPaginationHead.astro";
+import ItemListJsonLd from "../../../components/partials/ItemListJsonLd.astro";
 
 // Helper function to parse dates in dd/mm/yyyy format
 function parseDate(dateStr: string): Date {
@@ -136,9 +138,13 @@ const { page } = Astro.props;
 
 <MainLayout title={`Services in ${category} - Page ${page.currentPage} of ${page.lastPage}`}>
   <fragment slot="head">
-    {page.url.prev && (<link rel="prev" href={page.url.prev} />)}
-    {page.url.next && (<link rel="next" href={page.url.next} />)}
-    {page.currentPage > 1 && (<meta name="robots" content="noindex,follow" />)}
+    <SeoPaginationHead currentPage={page.currentPage} lastPage={page.lastPage} />
+    <ItemListJsonLd elements={page.data.map((service, idx) => ({
+      position: (page.start || 0) + idx + 1,
+      url: `/services/${(service as any).data?.properties?.svCategory?.[0] ? String((service as any).data.properties.svCategory[0]).toLowerCase().replace(/\s+/g,'-') + '/' : ''}${(service as any).data?.properties?.svSlug || ''}/`,
+      name: (service as any).data?.properties?.svTitle || 'Service',
+      image: (service as any).data?.properties?.svImageURL1 || undefined,
+    }))} />
   </fragment>
   <section class="bg-white dark:bg-gray-900">
     <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">

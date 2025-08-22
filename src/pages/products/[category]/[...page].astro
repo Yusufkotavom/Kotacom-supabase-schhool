@@ -6,6 +6,7 @@ import ProductCard from "../../../components/ProductCard.astro";
 import ProductCategoryDropdown from "../../../components/ProductCategoryDropdown.astro";
 import { getProductsDirectFromSupabase } from "../../../lib/supabase-direct";
 import SeoPaginationHead from "../../../components/partials/SeoPaginationHead.astro";
+import ItemListJsonLd from "../../../components/partials/ItemListJsonLd.astro";
 
 // Helper function to parse dates in dd/mm/yyyy format
 function parseDate(dateStr: string): Date {
@@ -162,6 +163,12 @@ const readableCategory = displayCategory;
 <MainLayout title={`Produk ${readableCategory} - Halaman ${page.currentPage} dari ${page.lastPage} | kotacom.id`}>
   <fragment slot="head">
     <SeoPaginationHead currentPage={page.currentPage} lastPage={page.lastPage} />
+    <ItemListJsonLd elements={page.data.map((product, idx) => ({
+      position: (page.start || 0) + idx + 1,
+      url: `/products/${(product as any).data?.properties?.pCategory?.[0] ? String((product as any).data.properties.pCategory[0]).toLowerCase().replace(/\s+/g,'-') + '/' : ''}${(product as any).data?.properties?.pSlug || ''}/`,
+      name: (product as any).data?.properties?.pTitle || 'Product',
+      image: (product as any).data?.properties?.pImageURL1 || undefined,
+    }))} />
   </fragment>
 
   <section class="bg-white dark:bg-gray-900">
