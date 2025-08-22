@@ -46,97 +46,90 @@ const menuId = `unified-mega-menu-${trigger.toLowerCase().replace(/\s+/g, '-')}`
     </svg>
   </button>
 
-  <!-- Mega Menu Dropdown - Supabase Style -->
+  <!-- Simple Mega Menu Dropdown -->
   <div
     id={menuId}
-    class="absolute left-0 top-full mt-1 w-screen opacity-0 invisible transform scale-95 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:visible group-hover:scale-100 z-50"
+    class="absolute left-0 top-full mt-1 w-80 opacity-0 invisible transform scale-95 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:visible group-hover:scale-100 z-50"
     role="menu"
     aria-labelledby={`${menuId}-trigger`}
     data-unified-mega-menu-content={menuId}
   >
     <div class="absolute inset-0 bg-black/5 dark:bg-black/20 backdrop-blur-sm"></div>
     
-    <!-- Content Container - Full Width -->
+    <!-- Content Container - Simple Design -->
     <div class="relative bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-      <!-- Horizontal Scrollable Content -->
-      <div class="overflow-x-auto">
-        <div class="flex gap-8 p-8 min-w-max">
-          {sections.map((section) => (
-            <div class="flex-shrink-0 w-80">
-              <!-- Section Header with Icon -->
-              <div class="flex items-center gap-3 mb-4">
-                {section.icon && (
-                  <div class="flex-shrink-0 w-8 h-8 text-blue-600 dark:text-blue-400" set:html={section.icon}></div>
-                )}
-                <h3 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider">
-                  {section.title}
-                </h3>
-              </div>
-              
-              <!-- Section Items - All Visible -->
-              <div class="space-y-3">
-                {section.items.map((item) => (
-                  <a
-                    href={item.url}
-                    class="group/item flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-                    role="menuitem"
-                    {...(item.isExternal && {
-                      target: "_blank",
-                      rel: "noopener noreferrer"
-                    })}
-                  >
-                    <!-- Item Icon -->
-                    {item.icon && (
-                      <div class="flex-shrink-0 mt-0.5 text-gray-400 group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400 transition-colors" set:html={item.icon}></div>
-                    )}
-                    
-                    <!-- Item Content -->
-                    <div class="flex-1 min-w-0">
-                      <div class="flex items-center gap-2">
-                        <span class="text-sm font-medium text-gray-900 dark:text-white group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400 transition-colors">
-                          {item.title}
+      <!-- Simple Menu Content -->
+      <div class="p-4 space-y-4">
+        {sections.map((section) => (
+          <div class="space-y-3">
+            <!-- Section Header with Icon -->
+            <div class="flex items-center gap-3 pb-2 border-b border-gray-100 dark:border-gray-800">
+              {section.icon && (
+                <div class="flex-shrink-0 w-6 h-6 text-blue-600 dark:text-blue-400" set:html={section.icon}></div>
+              )}
+              <h3 class="text-sm font-semibold text-gray-900 dark:text-white">
+                {section.title}
+              </h3>
+            </div>
+            
+            <!-- Section Items - Simple List -->
+            <div class="space-y-2">
+              {section.items.map((item) => (
+                <a
+                  href={item.url}
+                  class="group/item flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                  role="menuitem"
+                  {...(item.isExternal && {
+                    target: "_blank",
+                    rel: "noopener noreferrer"
+                  })}
+                >
+                  <!-- Item Icon -->
+                  {item.icon && (
+                    <div class="flex-shrink-0 w-5 h-5 text-gray-400 group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400 transition-colors" set:html={item.icon}></div>
+                  )}
+                  
+                  <!-- Item Content -->
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-2">
+                      <span class="text-sm font-medium text-gray-900 dark:text-white group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400 transition-colors">
+                        {item.title}
+                      </span>
+                      {item.badge && (
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
+                          {item.badge}
                         </span>
-                        {item.badge && (
-                          <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
-                            {item.badge}
-                          </span>
-                        )}
-                        {item.isExternal && (
-                          <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                          </svg>
-                        )}
-                      </div>
-                      {item.description && (
-                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-400 line-clamp-2">
-                          {item.description}
-                        </p>
+                      )}
+                      {item.isExternal && (
+                        <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
                       )}
                     </div>
-                  </a>
-                ))}
-              </div>
+                    {item.description && (
+                      <p class="mt-1 text-xs text-gray-500 dark:text-gray-400 line-clamp-2">
+                        {item.description}
+                      </p>
+                    )}
+                  </div>
+                </a>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
       
-      <!-- Footer Section -->
-      <div class="bg-gray-50 dark:bg-gray-800 px-8 py-4 border-t border-gray-200 dark:border-gray-700">
-        <div class="flex items-center justify-between">
-          <p class="text-sm text-gray-600 dark:text-gray-400">
-            Butuh bantuan? Hubungi tim kami
-          </p>
-          <a
-            href="/contact"
-            class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-800"
-          >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-            </svg>
-            Konsultasi Gratis
-          </a>
-        </div>
+      <!-- Simple Footer -->
+      <div class="bg-gray-50 dark:bg-gray-800 px-4 py-3 border-t border-gray-200 dark:border-gray-700">
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 w-full justify-center px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+          </svg>
+          Konsultasi Gratis
+        </a>
       </div>
     </div>
   </div>
@@ -276,46 +269,5 @@ const menuId = `unified-mega-menu-${trigger.toLowerCase().replace(/\s+/g, '-')}`
   [data-unified-mega-menu-trigger]:focus-visible {
     outline: 2px solid #3b82f6;
     outline-offset: 2px;
-  }
-  
-  /* Horizontal scroll styling */
-  .overflow-x-auto {
-    scrollbar-width: thin;
-    scrollbar-color: #d1d5db #f3f4f6;
-  }
-  
-  .overflow-x-auto::-webkit-scrollbar {
-    height: 6px;
-  }
-  
-  .overflow-x-auto::-webkit-scrollbar-track {
-    background: #f3f4f6;
-    border-radius: 3px;
-  }
-  
-  .overflow-x-auto::-webkit-scrollbar-thumb {
-    background: #d1d5db;
-    border-radius: 3px;
-  }
-  
-  .overflow-x-auto::-webkit-scrollbar-thumb:hover {
-    background: #9ca3af;
-  }
-  
-  /* Dark mode scrollbar */
-  .dark .overflow-x-auto {
-    scrollbar-color: #4b5563 #1f2937;
-  }
-  
-  .dark .overflow-x-auto::-webkit-scrollbar-track {
-    background: #1f2937;
-  }
-  
-  .dark .overflow-x-auto::-webkit-scrollbar-thumb {
-    background: #4b5563;
-  }
-  
-  .dark .overflow-x-auto::-webkit-scrollbar-thumb:hover {
-    background: #6b7280;
   }
 </style>
