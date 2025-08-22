@@ -122,7 +122,7 @@ if (source === 'supabase') {
     category: post.category || post.categories || [],
     author: post.author || "Kotacom.id",
     source: 'supabase',
-    popularCategories
+    popularCategories: ((Astro.props as any).popularCategories || [])
   };
 } else if (source === 'mdx') {
   Content = post.Content;
@@ -136,13 +136,13 @@ if (source === 'supabase') {
     tags: post.data.tags || [],
     author: "Kotacom.id",
     source: 'mdx',
-    popularCategories
+    popularCategories: ((Astro.props as any).popularCategories || [])
   };
 }
 
 ---
 
-<PostLayout {...layoutData} wordCount={wordCount} />
+<PostLayout {...layoutData} wordCount={wordCount} popularCategories={layoutData.popularCategories} />
 
 <style>
   /* Override breadcrumb untuk post Sanity/Directus */
