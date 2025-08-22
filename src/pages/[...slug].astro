@@ -106,7 +106,7 @@ let Content: any;
 if (source === 'supabase') {
   Content = undefined;
   const rawContent = post.body || post.content || "";
-  const htmlContent = await marked(rawContent);
+  const htmlContent = /<\w+[^>]*>/.test(rawContent) ? rawContent : await marked(rawContent);
   processedContent = processContent(htmlContent);
   wordCount = processedContent.split(' ').length;
   const imageUrl = post.cover_image || post.featured_image || post.imageUrl || post.coverImage || post.image || post.thumbnail || "";
