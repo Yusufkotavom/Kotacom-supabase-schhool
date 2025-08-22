@@ -10,14 +10,140 @@ import { toSlug } from '../utils/slug-helpers';
 import WhatsAppButton from "../components/WhatsAppButton.astro";
 import { getCollection } from 'astro:content';
 import { getPostsDirectFromSupabase, convertSupabasePost } from "../lib/supabase-direct";
----
 
----
+// Props untuk semua jenis post
+type Props = {
+	// New Payload/Direct props
+	title?: string;
+	description?: string;
+	imageUrl?: string;
+	coverImage?: string;
+	image?: string;
+	published?: Date;
+	publishedAt?: Date;
+	updated?: Date;
+	lastUpdated?: Date;
+	tags?: string[] | Array<{value: string}>;
+	category?: string[] | Array<{value: string}>;
+	author?: string;
+	source?: 'directus' | 'notion' | 'mdx' | 'sanity' | 'payload' | 'supabase' | 'page' | 'unknown';
+	wordCount?: number;
+	content?: string;
+	body?: string;
+	slug?: string;
+	// Legacy props untuk backward compatibility
+	properties?: any;
+};
+
+const props = Astro.props as any;
+
+// Helper function to process tags/categories
+const processTags = (tags: any): string[] => {
+	if (!tags) return [];
+	if (Array.isArray(tags)) {
+		return tags.map(tag => {
+			if (typeof tag === 'string') return tag;
+			if (tag && typeof tag === 'object' && tag.value) return tag.value;
+			return String(tag);
+		}).filter(Boolean);
+	}
+	return [];
+};
+
+// Normalize data untuk semua jenis post
+let postData: {
+	title: string;
+	description: string;
+	image: string;
+	published: Date | string;
+	updated: Date | string;
+	tags: string[];
+	author: string;
+	source: string;
+	slug?: string;
+	content?: string;
+};
+
+// New Payload schema (direct properties)
+if (props.title && !props.properties) {
+	postData = {
+		title: props.title,
+		description: props.description || '',
+		image: props.imageUrl || props.coverImage || props.image || 'https://res.cloudinary.com/dxyjku3eh/image/upload/v1754820661/Tanpa_judul_Presentasi__20250810_170926_0000_vdiibn.png',
+		published: props.published || props.publishedAt || new Date(),
+		updated: props.updated || props.lastUpdated || props.published || props.publishedAt || new Date(),
+		tags: [...processTags(props.tags), ...processTags(props.category)] as string[],
+		author: props.author || COMPANY_NAME,
+		source: props.source || 'payload',
+		slug: props.slug,
+		content: props.content || props.body
+	};
+} else if (props.source === 'directus' || props.source === 'sanity') {
+	// Directus/Sanity post structure
+	postData = {
+		title: props.title || 'Untitled',
+		description: props.description || '',
+		image: props.image || 'https://res.cloudinary.com/dxyjku3eh/image/upload/v1754820661/Tanpa_judul_Presentasi__20250810_170926_0000_vdiibn.png',
+		published: props.published || new Date(),
+		updated: props.updated || new Date(),
+		tags: processTags(props.tags),
+		author: props.author || COMPANY_NAME,
+		source: props.source || 'sanity'
+	};
+} else if (props.properties) {
+	// Legacy Notion/MDX structure
+	const properties = props.properties;
+	postData = {
+		title: properties.bTitle || properties.title || 'Untitled',
+		description: properties.bDescription || properties.description || '',
+		image: properties.bCoverImage || properties.coverImage || 'https://res.cloudinary.com/dxyjku3eh/image/upload/v1754820661/Tanpa_judul_Presentasi__20250810_170926_0000_vdiibn.png',
+		published: properties.bPublished?.start || properties.published || new Date(),
+		updated: properties.bLastUpdated?.start || properties.lastUpdated || new Date(),
+		tags: Array.isArray(properties.bTags) ? properties.bTags.filter(Boolean) : (properties.bTags ? [properties.bTags] : []),
+		author: COMPANY_NAME,
+		source: props.source || 'notion',
+		slug: properties.bSlug || properties.slug
+	};
+} else {
+	// Fallback
+	postData = {
+		title: props.title || 'Untitled',
+		description: props.description || '',
+		image: props.image || 'https://res.cloudinary.com/dxyjku3eh/image/upload/v1754820661/Tanpa_judul_Presentasi__20250810_170926_0000_vdiibn.png',
+		published: props.published || new Date(),
+		updated: props.updated || new Date(),
+		tags: processTags(props.tags),
+		author: props.author || COMPANY_NAME,
+		source: props.source || 'unknown'
+	};
+}
+
+const title = postData.title;
+const description = postData.description || `Artikel tentang ${postData.title} dari ${COMPANY_NAME}`;
+const image = postData.image;
+
+// Parse date safely
+const publishedDate = postData.published instanceof Date 
+	? postData.published.toISOString()
+	: new Date(postData.published).toISOString();
+
+const modifiedDate = postData.updated instanceof Date 
+	? postData.updated.toISOString()
+	: new Date(postData.updated).toISOString();
+
+// Breadcrumbs for schema - updated for root level posts
+const breadcrumbs = [
+	{ name: "Home", url: "/" },
+	{ name: postData.title, url: Astro.url.toString() }
+];
+
+// Reading time (approx)
+const readingTimeMinutes = props.wordCount ? Math.ceil(props.wordCount / 200) : null;
+
 // Hitung 10 kategori/tag terbanyak dari MDX + Supabase posts
 let topCategories: Array<{ name: string; count: number }> = [];
 try {
 	const counts: Record<string, number> = {};
-
 	// MDX
 	const mdxPosts: any[] = await getCollection('postsMdx').catch(() => []);
 	for (const p of mdxPosts) {
@@ -32,7 +158,6 @@ try {
 			counts[name] = (counts[name] || 0) + 1;
 		}
 	}
-
 	// Supabase (published only)
 	const supabasePostsRaw: any[] = await getPostsDirectFromSupabase(1000, 'published').catch(() => []);
 	const supabasePosts = (supabasePostsRaw || []).map((p: any) => convertSupabasePost(p));
@@ -48,7 +173,6 @@ try {
 			counts[name] = (counts[name] || 0) + 1;
 		}
 	}
-
 	topCategories = Object.entries(counts)
 		.map(([name, count]) => ({ name, count }))
 		.sort((a, b) => b.count - a.count)
