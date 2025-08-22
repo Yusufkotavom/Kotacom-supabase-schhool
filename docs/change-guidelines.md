@@ -9,6 +9,11 @@ Dokumen ini adalah pedoman WAJIB saat menambah, mengubah, atau menghapus field/k
 - Hindari null/undefined di UI: sediakan default aman pada mapping (string kosong atau array kosong).
 - Jangan hard-delete field lama sebelum semua referensi diperbarui dan build/test lulus.
 
+## Best Practice Build Performance
+- Hindari fetch data per-halaman di layout. Lakukan agregasi (mis. popular categories/tags) sekali di `getStaticPaths` dan pass via props.
+- Jika konten Supabase bisa berupa HTML atau Markdown, deteksi sederhana (regex tag HTML) sebelum mem-parsing `marked` untuk menghindari double parse.
+- Kurangi pekerjaaan runtime di komponen/slot; gunakan normalisasi di static generation.
+
 ## Proses Umum Perubahan Field
 1. Definisikan Perubahan
    - Nama field baru/diubah/dihapus.
@@ -17,24 +22,21 @@ Dokumen ini adalah pedoman WAJIB saat menambah, mengubah, atau menghapus field/k
    - MDX: tambahkan di frontmatter contoh.
    - Supabase: tambahkan kolom/relasi. Dokumentasikan perbedaan snake_case vs camelCase.
 3. Update Adapter/Fetcher
-   - Products/Services/Projects/Posts: perbarui fungsi `get*DirectFromSupabase` dan/atau converter (mis. `convertSupabasePost`).
+   - Products/Services/Projects/Posts: perbarui fungsi `get*DirectFromSupabase` dan/atau converter.
    - Jika konten rich text/markdown, proses menjadi HTML (gunakan `marked` konfigurasi yang sama).
 4. Update Normalizer Halaman
-   - Detail: `src/pages/{entity}/[...slug].astro` → `layoutData`/`properties` harus memuat field baru.
+   - Detail: `src/pages/{entity}/[...slug].astro`: `layoutData`/`properties` harus memuat field baru.
    - Listing/Latest: normalizer MDX dan Supabase harus memetakan field baru agar kartu & sort/filter berfungsi.
 5. Update Komponen UI
-   - Kartu (`*Card.astro`): tambahkan akses field baru (ingat prefix `p*` atau `sv*` bila dipakai) dan default aman.
-   - Layout (`*Page.astro`/`PostLayout.astro`): tampilkan field baru, perbarui breadcrumb/CTA/section terkait.
-   - SchemaMarkup: injeksikan atribut relevan pada `data`/`price`/`tags`/`category` sesuai tipe.
-   - Dropdown (jika berpengaruh): pastikan sumber data dan counting mencakup field baru (pertimbangkan dukungan Supabase bila diperlukan).
+   - Kartu (`*Card.astro`) dan layout (`*Page.astro`/`PostLayout.astro`).
+   - SchemaMarkup: injeksikan atribut relevan.
+   - Dropdown: pastikan sumber data dan counting mencakup field baru (atau nonaktifkan bila tak dipakai lagi).
 6. Pencarian
-   - Pastikan konten tetap berada dalam elemen dengan `data-pagefind-body` dan meta `data-pagefind-meta`.
+   - Pastikan konten tetap berada dalam `data-pagefind-body` dan meta `data-pagefind-meta`.
 7. Uji Lokal
-   - Jalankan build untuk membentuk indeks Pagefind dan validasi konsol (error log Supabase adapter, normalizer).
-   - Periksa halaman: detail, listing, homepage latest, dan search.
+   - Jalankan build dan validasi halaman: detail, listing, homepage latest, dan search.
 8. Dokumentasi
-   - Perbarui `docs/{entity}.md` dan contoh frontmatter.
-   - Tambahkan catatan migrasi jika mengubah tipe atau nama field.
+   - Perbarui `docs/{entity}.md` dan catatan migrasi.
 
 ## Strategi Kompatibilitas Belakang
 - Tambahkan field baru sebagai opsional, beri default aman saat tidak tersedia.
@@ -50,12 +52,12 @@ Dokumen ini adalah pedoman WAJIB saat menambah, mengubah, atau menghapus field/k
 
 ## Checklist Final (Sebelum Merge)
 - [ ] Adapter Supabase diperbarui dan tidak error saat fetch.
-- [ ] Normalizer (detail/listing/latest) MDX+Supabase telah selaras.
+- [ ] Agregasi (jika ada) dihitung di `getStaticPaths` dan dipass via props.
 - [ ] Komponen kartu & layout menampilkan field baru tanpa error ketika kosong.
-- [ ] SchemaMarkup menerima field baru jika relevan dan tidak mengeluarkan JSON-LD tidak valid.
-- [ ] Dropdown (bila terpengaruh) menampilkan jumlah/filter yang benar.
-- [ ] Pencarian berfungsi dan menampilkan entri baru/terubah.
-- [ ] Build hijau, tidak ada error konsol di halaman terkait.
+- [ ] SchemaMarkup valid.
+- [ ] Dropdown relevan atau disembunyikan jika tidak dipakai.
+- [ ] Pencarian berfungsi.
+- [ ] Build hijau.
 - [ ] `docs/*.md` diperbarui.
 
 Ikuti urutan ini untuk menghindari regresi dan menjaga konsistensi lintas komponen.

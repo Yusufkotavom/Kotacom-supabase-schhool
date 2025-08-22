@@ -4,7 +4,6 @@ import MainLayout from "../../layouts/MainLayout.astro";
 import type { GetStaticPathsOptions } from "astro";
 import ProductCard from "../../components/ProductCard.astro";
 import ProductCategoryDropdown from "../../components/ProductCategoryDropdown.astro";
-import PCountryDropdown from "../../components/PCountryDropdown.astro";
 import { getProductsDirectFromSupabase } from "../../lib/supabase-direct";
  
 
@@ -271,11 +270,6 @@ const productsWithDiscount = page.data.filter(p => p.data.properties.pOriginalPr
             <ProductCategoryDropdown />
           </div>
           
-          <!-- Country Filter -->
-          <div class="min-w-[200px]">
-            <PCountryDropdown />
-          </div>
-          
           <!-- Sort Options -->
           <select 
             id="sortSelect" 
@@ -410,16 +404,10 @@ const productsWithDiscount = page.data.filter(p => p.data.properties.pOriginalPr
     
     if (sortSelect) {
       sortSelect.addEventListener('change', function() {
-        // In a real implementation, you would reload the page with new sort parameters
-        // For now, we'll just log the selection
         console.log('Sort changed to:', this.value);
-        
-        // You could implement client-side sorting here or redirect with query params
-        // window.location.href = `/products?sort=${this.value}`;
       });
     }
     
-    // Track page view for analytics
     if (window.affiliateUtils?.trackView) {
       window.affiliateUtils.trackView('product-listing', 'category-page');
     }
