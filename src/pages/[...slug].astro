@@ -186,7 +186,7 @@ if (source === 'page') {
       {layoutData.image && (
         <img src={layoutData.image} alt={layoutData.title} class="hidden" data-pagefind-meta="image[src], image_alt[alt]" />
       )}
-      <div set:html={processedContent} />
+      <div set:html={processedContent}></div>
     </article>
   ) : (
     <div class="prose prose-lg max-w-none">
