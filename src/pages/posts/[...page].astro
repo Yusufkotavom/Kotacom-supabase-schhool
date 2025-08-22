@@ -72,6 +72,9 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 
   return paginate(allPosts, {
     pageSize: 12,
+    params: (page) => ({ 
+      page: page.currentPage === 1 ? '1' : page.currentPage.toString() 
+    }),
   });
 }
 
@@ -79,80 +82,143 @@ const { page } = Astro.props;
 ---
 
 <MainLayout
-  title={`All Posts - Page ${page.currentPage} of ${page.lastPage}`}
+  title={`Semua Artikel - Halaman ${page.currentPage} - Kotacom.id`}
+  description={`Halaman ${page.currentPage} dari ${page.lastPage} - Kumpulan artikel terbaru dari tim kotacom.id tentang teknologi, IT, dan digital transformation.`}
+  type="page"
 >
   <fragment slot="head">
-    {page.url.prev && (<link rel="prev" href={page.url.prev} />)}
+    {page.currentPage > 1 && page.currentPage === 2 && (<link rel="prev" href="/posts/1/" />)}
+    {page.currentPage > 2 && (<link rel="prev" href={`/posts/${page.currentPage - 1}/`} />)}
     {page.url.next && (<link rel="next" href={page.url.next} />)}
     {page.currentPage > 1 && (<meta name="robots" content="noindex,follow" />)}
   </fragment>
   
-  <section class="bg-white dark:bg-gray-900">
-    <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-      <div class="max-w-screen-md mb-8 lg:mb-16">
-        <h1
-          class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
-        >
+  <!-- Breadcrumbs Section -->
+  <section class="bg-gray-50 dark:bg-gray-800 py-4">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+          <li class="inline-flex items-center">
+            <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+              <svg class="w-3 h-3 mr-2.5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+              </svg>
+              Home
+            </a>
+          </li>
+          <li aria-current="page">
+            <div class="flex items-center">
+              <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+              </svg>
+              <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Artikel</span>
+            </div>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Posts Hero Section -->
+  <section class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+      <div class="max-w-4xl mx-auto text-center">
+        <!-- Article Badge -->
+        <div class="inline-flex items-center px-4 py-2 mb-6 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
+          <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+          </svg>
+          Artikel
+        </div>
+        
+        <!-- Title -->
+        <h1 class="mb-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
           Semua Artikel
         </h1>
-        <p class="text-gray-500 sm:text-xl dark:text-gray-400">
-          Kumpulan artikel terbaru dari tim kotacom.id
+        
+        <!-- Description -->
+        <p class="mb-8 text-lg sm:text-xl font-normal text-gray-500 dark:text-gray-400 max-w-3xl mx-auto">
+          Kumpulan artikel terbaru dari tim kotacom.id tentang teknologi, IT, dan digital transformation
         </p>
+        
+        <!-- Stats -->
+        <div class="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+            </svg>
+            <span>{page.total} artikel</span>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" clip-rule="evenodd" />
+            </svg>
+            <span>Halaman {page.currentPage} dari {page.lastPage}</span>
+          </div>
+        </div>
       </div>
-      
-      <div class="mb-4">
-        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-          Menampilkan <span class="font-semibold text-gray-900 dark:text-white">
-            {page.start + 1}-{page.end + 1}
-          </span> dari <span class="font-semibold text-gray-900 dark:text-white">
-            {page.total}
-          </span> artikel
-        </span>
-      </div>
-      
-      <div
-        class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0"
-      >
-        {page.data.map((post) => <PostCard post={post} />)}
+    </div>
+  </section>
+
+  <!-- Articles Grid Section -->
+  <section class="bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {page.data.map((post) => <PostCard post={post} />)}
+        </div>
       </div>
     </div>
   </section>
   
-  <section class="bg-white dark:bg-gray-900">
-    <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-      <!-- Pagination -->
-      <nav class="flex justify-center items-center space-x-1">
-        {page.url.prev && (
-          <a
-            href={page.url.prev}
-            class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >
-            Previous
-          </a>
-        )}
-        
-        {Array.from({ length: page.lastPage }, (_, i) => i + 1).map((pageNum) => (
-          <a
-            href={pageNum === 1 ? '/posts/' : `/posts/${pageNum}/`}
-            class={`flex items-center justify-center px-3 h-8 leading-tight border ${
-              pageNum === page.currentPage
-                ? 'text-blue-600 bg-blue-50 border-blue-300 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white'
-                : 'text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
-            }`}
-          >
-            {pageNum}
-          </a>
-        ))}
-        
-        {page.url.next && (
-          <a
-            href={page.url.next}
-            class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >
-            Next
-          </a>
-        )}
-      </nav>
+  <!-- Pagination Section -->
+  <section class="bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="max-w-4xl mx-auto">
+        <nav class="flex items-center justify-center" aria-label="Pagination Navigation">
+          <div class="flex items-center gap-1">
+            
+            <!-- Previous Button -->
+            {page.currentPage > 1 && (
+              <a
+                href={page.currentPage === 2 ? '/posts/1/' : `/posts/${page.currentPage - 1}/`}
+                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white transition-all duration-200"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                Sebelumnya
+              </a>
+            )}
+            
+            <!-- Page Numbers -->
+            <div class="flex items-center gap-1 mx-4">
+              <span class="px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 border border-blue-300 rounded-lg dark:bg-blue-900 dark:border-blue-700 dark:text-blue-400">
+                {page.currentPage}
+              </span>
+              <span class="px-2 text-sm text-gray-500 dark:text-gray-400">dari</span>
+              <span class="px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400">
+                {page.lastPage}
+              </span>
+            </div>
+            
+            <!-- Next Button -->
+            {page.url.next && (
+              <a
+                href={page.url.next}
+                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white transition-all duration-200"
+              >
+                Selanjutnya
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            )}
+            
+          </div>
+        </nav>
+      </div>
     </div>
   </section>
 </MainLayout>
