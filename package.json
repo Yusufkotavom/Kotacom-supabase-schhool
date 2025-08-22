@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "npm run redirects:vercel && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "optimize-images": "node optimize-images.js",
@@ -12,7 +12,8 @@
     "analyze": "npm run build && open dist/stats.html",
     "performance": "npm run build && lighthouse dist/ --output html --output-path ./lighthouse-report.html",
     "lint": "eslint . --ext .ts,.tsx,.astro",
-    "lint:fix": "eslint . --ext .ts,.tsx,.astro --fix"
+    "lint:fix": "eslint . --ext .ts,.tsx,.astro --fix",
+    "redirects:vercel": "node scripts/generate-vercel-redirects.js"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.0",

@@ -14,6 +14,7 @@ Dokumen ini WAJIB diikuti oleh AI/developer saat menambah, mengubah, atau mengha
 - [Post](./post.md)
 - [Project](./project.md)
 - [Guideline Perubahan Aman](./change-guidelines.md)
+- [Redirects (Netlify & Vercel)](./redirects.md)
 
 ## Sumber Data Utama
 - MDX Collections:
