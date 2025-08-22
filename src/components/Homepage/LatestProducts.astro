@@ -60,9 +60,9 @@ const normalizedSupabase = supabaseProducts.map((p: any) => ({
   data: { properties: {
     pTitle: p.title,
     pPrice: p.price,
-    pCountry: (p.country||[]).map((x:any)=>x.value||x),
-    pLocale: (p.locale||[]).map((x:any)=>x.value||x),
-    pCategory: (p.category||[]).map((x:any)=>x.value||x),
+    pCountry: Array.isArray(p.country) ? p.country.map((x:any)=>x.value||x) : (p.country ? [p.country] : []),
+    pLocale: Array.isArray(p.locale) ? p.locale.map((x:any)=>x.value||x) : (p.locale ? [p.locale] : []),
+    pCategory: Array.isArray(p.category) ? p.category.map((x:any)=>x.value||x) : (p.category ? [p.category] : []),
     pSlug: p.slug,
     pImageURL1: p.imageUrl || p.cover_image || "",
     pPublished: { start: p.published ? new Date(p.published) : new Date(0) },
