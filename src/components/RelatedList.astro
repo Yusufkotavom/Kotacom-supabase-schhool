@@ -67,15 +67,17 @@ items = items.slice(0, limit);
 ---
 
 {items.length > 0 && (
-  <section class="bg-gray-50 dark:bg-gray-800">
-    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">
-        {type === 'post' ? 'Artikel Terbaru' : type === 'project' ? 'Project Terbaru' : 'Produk Terbaru'}
-      </h2>
-      <ul class="grid gap-2 list-disc pl-4 text-gray-700 dark:text-gray-300">
+  <section class="bg-white dark:bg-gray-900">
+    <div class="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-base font-semibold text-gray-900 dark:text-white">
+          {type === 'post' ? 'Artikel Terkait' : type === 'project' ? 'Project Terkait' : 'Produk Terkait'}
+        </h2>
+      </div>
+      <ul class="divide-y divide-gray-200 dark:divide-gray-700 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
         {items.map((it) => (
-          <li>
-            <a href={it.href} class="text-blue-600 dark:text-blue-400 hover:underline">{it.title}</a>
+          <li class="p-3">
+            <a href={it.href} class="text-sm text-blue-600 dark:text-blue-400 hover:underline">{it.title}</a>
           </li>
         ))}
       </ul>

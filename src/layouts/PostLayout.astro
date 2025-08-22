@@ -181,6 +181,18 @@ const readingTimeMinutes = props.wordCount ? Math.ceil(props.wordCount / 200) : 
 						</div>
 					)}
 				</div>
+				{image && (
+					<div class="mt-4">
+						<ResponsiveImage
+							src={image}
+							alt={postData.title}
+							class="rounded-lg w-full object-cover"
+							loading="eager"
+							fetchpriority="high"
+							data-pagefind-meta="image[src], image_alt[alt]"
+						/>
+					</div>
+				)}
 			</div>
 		</div>
 	</section>
@@ -190,14 +202,14 @@ const readingTimeMinutes = props.wordCount ? Math.ceil(props.wordCount / 200) : 
 		<div class="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8 py-8">
 			<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 				<!-- Article -->
-				<article class="lg:col-span-2 prose md:prose-lg max-w-none" data-pagefind-body data-pagefind-filter={props.source === 'page' ? undefined : 'type:post'}>
+				<article id="post-article" class="lg:col-span-2 prose md:prose-lg max-w-none" data-pagefind-body data-pagefind-filter={props.source === 'page' ? undefined : 'type:post'}>
 					<slot />
 					{postData.tags?.length > 0 && (
 						<span class="hidden" data-pagefind-meta="categories">{postData.tags.join(', ')}</span>
 					)}
 				</article>
 
-				<!-- Sidebar CTA -->
+				<!-- Sidebar CTA + TOC -->
 				<aside class="lg:col-span-1 space-y-6">
 					<div class="p-5 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-900 dark:border-gray-700">
 						<h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Butuh Bantuan?</h2>
@@ -207,6 +219,11 @@ const readingTimeMinutes = props.wordCount ? Math.ceil(props.wordCount / 200) : 
 							whatsappMessage={`Halo! Saya membaca artikel ${postData.title}. Bisa konsultasi tentang layanan yang sesuai? {url}`}
 							className="w-full justify-center"
 						/>
+					</div>
+
+					<div class="p-5 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-900 dark:border-gray-700">
+						<h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Daftar Isi</h3>
+						<ul id="toc-list" class="space-y-1 text-xs leading-tight text-gray-600 dark:text-gray-300"></ul>
 					</div>
 
 					<div class="p-5 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-900 dark:border-gray-700">
@@ -238,6 +255,37 @@ const readingTimeMinutes = props.wordCount ? Math.ceil(props.wordCount / 200) : 
 		</div>
 	</section>
 
-	<!-- Related Articles (tetap minimal) -->
+	<!-- Related Articles (konsisten minimal) -->
 	<RelatedList type="post" limit={5} />
+
+	<script is:inline>
+		(function(){
+			function slugify(text){
+				return (text||'').toString().toLowerCase().trim()
+					.replace(/[^\w\s-]/g,'')
+					.replace(/\s+/g,'-');
+			}
+			document.addEventListener('DOMContentLoaded', function(){
+				const article = document.getElementById('post-article');
+				const toc = document.getElementById('toc-list');
+				if(!article || !toc) return;
+				const headers = Array.from(article.querySelectorAll('h2'));
+				const frag = document.createDocumentFragment();
+				headers.forEach((h) => {
+					const text = h.textContent || '';
+					let id = h.getAttribute('id');
+					if(!id){ id = slugify(text); h.setAttribute('id', id); }
+					const li = document.createElement('li');
+					li.className = 'list-none';
+					const a = document.createElement('a');
+					a.href = `#${id}`;
+					a.textContent = text;
+					a.className = 'text-xs text-gray-700 hover:underline dark:text-gray-300';
+					li.appendChild(a);
+					frag.appendChild(li);
+				});
+				toc.appendChild(frag);
+			});
+		})();
+	</script>
 </MainLayout>
