@@ -1,5 +1,6 @@
 ---
 import ResponsiveImage from './ResponsiveImage.astro';
+import { toSlug } from '../utils/slug-helpers';
 
 interface Props {
   post: any; // Support both old and new schemas
@@ -106,9 +107,9 @@ const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
         {postData.tags.slice(0, 3).map((tag: any) => {
           const tagValue = getTagValue(tag);
           return tagValue ? (
-            <a
-              href={`/kategori/${tagValue.toLowerCase().replace(/\s+/g, "-")}/`}
-              class={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-white bg-gradient-to-r ${randomGradient} hover:opacity-80 transition-opacity duration-200`}
+            <a 
+              href={`/category/${toSlug(tagValue)}/`}
+              class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full hover:bg-blue-200 transition-colors"
             >
               {tagValue}
             </a>

@@ -2,7 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import PostCard from '../../../components/PostCard.astro';
 import { getPostsDirectFromSupabase } from '../../../lib/supabase-direct';
-import { getCollection } from "astro:content";
+import { toSlug, fromSlug } from '../../../utils/slug-helpers';
 
 export async function getStaticPaths({ paginate }: any) {
   // Get MDX posts from pages/posts directory
@@ -75,7 +75,7 @@ export async function getStaticPaths({ paginate }: any) {
     if (allPostsWithTag.length > 0) {
       // Use paginate for proper pagination
       const paginatedPosts = paginate(allPostsWithTag, {
-        params: { tag },
+        params: { tag: toSlug(tag) },
         pageSize: 12
       });
       
@@ -92,22 +92,23 @@ type Props = {
 };
 
 const { page } = Astro.props;
-const tag = page.params?.tag || Astro.params.tag;
+const tagSlug = page.params?.tag || Astro.params.tag;
+const tagTitle = fromSlug(tagSlug || '');
 ---
 
-<Layout title={`Kategori: ${tag} - Kotacom.id`}>
+<Layout title={`Kategori: ${tagTitle} - Kotacom.id`}>
   <main class="container mx-auto px-4 py-8">
     <div class="mb-8">
       <nav class="text-sm breadcrumbs mb-4">
         <a href="/" class="text-blue-600 hover:underline">Home</a>
         <span class="mx-2">/</span>
-        <a href="/kategori/" class="text-blue-600 hover:underline">Kategori</a>
+        <a href="/category/" class="text-blue-600 hover:underline">Kategori</a>
         <span class="mx-2">/</span>
-        <span class="text-gray-600">{tag}</span>
+        <span class="text-gray-600">{tagTitle}</span>
       </nav>
       
       <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-        Kategori: {tag}
+        Kategori: {tagTitle}
       </h1>
       <p class="text-gray-600 dark:text-gray-400">
         {page.total} artikel ditemukan

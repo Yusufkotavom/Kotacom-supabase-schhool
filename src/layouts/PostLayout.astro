@@ -6,6 +6,7 @@ import SchemaMarkup from "../components/SchemaMarkup.astro";
 import RelatedList from "../components/RelatedList.astro";
 import { COMPANY_NAME } from "../consts";
 import "../styles/content.css";
+import { toSlug } from '../utils/slug-helpers';
 
 // Props untuk semua jenis post
 type Props = {
@@ -40,7 +41,7 @@ const processTags = (tags: any): string[] => {
 	if (Array.isArray(tags)) {
 		return tags.map(tag => {
 			if (typeof tag === 'string') return tag;
-			if (tag && tag.value) return tag.value;
+			if (tag && typeof tag === 'object' && tag.value) return tag.value;
 			return String(tag);
 		}).filter(Boolean);
 	}
@@ -69,7 +70,7 @@ if (props.title && !props.properties) {
 		image: props.imageUrl || props.coverImage || props.image || 'https://res.cloudinary.com/dxyjku3eh/image/upload/v1754820661/Tanpa_judul_Presentasi__20250810_170926_0000_vdiibn.png',
 		published: props.published || props.publishedAt || new Date(),
 		updated: props.updated || props.lastUpdated || props.published || props.publishedAt || new Date(),
-		tags: [...processTags(props.tags), ...processTags(props.category)],
+		tags: [...processTags(props.tags), ...processTags(props.category)] as string[],
 		author: props.author || COMPANY_NAME,
 		source: props.source || 'payload',
 		slug: props.slug,
@@ -83,7 +84,7 @@ if (props.title && !props.properties) {
 		image: props.image || 'https://res.cloudinary.com/dxyjku3eh/image/upload/v1754820661/Tanpa_judul_Presentasi__20250810_170926_0000_vdiibn.png',
 		published: props.published || new Date(),
 		updated: props.updated || new Date(),
-		tags: props.tags || [],
+		tags: processTags(props.tags),
 		author: props.author || COMPANY_NAME,
 		source: props.source || 'sanity'
 	};
@@ -109,7 +110,7 @@ if (props.title && !props.properties) {
 		image: props.image || 'https://res.cloudinary.com/dxyjku3eh/image/upload/v1754820661/Tanpa_judul_Presentasi__20250810_170926_0000_vdiibn.png',
 		published: props.published || new Date(),
 		updated: props.updated || new Date(),
-		tags: props.tags || [],
+		tags: processTags(props.tags),
 		author: props.author || COMPANY_NAME,
 		source: props.source || 'unknown'
 	};
@@ -205,9 +206,11 @@ const readingTimeMinutes = props.wordCount ? Math.ceil(props.wordCount / 200) : 
 					{postData.tags?.length > 0 && (
 						<div class="flex flex-wrap gap-2">
 							{postData.tags.map((tag: string) => (
-								<a href={`/category/${tag.toLowerCase().replace(/\s+/g, '-')}/`} 
-								   class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold text-white bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all duration-200 transform hover:scale-105 hover:shadow-lg">
-									<span class="drop-shadow-sm">{tag}</span>
+								<a 
+								  href={`/category/${toSlug(tag)}/`}
+								  class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full hover:bg-blue-200 transition-colors"
+								>
+								  {tag}
 								</a>
 							))}
 						</div>

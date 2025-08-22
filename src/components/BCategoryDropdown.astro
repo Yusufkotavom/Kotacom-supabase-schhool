@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import { getPostsDirectFromSupabase, convertSupabasePost } from '../lib/supabase-direct';
+import { getPostsDirectFromSupabase, convertSupabasePost } from "../lib/supabase-direct";
+import { toSlug } from "../utils/slug-helpers";
 
 // Get the current category from the URL path
 const currentCategoryPromise = (async () => {
@@ -145,7 +146,7 @@ const uniqueTags = Object.keys(tagCounts).sort();
       Semua Kategori
     </option>
     {uniqueTags.map((tag) => {
-      const tagSlug = tag.toLowerCase().replace(/\s+/g, "-");
+      const tagSlug = toSlug(tag);
       return (
         <option
           value={`/category/${tagSlug}/`}
