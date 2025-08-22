@@ -8,7 +8,7 @@ const { content, Content } = Astro.props;
 ---
 
 <div class="html-content">
-  {Content ? <Content /> : <div set:html={content} />}
+  {Content ? <Content /> : <div set:html={content}></div>}
 </div>
 
 <script>
