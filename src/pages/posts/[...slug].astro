@@ -1,11 +1,28 @@
 ---
+// ⚠️  DISABLED - NOT USED ⚠️
+// This file has been disabled to prevent double routing conflicts
+// 
+// PROBLEM: This file was generating /posts/slug routes which conflicted with
+// the root [...slug].astro that generates /slug routes (direct access)
+//
+// SOLUTION: Use only the root [...slug].astro for post routing
+// Keep this file for reference but it's not active
+//
+// ROUTES:
+// ✅ /slug (from root [...slug].astro) - ACTIVE
+// ❌ /posts/slug (from this file) - DISABLED
+//
+// If you need to re-enable this, ensure you remove the root [...slug].astro first
+// to avoid duplicate routes during build.
+
+/*
 import PostLayout from '../../layouts/PostLayout.astro';
 import { getPostsDirectFromSupabase, convertSupabasePost } from '../../lib/supabase-direct';
 
 export async function getStaticPaths() {
 	// Get ALL posts directly from Supabase - MUCH faster!
 	const supabasePosts = await getPostsDirectFromSupabase(10000);
-	console.log(`� Building static paths for ${supabasePosts?.length || 0} posts (direct from Supabase)`);
+	console.log(`🚀 Building static paths for ${supabasePosts?.length || 0} posts (direct from Supabase)`);
 	
 	const validPosts = supabasePosts
 		.filter((post:any) => post.slug && typeof post.slug === 'string')
@@ -39,3 +56,30 @@ const layoutData = {
 
 <PostLayout {...layoutData}>
 </PostLayout>
+*/
+---
+
+<!-- 
+  ⚠️  DISABLED FILE - NOT USED ⚠️
+  
+  This file has been disabled to prevent double routing conflicts.
+  
+  PROBLEM: This file was generating /posts/slug routes which conflicted with
+  the root [...slug].astro that generates /slug routes (direct access)
+  
+  SOLUTION: Use only the root [...slug].astro for post routing
+  Keep this file for reference but it's not active
+  
+  ROUTES:
+  ✅ /slug (from root [...slug].astro) - ACTIVE  
+  ❌ /posts/slug (from this file) - DISABLED
+  
+  If you need to re-enable this, ensure you remove the root [...slug].astro first
+  to avoid duplicate routes during build.
+-->
+
+<div class="p-8 text-center text-gray-500">
+  <h1 class="text-2xl font-bold mb-4">File Disabled</h1>
+  <p class="mb-2">This routing file has been disabled to prevent double routing conflicts.</p>
+  <p class="text-sm">Posts are now served from the root level: <code>/slug</code> instead of <code>/posts/slug</code></p>
+</div>
