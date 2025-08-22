@@ -1,0 +1,189 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { MEGA_MENU_CONFIG } from '../data/mega-menu-config';
+
+// Extract products from existing config
+const allProducts = [];
+MEGA_MENU_CONFIG.layanan.sections.forEach(section => {
+  section.items.forEach(item => {
+    allProducts.push({
+      id: item.url.replace(/\//g, '-').replace(/-/g, ''),
+      title: item.title,
+      description: item.description,
+      price: Math.floor(Math.random() * 5000000) + 1000000, // Random price for demo
+      category: section.title
+    });
+  });
+});
+---
+
+<Layout title="Produk Kami">
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-8 text-center">Produk & Layanan</h1>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Product List -->
+      <div class="lg:col-span-2">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <table class="w-full">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Produk
+                </th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Kategori
+                </th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Harga
+                </th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Aksi
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              {allProducts.map((product) => (
+                <tr>
+                  <td class="px-6 py-4">
+                    <div>
+                      <div class="text-sm font-medium text-gray-900">{product.title}</div>
+                      {product.description && (
+                        <div class="text-sm text-gray-500">{product.description}</div>
+                      )}
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                      {product.category}
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm font-medium text-gray-900">Rp {product.price.toLocaleString()}</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <button
+                      class="add-to-cart-btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                      data-product-id={product.id}
+                      data-product-title={product.title}
+                      data-product-price={product.price}
+                    >
+                      Tambah ke Keranjang
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Shopping Cart -->
+      <div class="lg:col-span-1">
+        <div class="bg-white rounded-lg shadow-md p-6 sticky top-4">
+          <h2 class="text-lg font-semibold text-gray-900 mb-4">Keranjang Belanja</h2>
+          
+          <div id="cart-items" class="space-y-3 mb-4">
+            <p class="text-gray-500 text-sm">Keranjang masih kosong</p>
+          </div>
+          
+          <hr class="my-4">
+          
+          <div class="flex justify-between items-center mb-4">
+            <span class="font-medium text-gray-900">Total:</span>
+            <span id="cart-total" class="font-bold text-lg text-gray-900">Rp 0</span>
+          </div>
+          
+          <button
+            id="checkout-btn"
+            class="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-md font-medium transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled
+          >
+            Lanjut ke Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Shopping Cart Logic
+  let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  
+  function updateCart() {
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    
+    if (cart.length === 0) {
+      cartItems.innerHTML = '<p class="text-gray-500 text-sm">Keranjang masih kosong</p>';
+      cartTotal.textContent = 'Rp 0';
+      checkoutBtn.disabled = true;
+    } else {
+      cartItems.innerHTML = cart.map(item => `
+        <div class="flex justify-between items-center">
+          <span class="text-sm text-gray-900">${item.title}</span>
+          <span class="text-sm text-gray-600">Rp ${item.price.toLocaleString()}</span>
+        </div>
+      `).join('');
+      
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      cartTotal.textContent = `Rp ${total.toLocaleString()}`;
+      checkoutBtn.disabled = false;
+    }
+  }
+  
+  // Add to Cart
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('add-to-cart-btn')) {
+      const productId = e.target.dataset.productId;
+      const productTitle = e.target.dataset.productTitle;
+      const productPrice = parseInt(e.target.dataset.productPrice);
+      
+      // Check if already in cart
+      const existingItem = cart.find(item => item.id === productId);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({
+          id: productId,
+          title: productTitle,
+          price: productPrice,
+          quantity: 1
+        });
+      }
+      
+      // Save to localStorage
+      localStorage.setItem('cart', JSON.stringify(cart));
+      
+      // Update cart display
+      updateCart();
+      
+      // Show notification
+      showNotification(`${productTitle} ditambahkan ke keranjang ✅`);
+    }
+  });
+  
+  // Checkout button
+  document.getElementById('checkout-btn').addEventListener('click', () => {
+    if (cart.length > 0) {
+      window.location.href = '/checkout';
+    }
+  });
+  
+  // Show notification
+  function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.remove();
+    }, 3000);
+  }
+  
+  // Initialize cart display
+  updateCart();
+</script>
