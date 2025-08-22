@@ -140,44 +140,10 @@ const breadcrumbs = [
 // Reading time (approx)
 const readingTimeMinutes = props.wordCount ? Math.ceil(props.wordCount / 200) : null;
 
-// Hitung 10 kategori/tag terbanyak dari MDX + Supabase posts
-let topCategories: Array<{ name: string; count: number }> = [];
-try {
-	const counts: Record<string, number> = {};
-	// MDX
-	const mdxPosts: any[] = await getCollection('postsMdx').catch(() => []);
-	for (const p of mdxPosts) {
-		const rawCats = p.data?.category || [];
-		const rawTags = p.data?.tags || [];
-		const cats = Array.isArray(rawCats) ? rawCats : [rawCats];
-		const tags = Array.isArray(rawTags) ? rawTags : [rawTags];
-		const combined = [...cats, ...tags].filter(Boolean);
-		for (const t of combined) {
-			const name = typeof t === 'object' && (t as any)?.value ? String((t as any).value) : String(t || '');
-			if (!name) continue;
-			counts[name] = (counts[name] || 0) + 1;
-		}
-	}
-	// Supabase (published only)
-	const supabasePostsRaw: any[] = await getPostsDirectFromSupabase(1000, 'published').catch(() => []);
-	const supabasePosts = (supabasePostsRaw || []).map((p: any) => convertSupabasePost(p));
-	for (const p of supabasePosts) {
-		const rawCats = (p as any)?.category || [];
-		const rawTags = (p as any)?.tags || [];
-		const cats = Array.isArray(rawCats) ? rawCats : [rawCats];
-		const tags = Array.isArray(rawTags) ? rawTags : [rawTags];
-		const combined = [...cats, ...tags].filter(Boolean);
-		for (const t of combined) {
-			const name = typeof t === 'object' && (t as any)?.value ? String((t as any).value) : String(t || '');
-			if (!name) continue;
-			counts[name] = (counts[name] || 0) + 1;
-		}
-	}
-	topCategories = Object.entries(counts)
-		.map(([name, count]) => ({ name, count }))
-		.sort((a, b) => b.count - a.count)
-		.slice(0, 10);
-} catch {}
+// Accept popular categories via props to avoid per-page Supabase fetch
+const popularCategories = Array.isArray((Astro.props as any).popularCategories)
+	? (Astro.props as any).popularCategories as Array<{ name: string; count: number }>
+	: [];
 ---
 
 <MainLayout title={title} description={description} image={image} type="article" published={publishedDate} modified={modifiedDate} section={postData.tags?.[0]} tags={postData.tags}>
@@ -256,11 +222,11 @@ try {
 						/>
 					</div>
 
-					{topCategories.length > 0 && (
+					{popularCategories.length > 0 && (
 						<div class="p-5 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-900 dark:border-gray-700">
 							<h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Kategori Populer</h3>
 							<ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-								{topCategories.map((c) => (
+								{popularCategories.map((c) => (
 									<li class="flex items-center justify-between">
 										<a class="hover:underline" href={`/category/${toSlug(c.name)}/`}>{c.name}</a>
 										<span class="text-xs text-gray-500 dark:text-gray-400">{c.count}</span>
