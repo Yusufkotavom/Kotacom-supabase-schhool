@@ -396,7 +396,7 @@ if (breadcrumbSchema) {
 
 <!-- Primary Schema Markup -->
 {allSchemas.map((schema) => (
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
 ))}
 
 <!-- FAQ Schema (if FAQ data provided) -->
@@ -412,7 +412,7 @@ if (breadcrumbSchema) {
         "text": item.answer
       }
     }))
-  })} />
+  })}></script>
 )}
 
 <!-- HowTo Schema (if steps provided) -->
@@ -438,7 +438,7 @@ if (breadcrumbSchema) {
       "text": step.text,
       "image": step.image || image
     }))
-  })} />
+  })}></script>
 )}
 
 <!-- Event Schema (if event data provided) -->
@@ -472,5 +472,5 @@ if (breadcrumbSchema) {
       "priceCurrency": "IDR",
       "availability": "https://schema.org/InStock"
     } : undefined
-  })} />
+  })}></script>
 )}
