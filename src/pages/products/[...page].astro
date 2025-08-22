@@ -5,6 +5,8 @@ import type { GetStaticPathsOptions } from "astro";
 import ProductCard from "../../components/ProductCard.astro";
 import ProductCategoryDropdown from "../../components/ProductCategoryDropdown.astro";
 import { getProductsDirectFromSupabase } from "../../lib/supabase-direct";
+import SeoPaginationHead from "../../components/partials/SeoPaginationHead.astro";
+import ItemListJsonLd from "../../components/partials/ItemListJsonLd.astro";
  
 
 // Helper function to parse dates in dd/mm/yyyy format
@@ -214,6 +216,15 @@ const productsWithDiscount = page.data.filter(p => p.data.properties.pOriginalPr
   title={`Produk Affiliate Terbaik - Halaman ${page.currentPage} dari ${page.lastPage} | kotacom.id`}
   description={`Temukan ${page.total} produk terbaik dengan harga terjangkau dan kualitas terpercaya. ${sponsoredCount} produk unggulan dan ${featuredCount} produk featured tersedia.`}
 >
+  <fragment slot="head">
+    <SeoPaginationHead currentPage={page.currentPage} lastPage={page.lastPage} />
+    <ItemListJsonLd elements={page.data.map((product, idx) => ({
+      position: (page.start || 0) + idx + 1,
+      url: `/products/${(product as any).data?.properties?.pSlug || ''}/`,
+      name: (product as any).data?.properties?.pTitle || 'Product',
+      image: (product as any).data?.properties?.pImageURL1 || undefined,
+    }))} />
+  </fragment>
   <section class="bg-white dark:bg-gray-900">
     <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
       <!-- Header Section -->
