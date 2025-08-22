@@ -8,6 +8,7 @@ import { COMPANY_NAME } from "../consts";
 import "../styles/content.css";
 import { toSlug } from '../utils/slug-helpers';
 import WhatsAppButton from "../components/WhatsAppButton.astro";
+import { getCollection } from 'astro:content';
 
 // Props untuk semua jenis post
 type Props = {
@@ -143,6 +144,26 @@ const twitterHref = `https://twitter.com/intent/tweet?url=${encodeURIComponent(s
 const facebookHref = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
 const whatsappHref = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
 const readingTimeMinutes = props.wordCount ? Math.ceil(props.wordCount / 200) : null;
+
+// Hitung 10 kategori/tag terbanyak dari MDX posts
+let topCategories: Array<{ name: string; count: number }> = [];
+try {
+	const mdxPosts: any[] = await getCollection('postsMdx').catch(() => []);
+	const counts: Record<string, number> = {};
+	for (const p of mdxPosts) {
+		const raw = p.data?.tags || p.data?.category || [];
+		const list = Array.isArray(raw) ? raw : [raw];
+		for (const t of list) {
+			const name = typeof t === 'object' && t?.value ? String(t.value) : String(t || '');
+			if (!name) continue;
+			counts[name] = (counts[name] || 0) + 1;
+		}
+	}
+	topCategories = Object.entries(counts)
+		.map(([name, count]) => ({ name, count }))
+		.sort((a, b) => b.count - a.count)
+		.slice(0, 10);
+} catch {}
 ---
 
 <MainLayout title={title} description={description} image={image} type="article" published={publishedDate} modified={modifiedDate} section={postData.tags?.[0]} tags={postData.tags}>
@@ -209,8 +230,8 @@ const readingTimeMinutes = props.wordCount ? Math.ceil(props.wordCount / 200) : 
 					)}
 				</article>
 
-				<!-- Sidebar CTA + TOC -->
-				<aside class="lg:col-span-1 space-y-6">
+				<!-- Sidebar CTA + Popular Categories -->
+				<aside class="lg:col-span-1 space-y-6 lg:sticky lg:top-24">
 					<div class="p-5 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-900 dark:border-gray-700">
 						<h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Butuh Bantuan?</h2>
 						<p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Konsultasi gratis untuk kebutuhan website, software, atau layanan IT Anda.</p>
@@ -221,10 +242,19 @@ const readingTimeMinutes = props.wordCount ? Math.ceil(props.wordCount / 200) : 
 						/>
 					</div>
 
-					<div class="p-5 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-900 dark:border-gray-700">
-						<h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Daftar Isi</h3>
-						<ul id="toc-list" class="space-y-1 text-xs leading-tight text-gray-600 dark:text-gray-300"></ul>
-					</div>
+					{topCategories.length > 0 && (
+						<div class="p-5 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-900 dark:border-gray-700">
+							<h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Kategori Populer</h3>
+							<ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+								{topCategories.map((c) => (
+									<li class="flex items-center justify-between">
+										<a class="hover:underline" href={`/category/${toSlug(c.name)}/`}>{c.name}</a>
+										<span class="text-xs text-gray-500 dark:text-gray-400">{c.count}</span>
+									</li>
+								))}
+							</ul>
+						</div>
+					)}
 
 					<div class="p-5 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-900 dark:border-gray-700">
 						<h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">Layanan Populer</h3>
@@ -267,10 +297,17 @@ const readingTimeMinutes = props.wordCount ? Math.ceil(props.wordCount / 200) : 
 			}
 			document.addEventListener('DOMContentLoaded', function(){
 				const article = document.getElementById('post-article');
-				const toc = document.getElementById('toc-list');
-				if(!article || !toc) return;
+				if(!article) return;
 				const headers = Array.from(article.querySelectorAll('h2'));
-				const frag = document.createDocumentFragment();
+				if(headers.length === 0) return;
+				// Build TOC container
+				const toc = document.createElement('div');
+				toc.className = 'my-4 p-3 bg-white border border-gray-200 rounded-lg dark:bg-gray-900 dark:border-gray-700';
+				const title = document.createElement('div');
+				title.textContent = 'Daftar Isi';
+				title.className = 'text-xs font-semibold text-gray-900 dark:text-white mb-2';
+				const ul = document.createElement('ul');
+				ul.className = 'space-y-1 text-xs leading-tight text-gray-700 dark:text-gray-300';
 				headers.forEach((h) => {
 					const text = h.textContent || '';
 					let id = h.getAttribute('id');
@@ -282,9 +319,15 @@ const readingTimeMinutes = props.wordCount ? Math.ceil(props.wordCount / 200) : 
 					a.textContent = text;
 					a.className = 'text-xs text-gray-700 hover:underline dark:text-gray-300';
 					li.appendChild(a);
-					frag.appendChild(li);
+					ul.appendChild(li);
 				});
-				toc.appendChild(frag);
+				toc.appendChild(title);
+				toc.appendChild(ul);
+				// Insert after first paragraph
+				const firstP = article.querySelector('p');
+				if(firstP && firstP.parentNode){
+					firstP.parentNode.insertBefore(toc, firstP.nextSibling);
+				}
 			});
 		})();
 	</script>
