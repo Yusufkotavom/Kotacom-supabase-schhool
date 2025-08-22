@@ -65,8 +65,6 @@ export async function getStaticPaths(): Promise<Array<{params: {slug: string}, p
   return [...mdxPostPaths, ...supabasePostPaths];
 }
 
----
-
 type Props = {
   post: any;
   source: 'mdx' | 'page' | 'supabase';
