@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Checkout API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        .result { margin-top: 20px; padding: 15px; border-radius: 4px; }
+        .success { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .error { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        .info { background: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; }
+        button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+        .log { background: #f8f9fa; border: 1px solid #dee2e6; padding: 10px; margin: 10px 0; border-radius: 4px; font-family: monospace; font-size: 12px; max-height: 200px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <h1>🌐 Browser Checkout API Test</h1>
+    
+    <p>Test checkout API langsung dari browser untuk bypass curl issues.</p>
+    
+    <button onclick="testCheckoutSimple()">Test Checkout Simple API</button>
+    <button onclick="testCheckoutFull()">Test Checkout Full API</button>
+    <button onclick="testDebugAPI()">Test Debug API</button>
+    <button onclick="clearLog()">Clear Log</button>
+    
+    <div id="result"></div>
+    <div class="log" id="log"></div>
+    
+    <script>
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.innerHTML += `[${timestamp}] ${message}\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(message);
+        }
+        
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+            document.getElementById('result').innerHTML = '';
+        }
+        
+        async function testCheckoutSimple() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<div class="info">Testing Simple Checkout API...</div>';
+            
+            try {
+                log('🚀 Testing Simple Checkout API...');
+                
+                const testData = {
+                    name: 'Test User',
+                    email: 'test@example.com',
+                    whatsapp: '08123456789',
+                    products: [
+                        {
+                            id: 'test-product-1',
+                            title: 'Test Product 1',
+                            price: 100000,
+                            quantity: 1
+                        }
+                    ]
+                };
+                
+                log(`📦 Test data: ${JSON.stringify(testData, null, 2)}`);
+                
+                const response = await fetch('/api/checkout-simple', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                log(`📡 Response status: ${response.status}`);
+                
+                const responseText = await response.text();
+                log(`📡 Response text: ${responseText}`);
+                
+                let data;
+                try {
+                    data = JSON.parse(responseText);
+                    log(`✅ Response parsed successfully`);
+                } catch (parseError) {
+                    log(`❌ Failed to parse JSON: ${parseError.message}`);
+                    throw new Error(`Invalid JSON response: ${responseText}`);
+                }
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `<div class="success">
+                        <h3>✅ Success!</h3>
+                        <p><strong>Status:</strong> ${response.status}</p>
+                        <p><strong>Message:</strong> ${data.message}</p>
+                        <p><strong>Order ID:</strong> ${data.orderId}</p>
+                    </div>`;
+                    log('🎉 Simple checkout test completed successfully!');
+                } else {
+                    resultDiv.innerHTML = `<div class="error">
+                        <h3>❌ Error!</h3>
+                        <p><strong>Status:</strong> ${response.status}</p>
+                        <p><strong>Message:</strong> ${data.message}</p>
+                    </div>`;
+                    log(`❌ Simple checkout test failed with status ${response.status}`);
+                }
+                
+            } catch (error) {
+                log(`💥 Exception occurred: ${error.message}`);
+                resultDiv.innerHTML = `<div class="error">
+                    <h3>💥 Exception Error!</h3>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                </div>`;
+            }
+        }
+        
+        async function testCheckoutFull() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<div class="info">Testing Full Checkout API...</div>';
+            
+            try {
+                log('🚀 Testing Full Checkout API...');
+                
+                const testData = {
+                    name: 'Test User',
+                    email: 'test@example.com',
+                    whatsapp: '08123456789',
+                    products: [
+                        {
+                            id: 'test-product-1',
+                            title: 'Test Product 1',
+                            price: 100000,
+                            quantity: 1
+                        }
+                    ]
+                };
+                
+                log(`📦 Test data: ${JSON.stringify(testData, null, 2)}`);
+                
+                const response = await fetch('/api/checkout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                log(`📡 Response status: ${response.status}`);
+                
+                const responseText = await response.text();
+                log(`📡 Response text: ${responseText}`);
+                
+                let data;
+                try {
+                    data = JSON.parse(responseText);
+                    log(`✅ Response parsed successfully`);
+                } catch (parseError) {
+                    log(`❌ Failed to parse JSON: ${parseError.message}`);
+                    throw new Error(`Invalid JSON response: ${responseText}`);
+                }
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `<div class="success">
+                        <h3>✅ Success!</h3>
+                        <p><strong>Status:</strong> ${response.status}</p>
+                        <p><strong>Message:</strong> ${data.message}</p>
+                        <p><strong>Order ID:</strong> ${data.orderId}</p>
+                    </div>`;
+                    log('🎉 Full checkout test completed successfully!');
+                } else {
+                    resultDiv.innerHTML = `<div class="error">
+                        <h3>❌ Error!</h3>
+                        <p><strong>Status:</strong> ${response.status}</p>
+                        <p><strong>Message:</strong> ${data.message}</p>
+                    </div>`;
+                    log(`❌ Full checkout test failed with status ${response.status}`);
+                }
+                
+            } catch (error) {
+                log(`💥 Exception occurred: ${error.message}`);
+                resultDiv.innerHTML = `<div class="error">
+                    <h3>💥 Exception Error!</h3>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                </div>`;
+            }
+        }
+        
+        async function testDebugAPI() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<div class="info">Testing Debug API...</div>';
+            
+            try {
+                log('🚀 Testing Debug API...');
+                
+                const testData = { test: 'data' };
+                
+                log(`📦 Test data: ${JSON.stringify(testData, null, 2)}`);
+                
+                const response = await fetch('/api/debug', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                log(`📡 Response status: ${response.status}`);
+                
+                const responseText = await response.text();
+                log(`📡 Response text: ${responseText}`);
+                
+                let data;
+                try {
+                    data = JSON.parse(responseText);
+                    log(`✅ Response parsed successfully`);
+                } catch (parseError) {
+                    log(`❌ Failed to parse JSON: ${parseError.message}`);
+                    throw new Error(`Invalid JSON response: ${responseText}`);
+                }
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `<div class="success">
+                        <h3>✅ Success!</h3>
+                        <p><strong>Status:</strong> ${response.status}</p>
+                        <p><strong>Message:</strong> ${data.message}</p>
+                        <p><strong>Raw Text Length:</strong> ${data.rawTextLength}</p>
+                    </div>`;
+                    log('🎉 Debug API test completed successfully!');
+                } else {
+                    resultDiv.innerHTML = `<div class="error">
+                        <h3>❌ Error!</h3>
+                        <p><strong>Status:</strong> ${response.status}</p>
+                        <p><strong>Message:</strong> ${data.message}</p>
+                    </div>`;
+                    log(`❌ Debug API test failed with status ${response.status}`);
+                }
+                
+            } catch (error) {
+                log(`💥 Exception occurred: ${error.message}`);
+                resultDiv.innerHTML = `<div class="error">
+                    <h3>💥 Exception Error!</h3>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                </div>`;
+            }
+        }
+        
+        // Auto-test when page loads
+        window.addEventListener('load', () => {
+            log('📱 Page loaded, ready for testing');
+            log('💡 Open browser console to see detailed logs');
+        });
+    </script>
+</body>
+</html>
