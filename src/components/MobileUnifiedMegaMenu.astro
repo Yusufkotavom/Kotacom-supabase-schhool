@@ -46,7 +46,7 @@ const menuId = `mobile-unified-mega-menu-${trigger.toLowerCase().replace(/\s+/g,
     </svg>
   </button>
 
-  <!-- Mobile Menu Content -->
+  <!-- Mobile Menu Content - Supabase Style -->
   <div
     id={menuId}
     class="w-full bg-white dark:bg-gray-900 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
@@ -54,44 +54,27 @@ const menuId = `mobile-unified-mega-menu-${trigger.toLowerCase().replace(/\s+/g,
     aria-labelledby={`${menuId}-trigger`}
     data-mobile-unified-mega-menu-content={menuId}
   >
-    <div class="px-4 py-2 space-y-3">
-      {sections.map((section, sectionIndex) => (
-        <div class="border-b border-gray-100 dark:border-gray-800 pb-3 last:border-b-0 last:pb-0">
-          <!-- Section Header with Toggle -->
-          <button
-            type="button"
-            class="flex items-center justify-between w-full py-2 text-left hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md px-2 transition-colors duration-200"
-            data-mobile-section-toggle={`${menuId}-section-${sectionIndex}`}
-            aria-expanded="false"
-          >
-            <div class="flex items-center gap-2">
+    <!-- Full Width Horizontal Scrollable Content -->
+    <div class="overflow-x-auto">
+      <div class="flex gap-6 p-6 min-w-max">
+        {sections.map((section) => (
+          <div class="flex-shrink-0 w-72">
+            <!-- Section Header with Icon -->
+            <div class="flex items-center gap-3 mb-4">
               {section.icon && (
                 <div class="text-blue-600 dark:text-blue-400 text-sm" set:html={section.icon}></div>
               )}
-              <h3 class="text-sm font-semibold text-gray-900 dark:text-white">
+              <h3 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider">
                 {section.title}
               </h3>
             </div>
-            <svg 
-              class="w-4 h-4 transition-transform duration-200 mobile-section-chevron text-gray-400" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          
-          <!-- Section Items -->
-          <div 
-            class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out ml-4"
-            data-mobile-section-content={`${menuId}-section-${sectionIndex}`}
-          >
-            <div class="space-y-1 pt-2">
+            
+            <!-- Section Items - All Visible -->
+            <div class="space-y-3">
               {section.items.map((item) => (
                 <a
                   href={item.url}
-                  class="group/item flex items-center gap-3 p-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                  class="group/item flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                   role="menuitem"
                   {...(item.isExternal && {
                     target: "_blank",
@@ -130,15 +113,33 @@ const menuId = `mobile-unified-mega-menu-${trigger.toLowerCase().replace(/\s+/g,
               ))}
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+    </div>
+    
+    <!-- Mobile Footer Section -->
+    <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-700">
+      <div class="text-center">
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+          Butuh bantuan? Hubungi tim kami
+        </p>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+          </svg>
+          Konsultasi Gratis
+        </a>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // Handle mobile unified mega menu interactions
+    // Handle mobile unified mega menu interactions with accordion behavior
     const mobileMegaMenus = document.querySelectorAll('[data-mobile-unified-mega-menu-trigger]');
     
     mobileMegaMenus.forEach(trigger => {
@@ -147,7 +148,7 @@ const menuId = `mobile-unified-mega-menu-${trigger.toLowerCase().replace(/\s+/g,
       
       if (!menuContent) return;
       
-      // Main menu toggle
+      // Main menu toggle with accordion behavior
       trigger.addEventListener('click', (e) => {
         e.preventDefault();
         const isOpen = trigger.getAttribute('aria-expanded') === 'true';
@@ -157,19 +158,8 @@ const menuId = `mobile-unified-mega-menu-${trigger.toLowerCase().replace(/\s+/g,
           trigger.setAttribute('aria-expanded', 'false');
           menuContent.style.maxHeight = '0px';
           trigger.querySelector('.mobile-unified-mega-menu-chevron')?.classList.remove('rotate-180');
-          
-          // Close all sections
-          const sectionButtons = menuContent.querySelectorAll('[data-mobile-section-toggle]');
-          sectionButtons.forEach(sectionButton => {
-            const sectionId = sectionButton.getAttribute('data-mobile-section-toggle');
-            const sectionContent = document.querySelector(`[data-mobile-section-content="${sectionId}"]`) as HTMLElement;
-            
-            sectionButton.setAttribute('aria-expanded', 'false');
-            if (sectionContent) sectionContent.style.maxHeight = '0px';
-            sectionButton.querySelector('.mobile-section-chevron')?.classList.remove('rotate-180');
-          });
         } else {
-          // Close other mobile menus first
+          // Close other mobile menus first (accordion behavior)
           mobileMegaMenus.forEach(otherTrigger => {
             if (otherTrigger !== trigger) {
               const otherMenuId = otherTrigger.getAttribute('data-mobile-unified-mega-menu-trigger');
@@ -186,40 +176,6 @@ const menuId = `mobile-unified-mega-menu-${trigger.toLowerCase().replace(/\s+/g,
           menuContent.style.maxHeight = menuContent.scrollHeight + 'px';
           trigger.querySelector('.mobile-unified-mega-menu-chevron')?.classList.add('rotate-180');
         }
-      });
-      
-      // Handle section toggles
-      const sectionToggleButtons = menuContent.querySelectorAll('[data-mobile-section-toggle]');
-      sectionToggleButtons.forEach(sectionButton => {
-        sectionButton.addEventListener('click', (e) => {
-          e.preventDefault();
-          const sectionId = sectionButton.getAttribute('data-mobile-section-toggle');
-          const sectionContent = document.querySelector(`[data-mobile-section-content="${sectionId}"]`) as HTMLElement;
-          const chevron = sectionButton.querySelector('.mobile-section-chevron');
-          
-          if (!sectionContent) return;
-          
-          const isOpen = sectionButton.getAttribute('aria-expanded') === 'true';
-          
-          if (isOpen) {
-            // Close section
-            sectionButton.setAttribute('aria-expanded', 'false');
-            sectionContent.style.maxHeight = '0px';
-            chevron?.classList.remove('rotate-180');
-          } else {
-            // Open section (allow multiple sections to be open)
-            sectionButton.setAttribute('aria-expanded', 'true');
-            sectionContent.style.maxHeight = sectionContent.scrollHeight + 'px';
-            chevron?.classList.add('rotate-180');
-          }
-          
-          // Recalculate main menu height
-          setTimeout(() => {
-            if (trigger.getAttribute('aria-expanded') === 'true') {
-              menuContent.style.maxHeight = menuContent.scrollHeight + 'px';
-            }
-          }, 100);
-        });
       });
     });
     
@@ -244,35 +200,24 @@ const menuId = `mobile-unified-mega-menu-${trigger.toLowerCase().replace(/\s+/g,
     transition: max-height 0.3s ease-in-out;
   }
   
-  [data-mobile-section-content] {
-    transition: max-height 0.3s ease-in-out;
-  }
-  
   /* Chevron animations */
-  .mobile-unified-mega-menu-chevron, .mobile-section-chevron {
+  .mobile-unified-mega-menu-chevron {
     transition: transform 0.2s ease-in-out;
   }
   
-  .mobile-unified-mega-menu-chevron.rotate-180, .mobile-section-chevron.rotate-180 {
+  .mobile-unified-mega-menu-chevron.rotate-180 {
     transform: rotate(180deg);
   }
   
   /* Focus styles for accessibility */
-  [data-mobile-unified-mega-menu-trigger]:focus-visible,
-  [data-mobile-section-toggle]:focus-visible {
+  [data-mobile-unified-mega-menu-trigger]:focus-visible {
     outline: 2px solid #3b82f6;
     outline-offset: 2px;
   }
   
   /* Smooth hover transitions */
-  [data-mobile-unified-mega-menu-trigger],
-  [data-mobile-section-toggle] {
+  [data-mobile-unified-mega-menu-trigger] {
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-  }
-  
-  /* Ensure proper spacing */
-  [data-mobile-section-content] {
-    overflow: hidden;
   }
   
   /* Line clamp utility for description text */
@@ -281,5 +226,46 @@ const menuId = `mobile-unified-mega-menu-${trigger.toLowerCase().replace(/\s+/g,
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+  
+  /* Horizontal scroll styling for mobile */
+  .overflow-x-auto {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db #f3f4f6;
+  }
+  
+  .overflow-x-auto::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  .overflow-x-auto::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 2px;
+  }
+  
+  .overflow-x-auto::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 2px;
+  }
+  
+  .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+  
+  /* Dark mode scrollbar */
+  .dark .overflow-x-auto {
+    scrollbar-color: #4b5563 #1f2937;
+  }
+  
+  .dark .overflow-x-auto::-webkit-scrollbar-track {
+    background: #1f2937;
+  }
+  
+  .dark .overflow-x-auto::-webkit-scrollbar-thumb {
+    background: #4b5563;
+  }
+  
+  .dark .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
   }
 </style>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase-Style Mega Menu Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Enhanced hover states for desktop */
+        .group:hover [data-unified-mega-menu-content] {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+        
+        .group.menu-open [data-unified-mega-menu-content] {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+        
+        /* Smooth transitions */
+        [data-unified-mega-menu-content] {
+            transition: opacity 0.2s ease-out, visibility 0.2s ease-out, transform 0.2s ease-out;
+        }
+        
+        /* Line clamp utility for description text */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        /* Ensure proper stacking */
+        [data-unified-mega-menu-content] {
+            z-index: 50;
+        }
+        
+        /* Focus styles for accessibility */
+        [data-unified-mega-menu-trigger]:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+        
+        /* Horizontal scroll styling */
+        .overflow-x-auto {
+            scrollbar-width: thin;
+            scrollbar-color: #d1d5db #f3f4f6;
+        }
+        
+        .overflow-x-auto::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .overflow-x-auto::-webkit-scrollbar-track {
+            background: #f3f4f6;
+            border-radius: 3px;
+        }
+        
+        .overflow-x-auto::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 3px;
+        }
+        
+        .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+        
+        /* Mobile menu styles */
+        [data-mobile-unified-mega-menu-content] {
+            transition: max-height 0.3s ease-in-out;
+        }
+        
+        .mobile-unified-mega-menu-chevron {
+            transition: transform 0.2s ease-in-out;
+        }
+        
+        .mobile-unified-mega-menu-chevron.rotate-180 {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-8 text-center">Supabase-Style Mega Menu Test</h1>
+        
+        <div class="max-w-6xl mx-auto">
+            <!-- Desktop Mega Menu - Supabase Style -->
+            <div class="relative group mb-8">
+                <button
+                    type="button"
+                    class="flex items-center gap-1 px-3 py-2 text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    aria-controls="test-mega-menu"
+                    data-unified-mega-menu-trigger="test-mega-menu"
+                >
+                    <span>Layanan</span>
+                    <svg 
+                        class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180"
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+
+                <!-- Mega Menu Dropdown - Supabase Style -->
+                <div
+                    id="test-mega-menu"
+                    class="absolute left-0 top-full mt-1 w-screen opacity-0 invisible transform scale-95 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:visible group-hover:scale-100 z-50"
+                    role="menu"
+                    aria-labelledby="test-mega-menu-trigger"
+                    data-unified-mega-menu-content="test-mega-menu"
+                >
+                    <div class="absolute inset-0 bg-black/5 backdrop-blur-sm"></div>
+                    
+                    <!-- Content Container - Full Width -->
+                    <div class="relative bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden">
+                        <!-- Horizontal Scrollable Content -->
+                        <div class="overflow-x-auto">
+                            <div class="flex gap-8 p-8 min-w-max">
+                                <!-- Section 1: Pengembangan Digital -->
+                                <div class="flex-shrink-0 w-80">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="flex-shrink-0 w-8 h-8 text-blue-600">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                                            </svg>
+                                        </div>
+                                        <h3 class="text-sm font-semibold text-gray-900 uppercase tracking-wider">
+                                            Pengembangan Digital
+                                        </h3>
+                                    </div>
+                                    
+                                    <div class="space-y-3">
+                                        <a href="#" class="group/item flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" role="menuitem">
+                                            <div class="flex-shrink-0 mt-0.5 text-gray-400 group-hover/item:text-blue-600 transition-colors">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c1.657 0-3-4.03 3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <span class="text-sm font-medium text-gray-900 group-hover/item:text-blue-600 transition-colors">
+                                                    Website Development
+                                                </span>
+                                                <p class="mt-1 text-xs text-gray-500 line-clamp-2">
+                                                    Pembuatan website profesional dan responsif untuk bisnis Anda
+                                                </p>
+                                            </div>
+                                        </a>
+                                        
+                                        <a href="#" class="group/item flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" role="menuitem">
+                                            <div class="flex-shrink-0 mt-0.5 text-gray-400 group-hover/item:text-blue-600 transition-colors">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <span class="text-sm font-medium text-gray-900 group-hover/item:text-blue-600 transition-colors">
+                                                    Software Development
+                                                </span>
+                                                <p class="mt-1 text-xs text-gray-500 line-clamp-2">
+                                                    Pengembangan aplikasi custom sesuai kebutuhan bisnis
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <!-- Section 2: IT Support & Services -->
+                                <div class="flex-shrink-0 w-80">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="flex-shrink-0 w-8 h-8 text-blue-600">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 019.75 9.75c0 5.384-4.365 9.75-9.75 9.75S2.25 17.634 2.25 12 6.615 2.25 12 2.25z"></path>
+                                            </svg>
+                                        </div>
+                                        <h3 class="text-sm font-semibold text-gray-900 uppercase tracking-wider">
+                                            IT Support & Services
+                                        </h3>
+                                    </div>
+                                    
+                                    <div class="space-y-3">
+                                        <a href="#" class="group/item flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" role="menuitem">
+                                            <div class="flex-shrink-0 mt-0.5 text-gray-400 group-hover/item:text-blue-600 transition-colors">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <span class="text-sm font-medium text-gray-900 group-hover/item:text-blue-600 transition-colors">
+                                                    IT Support
+                                                </span>
+                                                <p class="mt-1 text-xs text-gray-500 line-clamp-2">
+                                                    Dukungan teknis dan maintenance sistem IT perusahaan
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <!-- Section 3: Printing & Design -->
+                                <div class="flex-shrink-0 w-80">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="flex-shrink-0 w-8 h-8 text-blue-600">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <h3 class="text-sm font-semibold text-gray-900 uppercase tracking-wider">
+                                            Printing & Design
+                                        </h3>
+                                    </div>
+                                    
+                                    <div class="space-y-3">
+                                        <a href="#" class="group/item flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" role="menuitem">
+                                            <div class="flex-shrink-0 mt-0.5 text-gray-400 group-hover/item:text-blue-600 transition-colors">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <span class="text-sm font-medium text-gray-900 group-hover/item:text-blue-600 transition-colors">
+                                                    Printing Services
+                                                </span>
+                                                <p class="mt-1 text-xs text-gray-500 line-clamp-2">
+                                                    Layanan cetak profesional untuk kebutuhan bisnis
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Footer Section -->
+                        <div class="bg-gray-50 px-8 py-4 border-t border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <p class="text-sm text-gray-600">
+                                    Butuh bantuan? Hubungi tim kami
+                                </p>
+                                <a
+                                    href="/contact"
+                                    class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                >
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                    </svg>
+                                    Konsultasi Gratis
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Mega Menu - Supabase Style -->
+            <div class="w-full lg:hidden">
+                <div class="w-full">
+                    <button
+                        type="button"
+                        class="flex items-center justify-between w-full px-4 py-3 text-left text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md border border-gray-200 hover:bg-gray-50"
+                        aria-expanded="false"
+                        aria-haspopup="true"
+                        aria-controls="mobile-test-mega-menu"
+                        data-mobile-unified-mega-menu-trigger="mobile-test-mega-menu"
+                    >
+                        <span class="text-base font-medium">Layanan (Mobile)</span>
+                        <svg 
+                            class="w-5 h-5 transition-transform duration-200 mobile-unified-mega-menu-chevron" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+
+                    <div
+                        id="mobile-test-mega-menu"
+                        class="w-full bg-white max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+                        role="menu"
+                        aria-labelledby="mobile-test-mega-menu-trigger"
+                        data-mobile-unified-mega-menu-content="mobile-test-mega-menu"
+                    >
+                        <div class="overflow-x-auto">
+                            <div class="flex gap-6 p-6 min-w-max">
+                                <div class="flex-shrink-0 w-72">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="text-blue-600 text-sm">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                                            </svg>
+                                        </div>
+                                        <h3 class="text-sm font-semibold text-gray-900 uppercase tracking-wider">
+                                            Pengembangan Digital
+                                        </h3>
+                                    </div>
+                                    
+                                    <div class="space-y-3">
+                                        <a href="#" class="group/item flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" role="menuitem">
+                                            <div class="flex-shrink-0 text-gray-400 group-hover/item:text-blue-600 transition-colors text-sm">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c1.657 0-3-4.03 3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <span class="text-sm font-medium text-gray-700 group-hover/item:text-blue-600 transition-colors">
+                                                    Website Development
+                                                </span>
+                                                <p class="mt-1 text-xs text-gray-500 line-clamp-2">
+                                                    Pembuatan website profesional dan responsif untuk bisnis Anda
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="px-6 py-4 border-t border-gray-200">
+                            <div class="text-center">
+                                <p class="text-sm text-gray-600 mb-3">
+                                    Butuh bantuan? Hubungi tim kami
+                                </p>
+                                <a
+                                    href="/contact"
+                                    class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                                >
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                    </svg>
+                                    Konsultasi Gratis
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <p class="text-gray-600">Hover over "Layanan" untuk melihat desktop mega menu dengan scroll horizontal</p>
+                <p class="text-gray-600 mt-2">Klik "Layanan (Mobile)" untuk melihat mobile mega menu dengan scroll horizontal</p>
+                <p class="text-gray-600 mt-2">Desain seperti Supabase: full width, scroll horizontal, tidak nested</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Handle mobile mega menu
+            const mobileMegaMenus = document.querySelectorAll('[data-mobile-unified-mega-menu-trigger]');
+            
+            mobileMegaMenus.forEach(trigger => {
+                const menuId = trigger.getAttribute('data-mobile-unified-mega-menu-trigger');
+                const menuContent = document.querySelector(`[data-mobile-unified-mega-menu-content="${menuId}"]`) as HTMLElement;
+                
+                if (!menuContent) return;
+                
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+                    
+                    if (isOpen) {
+                        trigger.setAttribute('aria-expanded', 'false');
+                        menuContent.style.maxHeight = '0px';
+                        trigger.querySelector('.mobile-unified-mega-menu-chevron')?.classList.remove('rotate-180');
+                    } else {
+                        // Close other menus first (accordion behavior)
+                        mobileMegaMenus.forEach(otherTrigger => {
+                            if (otherTrigger !== trigger) {
+                                const otherMenuId = otherTrigger.getAttribute('data-mobile-unified-mega-menu-trigger');
+                                const otherMenuContent = document.querySelector(`[data-mobile-unified-mega-menu-content="${otherMenuId}"]`) as HTMLElement;
+                                
+                                otherTrigger.setAttribute('aria-expanded', 'false');
+                                if (otherMenuContent) otherMenuContent.style.maxHeight = '0px';
+                                otherTrigger.querySelector('.mobile-unified-mega-menu-chevron')?.classList.remove('rotate-180');
+                            }
+                        });
+                        
+                        trigger.setAttribute('aria-expanded', 'true');
+                        menuContent.style.maxHeight = menuContent.scrollHeight + 'px';
+                        trigger.querySelector('.mobile-unified-mega-menu-chevron')?.classList.add('rotate-180');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
