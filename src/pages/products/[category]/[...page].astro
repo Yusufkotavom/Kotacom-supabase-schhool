@@ -5,6 +5,7 @@ import type { GetStaticPathsOptions } from "astro";
 import ProductCard from "../../../components/ProductCard.astro";
 import ProductCategoryDropdown from "../../../components/ProductCategoryDropdown.astro";
 import { getProductsDirectFromSupabase } from "../../../lib/supabase-direct";
+import SeoPaginationHead from "../../../components/partials/SeoPaginationHead.astro";
 
 // Helper function to parse dates in dd/mm/yyyy format
 function parseDate(dateStr: string): Date {
@@ -160,9 +161,7 @@ const readableCategory = displayCategory;
 
 <MainLayout title={`Produk ${readableCategory} - Halaman ${page.currentPage} dari ${page.lastPage} | kotacom.id`}>
   <fragment slot="head">
-    {page.url.prev && (<link rel="prev" href={page.url.prev} />)}
-    {page.url.next && (<link rel="next" href={page.url.next} />)}
-    {page.currentPage > 1 && (<meta name="robots" content="noindex,follow" />)}
+    <SeoPaginationHead currentPage={page.currentPage} lastPage={page.lastPage} />
   </fragment>
 
   <section class="bg-white dark:bg-gray-900">
