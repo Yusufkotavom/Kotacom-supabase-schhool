@@ -142,7 +142,13 @@ if (source === 'supabase') {
 
 ---
 
-<PostLayout {...layoutData} wordCount={wordCount} popularCategories={layoutData.popularCategories} />
+<PostLayout {...layoutData} wordCount={wordCount} popularCategories={layoutData.popularCategories}>
+  {source === 'supabase' ? (
+    <div set:html={processedContent} />
+  ) : (
+    <Content />
+  )}
+</PostLayout>
 
 <style>
   /* Override breadcrumb untuk post Sanity/Directus */
