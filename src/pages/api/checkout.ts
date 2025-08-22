@@ -3,13 +3,20 @@ import { supabase } from '../../lib/supabase';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const { name, email, whatsapp, products } = await request.json();
+    console.log('🔍 Checkout API called');
+    
+    const body = await request.json();
+    console.log('📦 Request body:', body);
+    
+    const { name, email, whatsapp, products } = body;
     
     // Validate required fields
     if (!name || !email || !whatsapp || !products || products.length === 0) {
+      console.log('❌ Validation failed:', { name, email, whatsapp, productsLength: products?.length });
       return new Response(JSON.stringify({
         success: false,
-        message: 'Missing required fields'
+        message: 'Missing required fields',
+        received: { name, email, whatsapp, productsLength: products?.length }
       }), {
         status: 400,
         headers: {
@@ -17,6 +24,8 @@ export const POST: APIRoute = async ({ request }) => {
         }
       });
     }
+    
+    console.log('✅ Validation passed, inserting to Supabase...');
     
     // Insert order to Supabase
     const { data, error } = await supabase
@@ -33,9 +42,21 @@ export const POST: APIRoute = async ({ request }) => {
       .select();
     
     if (error) {
-      console.error('Supabase error:', error);
-      throw error;
+      console.error('❌ Supabase error:', error);
+      return new Response(JSON.stringify({
+        success: false,
+        message: 'Database error',
+        error: error.message,
+        details: error
+      }), {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
     }
+    
+    console.log('✅ Order created successfully:', data);
     
     // Send email notification (optional)
     // You can implement email sending here or use Supabase Edge Functions
@@ -52,10 +73,11 @@ export const POST: APIRoute = async ({ request }) => {
     });
     
   } catch (error) {
-    console.error('Checkout error:', error);
+    console.error('❌ Checkout error:', error);
     return new Response(JSON.stringify({
       success: false,
-      message: 'Failed to create order'
+      message: 'Failed to create order',
+      error: error instanceof Error ? error.message : 'Unknown error'
     }), {
       status: 500,
       headers: {
