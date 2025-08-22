@@ -4,103 +4,157 @@ import { createClient } from '@supabase/supabase-js';
 const SUPABASE_URL = import.meta.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = import.meta.env.SUPABASE_ANON_KEY;
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// Create supabase client only if environment variables are available
+let supabase: any;
+
+if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+  supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+} else {
+  // During build time, create a dummy client
+  supabase = {
+    from: () => ({
+      select: () => Promise.resolve({ data: [], error: null }),
+      eq: () => Promise.resolve({ data: [], error: null })
+    })
+  };
+}
 
 export interface SupabasePost {
   id: string;
-  title?: string;
-  slug?: string;
-  description?: string;
-  coverImage?: string;
-  imageUrl?: string;
-  published?: string;
-  publishedAt?: string;
-  tags?: any[];
-  category?: any[];
+  title: string;
   body?: string;
-  status?: string;
+  content?: string;
+  description?: string;
+  excerpt?: string;
+  slug: string;
+  published?: string;
+  created_at?: string;
+  created?: string;
+  updated?: string;
+  updated_at?: string;
+  last_updated?: string;
+  tags?: string[];
+  categories?: string[];
+  category?: string;
   author?: string;
-  createdAt?: string;
-  updatedAt?: string;
+  image?: string;
+  imageUrl?: string;
+  coverImage?: string;
+  featured_image?: string;
+  cover_image?: string;
+  thumbnail?: string;
+  status?: string;
 }
 
-// Helper function to get tags for posts
-async function getTagsForPosts(postIds: number[]): Promise<Map<number, string[]>> {
-  const tagsMap = new Map<number, string[]>();
-  
-  if (postIds.length === 0) return tagsMap;
-  
+export interface SupabaseProduct {
+  id: string;
+  title: string;
+  description?: string;
+  price?: number;
+  file_url?: string;
+  category?: string;
+  tags?: string[];
+  status?: string;
+  created_at?: string;
+}
+
+export interface SupabaseService {
+  id: string;
+  title: string;
+  description?: string;
+  content?: string;
+  category?: string;
+  tags?: string[];
+  image?: string;
+  status?: string;
+  created_at?: string;
+}
+
+export interface SupabaseProject {
+  id: string;
+  title: string;
+  description?: string;
+  content?: string;
+  category?: string;
+  tags?: string[];
+  image?: string;
+  status?: string;
+  created_at?: string;
+}
+
+// Fetch tags from Supabase
+export async function getTagsFromSupabase(): Promise<string[]> {
   try {
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+      console.log('⚠️ Supabase environment variables not available, returning empty tags');
+      return [];
+    }
+
     const { data: tagsData, error } = await supabase
-      .from('posts_tags')
-      .select('_parent_id, value')
-      .in('_parent_id', postIds)
-      .order('_order', { ascending: true });
-      
-    if (!error && tagsData) {
-      tagsData.forEach((tag: any) => {
-        const postId = tag._parent_id;
-        if (!tagsMap.has(postId)) {
-          tagsMap.set(postId, []);
-        }
-        tagsMap.get(postId)!.push(tag.value);
-      });
+      .from('tags')
+      .select('name')
+      .eq('status', 'published');
+
+    if (error) {
+      console.error('❌ Error fetching tags from Supabase:', error);
+      return [];
     }
+
+    return tagsData?.map((tag: any) => tag.name) || [];
   } catch (error) {
-    console.log('⚠️ Could not fetch tags:', error);
+    console.error('❌ Error fetching tags from Supabase:', error);
+    return [];
   }
-  
-  return tagsMap;
 }
 
-// Helper function to get categories for posts (if exists)
-async function getCategoriesForPosts(postIds: number[]): Promise<Map<number, string[]>> {
-  const categoriesMap = new Map<number, string[]>();
-  
-  if (postIds.length === 0) return categoriesMap;
-  
+// Fetch categories from Supabase
+export async function getCategoriesFromSupabase(): Promise<string[]> {
   try {
-    const { data: categoriesData, error } = await supabase
-      .from('posts_categories')
-      .select('_parent_id, value')
-      .in('_parent_id', postIds)
-      .order('_order', { ascending: true });
-      
-    if (!error && categoriesData) {
-      categoriesData.forEach((category: any) => {
-        const postId = category._parent_id;
-        if (!categoriesMap.has(postId)) {
-          categoriesMap.set(postId, []);
-        }
-        categoriesMap.get(postId)!.push(category.value);
-      });
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+      console.log('⚠️ Supabase environment variables not available, returning empty categories');
+      return [];
     }
+
+    const { data: categoriesData, error } = await supabase
+      .from('categories')
+      .select('name')
+      .eq('status', 'published');
+
+    if (error) {
+      console.error('❌ Error fetching categories from Supabase:', error);
+      return [];
+    }
+
+    return categoriesData?.map((category: any) => category.name) || [];
   } catch (error) {
-    console.log('⚠️ Could not fetch categories:', error);
+    console.error('❌ Error fetching categories from Supabase:', error);
+    return [];
   }
-  
-  return categoriesMap;
 }
 
+// Fetch posts directly from Supabase
 export async function getPostsDirectFromSupabase(
-  limit: number = 100, 
-  status: 'published' | 'draft' | 'all' = 'published' // Default hanya published
+  limit: number = 1000,
+  status: 'published' | 'draft' | 'all' = 'published'
 ): Promise<SupabasePost[]> {
   try {
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+      console.log('⚠️ Supabase environment variables not available, returning empty posts');
+      return [];
+    }
+
     console.log(`🔄 Fetching ${limit} posts directly from Supabase with status: ${status}...`);
-    
-    // Build query with status filter
+
     let query = supabase
       .from('posts')
       .select('*')
-      .order('published', { ascending: false });
+      .limit(limit);
 
-    // Filter by status - hanya ambil published posts untuk production
     if (status !== 'all') {
       query = query.eq('status', status);
     }
 
-    const { data, error } = await query.limit(limit);
+    const { data, error } = await query;
 
     if (error) {
       console.error('❌ Supabase error:', error);
@@ -108,108 +162,64 @@ export async function getPostsDirectFromSupabase(
     }
 
     console.log(`✅ Successfully fetched ${data?.length || 0} posts from Supabase`);
-    
-    if (data && data.length > 0) {
-      // Get all post IDs
-      const postIds = data.map(post => post.id);
-      
-      // Fetch tags and categories for all posts
-      const [tagsMap, categoriesMap] = await Promise.all([
-        getTagsForPosts(postIds),
-        getCategoriesForPosts(postIds)
-      ]);
-      
-      // Attach tags and categories to posts and process markdown
-      const { marked } = await import('marked');
-      
-      // Configure marked for better HTML output
-      marked.setOptions({
-        breaks: true,
-        gfm: true,
-        headerIds: false,
-        mangle: false
-      });
-      
-      const postsWithMetadata = data.map((post: any) => {
-        let processedBody = post.body || '';
-        
-        // Convert markdown to HTML if content exists
-        if (processedBody && typeof processedBody === 'string') {
-          try {
-            // Always process through marked for consistent HTML output
-            processedBody = marked(processedBody);
-            
-            // Clean up the HTML for better prose rendering
-            processedBody = processedBody
-              .replace(/\n\s*\n/g, '</p>\n<p>')
-              .replace(/^(?!<[ph])/gm, '<p>')
-              .replace(/(?<!>)$/gm, '</p>')
-              .replace(/<p><\/p>/g, '')
-              .replace(/<p>(<[h|u|o|b])/g, '$1')
-              .replace(/(<\/[h|u|o|b][^>]*>)<\/p>/g, '$1')
-              .trim();
-          } catch (error) {
-            console.log('⚠️ Could not process markdown for post:', post.slug, error);
-          }
-        }
 
-        return {
-          ...post,
-          // Proper field mapping for Supabase schema
-          coverImage: post.cover_image || '',
-          imageUrl: post.cover_image || '',
-          publishedAt: post.published,
-          updatedAt: post.updated_at,
-          createdAt: post.created_at,
-          body: processedBody,
-          tags: tagsMap.get(post.id) || [],
-          categories: categoriesMap.get(post.id) || [],
-          category: categoriesMap.get(post.id) || []
-        };
-      });
-      
-      console.log(`📋 Enhanced ${postsWithMetadata.length} posts with tags and categories`);
-      
-      // Debug first post with field mapping
-      if (postsWithMetadata[0]) {
-        console.log('📋 Sample enhanced post:', {
-          title: postsWithMetadata[0].title,
-          coverImage: postsWithMetadata[0].coverImage,
-          published: postsWithMetadata[0].published,
-          tags: postsWithMetadata[0].tags,
-          categories: postsWithMetadata[0].categories
-        });
-      }
-      
-      return postsWithMetadata;
-    }
-    
-    return data || [];
+    // Process and return posts
+    return data?.map((post: any) => ({
+      id: post.id,
+      title: post.title || 'Untitled Post',
+      body: post.body || post.content || '',
+      content: post.content || post.body || '',
+      description: post.description || post.excerpt || '',
+      excerpt: post.excerpt || post.description || '',
+      slug: post.slug || post.id,
+      published: post.published || post.created_at || post.created,
+      created_at: post.created_at || post.created || post.published,
+      created: post.created || post.created_at || post.published,
+      updated: post.updated || post.updated_at || post.last_updated || post.published || post.created_at,
+      updated_at: post.updated_at || post.updated || post.last_updated || post.published || post.created_at,
+      last_updated: post.last_updated || post.updated || post.updated_at || post.published || post.created_at,
+      tags: post.tags || [],
+      categories: post.categories || [post.category || 'Blog'],
+      category: post.category || 'Blog',
+      author: post.author || 'Kotacom.id',
+      image: post.image || post.imageUrl || post.coverImage || post.featured_image || post.cover_image || post.thumbnail || '',
+      imageUrl: post.imageUrl || post.image || post.coverImage || post.featured_image || post.cover_image || post.thumbnail || '',
+      coverImage: post.coverImage || post.image || post.imageUrl || post.featured_image || post.cover_image || post.thumbnail || '',
+      featured_image: post.featured_image || post.image || post.imageUrl || post.coverImage || post.cover_image || post.thumbnail || '',
+      cover_image: post.cover_image || post.image || post.imageUrl || post.coverImage || post.featured_image || post.thumbnail || '',
+      thumbnail: post.thumbnail || post.image || post.imageUrl || post.coverImage || post.featured_image || post.cover_image || '',
+      status: post.status || 'published'
+    })) || [];
+
   } catch (error) {
     console.error('❌ Error fetching from Supabase:', error);
     return [];
   }
 }
 
+// Fetch products directly from Supabase
 export async function getProductsDirectFromSupabase(
-  limit: number = 10000,
-  status: 'published' | 'draft' | 'all' = 'published' // Default hanya published
-): Promise<any[]> {
+  limit: number = 1000,
+  status: 'published' | 'draft' | 'all' = 'published'
+): Promise<SupabaseProduct[]> {
   try {
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+      console.log('⚠️ Supabase environment variables not available, returning empty products');
+      return [];
+    }
+
     console.log(`🔄 Fetching ${limit} products directly from Supabase with status: ${status}...`);
-    
-    // Build query with status filter
+
     let query = supabase
       .from('products')
       .select('*')
-      .order('published', { ascending: false });
+      .limit(limit);
 
-    // Filter by status - hanya ambil published products untuk production
     if (status !== 'all') {
       query = query.eq('status', status);
     }
 
-    const { data, error } = await query.limit(limit);
+    const { data, error } = await query;
 
     if (error) {
       console.error('❌ Supabase error:', error);
@@ -217,82 +227,44 @@ export async function getProductsDirectFromSupabase(
     }
 
     console.log(`✅ Successfully fetched ${data?.length || 0} products from Supabase`);
-    return data || [];
+
+    // Process and return products
+    return data?.map((product: any) => ({
+      id: product.id,
+      title: product.title || 'Untitled Product',
+      description: product.description || '',
+      price: product.price || 0,
+      file_url: product.file_url || '',
+      category: product.category || 'General',
+      tags: product.tags || [],
+      status: product.status || 'published',
+      created_at: product.created_at || ''
+    })) || [];
+
   } catch (error) {
     console.error('❌ Error fetching from Supabase:', error);
     return [];
   }
 }
 
-// Helper function to get tags for services
-async function getTagsForServices(serviceIds: number[]): Promise<Map<number, string[]>> {
-  const tagsMap = new Map<number, string[]>();
-  
-  if (serviceIds.length === 0) return tagsMap;
-  
+// Fetch services directly from Supabase
+export async function getServicesDirectFromSupabase(
+  limit: number = 10000,
+  status: 'published' | 'draft' | 'all' = 'published'
+): Promise<any[]> {
   try {
-    const { data: tagsData, error } = await supabase
-      .from('services_tags')
-      .select('_parent_id, value')
-      .in('_parent_id', serviceIds)
-      .order('_order', { ascending: true });
-      
-    if (!error && tagsData) {
-      tagsData.forEach((tag: any) => {
-        const serviceId = tag._parent_id;
-        if (!tagsMap.has(serviceId)) {
-          tagsMap.set(serviceId, []);
-        }
-        tagsMap.get(serviceId)!.push(tag.value);
-      });
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+      console.log('⚠️ Supabase environment variables not available, returning empty services');
+      return [];
     }
-  } catch (error) {
-    console.log('⚠️ Could not fetch service tags:', error);
-  }
-  
-  return tagsMap;
-}
 
-// Helper function to get categories for services
-async function getCategoriesForServices(serviceIds: number[]): Promise<Map<number, string[]>> {
-  const categoriesMap = new Map<number, string[]>();
-  
-  if (serviceIds.length === 0) return categoriesMap;
-  
-  try {
-    const { data: categoriesData, error } = await supabase
-      .from('services_categories')
-      .select('_parent_id, value')
-      .in('_parent_id', serviceIds)
-      .order('_order', { ascending: true });
-      
-    if (!error && categoriesData) {
-      categoriesData.forEach((category: any) => {
-        const serviceId = category._parent_id;
-        if (!categoriesMap.has(serviceId)) {
-          categoriesMap.set(serviceId, []);
-        }
-        categoriesMap.get(serviceId)!.push(category.value);
-      });
-    }
-  } catch (error) {
-    console.log('⚠️ Could not fetch service categories:', error);
-  }
-  
-  return categoriesMap;
-}
-
-export async function getServicesDirectFromSupabase(limit: number = 10000, status: 'published' | 'draft' | 'all' = 'published'): Promise<any[]> {
-  try {
     console.log(`🔄 Fetching ${limit} services directly from Supabase with status: ${status}...`);
-    
+
     let query = supabase
       .from('services')
       .select('*')
-      .limit(limit)
-      .order('published', { ascending: false });
+      .limit(limit);
 
-    // Add status filtering if not 'all'
     if (status !== 'all') {
       query = query.eq('status', status);
     }
@@ -304,82 +276,49 @@ export async function getServicesDirectFromSupabase(limit: number = 10000, statu
       return [];
     }
 
-    if (!data) return [];
+    console.log(`✅ Successfully fetched ${data?.length || 0} services from Supabase`);
 
-    // Get tags and categories for services
-    const serviceIds = data.map((service: any) => service.id);
-    const [tagsMap, categoriesMap] = await Promise.all([
-      getTagsForServices(serviceIds),
-      getCategoriesForServices(serviceIds)
-    ]);
-
-    // Process markdown content for services
-    const { marked } = await import('marked');
-    
-    // Configure marked for better HTML output
-    marked.setOptions({
-      breaks: true,
-      gfm: true,
-      headerIds: false,
-      mangle: false
-    });
-    
-    const processedServices = data.map((service: any) => {
-      let processedBody = service.body || '';
-      
-      // Convert markdown to HTML if content exists
-      if (processedBody && typeof processedBody === 'string') {
-        try {
-          processedBody = marked(processedBody);
-          
-          // Clean up the HTML for better prose rendering
-          processedBody = processedBody
-            .replace(/\n\s*\n/g, '</p>\n<p>')
-            .replace(/^(?!<[ph])/gm, '<p>')
-            .replace(/(?<!>)$/gm, '</p>')
-            .replace(/<p><\/p>/g, '')
-            .replace(/<p>(<[h|u|o|b])/g, '$1')
-            .replace(/(<\/[h|u|o|b][^>]*>)<\/p>/g, '$1')
-            .trim();
-        } catch (error) {
-          console.log('⚠️ Could not process markdown for service:', service.slug, error);
-        }
-      }
-
-      return {
-        ...service,
-        body: processedBody,
-        tags: tagsMap.get(service.id) || [],
-        category: categoriesMap.get(service.id) || Array.isArray(service.category) ? service.category : [],
-        // Ensure proper field mappings
-        imageUrl1: service.imageUrl1 || service.cover_image || '',
-        wilayah: Array.isArray(service.wilayah) ? service.wilayah : [],
-        type: Array.isArray(service.type) ? service.type : [],
-      };
-    });
+    // Process services data
+    const processedServices = data?.map((service: any) => ({
+      id: service.id,
+      title: service.title || 'Untitled Service',
+      description: service.description || '',
+      content: service.content || '',
+      category: service.category || 'General',
+      tags: service.tags || [],
+      image: service.image || '',
+      status: service.status || 'published',
+      created_at: service.created_at || ''
+    })) || [];
 
     console.log(`✅ Successfully fetched and processed ${processedServices.length} services from Supabase`);
-    console.log(`🏷️ Enhanced ${processedServices.filter((s: any) => s.tags?.length > 0).length} services with tags`);
-    console.log(`📂 Enhanced ${processedServices.filter((s: any) => s.category?.length > 0).length} services with categories`);
-    
+
     return processedServices;
+
   } catch (error) {
     console.error('❌ Error fetching from Supabase:', error);
     return [];
   }
 }
 
-export async function getProjectsDirectFromSupabase(limit: number = 10000, status: 'published' | 'draft' | 'all' = 'published'): Promise<any[]> {
+// Fetch projects directly from Supabase
+export async function getProjectsDirectFromSupabase(
+  limit: number = 10000,
+  status: 'published' | 'draft' | 'all' = 'published'
+): Promise<any[]> {
   try {
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+      console.log('⚠️ Supabase environment variables not available, returning empty projects');
+      return [];
+    }
+
     console.log(`🔄 Fetching ${limit} projects directly from Supabase with status: ${status}...`);
-    
+
     let query = supabase
       .from('projects')
       .select('*')
-      .limit(limit)
-      .order('published', { ascending: false });
+      .limit(limit);
 
-    // Add status filtering if not 'all'
     if (status !== 'all') {
       query = query.eq('status', status);
     }
@@ -391,123 +330,44 @@ export async function getProjectsDirectFromSupabase(limit: number = 10000, statu
       return [];
     }
 
-    if (!data) return [];
+    console.log(`✅ Successfully fetched ${data?.length || 0} projects from Supabase`);
 
-    // Process markdown content for projects
-    const { marked } = await import('marked');
-    
-    // Configure marked for better HTML output
-    marked.setOptions({
-      breaks: true,
-      gfm: true,
-      headerIds: false,
-      mangle: false
-    });
-    
-    const processedProjects = data.map((project: any) => {
-      // Process body, description, review, and get_involved content
-      let processedBody = project.body || '';
-      let processedDescription = project.description || '';
-      let processedReview = project.review || '';
-      let processedGetInvolved = project.get_involved || '';
-      
-      // Helper function to process markdown with cleanup
-      const processMarkdownField = (content: string): string => {
-        if (!content || typeof content !== 'string') return '';
-        
-        try {
-          let processed = marked(content);
-          
-          // Clean up the HTML for better prose rendering
-          processed = processed
-            .replace(/\n\s*\n/g, '</p>\n<p>')
-            .replace(/^(?!<[ph])/gm, '<p>')
-            .replace(/(?<!>)$/gm, '</p>')
-            .replace(/<p><\/p>/g, '')
-            .replace(/<p>(<[h|u|o|b])/g, '$1')
-            .replace(/(<\/[h|u|o|b][^>]*>)<\/p>/g, '$1')
-            .trim();
-          
-          return processed;
-        } catch (error) {
-          console.log('⚠️ Could not process markdown for project field:', project.slug, error);
-          return content;
-        }
-      };
-      
-      // Convert markdown to HTML for each field
-      processedBody = processMarkdownField(processedBody);
-      processedDescription = processMarkdownField(processedDescription);
-      processedReview = processMarkdownField(processedReview);
-      processedGetInvolved = processMarkdownField(processedGetInvolved);
-
-      return {
-        id: project.id,
-        title: project.title,
-        slug: project.slug,
-        organiser: project.organiser,
-        imageUrl: project.image_url || '', // Map image_url to imageUrl
-        published: project.published,
-        description: processedDescription,
-        body: processedBody,
-        format: project.format,
-        updated_at: project.updated_at,
-        created_at: project.created_at,
-        url: project.url,
-        gyg_url: project.gyg_url,
-        maps_url: project.maps_url,
-        verify: project.verify || '',
-        review: processedReview,
-        get_involved: processedGetInvolved,
-        // Legacy field mappings for compatibility
-        country: [],
-        locale: [],
-        cost: [],
-        category: [],
-      };
-    });
+    // Process projects data
+    const processedProjects = data?.map((project: any) => ({
+      id: project.id,
+      title: project.title || 'Untitled Project',
+      description: project.description || '',
+      content: project.content || '',
+      category: project.category || 'General',
+      tags: project.tags || [],
+      image: project.image || '',
+      status: project.status || 'published',
+      created_at: project.created_at || ''
+    })) || [];
 
     console.log(`✅ Successfully fetched and processed ${processedProjects.length} projects from Supabase`);
+
     return processedProjects;
+
   } catch (error) {
     console.error('❌ Error fetching from Supabase:', error);
     return [];
   }
 }
 
-// Helper function to process Payload JSON fields
-export function processPayloadField(field: any): any[] {
-  if (!field) return [];
-  if (typeof field === 'string') {
-    try {
-      const parsed = JSON.parse(field);
-      return Array.isArray(parsed) ? parsed : [parsed];
-    } catch {
-      return [{ value: field }];
-    }
-  }
-  if (Array.isArray(field)) return field;
-  return [field];
-}
-
-// Convert Supabase post to Astro-friendly format
+// Helper function to convert Supabase post to Astro-friendly format
 export function convertSupabasePost(post: SupabasePost) {
   return {
-    id: post.id,
-    title: post.title || '',
-    slug: post.slug || '',
-    description: post.description || '',
-    imageUrl: post.imageUrl || post.coverImage || '',
-    coverImage: post.coverImage || post.imageUrl || '',
-    image: post.imageUrl || post.coverImage || '',
-    published: post.published ? new Date(post.published) : (post.publishedAt ? new Date(post.publishedAt) : new Date()),
-    publishedAt: post.publishedAt ? new Date(post.publishedAt) : (post.published ? new Date(post.published) : new Date()),
-    updated: post.updatedAt ? new Date(post.updatedAt) : new Date(),
-    tags: processPayloadField(post.tags).map((t: any) => t.value || t),
-    category: processPayloadField(post.category).map((c: any) => c.value || c),
-    body: post.body || '',
-    status: post.status || 'published',
-    author: post.author || 'Kotacom.id',
+    data: {
+      title: post.title,
+      description: post.description || post.excerpt || '',
+      published: post.published ? new Date(post.published) : (post.created_at ? new Date(post.created_at) : new Date()),
+      lastUpdated: post.updated ? new Date(post.updated) : (post.updated_at ? new Date(post.updated_at) : (post.last_updated ? new Date(post.last_updated) : new Date())),
+      tags: post.tags || [],
+      author: post.author || 'Kotacom.id'
+    },
+    slug: post.slug,
+    url: `/posts/${post.slug}`,
     source: 'supabase-direct' as const
   };
 }

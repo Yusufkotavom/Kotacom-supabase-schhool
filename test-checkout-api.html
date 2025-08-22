@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Checkout API</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { margin-top: 20px; padding: 15px; border-radius: 4px; }
+        .success { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .error { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        .info { background: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <h1>Test Checkout API</h1>
+    
+    <form id="checkout-form">
+        <div class="form-group">
+            <label for="name">Nama:</label>
+            <input type="text" id="name" value="Test User" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" value="test@example.com" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="whatsapp">WhatsApp:</label>
+            <input type="text" id="whatsapp" value="08123456789" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="products">Products (JSON):</label>
+            <textarea id="products" rows="4" required>[{"id":"test-product","title":"Test Product","price":100000,"quantity":1}]</textarea>
+        </div>
+        
+        <button type="submit">Test Checkout API</button>
+    </form>
+    
+    <div id="result"></div>
+    
+    <script>
+        document.getElementById('checkout-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<div class="info">Testing API...</div>';
+            
+            try {
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    whatsapp: document.getElementById('whatsapp').value,
+                    products: JSON.parse(document.getElementById('products').value)
+                };
+                
+                console.log('Sending data:', formData);
+                
+                const response = await fetch('/api/checkout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
+                
+                const data = await response.json();
+                console.log('Response data:', data);
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `<div class="success">
+                        <h3>Success!</h3>
+                        <p>Status: ${response.status}</p>
+                        <p>Message: ${data.message}</p>
+                        <p>Order ID: ${data.orderId}</p>
+                    </div>`;
+                } else {
+                    resultDiv.innerHTML = `<div class="error">
+                        <h3>Error!</h3>
+                        <p>Status: ${response.status}</p>
+                        <p>Message: ${data.message}</p>
+                        <p>Error Details: ${JSON.stringify(data, null, 2)}</p>
+                    </div>`;
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.innerHTML = `<div class="error">
+                    <h3>Exception Error!</h3>
+                    <p>Error: ${error.message}</p>
+                    <p>Stack: ${error.stack}</p>
+                </div>`;
+            }
+        });
+    </script>
+</body>
+</html>
