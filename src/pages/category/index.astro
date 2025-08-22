@@ -1,5 +1,5 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
 import { getPostsDirectFromSupabase } from '../../lib/supabase-direct';
 import { toSlug } from '../../utils/slug-helpers';
 import { getCollection } from "astro:content";
@@ -71,19 +71,103 @@ const uniqueTags = Array.from(allTags).sort();
 // Debug info removed for production
 ---
 
-<Layout title="Kategori - Kotacom.id">
-  <main class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Kategori</h1>
-    
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {uniqueTags.map((tag) => (
-        <a 
-          href={`/category/${toSlug(tag)}/`}
-          class="block p-4 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition-shadow border border-gray-200 dark:border-gray-700"
-        >
-          <span class="text-gray-900 dark:text-white font-medium">{tag}</span>
-        </a>
-      ))}
+<MainLayout 
+  title="Kategori - Kotacom.id"
+  description="Jelajahi artikel berdasarkan kategori. Temukan konten yang sesuai dengan minat dan kebutuhan Anda."
+  type="page"
+>
+  <!-- Breadcrumbs Section -->
+  <section class="bg-gray-50 dark:bg-gray-800 py-4">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+          <li class="inline-flex items-center">
+            <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+              <svg class="w-3 h-3 mr-2.5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+              </svg>
+              Home
+            </a>
+          </li>
+          <li aria-current="page">
+            <div class="flex items-center">
+              <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+              </svg>
+              <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Kategori</span>
+            </div>
+          </li>
+        </ol>
+      </nav>
     </div>
-  </main>
-</Layout>
+  </section>
+
+  <!-- Categories Hero Section -->
+  <section class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+      <div class="max-w-4xl mx-auto text-center">
+        <!-- Icon -->
+        <div class="inline-flex items-center justify-center w-16 h-16 mb-6 bg-blue-100 dark:bg-blue-900 rounded-full">
+          <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        
+        <!-- Title -->
+        <h1 class="mb-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+          Kategori Artikel
+        </h1>
+        
+        <!-- Description -->
+        <p class="mb-8 text-lg sm:text-xl font-normal text-gray-500 dark:text-gray-400 max-w-3xl mx-auto">
+          Jelajahi artikel berdasarkan kategori. Temukan <span class="font-semibold text-gray-900 dark:text-white">{uniqueTags.length}</span> kategori yang tersedia.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Grid Section -->
+  <section class="bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {uniqueTags.map((tag) => (
+            <a 
+              href={`/category/${toSlug(tag)}/`}
+              class="group block p-6 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200"
+            >
+              <div class="flex items-center gap-3">
+                <!-- Tag Icon -->
+                <div class="flex-shrink-0 w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center group-hover:bg-blue-200 dark:group-hover:bg-blue-800 transition-colors duration-200">
+                  <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                
+                <!-- Tag Content -->
+                <div class="flex-1 min-w-0">
+                  <h3 class="text-sm font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 truncate">
+                    {tag}
+                  </h3>
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    Lihat artikel
+                  </p>
+                </div>
+                
+                <!-- Arrow Icon -->
+                <div class="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  <svg class="w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+       </div>
+-     ) : null}
+-   </main>
+- </Layout>
++     </div>
++   </section>
++ </MainLayout>

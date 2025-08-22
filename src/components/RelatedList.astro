@@ -25,7 +25,7 @@ if (type === 'post') {
     title: p.data?.title,
     slug: p.data?.slug,
     date: p.data?.published ? new Date(p.data.published) : undefined,
-  })).filter((x: any) => x.slug).map((x: any) => ({ title: x.title, href: `/blog/${x.slug}/`, date: x.date }));
+  })).filter((x: any) => x.slug).map((x: any) => ({ title: x.title, href: `/${x.slug}/`, date: x.date }));
 
   items = [...mdxItems];
 }
@@ -68,17 +68,76 @@ items = items.slice(0, limit);
 
 {items.length > 0 && (
   <section class="bg-gray-50 dark:bg-gray-800">
-    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">
-        {type === 'post' ? 'Artikel Terbaru' : type === 'project' ? 'Project Terbaru' : 'Produk Terbaru'}
-      </h2>
-      <ul class="grid gap-2 list-disc pl-4 text-gray-700 dark:text-gray-300">
-        {items.map((it) => (
-          <li>
-            <a href={it.href} class="text-blue-600 dark:text-blue-400 hover:underline">{it.title}</a>
-          </li>
-        ))}
-      </ul>
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            {type === 'post' ? 'Artikel Terkait' : type === 'project' ? 'Project Terkait' : 'Produk Terkait'}
+          </h2>
+          <p class="text-gray-500 dark:text-gray-400">
+            Temukan konten menarik lainnya yang mungkin Anda sukai
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {items.map((item) => (
+            <article class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-6 hover:shadow-lg transition-shadow duration-300 group">
+              <div class="flex items-start gap-3">
+                <!-- Icon based on type -->
+                <div class="flex-shrink-0 w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center group-hover:bg-blue-200 dark:group-hover:bg-blue-800 transition-colors duration-200">
+                  {type === 'post' && (
+                    <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+                    </svg>
+                  )}
+                  {type === 'project' && (
+                    <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" clip-rule="evenodd" />
+                    </svg>
+                  )}
+                  {type === 'product' && (
+                    <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 2L3 7v11a1 1 0 001 1h12a1 1 0 001-1V7l-7-5zM10 12a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                    </svg>
+                  )}
+                </div>
+                
+                <!-- Content -->
+                <div class="flex-1 min-w-0">
+                  <h3 class="text-sm font-medium text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+                    <a href={item.href} class="block hover:no-underline">
+                      {item.title}
+                    </a>
+                  </h3>
+                  {item.date && (
+                    <p class="text-xs text-gray-500 dark:text-gray-400">
+                      {item.date.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    </p>
+                  )}
+                </div>
+                
+                <!-- Arrow Icon -->
+                <div class="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  <svg class="w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+        
+        <!-- View All Link -->
+        <div class="text-center mt-8">
+          <a href={type === 'post' ? '/posts' : type === 'project' ? '/projects' : '/products'} 
+             class="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition-all duration-200">
+            Lihat Semua {type === 'post' ? 'Artikel' : type === 'project' ? 'Project' : 'Produk'}
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 )}
