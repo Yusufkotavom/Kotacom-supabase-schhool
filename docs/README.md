@@ -41,15 +41,15 @@ Dokumen ini WAJIB diikuti oleh AI/developer saat menambah, mengubah, atau mengha
   - `src/components/Homepage/LatestServices.astro`
   - `src/components/Homepage/LatestPosts.astro`
   - `src/components/Homepage/LatestProjects.astro`
-- Dropdown/filter kategori/negara/lokasi:
-  - Product → `PCountryDropdown.astro`, `PLocaleDropdown.astro`, `ProductCategoryDropdown.astro`
+- Dropdown/filter kategori:
+  - Product → `ProductCategoryDropdown.astro` (kategori gabungan MDX+Supabase, dipass via props dari halaman listing)
   - Service → `SCategoryDropdown.astro`
   - Project → `PCategoryDropdown.astro`
 - Schema SEO: `src/components/SchemaMarkup.astro` (dipakai di semua layout)
 - Pencarian: `src/pages/search.astro` (Pagefind) bergantung pada atribut di layout (data-pagefind-body, data-pagefind-meta)
 - Supabase adapter: `src/lib/supabase-direct.ts` (mapping field Supabase → bentuk yang dipakai layout/komponen)
 
-Catatan penting dropdown: saat ini dropdown kategori/negara/lokasi membaca dari koleksi MDX saja. Jika sumber Supabase dipakai dominan, pertimbangkan menambah dukungan Supabase di komponen dropdown tersebut (lihat guideline perubahan).
+Catatan dropdown Product: kategori dihitung sekali pada build di `getStaticPaths` (MDX+Supabase) dan diteruskan ke `ProductCategoryDropdown` sebagai props `categoryCounts`. Hindari fetch per komponen untuk performa build yang lebih baik.
 
 ## Prinsip Umum
 - Semua perubahan field WAJIB dimapping di:

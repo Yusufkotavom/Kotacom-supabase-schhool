@@ -101,7 +101,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
           pPrice: product.price,
           pCountry: product.country || [],
           pLocale: product.locale || [],
-          pCategory: product.category || [],
+          pCategory: Array.isArray(product.category) ? product.category.map((c: any) => c?.value || c) : (product.category ? [product.category] : []),
           pSlug: product.slug,
           pImageURL1: product.imageUrl || product.cover_image || product.image_url || "",
           pPublished: { start: product.published ? new Date(product.published) : new Date(0) },
@@ -180,28 +180,30 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     const bP = getPriorityScore(b.data.properties.pPriority, b.data.properties.pIsSponsored);
     if (aP !== bP) return bP - aP;
     const dateA = a.data.properties.pPublished?.start || new Date(0);
-    const dateB = b.data.properties.pPublished?.start || new Date(0);
+    const dateB = a.data.properties.pPublished?.start || new Date(0);
     return dateB.getTime() - dateA.getTime();
+  });
+
+  // Build category counts across all products
+  const categoryCounts: Record<string, number> = {};
+  allProducts.forEach((product) => {
+    const raw = (product.data.properties as any).pCategory;
+    const cats = Array.isArray(raw) ? raw : (raw ? [raw] : []);
+    cats.forEach((c: any) => {
+      const name = typeof c === 'string' ? c : (c?.value ?? String(c));
+      const key = String(name).trim();
+      if (key) categoryCounts[key] = (categoryCounts[key] || 0) + 1;
+    });
   });
 
   return paginate(sortedEntries, {
     pageSize: 12,
+    props: { categoryCounts },
   });
 }
 
-const { page } = Astro.props;
-
-// Get unique categories for filtering
-const allCategories = new Set();
-page.data.forEach(product => {
-  const categories = product.data.properties.pCategory;
-  if (Array.isArray(categories)) {
-    categories.forEach(cat => allCategories.add(cat));
-  } else if (categories) {
-    allCategories.add(categories);
-  }
-});
-
+const { page, categoryCounts } = Astro.props;
+ 
 // Calculate affiliate metrics for display
 const sponsoredCount = page.data.filter(p => p.data.properties.pIsSponsored).length;
 const featuredCount = page.data.filter(p => p.data.properties.pPriority === 'featured').length;
@@ -267,7 +269,7 @@ const productsWithDiscount = page.data.filter(p => p.data.properties.pOriginalPr
         <div class="flex flex-col sm:flex-row gap-2">
           <!-- Category Filter -->
           <div class="min-w-[200px]">
-            <ProductCategoryDropdown />
+            <ProductCategoryDropdown categoryCounts={categoryCounts} />
           </div>
           
           <!-- Sort Options -->

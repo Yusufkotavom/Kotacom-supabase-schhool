@@ -4,7 +4,6 @@ import MainLayout from "../../../layouts/MainLayout.astro";
 import type { GetStaticPathsOptions } from "astro";
 import ProductCard from "../../../components/ProductCard.astro";
 import ProductCategoryDropdown from "../../../components/ProductCategoryDropdown.astro";
-import PCountryDropdown from "../../../components/PCountryDropdown.astro";
 import { getProductsDirectFromSupabase } from "../../../lib/supabase-direct";
 
 // Helper function to parse dates in dd/mm/yyyy format
@@ -72,7 +71,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
       data: { 
         properties: {
           pTitle: product.title,
-          pCategory: product.category || [],
+          pCategory: Array.isArray(product.category) ? product.category.map((c: any) => c?.value || c) : (product.category ? [product.category] : []),
           pSlug: product.slug,
           pImageURL1: product.imageUrl || "",
           pPublished: { start: product.published ? new Date(product.published) : new Date(0) },
@@ -93,6 +92,18 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 
   // Merge all products
   const allProducts = [...normalizedMdxProducts, ...normalizedSupabaseProducts];
+
+  // Build category counts across all products
+  const categoryCounts: Record<string, number> = {};
+  allProducts.forEach((product) => {
+    const raw = (product.data.properties as any).pCategory;
+    const cats = Array.isArray(raw) ? raw : (raw ? [raw] : []);
+    cats.forEach((c: any) => {
+      const name = typeof c === 'string' ? c : (c?.value ?? String(c));
+      const key = String(name).trim();
+      if (key) categoryCounts[key] = (categoryCounts[key] || 0) + 1;
+    });
+  });
 
   // Extract unique categories
   const categories = Array.from(
@@ -153,14 +164,14 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     return paginate(sortedProducts, {
       pageSize: 12, // Number of products per page
       params: { category },
-      props: { category }, // Pass category as a prop
+      props: { category, categoryCounts }, // Pass category counts for dropdown
     });
   });
 
   return paths;
 }
 
-const { page } = Astro.props;
+const { page, categoryCounts } = Astro.props;
 const { category } = Astro.params;
 
 // Convert URL-friendly category back to display name
@@ -234,12 +245,7 @@ const productsWithDiscount = page.data.filter((p: any) => (p.data.properties as 
         <div class="flex flex-col sm:flex-row gap-2">
           <!-- Category Filter -->
           <div class="min-w-[200px]">
-            <ProductCategoryDropdown />
-          </div>
-          
-          <!-- Country Filter -->
-          <div class="min-w-[200px]">
-            <PCountryDropdown />
+            <ProductCategoryDropdown categoryCounts={categoryCounts} />
           </div>
           
           <!-- Sort Options -->
