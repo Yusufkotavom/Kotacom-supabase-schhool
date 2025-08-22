@@ -1,0 +1,186 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout title="Ecommerce System Demo - Kotacom">
+  <div class="container mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold text-gray-900 mb-8 text-center">Ecommerce System Demo</h1>
+      
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+        <h2 class="text-xl font-semibold text-blue-900 mb-4">🎉 New Ecommerce Features Added!</h2>
+        <p class="text-blue-800 mb-4">
+          Your Kotacom website now includes a complete ecommerce system with shopping cart, checkout, and automated email notifications.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <h3 class="font-semibold text-blue-900 mb-2">✅ What's Working:</h3>
+            <ul class="space-y-1 text-blue-700">
+              <li>• Shopping cart with persistent storage</li>
+              <li>• Add to cart buttons on product pages</li>
+              <li>• Cart management (view, edit, remove items)</li>
+              <li>• Checkout process with form validation</li>
+              <li>• Bank transfer payment method</li>
+              <li>• Order confirmation emails</li>
+              <li>• Responsive design for all devices</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold text-blue-900 mb-2">🔧 Setup Required:</h3>
+            <ul class="space-y-1 text-blue-700">
+              <li>• SendGrid API key configuration</li>
+              <li>• Environment variables setup</li>
+              <li>• Bank account details</li>
+              <li>• Email templates customization</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <!-- Cart Demo -->
+        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Shopping Cart</h3>
+          <p class="text-gray-600 mb-4">View and manage your shopping cart with persistent storage.</p>
+          <a href="/cart" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+            View Cart
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+        
+        <!-- Checkout Demo -->
+        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Checkout Process</h3>
+          <p class="text-gray-600 mb-4">Complete checkout with customer information and bank transfer.</p>
+          <a href="/checkout" class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+            Try Checkout
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+        
+        <!-- Products Demo -->
+        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Product Pages</h3>
+          <p class="text-gray-600 mb-4">Browse products with new "Add to Cart" functionality.</p>
+          <a href="/products" class="inline-flex items-center px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+            Browse Products
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Setup Instructions -->
+      <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">🚀 Quick Setup Guide</h2>
+        
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">1. Environment Configuration</h3>
+            <p class="text-gray-600 mb-3">Create a <code class="bg-gray-200 px-2 py-1 rounded text-sm">.env</code> file with your SendGrid API key:</p>
+            <div class="bg-gray-800 text-green-400 p-4 rounded-lg text-sm font-mono overflow-x-auto">
+              <div>SENDGRID_API_KEY=SG.your_api_key_here</div>
+              <div>SENDGRID_FROM_EMAIL=noreply@yourdomain.com</div>
+              <div>ADMIN_EMAIL=admin@yourdomain.com</div>
+            </div>
+          </div>
+          
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">2. SendGrid Setup</h3>
+            <ol class="list-decimal list-inside space-y-2 text-gray-600">
+              <li>Create account at <a href="https://sendgrid.com" class="text-blue-600 hover:underline">sendgrid.com</a></li>
+              <li>Generate API key</li>
+              <li>Verify sender email address</li>
+              <li>Add API key to your environment variables</li>
+            </ol>
+          </div>
+          
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">3. Test the System</h3>
+            <ol class="list-decimal list-inside space-y-2 text-gray-600">
+              <li>Add products to cart from product pages</li>
+              <li>View cart and proceed to checkout</li>
+              <li>Fill out checkout form</li>
+              <li>Submit order and check email delivery</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Features List -->
+      <div class="mt-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">✨ Key Features</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex items-start space-x-3">
+            <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="text-gray-700">Persistent cart storage with Zustand</span>
+          </div>
+          <div class="flex items-start space-x-3">
+            <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="text-gray-700">Responsive design for all devices</span>
+          </div>
+          <div class="flex items-start space-x-3">
+            <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="text-gray-700">Form validation and error handling</span>
+          </div>
+          <div class="flex items-start space-x-3">
+            <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="text-gray-700">Automated email notifications</span>
+          </div>
+          <div class="flex items-start space-x-3">
+            <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="text-gray-700">Bank transfer payment method</span>
+          </div>
+          <div class="flex items-start space-x-3">
+            <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="text-gray-700">TypeScript support throughout</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Next Steps -->
+      <div class="mt-8 bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+        <h2 class="text-xl font-semibold text-yellow-900 mb-4">🔄 Next Steps</h2>
+        <div class="space-y-3 text-yellow-800">
+          <p>• Configure your SendGrid API key and email settings</p>
+          <p>• Customize email templates and company information</p>
+          <p>• Set up your bank account details for transfers</p>
+          <p>• Test the complete checkout flow</p>
+          <p>• Customize styling and branding as needed</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</MainLayout>

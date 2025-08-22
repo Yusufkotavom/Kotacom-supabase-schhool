@@ -14,6 +14,7 @@ import {
   type AffiliateProduct 
 } from "../utils/affiliateUtils";
 import RelatedList from "../components/RelatedList.astro";
+import AddToCartButton from "../components/AddToCartButton.astro";
 
 type Props = CollectionEntry<"products">["data"] | CollectionEntry<"productsMdx">["data"];
 
@@ -426,6 +427,20 @@ const images: string[] = oneSec.length > 0 ? oneSec : [fallbackImage];
           <!-- Enhanced Purchase Options -->
           <div class="space-y-4">
             <h3 class="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">Beli Produk Ini</h3>
+            
+            <!-- Add to Cart Button -->
+            <AddToCartButton 
+              product={{
+                id: productData.slug,
+                title: productData.title,
+                price: parseFloat(productData.price) || 0,
+                imageUrl: productData.imageUrl || '',
+                slug: productData.slug,
+                category: productData.category || [],
+                description: productData.description || ''
+              }}
+              class="w-full"
+            />
             
             {affiliateMarketplaces.length > 0 && (
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
