@@ -4,6 +4,7 @@ import KotacomLogo from "../assets/kotacom-logo.svg";
 import ThemeToggle from "./ThemeToggle.astro";
 import MegaMenu from "./MegaMenu.astro";
 import MobileMegaMenu from "./MobileMegaMenu.astro";
+import CartIcon from "./CartIcon.astro";
 import { MEGA_MENU_CONFIG, SIMPLE_NAV_ITEMS, MOBILE_MENU_CONFIG } from "../data/mega-menu-config";
 
 const companyWhatsapp = '085799520350';
@@ -75,6 +76,11 @@ const companyWhatsapp = '085799520350';
     <span class="block lg:hidden">WA</span>
     <span class="hidden lg:block">WhatsApp</span>
   </a>
+
+  <!-- Cart Icon -->
+  <div class="mr-2">
+    <CartIcon />
+  </div>
 
   <!-- Mobile Menu Toggle -->
   <button

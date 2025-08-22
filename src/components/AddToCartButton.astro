@@ -1,0 +1,95 @@
+---
+export interface Props {
+  product: {
+    id: string;
+    title: string;
+    price: number;
+    imageUrl: string;
+    slug: string;
+    category?: string[];
+    description?: string;
+  };
+  class?: string;
+}
+
+const { product, class: className = "" } = Astro.props;
+---
+
+<button 
+  id="add-to-cart-${product.id}"
+  class="add-to-cart-btn bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 ${className}"
+  data-product='${JSON.stringify(product)}'
+>
+  <span class="btn-text">Add to Cart</span>
+  <span class="btn-loading hidden">Adding...</span>
+  <span class="btn-success hidden">✓ Added!</span>
+</button>
+
+<script>
+  import { useCartStore } from '../lib/cartStore';
+  
+  class AddToCartButton {
+    constructor(button: HTMLButtonElement) {
+      this.button = button;
+      this.product = JSON.parse(button.dataset.product || '{}');
+      this.btnText = button.querySelector('.btn-text') as HTMLElement;
+      this.btnLoading = button.querySelector('.btn-loading') as HTMLElement;
+      this.btnSuccess = button.querySelector('.btn-success') as HTMLElement;
+      
+      this.init();
+    }
+    
+    init() {
+      this.button.addEventListener('click', () => this.handleClick());
+    }
+    
+    async handleClick() {
+      if (this.button.disabled) return;
+      
+      this.setLoading(true);
+      
+      try {
+        // Add to cart
+        useCartStore.getState().addItem(this.product);
+        
+        // Show success state
+        this.setSuccess();
+        
+        // Reset after 2 seconds
+        setTimeout(() => {
+          this.reset();
+        }, 2000);
+        
+      } catch (error) {
+        console.error('Error adding to cart:', error);
+        this.reset();
+      }
+    }
+    
+    setLoading(loading: boolean) {
+      this.button.disabled = loading;
+      this.btnText.classList.toggle('hidden', loading);
+      this.btnLoading.classList.toggle('hidden', !loading);
+      this.btnSuccess.classList.add('hidden');
+    }
+    
+    setSuccess() {
+      this.btnText.classList.add('hidden');
+      this.btnLoading.classList.add('hidden');
+      this.btnSuccess.classList.remove('hidden');
+    }
+    
+    reset() {
+      this.button.disabled = false;
+      this.btnText.classList.remove('hidden');
+      this.btnLoading.classList.add('hidden');
+      this.btnSuccess.classList.add('hidden');
+    }
+  }
+  
+  // Initialize all add to cart buttons
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.add-to-cart-btn');
+    buttons.forEach(button => new AddToCartButton(button as HTMLButtonElement));
+  });
+</script>
