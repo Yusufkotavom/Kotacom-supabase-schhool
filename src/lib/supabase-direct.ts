@@ -4,7 +4,20 @@ import { createClient } from '@supabase/supabase-js';
 const SUPABASE_URL = import.meta.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = import.meta.env.SUPABASE_ANON_KEY;
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// Graceful fallback for missing environment variables
+if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+  console.warn('⚠️ Supabase environment variables not configured properly');
+}
+
+const supabase = createClient(
+  SUPABASE_URL || 'https://placeholder.supabase.co', 
+  SUPABASE_ANON_KEY || 'placeholder-key'
+);
+
+// Helper to check if Supabase is properly configured
+const isSupabaseConfigured = (): boolean => {
+  return !!(SUPABASE_URL && SUPABASE_ANON_KEY && !SUPABASE_URL.includes('placeholder'));
+};
 
 export interface SupabasePost {
   id: string;
@@ -86,6 +99,12 @@ export async function getPostsDirectFromSupabase(
   limit: number = 100, 
   status: 'published' | 'draft' | 'all' = 'published' // Default hanya published
 ): Promise<SupabasePost[]> {
+  // Return empty array if Supabase not configured
+  if (!isSupabaseConfigured()) {
+    console.log('⚠️ Supabase not configured, returning empty posts array');
+    return [];
+  }
+  
   try {
     console.log(`🔄 Fetching ${limit} posts directly from Supabase with status: ${status}...`);
     
@@ -195,6 +214,11 @@ export async function getProductsDirectFromSupabase(
   limit: number = 10000,
   status: 'published' | 'draft' | 'all' = 'published' // Default hanya published
 ): Promise<any[]> {
+  if (!isSupabaseConfigured()) {
+    console.log('⚠️ Supabase not configured, returning empty products array');
+    return [];
+  }
+  
   try {
     console.log(`🔄 Fetching ${limit} products directly from Supabase with status: ${status}...`);
     
@@ -283,6 +307,11 @@ async function getCategoriesForServices(serviceIds: number[]): Promise<Map<numbe
 }
 
 export async function getServicesDirectFromSupabase(limit: number = 10000, status: 'published' | 'draft' | 'all' = 'published'): Promise<any[]> {
+  if (!isSupabaseConfigured()) {
+    console.log('⚠️ Supabase not configured, returning empty services array');
+    return [];
+  }
+  
   try {
     console.log(`🔄 Fetching ${limit} services directly from Supabase with status: ${status}...`);
     
@@ -370,6 +399,11 @@ export async function getServicesDirectFromSupabase(limit: number = 10000, statu
 }
 
 export async function getProjectsDirectFromSupabase(limit: number = 10000, status: 'published' | 'draft' | 'all' = 'published'): Promise<any[]> {
+  if (!isSupabaseConfigured()) {
+    console.log('⚠️ Supabase not configured, returning empty projects array');
+    return [];
+  }
+  
   try {
     console.log(`🔄 Fetching ${limit} projects directly from Supabase with status: ${status}...`);
     

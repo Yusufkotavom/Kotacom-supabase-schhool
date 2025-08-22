@@ -128,7 +128,7 @@ const pageMdxSchema = z.object({
 
 // MDX Posts collection
 const postsMdx = defineCollection({
-    loader: glob({ pattern: '**/*.{md,mdx}', base: './src/pages/posts' }),
+    loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/posts' }),
     schema: postMdxSchema,
   });
 

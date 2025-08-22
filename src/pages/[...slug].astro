@@ -5,15 +5,20 @@ import { getPostsDirectFromSupabase } from "../lib/supabase-direct";
 import { marked } from 'marked';
 
 export async function getStaticPaths(): Promise<Array<{params: {slug: string}, props: any}>> {
-  // Get MDX posts from pages/posts directory
-  const postFiles: any[] = await Astro.glob('./posts/*.{md,mdx}');
-  const mdxPosts: any[] = postFiles.map((post: any) => ({
-    data: post.frontmatter,
-    slug: post.frontmatter.slug || post.file?.split('/').pop()?.replace(/\.(md|mdx)$/, '') || '',
-    url: post.url,
-    file: post.file,
-    Content: post.default // Store the component
-  }));
+  // Get MDX posts from content collection
+  let mdxPosts: any[] = [];
+  try {
+    const mdxCollection = await getCollection("postsMdx");
+    mdxPosts = mdxCollection.map((post: any) => ({
+      data: post.data,
+      slug: post.data.slug || post.id,
+      id: post.id,
+      entry: post // Store the full entry for rendering
+    }));
+  } catch (error) {
+    console.log('⚠️ No MDX posts found in content collection:', error);
+    mdxPosts = [];
+  }
   
   // Get MDX pages from pages directory (if any) - skip for now since pagesMdx collection doesn't exist
   let mdxPages: any[] = [];
@@ -162,8 +167,19 @@ if (source === 'page') {
     source: 'supabase'
   };
 } else {
-  // Handle MDX posts - use the pre-loaded component
-  Content = post.Content; // Use the component from Astro.glob
+  // Handle MDX posts - use content collection render
+  try {
+    if (post.entry) {
+      const { render } = await import("astro:content");
+      const { Content: RenderedContent } = await render(post.entry);
+      Content = RenderedContent;
+    } else {
+      Content = undefined;
+    }
+  } catch (error) {
+    console.log('⚠️ Could not render MDX content:', error);
+    Content = undefined;
+  }
   wordCount = 0;
   
   layoutData = {

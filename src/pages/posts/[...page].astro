@@ -6,7 +6,7 @@ import { getCollection } from "astro:content";
 import { getPostsDirectFromSupabase, convertSupabasePost } from "../../lib/supabase-direct";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  // Ambil semua post dari MDX dan Supabase
+  // Ambil semua post dari MDX content collection dan Supabase
   const mdxPosts = await getCollection('postsMdx').catch(() => [] as any[]);
   const supabasePosts = await getPostsDirectFromSupabase(10000); // Get all posts from Supabase
   

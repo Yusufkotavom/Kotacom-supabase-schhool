@@ -13,7 +13,7 @@ Dokumentasi ini menjelaskan sistem routing berbasis file Astro, struktur halaman
 ```
 src/pages/
 ├── index.astro                    # / (Homepage)
-├── [...slug].astro               # /blog-post-slug (Dynamic blog posts)
+├── [...slug].astro               # /blog-post-slug (Dynamic blog posts - ROOT LEVEL)
 ├── [...page].astro               # /1, /2, /3 (Pagination)
 ├── contact.astro                 # /contact
 ├── search.astro                  # /search
@@ -25,8 +25,8 @@ src/pages/
 │   └── index.astro               # /about
 │
 ├── posts/
-│   ├── *.mdx                     # /posts/post-slug (MDX blog posts)
-│   └── index.astro               # /posts (Posts listing)
+│   ├── index.astro               # /posts (Posts listing - redirects to /posts/1)
+│   └── [...page].astro           # /posts/1, /posts/2 (Posts pagination)
 │
 ├── services/
 │   ├── index.astro               # /services (Services listing)
@@ -48,6 +48,10 @@ src/pages/
 │
 └── layanan/
     └── *.astro                   # /layanan/* (Static service pages)
+
+src/content/
+└── posts/
+    └── *.mdx                     # MDX content files (not routed directly)
 ```
 
 ---
@@ -574,8 +578,8 @@ export async function getStaticPaths() {
 #### 2.1 URL Patterns
 ```
 Entity URLs:
-├── /posts/                        # Posts listing
-├── /posts/how-to-build-website    # Individual post
+├── /posts/                        # Posts listing (pagination)
+├── /how-to-build-website          # Individual post (ROOT LEVEL)
 ├── /services/                     # Services listing  
 ├── /services/website-development  # Individual service
 ├── /products/                     # Products listing

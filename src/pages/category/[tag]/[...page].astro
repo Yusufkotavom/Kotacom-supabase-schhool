@@ -3,20 +3,22 @@ import Layout from '../../../layouts/Layout.astro';
 import PostCard from '../../../components/PostCard.astro';
 import { getPostsDirectFromSupabase } from '../../../lib/supabase-direct';
 import { toSlug, fromSlug } from '../../../utils/slug-helpers';
+import { getCollection } from "astro:content";
 
 export async function getStaticPaths({ paginate }: any) {
-  // Get MDX posts from pages/posts directory
-  const postFiles = await import.meta.glob('../../posts/*.mdx');
-  const mdxPosts = await Promise.all(
-    Object.entries(postFiles).map(async ([path, loader]) => {
-      const post: any = await loader();
-      return {
-        data: post.frontmatter,
-        slug: path.split('/').pop()?.replace('.mdx', '') || '',
-        url: path.replace('../../posts/', '/posts/').replace('.mdx', '/')
-      };
-    })
-  );
+  // Get MDX posts from content collection
+  let mdxPosts: any[] = [];
+  try {
+    const mdxCollection = await getCollection("postsMdx");
+    mdxPosts = mdxCollection.map(post => ({
+      data: post.data,
+      slug: post.data.slug || post.id,
+      url: `/${post.data.slug || post.id}`
+    }));
+  } catch (error) {
+    console.log('⚠️ No MDX posts found in content collection');
+    mdxPosts = [];
+  }
   
   const supabasePosts = await getPostsDirectFromSupabase(10000); // Load all posts to capture all tags
   
