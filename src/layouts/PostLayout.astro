@@ -10,6 +10,7 @@ import { toSlug } from '../utils/slug-helpers';
 import WhatsAppButton from "../components/WhatsAppButton.astro";
 import { getCollection } from 'astro:content';
 import { getPostsDirectFromSupabase, convertSupabasePost } from "../lib/supabase-direct";
+import "../styles/wordpress-import.css"; // Import CSS WordPress
 
 // Props untuk semua jenis post
 type Props = {
@@ -26,7 +27,7 @@ type Props = {
 	tags?: string[] | Array<{value: string}>;
 	category?: string[] | Array<{value: string}>;
 	author?: string;
-	source?: 'directus' | 'notion' | 'mdx' | 'sanity' | 'payload' | 'supabase' | 'page' | 'unknown';
+	source?: 'directus' | 'notion' | 'mdx' | 'sanity' | 'payload' | 'supabase' | 'wordpress' | 'page' | 'unknown';
 	wordCount?: number;
 	content?: string;
 	body?: string;
@@ -197,18 +198,26 @@ const popularCategories = Array.isArray((Astro.props as any).popularCategories)
 			</div>
 		</div>
 	</section>
-
 	<!-- Content + CTA Sidebar -->
 	<section class="bg-gray-50 dark:bg-gray-800">
 		<div class="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8 py-8">
 			<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-				<!-- Article -->
-				<article id="post-article" class="lg:col-span-2 prose md:prose-lg max-w-none" data-pagefind-body data-pagefind-filter={props.source === 'page' ? undefined : 'type:post'}>
+				<!-- Article dengan WordPress styling otomatis -->
+				<article 
+					id="post-article" 
+					class={`lg:col-span-2 prose md:prose-lg max-w-none ${
+						props.source === 'supabase' || props.source === 'wordpress' ? 'wordpress-content' : ''
+					}`} 
+					data-pagefind-body 
+					data-pagefind-filter={props.source === 'page' ? undefined : 'type:post'}
+				>
 					<slot />
 					{postData.tags?.length > 0 && (
 						<span class="hidden" data-pagefind-meta="categories">{postData.tags.join(', ')}</span>
 					)}
 				</article>
+				
+					
 
 				<!-- Sidebar CTA + Popular Categories -->
 				<aside class="lg:col-span-1 space-y-6 lg:sticky lg:top-24">

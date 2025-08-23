@@ -31,7 +31,7 @@ export default defineConfig({
     sitemap({
       serialize(item) {
         const url = item.url;
-        const priority = /\/\d+\/$/.test(url) ? 0.3 : url.includes('/blog/') || url.includes('/products/') || url.includes('/services/') || url.includes('/projects/') ? 0.9 : 0.7;
+        const priority = /\/\d+\/$/.test(url) ? 0.3 : url.includes('/posts/') || url.includes('/products/') || url.includes('/services/') || url.includes('/projects/') ? 0.9 : 0.7;
         return { ...item, priority };
       }
     }),
