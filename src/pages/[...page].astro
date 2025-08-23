@@ -72,7 +72,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   });
 
   return paginate(allPosts, {
-    pageSize: 12,
+    pageSize: 24,
   });
 }
 
@@ -116,48 +116,54 @@ const { page } = Astro.props;
       </div>
       
       <div
-        class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0"
+        class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12"
       >
         {page.data.map((post) => <PostCard post={post} />)}
       </div>
     </div>
   </section>
   
-  <section class="bg-white dark:bg-gray-900">
-    <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-      <!-- Pagination -->
-      <nav class="flex justify-center items-center space-x-1">
-        {page.url.prev && (
-          <a
-            href={page.url.prev}
-            class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >
-            Previous
-          </a>
-        )}
-        
-        {Array.from({ length: page.lastPage }, (_, i) => i + 1).map((pageNum) => (
-          <a
-            href={pageNum === 1 ? '/posts/' : `/posts/${pageNum}/`}
-            class={`flex items-center justify-center px-3 h-8 leading-tight border ${
-              pageNum === page.currentPage
-                ? 'text-blue-600 bg-blue-50 border-blue-300 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white'
-                : 'text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
-            }`}
-          >
-            {pageNum}
-          </a>
-        ))}
-        
-        {page.url.next && (
-          <a
-            href={page.url.next}
-            class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >
-            Next
-          </a>
-        )}
-      </nav>
-    </div>
-  </section>
+  <!-- Pagination Section -->
+  {page.data.length > 0 && (
+    <section class="bg-gray-50 dark:bg-gray-800">
+      <div class="py-8 px-4 mx-auto max-w-screen-xl">
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <!-- Previous Button -->
+          {page.url.prev ? (
+            <a 
+              href={page.url.prev} 
+              class="flex items-center justify-center px-6 py-3 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white transition-colors"
+            >
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+              Sebelumnya
+            </a>
+          ) : (
+            <div></div>
+          )}
+
+          <!-- Page Info -->
+          <div class="text-sm text-gray-600 dark:text-gray-400">
+            Halaman {page.currentPage} dari {page.lastPage}
+          </div>
+
+          <!-- Next Button -->
+          {page.url.next ? (
+            <a 
+              href={page.url.next} 
+              class="flex items-center justify-center px-6 py-3 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white transition-colors"
+            >
+              Selanjutnya
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          ) : (
+            <div></div>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
 </MainLayout>
