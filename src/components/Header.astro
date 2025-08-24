@@ -2,8 +2,8 @@
 import { Image } from "astro:assets";
 import KotacomLogo from "../assets/kotacom-logo.svg";
 import ThemeToggle from "./ThemeToggle.astro";
-import MegaMenu from "./MegaMenu.astro";
-import MobileMegaMenu from "./MobileMegaMenu.astro";
+import UnifiedMegaMenu from "./UnifiedMegaMenu.astro";
+import MobileUnifiedMegaMenu from "./MobileUnifiedMegaMenu.astro";
 import { MEGA_MENU_CONFIG, SIMPLE_NAV_ITEMS, MOBILE_MENU_CONFIG } from "../data/mega-menu-config";
 
 const companyWhatsapp = '085799520350';
@@ -118,33 +118,33 @@ const companyWhatsapp = '085799520350';
         id="mobile-menu-2"
       >
         <nav class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-2 lg:mt-0" role="navigation">
-          <!-- Desktop: Mega Menu Items -->
+          <!-- Desktop: Unified Mega Menu Items -->
           <div class="hidden lg:flex lg:space-x-2">
-            <MegaMenu 
+            <UnifiedMegaMenu 
               trigger={MEGA_MENU_CONFIG.layanan.trigger}
               sections={MEGA_MENU_CONFIG.layanan.sections}
             />
-            <MegaMenu 
+            <UnifiedMegaMenu 
               trigger={MEGA_MENU_CONFIG.portfolio.trigger}
               sections={MEGA_MENU_CONFIG.portfolio.sections}
             />
-            <MegaMenu 
+            <UnifiedMegaMenu 
               trigger={MEGA_MENU_CONFIG.produk.trigger}
               sections={MEGA_MENU_CONFIG.produk.sections}
             />
           </div>
           
-          <!-- Mobile: Mega Menu Items -->
+          <!-- Mobile: Unified Mega Menu Items -->
           <div class="flex flex-col lg:hidden">
-            <MobileMegaMenu 
+            <MobileUnifiedMegaMenu 
               trigger={MEGA_MENU_CONFIG.layanan.trigger}
               sections={MEGA_MENU_CONFIG.layanan.sections}
             />
-            <MobileMegaMenu 
+            <MobileUnifiedMegaMenu 
               trigger={MEGA_MENU_CONFIG.portfolio.trigger}
               sections={MEGA_MENU_CONFIG.portfolio.sections}
             />
-            <MobileMegaMenu 
+            <MobileUnifiedMegaMenu 
               trigger={MEGA_MENU_CONFIG.produk.trigger}
               sections={MEGA_MENU_CONFIG.produk.sections}
             />

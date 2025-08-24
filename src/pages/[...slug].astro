@@ -15,47 +15,67 @@ export async function getStaticPaths(): Promise<Array<{params: {slug: string}, p
     Content: post.default // Store the component
   }));
   
-  // Get MDX pages from pages directory (if any) - skip for now since pagesMdx collection doesn't exist
-  let mdxPages: any[] = [];
-  // try { mdxPages = await getCollection("pagesMdx"); } catch (_) { mdxPages = []; }
-  
   // Get ONLY PUBLISHED Supabase posts untuk production
   const supabasePostsData = await getPostsDirectFromSupabase(1000, 'published');
-  console.log(`🚀 Building root static paths - MDX posts: ${mdxPosts.length}, Published Supabase posts: ${supabasePostsData?.length || 0}`);
+
+  // Build popular categories (top 10) once from MDX + Supabase
+  const counts: Record<string, number> = {};
+  try {
+    // From MDX collection (postsMdx)
+    const mdxColl = await getCollection('postsMdx').catch(() => [] as any[]);
+    for (const p of mdxColl) {
+      const cats = Array.isArray(p.data?.category) ? p.data.category : (p.data?.category ? [p.data.category] : []);
+      const tags = Array.isArray(p.data?.tags) ? p.data.tags : (p.data?.tags ? [p.data.tags] : []);
+      for (const t of [...cats, ...tags]) {
+        const name = typeof t === 'object' && (t as any).value ? String((t as any).value) : String(t || '');
+        if (!name) continue;
+        counts[name] = (counts[name] || 0) + 1;
+      }
+    }
+    // From Supabase
+    for (const p of (supabasePostsData||[])) {
+      const cats = Array.isArray((p as any).category) ? (p as any).category : ((p as any).category ? [(p as any).category] : []);
+      const tags = Array.isArray((p as any).tags) ? (p as any).tags : ((p as any).tags ? [(p as any).tags] : []);
+      for (const t of [...cats, ...tags]) {
+        const name = typeof t === 'object' && (t as any).value ? String((t as any).value) : String(t || '');
+        if (!name) continue;
+        counts[name] = (counts[name] || 0) + 1;
+      }
+    }
+  } catch {}
+
+  const popularCategories = Object.entries(counts)
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 10);
 
   const mdxPostPaths: Array<{params: {slug: string}, props: any}> = mdxPosts.map((post: any) => ({
     params: { slug: post.slug },
-    props: { post, source: 'mdx' as const },
+    props: { post, source: 'mdx' as const, popularCategories },
   }));
 
-  const pagePaths: any[] = []; // Skip pages for now since pagesMdx collection doesn't exist
-  // const pagePaths = mdxPages.map((page) => ({
-  //   params: { slug: page.data.slug || page.id },
-  //   props: { post: page, source: 'page' as const },
-  // }));
-  
   // Add Supabase posts to root level
-  const supabasePostPaths = supabasePostsData
+  const supabasePostPaths = (supabasePostsData||[])
     .filter((post: any) => post.slug && typeof post.slug === 'string')
     .map((post: any) => ({
       params: { slug: post.slug },
-      props: { post, source: 'supabase' as const },
+      props: { post, source: 'supabase' as const, popularCategories },
     }));
   
-  return [...mdxPostPaths, ...pagePaths, ...supabasePostPaths];
+  return [...mdxPostPaths, ...supabasePostPaths];
 }
 
 type Props = {
   post: any;
   source: 'mdx' | 'page' | 'supabase';
+  popularCategories?: Array<{ name: string; count: number }>;
 };
 
-const { post, source } = Astro.props;
+const { post, source } = Astro.props as any;
 
 // Helper function untuk memproses konten HTML (cleanup for prose styles)
 const processContent = (content: string): string => {
   return content
-    // Clean up any existing classes to let prose handle styling
     .replace(/<h1[^>]*>/g, '<h1>')
     .replace(/<h2[^>]*>/g, '<h2>')
     .replace(/<h3[^>]*>/g, '<h3>')
@@ -72,9 +92,7 @@ const processContent = (content: string): string => {
     .replace(/<table[^>]*>/g, '<table>')
     .replace(/<th[^>]*>/g, '<th>')
     .replace(/<td[^>]*>/g, '<td>')
-    // Ensure images have proper attributes for lazy loading
     .replace(/<img([^>]*?)src="([^"]*)"([^>]*?)>/g, '<img$1src="$2"$3 loading="lazy">')
-    // Clean up whitespace
     .replace(/\s+/g, ' ')
     .trim();
 };
@@ -85,87 +103,30 @@ let processedContent: string = "";
 let wordCount: number;
 let Content: any;
 
-if (source === 'page') {
-  // Handle MDX pages (WordPress pages)
-  const { render } = await import("astro:content");
-  const { Content: C } = await render(post);
-  Content = C;
-  wordCount = 0;
-  
-  layoutData = {
-    title: post.data.title,
-    description: post.data.description || "",
-    image: post.data.image || "",
-    published: post.data.publishDate || new Date(),
-    updated: post.data.publishDate || new Date(),
-    tags: [],
-    author: post.data.author || "Kotacom.id",
-    source: 'page'
-  };
-} else if (source === 'supabase') {
-  // Handle Supabase posts - convert markdown to HTML first
+if (source === 'supabase') {
   Content = undefined;
-  console.log(`🔍 Supabase post debug:`, {
-    title: post.title,
-    tags: post.tags,
-    category: post.category,
-    categories: post.categories,
-    image: post.image,
-    imageUrl: post.imageUrl,
-    coverImage: post.coverImage,
-    featured_image: post.featured_image,
-    cover_image: post.cover_image,
-    thumbnail: post.thumbnail
-  });
-  
   const rawContent = post.body || post.content || "";
-  const htmlContent = await marked(rawContent); // Convert markdown to HTML
+  const htmlContent = /<\w+[^>]*>/.test(rawContent) ? rawContent : await marked(rawContent);
   processedContent = processContent(htmlContent);
   wordCount = processedContent.split(' ').length;
-  
-  // Process tags/categories - now they should be available from Supabase
-  let tags: string[] = [];
-  let categories: string[] = [];
-  
-  // Use tags from Supabase if available, otherwise use defaults
-  if (post.tags && Array.isArray(post.tags) && post.tags.length > 0) {
-    tags = post.tags;
-  } else if (post.title?.toLowerCase().includes('jilid')) {
-    tags = ['Percetakan', 'Jilid Buku', 'Publishing'];
-  } else if (post.title?.toLowerCase().includes('cetak')) {
-    tags = ['Percetakan', 'Cetak Buku', 'Publishing'];
-  } else {
-    tags = ['Business', 'Tips'];
-  }
-  
-  // Use categories from Supabase if available
-  if (post.categories && Array.isArray(post.categories) && post.categories.length > 0) {
-    categories = post.categories;
-  } else {
-    categories = ['Blog'];
-  }
-  
-  // Process image - check multiple possible fields
   const imageUrl = post.cover_image || post.featured_image || post.imageUrl || post.coverImage || post.image || post.thumbnail || "";
-  
   layoutData = {
     title: post.title,
     description: post.description || post.excerpt || "",
     imageUrl: imageUrl,
     coverImage: imageUrl,
     image: imageUrl,
-    published: post.published ? new Date(post.published) : (post.created_at ? new Date(post.created_at) : (post.created ? new Date(post.created) : new Date())),
-    updated: post.updated ? new Date(post.updated) : (post.updated_at ? new Date(post.updated_at) : (post.last_updated ? new Date(post.last_updated) : (post.published ? new Date(post.published) : new Date()))),
-    tags: tags,
-    category: categories,
+    published: post.published ? new Date(post.published) : (post.created_at ? new Date(post.created_at) : new Date()),
+    updated: post.updated ? new Date(post.updated) : (post.updated_at ? new Date(post.updated_at) : new Date()),
+    tags: post.tags || [],
+    category: post.category || post.categories || [],
     author: post.author || "Kotacom.id",
-    source: 'supabase'
+    source: 'supabase',
+    popularCategories: ((Astro.props as any).popularCategories || [])
   };
-} else {
-  // Handle MDX posts - use the pre-loaded component
-  Content = post.Content; // Use the component from Astro.glob
+} else if (source === 'mdx') {
+  Content = post.Content;
   wordCount = 0;
-  
   layoutData = {
     title: post.data.title,
     description: post.data.description || "",
@@ -174,24 +135,18 @@ if (source === 'page') {
     updated: post.data.lastUpdated || post.data.published,
     tags: post.data.tags || [],
     author: "Kotacom.id",
-    source: 'mdx'
+    source: 'mdx',
+    popularCategories: ((Astro.props as any).popularCategories || [])
   };
 }
+
 ---
 
-<PostLayout {...layoutData} wordCount={wordCount}>
+<PostLayout {...layoutData} wordCount={wordCount} popularCategories={layoutData.popularCategories}>
   {source === 'supabase' ? (
-    <article class="prose prose-lg max-w-none" data-pagefind-body data-pagefind-filter="type:post">
-      <span class="hidden" data-pagefind-meta="title">{layoutData.title}</span>
-      {layoutData.image && (
-        <img src={layoutData.image} alt={layoutData.title} class="hidden" data-pagefind-meta="image[src], image_alt[alt]" />
-      )}
-      <div set:html={processedContent} />
-    </article>
+    <div set:html={processedContent} />
   ) : (
-    <div class="prose prose-lg max-w-none">
-      <Content />
-    </div>
+    <Content />
   )}
 </PostLayout>
 

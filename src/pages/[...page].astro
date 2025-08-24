@@ -1,37 +1,169 @@
 ---
 import { getCollection } from "astro:content";
 import MainLayout from "../layouts/MainLayout.astro";
+import type { GetStaticPathsOptions } from "astro";
+import PostCard from "../components/PostCard.astro";
+import { getPostsDirectFromSupabase, convertSupabasePost } from "../lib/supabase-direct";
+import SeoPaginationHead from "../components/partials/SeoPaginationHead.astro";
+import ItemListJsonLd from "../components/partials/ItemListJsonLd.astro";
 
-export async function getStaticPaths() {
-  const mdxPages = await getCollection("pagesMdx");
-  const pagePaths = mdxPages.map((page) => {
-    const slug = page.id.replace(/\.(md|mdx)$/i, '');
-    return { params: { page: slug }, props: { page } };
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  // Ambil semua post dari MDX (postsMdx) dan Supabase
+  const mdxPosts = await getCollection('postsMdx').catch(() => [] as any[]);
+  const supabasePosts = await getPostsDirectFromSupabase(10000); // Get all posts from Supabase
+  
+  const normalizedMdxPosts = mdxPosts.map((entry) => ({
+    ...entry,
+    source: 'mdx',
+    data: {
+      ...entry.data,
+      properties: {
+        bTitle: entry.data.title,
+        bTags: entry.data.tags,
+        bSlug: entry.data.slug,
+        bCoverImage: entry.data.coverImage || "",
+        bPublished: { start: entry.data.published },
+        bLastUpdated: { start: entry.data.lastUpdated || entry.data.published },
+        bDescription: entry.data.description,
+      },
+    },
+  }));
+
+  const normalizedSupabasePosts = supabasePosts
+    .filter((post:any) => post.slug && typeof post.slug === 'string')
+    .map(convertSupabasePost)
+    .map((post: any) => ({
+      id: post.id,
+      slug: post.slug,
+      source: 'supabase',
+      title: post.title,
+      description: post.description || '',
+      published: post.published,
+      lastUpdated: post.updated,
+      body: post.body || '',
+      format: post.format || 'md',
+      imageUrl: post.coverImage || post.imageUrl || '',
+      coverImage: post.coverImage || post.imageUrl || '',
+      tags: post.tags || [],
+      category: post.category || [],
+      data: {
+        title: post.title,
+        description: post.description || '',
+        published: post.published,
+        lastUpdated: post.updated,
+        body: post.body || '',
+        format: post.format || 'md',
+        properties: {
+          bTitle: post.title,
+          bTags: post.tags || [],
+          bSlug: post.slug,
+          bCoverImage: post.coverImage || post.imageUrl || "",
+          bPublished: { start: post.published || post.created },
+          bLastUpdated: { start: post.updated || post.created },
+          bDescription: post.description || '',
+        },
+      },
+    }));
+
+  const allPosts = [...normalizedMdxPosts, ...normalizedSupabasePosts].sort((a, b) => {
+    const dateA = new Date((a as any).data.published || (a as any).data.properties.bPublished.start);
+    const dateB = new Date((b as any).data.published || (b as any).data.properties.bPublished.start);
+    return dateB.getTime() - dateA.getTime();
   });
-  return pagePaths;
+
+  return paginate(allPosts, {
+    pageSize: 24,
+  });
 }
 
-type Props = {
-  page: any;
-};
-
 const { page } = Astro.props;
-
-const { render } = await import("astro:content");
-const { Content } = await render(page);
-
-const layoutData = {
-  title: page.data.title,
-  description: page.data.description || "",
-  image: page.data.image || "",
-  published: page.data.publishDate || new Date(),
-  updated: page.data.publishDate || new Date(),
-  author: page.data.author || "Kotacom.id",
-};
 ---
 
-<MainLayout {...layoutData}>
-  <article class="prose prose-lg max-w-none">
-    <Content />
-  </article>
+<MainLayout
+  title={`All Posts - Page ${page.currentPage} of ${page.lastPage}`}
+>
+  <fragment slot="head">
+    <SeoPaginationHead currentPage={page.currentPage} lastPage={page.lastPage} />
+    <ItemListJsonLd elements={page.data.map((post, idx) => ({
+      position: (page.start || 0) + idx + 1,
+      url: `/${(post as any).data?.properties?.bSlug || (post as any).slug || ''}/`,
+      name: (post as any).data?.properties?.bTitle || (post as any).title || 'Untitled',
+      image: (post as any).data?.properties?.bCoverImage || (post as any).coverImage || (post as any).imageUrl || undefined,
+    }))} />
+  </fragment>
+  
+  <section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+      <div class="max-w-screen-md mb-8 lg:mb-16">
+        <h1
+          class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+        >
+          Semua Artikel
+        </h1>
+        <p class="text-gray-500 sm:text-xl dark:text-gray-400">
+          Kumpulan artikel terbaru dari tim kotacom.id
+        </p>
+      </div>
+      
+      <div class="mb-4">
+        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+          Menampilkan <span class="font-semibold text-gray-900 dark:text-white">
+            {page.start + 1}-{page.end + 1}
+          </span> dari <span class="font-semibold text-gray-900 dark:text-white">
+            {page.total}
+          </span> artikel
+        </span>
+      </div>
+      
+      <div
+        class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12"
+      >
+        {page.data.map((post) => <PostCard post={post} />)}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Pagination Section -->
+  {page.data.length > 0 && (
+    <section class="bg-gray-50 dark:bg-gray-800">
+      <div class="py-8 px-4 mx-auto max-w-screen-xl">
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <!-- Previous Button -->
+          {page.url.prev ? (
+            <a 
+              href={page.url.prev} 
+              class="flex items-center justify-center px-6 py-3 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white transition-colors"
+            >
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+              Sebelumnya
+            </a>
+          ) : (
+            <div></div>
+          )}
+
+          <!-- Page Info -->
+          <div class="text-sm text-gray-600 dark:text-gray-400">
+            Halaman {page.currentPage} dari {page.lastPage}
+          </div>
+
+          <!-- Next Button -->
+          {page.url.next ? (
+            <a 
+              href={page.url.next} 
+              class="flex items-center justify-center px-6 py-3 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white transition-colors"
+            >
+              Selanjutnya
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          ) : (
+            <div></div>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
 </MainLayout>

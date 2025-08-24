@@ -4,8 +4,9 @@ import MainLayout from "../../../layouts/MainLayout.astro";
 import type { GetStaticPathsOptions } from "astro";
 import ProductCard from "../../../components/ProductCard.astro";
 import ProductCategoryDropdown from "../../../components/ProductCategoryDropdown.astro";
-import PCountryDropdown from "../../../components/PCountryDropdown.astro";
 import { getProductsDirectFromSupabase } from "../../../lib/supabase-direct";
+import SeoPaginationHead from "../../../components/partials/SeoPaginationHead.astro";
+import ItemListJsonLd from "../../../components/partials/ItemListJsonLd.astro";
 
 // Helper function to parse dates in dd/mm/yyyy format
 function parseDate(dateStr: string): Date {
@@ -17,27 +18,16 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   // Helper function to calculate priority score for sorting
   function getPriorityScore(priority: string, isSponsored: boolean): number {
     if (isSponsored) return 100;
-    
-    const priorityScores = {
-      'featured': 90,
-      'bestseller': 80,
-      'sale': 70,
-      'new': 60,
-    } as Record<string, number>;
-    
+    const priorityScores = { featured: 90, bestseller: 80, sale: 70, new: 60 } as Record<string, number>;
     return priorityScores[priority?.toLowerCase()] || 0;
   }
   
   // Fetch products from MD and Supabase
   let mdxProducts = [] as any[];
-  try {
-    mdxProducts = await getCollection("productsMdx");
-  } catch (e) {
-    console.warn("ProductsMdx collection not available:", (e as any).message);
-  }
-  const supabaseProducts = await getProductsDirectFromSupabase(10000, 'published'); // Only published products
+  try { mdxProducts = await getCollection("productsMdx"); } catch (e) { console.warn("ProductsMdx collection not available:", (e as any).message); }
+  const supabaseProducts = await getProductsDirectFromSupabase(10000, 'published');
 
-  // Normalize MDX products to match Notion structure
+  // Normalize MDX products
   const normalizedMdxProducts = mdxProducts.map((entry) => ({
     ...entry,
     source: 'mdx',
@@ -72,7 +62,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
       data: { 
         properties: {
           pTitle: product.title,
-          pCategory: product.category || [],
+          pCategory: Array.isArray(product.category) ? product.category.map((c: any) => c?.value || c) : (product.category ? [product.category] : []),
           pSlug: product.slug,
           pImageURL1: product.imageUrl || "",
           pPublished: { start: product.published ? new Date(product.published) : new Date(0) },
@@ -94,6 +84,18 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   // Merge all products
   const allProducts = [...normalizedMdxProducts, ...normalizedSupabaseProducts];
 
+  // Build category counts across all products
+  const categoryCounts: Record<string, number> = {};
+  allProducts.forEach((product) => {
+    const raw = (product.data.properties as any).pCategory;
+    const cats = Array.isArray(raw) ? raw : (raw ? [raw] : []);
+    cats.forEach((c: any) => {
+      const name = typeof c === 'string' ? c : (c?.value ?? String(c));
+      const key = String(name).trim();
+      if (key) categoryCounts[key] = (categoryCounts[key] || 0) + 1;
+    });
+  });
+
   // Extract unique categories
   const categories = Array.from(
     new Set(
@@ -114,53 +116,39 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     const categoryProducts = allProducts.filter((product) => {
       const pCategory = product.data.properties.pCategory;
       let productCategories: string[] = [];
-      
       if (Array.isArray(pCategory)) {
-        productCategories = pCategory.map((c) =>
-          String(c).toLowerCase().replace(/\s+/g, "-")
-        );
+        productCategories = pCategory.map((c) => String(c).toLowerCase().replace(/\s+/g, "-"));
       } else if (pCategory) {
         productCategories = [String(pCategory).toLowerCase().replace(/\s+/g, "-")];
       }
-
       return productCategories.includes(category);
     });
 
-    // Sort products by priority and date for better affiliate conversion
+    // Sort by priority then date desc
     const sortedProducts = categoryProducts.sort((a, b) => {
-      // First, prioritize sponsored/featured products
       const aPriority = getPriorityScore((a.data.properties as any).pPriority, (a.data.properties as any).pIsSponsored);
       const bPriority = getPriorityScore((b.data.properties as any).pPriority, (b.data.properties as any).pIsSponsored);
-      
-      if (aPriority !== bPriority) {
-        return bPriority - aPriority; // Higher priority first
-      }
-      
-      // Then sort by date (most recent first)
+      if (aPriority !== bPriority) return bPriority - aPriority;
       const dateA = a.data.properties.pPublished?.start 
-        ? (typeof a.data.properties.pPublished.start === 'string' 
-            ? parseDate(a.data.properties.pPublished.start) 
-            : a.data.properties.pPublished.start) 
+        ? (typeof a.data.properties.pPublished.start === 'string' ? parseDate(a.data.properties.pPublished.start) : a.data.properties.pPublished.start) 
         : new Date(0);
       const dateB = b.data.properties.pPublished?.start 
-        ? (typeof b.data.properties.pPublished.start === 'string' 
-            ? parseDate(b.data.properties.pPublished.start) 
-            : b.data.properties.pPublished.start) 
+        ? (typeof b.data.properties.pPublished.start === 'string' ? parseDate(b.data.properties.pPublished.start) : b.data.properties.pPublished.start) 
         : new Date(0);
-      return dateB.getTime() - dateA.getTime(); // Most recent first
+      return dateB.getTime() - dateA.getTime();
     });
 
     return paginate(sortedProducts, {
-      pageSize: 12, // Number of products per page
+      pageSize: 12,
       params: { category },
-      props: { category }, // Pass category as a prop
+      props: { category, categoryCounts },
     });
   });
 
   return paths;
 }
 
-const { page } = Astro.props;
+const { page, categoryCounts } = Astro.props;
 const { category } = Astro.params;
 
 // Convert URL-friendly category back to display name
@@ -169,118 +157,70 @@ const displayCategory = category
   .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
   .join(' ');
 
-// Get readable category name for title
 const readableCategory = displayCategory;
-
-// Calculate affiliate metrics for display
-const sponsoredCount = page.data.filter((p: any) => p.data.properties.pIsSponsored).length;
-const featuredCount = page.data.filter((p: any) => p.data.properties.pPriority === 'featured').length;
-const productsWithDiscount = page.data.filter((p: any) => (p.data.properties as any).pOriginalPrice && p.data.properties.pPrice).length;
 ---
 
 <MainLayout title={`Produk ${readableCategory} - Halaman ${page.currentPage} dari ${page.lastPage} | kotacom.id`}>
+  <fragment slot="head">
+    <SeoPaginationHead currentPage={page.currentPage} lastPage={page.lastPage} />
+    <ItemListJsonLd elements={page.data.map((product, idx) => ({
+      position: (page.start || 0) + idx + 1,
+      url: `/products/${(product as any).data?.properties?.pCategory?.[0] ? String((product as any).data.properties.pCategory[0]).toLowerCase().replace(/\s+/g,'-') + '/' : ''}${(product as any).data?.properties?.pSlug || ''}/`,
+      name: (product as any).data?.properties?.pTitle || 'Product',
+      image: (product as any).data?.properties?.pImageURL1 || undefined,
+    }))} />
+  </fragment>
+
   <section class="bg-white dark:bg-gray-900">
     <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-      <!-- Header Section -->
       <div class="max-w-screen-md mb-8 lg:mb-16">
-        <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-          🛍️ Produk {readableCategory}
-        </h1>
-        <p class="text-gray-500 sm:text-xl dark:text-gray-400">
-          Temukan produk-produk {readableCategory.toLowerCase()} berkualitas dengan harga terbaik. Dapatkan cashback dan diskon eksklusif melalui link affiliate kami.
-        </p>
-        
-        <!-- Stats Bar -->
-        <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="bg-blue-50 rounded-lg p-3 text-center">
-            <div class="text-2xl font-bold text-blue-600">{page.total}</div>
-            <div class="text-sm text-blue-800">Total Produk</div>
-          </div>
-          {sponsoredCount > 0 && (
-            <div class="bg-green-50 rounded-lg p-3 text-center">
-              <div class="text-2xl font-bold text-green-600">{sponsoredCount}</div>
-              <div class="text-sm text-green-800">Sponsored</div>
-            </div>
-          )}
-          {featuredCount > 0 && (
-            <div class="bg-yellow-50 rounded-lg p-3 text-center">
-              <div class="text-2xl font-bold text-yellow-600">{featuredCount}</div>
-              <div class="text-sm text-yellow-800">Featured</div>
-            </div>
-          )}
-          {productsWithDiscount > 0 && (
-            <div class="bg-red-50 rounded-lg p-3 text-center">
-              <div class="text-2xl font-bold text-red-600">{productsWithDiscount}</div>
-              <div class="text-sm text-red-800">Diskon</div>
-            </div>
-          )}
-        </div>
+        <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Produk {readableCategory}</h1>
+        <p class="text-gray-500 sm:text-xl dark:text-gray-400">Kumpulan produk {readableCategory.toLowerCase()} terbaru</p>
       </div>
-      
-      <!-- Filter and Sort Section -->
-      <div class="flex flex-col md:flex-row mb-8 gap-4">
-        <!-- Product Count Display -->
-        <div class="flex-1 flex items-center">
-          <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-            Menampilkan <span class="font-semibold text-gray-900 dark:text-white">
-              {page.start + 1}-{page.end + 1}
-            </span> dari <span class="font-semibold text-gray-900 dark:text-white">
-              {page.total}
-            </span> produk {readableCategory}
-          </span>
-        </div>
-        
-        <!-- Filters -->
-        <div class="flex flex-col sm:flex-row gap-2">
-          <!-- Category Filter -->
-          <div class="min-w-[200px]">
-            <ProductCategoryDropdown />
-          </div>
-          
-          <!-- Country Filter -->
-          <div class="min-w-[200px]">
-            <PCountryDropdown />
-          </div>
-          
-          <!-- Sort Options -->
-          <select 
-            id="sortSelect" 
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-          >
-            <option value="priority">Terpopuler</option>
-            <option value="newest">Terbaru</option>
-            <option value="price-low">Harga Terendah</option>
-            <option value="price-high">Harga Tertinggi</option>
-            <option value="rating">Rating Tertinggi</option>
-          </select>
+
+      <div class="flex flex-col md:flex-row mb-6 gap-4 items-center justify-between">
+        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+          Menampilkan <span class="font-semibold text-gray-900 dark:text-white">{page.start + 1}-{page.end + 1}</span> dari <span class="font-semibold text-gray-900 dark:text-white">{page.total}</span> produk
+        </span>
+        <div class="min-w-[220px] w-full md:w-auto">
+          <ProductCategoryDropdown categoryCounts={categoryCounts} />
         </div>
       </div>
 
-      <!-- Products Grid -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+      <div class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
         {page.data.map((product) => (
           <ProductCard 
-            product={product} 
+            product={product}
             placement="category-listing"
             showFullDescription={false}
           />
         ))}
       </div>
+    </div>
+  </section>
 
-      <!-- No Products Message -->
-      {page.data.length === 0 && (
-        <div class="text-center py-12">
-          <div class="text-6xl mb-4">🔍</div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-2">Tidak ada produk {readableCategory} ditemukan</h3>
-          <p class="text-gray-600 mb-6">Coba ubah filter pencarian atau kembali ke halaman utama</p>
-          <a 
-            href="/products" 
-            class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+  <section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+      <nav class="flex justify-center items-center space-x-1">
+        {page.url.prev && (
+          <a href={page.url.prev} class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+        )}
+        {Array.from({ length: page.lastPage }, (_, i) => i + 1).map((pageNum) => (
+          <a
+            href={pageNum === 1 ? `/products/${category}/` : `/products/${category}/${pageNum}/`}
+            class={`flex items-center justify-center px-3 h-8 leading-tight border ${
+              pageNum === page.currentPage
+                ? 'text-blue-600 bg-blue-50 border-blue-300 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white'
+                : 'text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
+            }`}
           >
-            Lihat Semua Produk
+            {pageNum}
           </a>
-        </div>
-      )}
+        ))}
+        {page.url.next && (
+          <a href={page.url.next} class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+        )}
+      </nav>
     </div>
   </section>
 </MainLayout>

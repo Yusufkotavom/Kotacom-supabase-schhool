@@ -18,27 +18,27 @@ const ICONS = {
 // Mega menu configurations
 export const MEGA_MENU_CONFIG = {
   layanan: {
-    trigger: 'Layanan',
+    trigger: 'Services',
     sections: [
       {
-        title: 'Pengembangan Digital',
+        title: 'Website',
         icon: ICONS.code,
         items: [
           {
             title: 'Website Development',
-            url: '/services/website-software-development',
+            url: '/jasa-pembuatan-website-surabaya',
             description: 'Pembuatan website profesional dan responsif untuk bisnis Anda',
             icon: ICONS.globe
           },
           {
             title: 'Software Development',
-            url: '/services/software-development',
+            url: '/jasa-pembuatan-software',
             description: 'Pengembangan aplikasi custom sesuai kebutuhan bisnis',
             icon: ICONS.code
           },
           {
             title: 'Mobile App Development',
-            url: '/services/mobile-app-development',
+            url: '/pembuatan-website/',
             description: 'Aplikasi mobile Android dan iOS yang user-friendly',
             icon: ICONS.mobile
           },
@@ -87,19 +87,19 @@ export const MEGA_MENU_CONFIG = {
         items: [
           {
             title: 'Printing Services',
-            url: '/services/printing-services',
+            url: '/categories/percetakan',
             description: 'Layanan cetak profesional untuk kebutuhan bisnis',
             icon: ICONS.document
           },
           {
             title: 'Graphic Design',
-            url: '/services/graphic-design',
+            url: '/services/',
             description: 'Desain logo, brosur, dan materi marketing',
             icon: ICONS.tools
           },
           {
             title: 'Branding Package',
-            url: '/services/branding',
+            url: '/services/',
             description: 'Paket lengkap identitas visual perusahaan',
             icon: ICONS.portfolio
           }
@@ -123,19 +123,19 @@ export const MEGA_MENU_CONFIG = {
           },
           {
             title: 'Website Development',
-            url: '/projects/category/website',
+            url: '/projects/',
             description: 'Proyek pengembangan website dan aplikasi web',
             icon: ICONS.globe
           },
           {
             title: 'Mobile Applications',
-            url: '/projects/category/mobile',
+            url: '/projects/',
             description: 'Aplikasi mobile yang telah kami develop',
             icon: ICONS.mobile
           },
           {
             title: 'System Integration',
-            url: '/projects/category/system',
+            url: '/projects/',
             description: 'Proyek integrasi sistem dan automation',
             icon: ICONS.tools
           }
@@ -147,19 +147,19 @@ export const MEGA_MENU_CONFIG = {
         items: [
           {
             title: 'Restaurant Management System',
-            url: '/projects/restaurant-management-system',
+            url: '/projects/',
             description: 'Sistem manajemen restoran terintegrasi dengan POS',
             icon: ICONS.services
           },
           {
             title: 'E-learning Platform',
-            url: '/projects/elearning-platform',
+            url: '/projects/',
             description: 'Platform pembelajaran online untuk institusi pendidikan',
             icon: ICONS.document
           },
           {
             title: 'Inventory Management',
-            url: '/projects/inventory-system',
+            url: '/projects/',
             description: 'Sistem manajemen inventori untuk UMKM',
             icon: ICONS.tools,
             badge: 'Terbaru'
@@ -184,19 +184,19 @@ export const MEGA_MENU_CONFIG = {
           },
           {
             title: 'Software Tools',
-            url: '/products/category/software',
+            url: '/products/',
             description: 'Tools dan software untuk produktivitas',
             icon: ICONS.tools
           },
           {
             title: 'Templates',
-            url: '/products/category/templates',
+            url: '/products/',
             description: 'Template website dan aplikasi siap pakai',
             icon: ICONS.document
           },
           {
             title: 'Digital Assets',
-            url: '/products/category/assets',
+            url: '/products/',
             description: 'Aset digital untuk kebutuhan desain',
             icon: ICONS.portfolio
           }
@@ -208,20 +208,20 @@ export const MEGA_MENU_CONFIG = {
         items: [
           {
             title: 'POS System Template',
-            url: '/products/pos-system-template',
+            url: '/products/',
             description: 'Template sistem Point of Sale untuk UMKM',
             icon: ICONS.services,
             badge: 'Terlaris'
           },
           {
             title: 'Website Template Pack',
-            url: '/products/website-templates',
+            url: '/products/',
             description: 'Kumpulan template website profesional',
             icon: ICONS.globe
           },
           {
             title: 'Mobile UI Kit',
-            url: '/products/mobile-ui-kit',
+            url: '/products/',
             description: 'UI Kit lengkap untuk pengembangan mobile app',
             icon: ICONS.mobile
           }
@@ -233,16 +233,16 @@ export const MEGA_MENU_CONFIG = {
 
 // Simple navigation items (without mega menu)
 export const SIMPLE_NAV_ITEMS = [
-  { title: 'Artikel', url: '/posts' },
-  { title: 'Tentang', url: '/about' },
-  { title: 'Kontak', url: '/contact' }
+  { title: 'Posts', url: '/posts' },
+  { title: 'About-Us', url: '/about' },
+  { title: 'Contact-Us', url: '/contact' }
 ];
 
 // Mobile menu configuration
 export const MOBILE_MENU_CONFIG = {
   // Main navigation items that show as simple links on mobile
   mainItems: [
-    { title: 'Layanan', url: '/services', icon: ICONS.services },
+    { title: 'Services', url: '/services', icon: ICONS.services },
     { title: 'Portfolio', url: '/projects', icon: ICONS.portfolio },
     { title: 'Produk', url: '/products', icon: ICONS.shopping }
   ],
@@ -252,10 +252,10 @@ export const MOBILE_MENU_CONFIG = {
   
   // Mobile menu footer (optional)
   footer: {
-    title: 'Butuh Bantuan?',
-    description: 'Tim kami siap membantu Anda',
+    title: 'Need Help?',
+    description: 'Our team is ready to help you',
     cta: {
-      text: 'Konsultasi Gratis',
+      text: 'Free Consultation',
       url: '/contact',
       icon: ICONS.support
     }

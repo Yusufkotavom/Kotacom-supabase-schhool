@@ -17,6 +17,12 @@
       "to": "/wordpress-blog/new-post",
       "type": "temporary",
       "description": "Temporary redirect to new blog post"
+    },
+    {
+      "from": "/posts/*",
+      "to": "/:splat",
+      "type": "permanent",
+      "description": "Redirect legacy /posts/* to root-level /:splat routes"
     }
   ]
 } 

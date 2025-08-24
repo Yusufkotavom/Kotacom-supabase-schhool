@@ -4,7 +4,6 @@
 import { getCollection } from "astro:content";
 import { getProductsDirectFromSupabase } from "../../lib/supabase-direct";
 import ProductCard from "../ProductCard.astro";
-import PCountryDropdown from "../PCountryDropdown.astro";
 
 // Props: limit specifies the number of products to display
 interface Props {
@@ -109,12 +108,6 @@ console.log(`LatestProducts: Found ${mdxProducts.length} MD products, supabase $
         <p class="text-gray-500 sm:text-xl dark:text-gray-400">
           Hardware, software, dan solusi teknologi terkini untuk mendukung kebutuhan bisnis modern.
         </p>
-      </div>
-      <div
-        id="3"
-        class="w-full md:w-1/4 p-2 order-2 md:order-3"
-      >
-        <PCountryDropdown />
       </div>
     </div>
     
