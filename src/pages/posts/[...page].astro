@@ -4,11 +4,34 @@ import PostCard from "../../components/PostCard.astro";
 import type { GetStaticPathsOptions } from "astro";
 import { getCollection } from "astro:content";
 import { getPostsDirectFromSupabase, convertSupabasePost } from "../../lib/supabase-direct";
+import { getPostsFromPayload, convertPayloadPost } from "../../lib/payload-api";
+import { logger } from "../../lib/logger";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  // Ambil semua post dari MDX dan Supabase
+  // Ambil semua post dari MDX dan Payload/Supabase
   const mdxPosts = await getCollection('postsMdx').catch(() => [] as any[]);
-  const supabasePosts = await getPostsDirectFromSupabase(10000); // Get all posts from Supabase
+  
+  // ✅ Try to get posts from Payload API first (with populated media)
+  let supabasePosts: any[] = [];
+  
+  try {
+    logger.info('Posts page: Attempting to fetch from Payload API...');
+    const payloadPosts = await getPostsFromPayload({ 
+      limit: 10000, 
+      status: 'published' 
+    });
+    
+    if (payloadPosts && payloadPosts.length > 0) {
+      supabasePosts = payloadPosts.map(convertPayloadPost);
+      logger.success(`Posts page: Successfully fetched ${supabasePosts.length} posts from Payload API`);
+    } else {
+      throw new Error('No posts returned from Payload API');
+    }
+  } catch (error) {
+    logger.warn('Posts page: Payload API failed, falling back to Supabase direct:', error);
+    // Fallback to Supabase direct
+    supabasePosts = await getPostsDirectFromSupabase(10000);
+  }
   
   const normalizedMdxPosts = mdxPosts.map((entry) => ({
     ...entry,

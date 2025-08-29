@@ -2,7 +2,10 @@
 import { getCollection } from "astro:content";
 import PostLayout from "../layouts/PostLayout.astro";
 import { getPostsDirectFromSupabase } from "../lib/supabase-direct";
+import { getPostsFromPayload, convertPayloadPost } from "../lib/payload-api";
+import { renderLexicalBlocks } from "../lib/lexical-renderer";
 import { marked } from 'marked';
+import { logger } from "../lib/logger";
 
 export async function getStaticPaths(): Promise<Array<{params: {slug: string}, props: any}>> {
   // Get MDX posts from pages/posts directory
@@ -15,8 +18,27 @@ export async function getStaticPaths(): Promise<Array<{params: {slug: string}, p
     Content: post.default // Store the component
   }));
   
-  // Get ONLY PUBLISHED Supabase posts untuk production
-  const supabasePostsData = await getPostsDirectFromSupabase(1000, 'published');
+  // ✅ Try to get posts from Payload API first (with populated media)
+  let supabasePostsData: any[] = [];
+  
+  try {
+    logger.info('Attempting to fetch posts from Payload API...');
+    const payloadPosts = await getPostsFromPayload({ 
+      limit: 1000, 
+      status: 'published' 
+    });
+    
+    if (payloadPosts && payloadPosts.length > 0) {
+      supabasePostsData = payloadPosts.map(convertPayloadPost);
+      logger.success(`Successfully fetched ${supabasePostsData.length} posts from Payload API`);
+    } else {
+      throw new Error('No posts returned from Payload API');
+    }
+  } catch (error) {
+    logger.warn('Payload API failed, falling back to Supabase direct:', error);
+    // Fallback to Supabase direct
+    supabasePostsData = await getPostsDirectFromSupabase(1000, 'published');
+  }
 
   // Build popular categories (top 10) once from MDX + Supabase
   const counts: Record<string, number> = {};
@@ -100,14 +122,51 @@ const processContent = (content: string): string => {
 // Prepare layout data based on source
 let layoutData: any;
 let processedContent: string = "";
-let wordCount: number;
+let wordCount: number = 0; // ✅ Initialize wordCount
 let Content: any;
 
 if (source === 'supabase') {
   Content = undefined;
-  const rawContent = post.body || post.content || "";
-  const htmlContent = /<\w+[^>]*>/.test(rawContent) ? rawContent : await marked(rawContent);
-  processedContent = processContent(htmlContent);
+  
+
+  
+  // ✅ Render content blocks dan body markdown secara berurutan
+  let contentHtml = '';
+  let bodyHtml = '';
+  
+  // 1. Render content blocks jika ada
+  if (post.content && typeof post.content === 'object') {
+    try {
+      contentHtml = renderLexicalBlocks(post.content);
+      logger.success('Content blocks rendered for:', post.slug);
+    } catch (error) {
+      logger.error('❌ Error rendering content blocks:', error);
+      contentHtml = '';
+    }
+  }
+  
+  // 2. Render body markdown jika ada
+  if (post.body && typeof post.body === 'string') {
+    try {
+      const htmlContent = await marked(post.body);
+      bodyHtml = processContent(htmlContent);
+    } catch (error) {
+      logger.error('❌ Error rendering body markdown:', error);
+      bodyHtml = '';
+    }
+  }
+  
+  // 3. Combine content + body
+  if (contentHtml && bodyHtml) {
+    processedContent = contentHtml + bodyHtml;
+  } else if (contentHtml) {
+    processedContent = contentHtml;
+  } else if (bodyHtml) {
+    processedContent = bodyHtml;
+  } else {
+    processedContent = "";
+  }
+  
   wordCount = processedContent.split(' ').length;
   const imageUrl = post.cover_image || post.featured_image || post.imageUrl || post.coverImage || post.image || post.thumbnail || "";
   layoutData = {

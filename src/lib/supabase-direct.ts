@@ -1,8 +1,14 @@
 import { createClient } from '@supabase/supabase-js';
+import { logger } from './logger';
 
 // Supabase configuration
 const SUPABASE_URL = import.meta.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = import.meta.env.SUPABASE_ANON_KEY;
+
+// ✅ IMPORTANT: Field mapping for database schema
+// - Use '_status' field for filtering (not 'status')
+// - Use 'published_at' field for ordering (not 'published')
+// - Field fallbacks are implemented for backward compatibility
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -18,10 +24,14 @@ export interface SupabasePost {
   tags?: any[];
   category?: any[];
   body?: string;
+  content?: any; // ✅ Add support for Lexical Editor blocks
   status?: string;
   author?: string;
   createdAt?: string;
   updatedAt?: string;
+  // Add new fields for fallback support
+  lastUpdated?: string;
+  format?: string;
 }
 
 // Helper function to get tags for posts
@@ -82,22 +92,171 @@ async function getCategoriesForPosts(postIds: number[]): Promise<Map<number, str
   return categoriesMap;
 }
 
+// ✅ Function untuk populate media relationships dalam Lexical content
+async function populateMediaInContent(posts: any[]): Promise<any[]> {
+  try {
+    // 1. Collect all media IDs from all posts' content
+    const mediaIds = new Set<number>();
+    
+    posts.forEach(post => {
+      if (post.content && typeof post.content === 'object') {
+        collectMediaIds(post.content, mediaIds);
+      }
+    });
+    
+    if (mediaIds.size === 0) {
+      return posts;
+    }
+    
+    logger.debug(`Populating ${mediaIds.size} media objects`);
+    
+    // 2. Fetch all media objects from Supabase
+    const { data: mediaObjects, error } = await supabase
+      .from('media')
+      .select('*')
+      .in('id', Array.from(mediaIds));
+    
+    if (error) {
+      console.error('❌ Error fetching media objects:', error);
+      return posts;
+    }
+    
+    if (!mediaObjects || mediaObjects.length === 0) {
+      console.warn('⚠️ No media objects found for IDs:', Array.from(mediaIds));
+      return posts;
+    }
+    
+    console.log(`✅ Successfully fetched ${mediaObjects.length} media objects`);
+    
+    // 3. Create media map for quick lookup
+    const mediaMap = new Map<number, any>();
+    mediaObjects.forEach(media => {
+      mediaMap.set(media.id, media);
+    });
+    
+    // 4. Replace media IDs with full objects in each post's content
+    const populatedPosts = posts.map(post => {
+      if (post.content && typeof post.content === 'object') {
+        const populatedContent = populateMediaIds(post.content, mediaMap);
+        return {
+          ...post,
+          content: populatedContent
+        };
+      }
+      return post;
+    });
+    
+    console.log(`🎯 Successfully populated media in ${populatedPosts.length} posts`);
+    return populatedPosts;
+    
+  } catch (error) {
+    console.error('❌ Error populating media in content:', error);
+    return posts;
+  }
+}
+
+// ✅ Recursive function untuk collect media IDs dari Lexical structure
+function collectMediaIds(obj: any, mediaIds: Set<number>): void {
+  if (!obj || typeof obj !== 'object') return;
+  
+  if (Array.isArray(obj)) {
+    obj.forEach(item => collectMediaIds(item, mediaIds));
+    return;
+  }
+  
+  // Check untuk MediaBlock structure
+  if (obj.blockType === 'mediaBlock' && obj.fields?.media) {
+    const mediaId = obj.fields.media;
+    if (typeof mediaId === 'number') {
+      mediaIds.add(mediaId);
+    }
+  }
+  
+  // Check untuk block structure dalam Lexical root/children
+  if (obj.type === 'block' && obj.fields?.blockType === 'mediaBlock' && obj.fields?.media) {
+    const mediaId = obj.fields.media;
+    if (typeof mediaId === 'number') {
+      mediaIds.add(mediaId);
+    }
+  }
+  
+  // Recursive check untuk nested objects
+  Object.values(obj).forEach(value => {
+    if (value && typeof value === 'object') {
+      collectMediaIds(value, mediaIds);
+    }
+  });
+}
+
+// ✅ Recursive function untuk replace media IDs dengan full objects
+function populateMediaIds(obj: any, mediaMap: Map<number, any>): any {
+  if (!obj || typeof obj !== 'object') return obj;
+  
+  if (Array.isArray(obj)) {
+    return obj.map(item => populateMediaIds(item, mediaMap));
+  }
+  
+  // Check untuk MediaBlock structure
+  if (obj.blockType === 'mediaBlock' && obj.fields?.media) {
+    const mediaId = obj.fields.media;
+    if (typeof mediaId === 'number' && mediaMap.has(mediaId)) {
+      const mediaObject = mediaMap.get(mediaId);
+      
+      return {
+        ...obj,
+        fields: {
+          ...obj.fields,
+          media: mediaObject
+        }
+      };
+    }
+  }
+  
+  // Check untuk block structure dalam Lexical root/children
+  if (obj.type === 'block' && obj.fields?.blockType === 'mediaBlock' && obj.fields?.media) {
+    const mediaId = obj.fields.media;
+    if (typeof mediaId === 'number' && mediaMap.has(mediaId)) {
+      const mediaObject = mediaMap.get(mediaId);
+      
+      return {
+        ...obj,
+        fields: {
+          ...obj.fields,
+          media: mediaObject
+        }
+      };
+    }
+  }
+  
+  // Recursive replacement untuk nested objects
+  const result: any = {};
+  Object.entries(obj).forEach(([key, value]) => {
+    if (value && typeof value === 'object') {
+      result[key] = populateMediaIds(value, mediaMap);
+    } else {
+      result[key] = value;
+    }
+  });
+  
+  return result;
+}
+
 export async function getPostsDirectFromSupabase(
   limit: number = 100, 
   status: 'published' | 'draft' | 'all' = 'published' // Default hanya published
 ): Promise<SupabasePost[]> {
   try {
-    console.log(`🔄 Fetching ${limit} posts directly from Supabase with status: ${status}...`);
+    logger.info(`Fetching ${limit} posts from Supabase with status: ${status}...`);
     
     // Build query with status filter
     let query = supabase
       .from('posts')
       .select('*')
-      .order('published', { ascending: false });
+      .order('published_at', { ascending: false }); // ✅ Use 'published_at' field for ordering
 
     // Filter by status - hanya ambil published posts untuk production
     if (status !== 'all') {
-      query = query.eq('status', status);
+      query = query.eq('_status', status); // ✅ Use '_status' field for filtering
     }
 
     const { data, error } = await query.limit(limit);
@@ -155,16 +314,21 @@ export async function getPostsDirectFromSupabase(
 
         return {
           ...post,
-          // Proper field mapping for Supabase schema
-          coverImage: post.cover_image || '',
-          imageUrl: post.cover_image || '',
-          publishedAt: post.published,
-          updatedAt: post.updated_at,
-          createdAt: post.created_at,
+          // Field mapping dengan fallback untuk status dan published
+          coverImage: post.cover_image || post.coverImage || '',
+          imageUrl: post.cover_image || post.coverImage || post.imageUrl || '',
+          publishedAt: post.published_at || post.published || post.publishedAt || '', // ✅ Fallback: published_at -> published -> publishedAt
+          updatedAt: post.updated_at || post.updatedAt || post.last_updated || post.lastUpdated || '', // ✅ Fallback: updated_at -> updatedAt -> last_updated -> lastUpdated
+          createdAt: post.created_at || post.createdAt || '', // ✅ Fallback: created_at -> createdAt
           body: processedBody,
           tags: tagsMap.get(post.id) || [],
           categories: categoriesMap.get(post.id) || [],
-          category: categoriesMap.get(post.id) || []
+          category: categoriesMap.get(post.id) || [],
+          // Status field dengan fallback - gunakan _status sebagai primary
+          status: post._status || post.status || 'draft', // ✅ Fallback: _status -> status -> default 'draft'
+          // Additional fields with fallbacks
+          lastUpdated: post.last_updated || post.lastUpdated || post.updated_at || post.updatedAt || '',
+          format: post.format || 'article'
         };
       });
       
@@ -175,13 +339,23 @@ export async function getPostsDirectFromSupabase(
         console.log('📋 Sample enhanced post:', {
           title: postsWithMetadata[0].title,
           coverImage: postsWithMetadata[0].coverImage,
-          published: postsWithMetadata[0].published,
+          published: postsWithMetadata[0].publishedAt,
+          status: postsWithMetadata[0].status,
           tags: postsWithMetadata[0].tags,
           categories: postsWithMetadata[0].categories
         });
       }
       
-      return postsWithMetadata;
+      // ✅ Populate media relationships dalam content blocks
+      const postsWithPopulatedMedia = await populateMediaInContent(postsWithMetadata);
+      
+      return postsWithPopulatedMedia;
+    }
+    
+    // ✅ Populate media untuk posts yang tidak diprocess (fallback case)
+    if (data && data.length > 0) {
+      const populatedData = await populateMediaInContent(data);
+      return populatedData;
     }
     
     return data || [];
@@ -196,17 +370,17 @@ export async function getProductsDirectFromSupabase(
   status: 'published' | 'draft' | 'all' = 'published' // Default hanya published
 ): Promise<any[]> {
   try {
-    console.log(`🔄 Fetching ${limit} products directly from Supabase with status: ${status}...`);
+    logger.info(`Fetching ${limit} products from Supabase with status: ${status}...`);
     
     // Build query with status filter
     let query = supabase
       .from('products')
       .select('*')
-      .order('published', { ascending: false });
+      .order('published_at', { ascending: false }); // ✅ Use 'published_at' field for ordering
 
     // Filter by status - hanya ambil published products untuk production
     if (status !== 'all') {
-      query = query.eq('status', status);
+      query = query.eq('_status', status); // ✅ Use '_status' field for filtering
     }
 
     const { data, error } = await query.limit(limit);
@@ -284,17 +458,17 @@ async function getCategoriesForServices(serviceIds: number[]): Promise<Map<numbe
 
 export async function getServicesDirectFromSupabase(limit: number = 10000, status: 'published' | 'draft' | 'all' = 'published'): Promise<any[]> {
   try {
-    console.log(`🔄 Fetching ${limit} services directly from Supabase with status: ${status}...`);
+    logger.info(`Fetching ${limit} services from Supabase with status: ${status}...`);
     
     let query = supabase
       .from('services')
       .select('*')
       .limit(limit)
-      .order('published', { ascending: false });
+      .order('published_at', { ascending: false }); // ✅ Use 'published_at' field for ordering
 
     // Add status filtering if not 'all'
     if (status !== 'all') {
-      query = query.eq('status', status);
+      query = query.eq('_status', status); // ✅ Use '_status' field for filtering
     }
 
     const { data, error } = await query;
@@ -371,17 +545,17 @@ export async function getServicesDirectFromSupabase(limit: number = 10000, statu
 
 export async function getProjectsDirectFromSupabase(limit: number = 10000, status: 'published' | 'draft' | 'all' = 'published'): Promise<any[]> {
   try {
-    console.log(`🔄 Fetching ${limit} projects directly from Supabase with status: ${status}...`);
+    logger.info(`Fetching ${limit} projects from Supabase with status: ${status}...`);
     
     let query = supabase
       .from('projects')
       .select('*')
       .limit(limit)
-      .order('published', { ascending: false });
+      .order('published_at', { ascending: false }); // ✅ Use 'published_at' field for ordering
 
     // Add status filtering if not 'all'
     if (status !== 'all') {
-      query = query.eq('status', status);
+      query = query.eq('_status', status); // ✅ Use '_status' field for filtering
     }
 
     const { data, error } = await query;
@@ -475,6 +649,9 @@ export async function getProjectsDirectFromSupabase(limit: number = 10000, statu
   }
 }
 
+
+
+
 // Helper function to process Payload JSON fields
 export function processPayloadField(field: any): any[] {
   if (!field) return [];
@@ -505,8 +682,9 @@ export function convertSupabasePost(post: SupabasePost) {
     updated: post.updatedAt ? new Date(post.updatedAt) : new Date(),
     tags: processPayloadField(post.tags).map((t: any) => t.value || t),
     category: processPayloadField(post.category).map((c: any) => c.value || c),
-    body: post.body || '',
-    status: post.status || 'published',
+    body: post.body || '', // ✅ Body tetap markdown string
+    content: post.content || null, // ✅ Content untuk Lexical Editor blocks
+    status: post.status || 'published', // ✅ post.status sudah di-mapping dari _status di getPostsDirectFromSupabase
     author: post.author || 'Kotacom.id',
     source: 'supabase-direct' as const
   };

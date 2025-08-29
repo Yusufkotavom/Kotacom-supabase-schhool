@@ -15,6 +15,23 @@ import cssnano from 'cssnano';
 export default defineConfig({
   site: 'https://kotacom.id',
   output: 'static',
+  env: {
+    schema: {
+      // Payload CMS configuration
+      PUBLIC_PAYLOAD_URL: {
+        context: 'client',
+        access: 'public',
+        type: 'string',
+        optional: true,
+      },
+      PAYLOAD_PUBLIC_SERVER_URL: {
+        context: 'server',
+        access: 'public',
+        type: 'string',
+        optional: true,
+      }
+    }
+  },
   build: {
     cssMinify: true,
     inlineStylesheets: 'auto',
