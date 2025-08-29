@@ -33,7 +33,7 @@ import { SITE_TITLE } from "../consts";
                 type="text" 
                 id="search-input" 
                 name="q"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-16 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-red-500 focus:border-red-500 block w-full pl-10 pr-16 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500" 
                 placeholder="Search for projects, posts, products or services..." 
                 autocomplete="off"
               />
@@ -75,7 +75,7 @@ import { SITE_TITLE } from "../consts";
                     <button 
                       type="button" 
                       id="filter-products" 
-                      class="px-4 py-2 text-sm font-medium rounded-lg border transition-colors duration-200 focus:z-10 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-800 text-gray-600 bg-white border-gray-300 hover:bg-gray-50 hover:border-gray-400 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:border-gray-500 cursor-pointer whitespace-nowrap"
+                      class="px-4 py-2 text-sm font-medium rounded-lg border transition-colors duration-200 focus:z-10 focus:ring-2 focus:ring-red-300 dark:focus:ring-red-800 text-gray-600 bg-white border-gray-300 hover:bg-gray-50 hover:border-gray-400 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:border-gray-500 cursor-pointer whitespace-nowrap"
                       data-filter="products"
                       aria-pressed="false"
                     >
@@ -84,7 +84,7 @@ import { SITE_TITLE } from "../consts";
                     <button 
                       type="button" 
                       id="filter-services" 
-                      class="px-4 py-2 text-sm font-medium rounded-lg border transition-colors duration-200 focus:z-10 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-800 text-gray-600 bg-white border-gray-300 hover:bg-gray-50 hover:border-gray-400 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:border-gray-500 cursor-pointer whitespace-nowrap"
+                      class="px-4 py-2 text-sm font-medium rounded-lg border transition-colors duration-200 focus:z-10 focus:ring-2 focus:ring-red-300 dark:focus:ring-red-800 text-gray-600 bg-white border-gray-300 hover:bg-gray-50 hover:border-gray-400 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:border-gray-500 cursor-pointer whitespace-nowrap"
                       data-filter="services"
                       aria-pressed="false"
                     >
@@ -93,7 +93,7 @@ import { SITE_TITLE } from "../consts";
                     <button 
                       type="button" 
                       id="filter-projects" 
-                      class="px-4 py-2 text-sm font-medium rounded-lg border transition-colors duration-200 focus:z-10 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-800 text-gray-600 bg-white border-gray-300 hover:bg-gray-50 hover:border-gray-400 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:border-gray-500 cursor-pointer whitespace-nowrap"
+                      class="px-4 py-2 text-sm font-medium rounded-lg border transition-colors duration-200 focus:z-10 focus:ring-2 focus:ring-red-300 dark:focus:ring-red-800 text-gray-600 bg-white border-gray-300 hover:bg-gray-50 hover:border-gray-400 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:border-gray-500 cursor-pointer whitespace-nowrap"
                       data-filter="projects"
                       aria-pressed="false"
                     >
@@ -102,7 +102,7 @@ import { SITE_TITLE } from "../consts";
                     <button 
                       type="button" 
                       id="filter-posts" 
-                      class="px-4 py-2 text-sm font-medium rounded-lg border transition-colors duration-200 focus:z-10 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-800 text-gray-600 bg-white border-gray-300 hover:bg-gray-50 hover:border-gray-400 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:border-gray-500 cursor-pointer whitespace-nowrap"
+                      class="px-4 py-2 text-sm font-medium rounded-lg border transition-colors duration-200 focus:z-10 focus:ring-2 focus:ring-red-300 dark:focus:ring-red-800 text-gray-600 bg-white border-gray-300 hover:bg-gray-50 hover:border-gray-400 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:border-gray-500 cursor-pointer whitespace-nowrap"
                       data-filter="posts"
                       aria-pressed="false"
                     >
@@ -368,7 +368,7 @@ import { SITE_TITLE } from "../consts";
           button.className = 'px-4 py-2 text-sm font-medium rounded-lg border transition-colors duration-200 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-600 text-white bg-gray-900 border-gray-900 hover:bg-black hover:border-black dark:bg-gray-700 dark:border-gray-700 dark:hover:bg-gray-600 dark:hover:border-gray-600 cursor-pointer whitespace-nowrap';
           button.setAttribute('aria-pressed', 'true');
         } else {
-          button.className = 'px-4 py-2 text-sm font-medium rounded-lg border transition-colors duration-200 focus:z-10 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-800 text-gray-600 bg-white border-gray-300 hover:bg-gray-50 hover:border-gray-400 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:border-gray-500 cursor-pointer whitespace-nowrap';
+          button.className = 'px-4 py-2 text-sm font-medium rounded-lg border transition-colors duration-200 focus:z-10 focus:ring-2 focus:ring-red-300 dark:focus:ring-red-800 text-gray-600 bg-white border-gray-300 hover:bg-gray-50 hover:border-gray-400 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:hover:border-gray-500 cursor-pointer whitespace-nowrap';
           button.setAttribute('aria-pressed', 'false');
         }
 
@@ -629,7 +629,7 @@ import { SITE_TITLE } from "../consts";
                 onerror="this.src='/https://res.cloudinary.com/dxyjku3eh/image/upload/v1754820661/Tanpa_judul_Presentasi__20250810_170926_0000_vdiibn.png'"
               />
             </a>
-            <span class="absolute top-2 left-2 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium border border-solid border-blue-300 bg-blue-50 text-blue-800 dark:bg-blue-900 dark:text-blue-300">
+            <span class="absolute top-2 left-2 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium border border-solid border-red-300 bg-red-50 text-red-800 dark:bg-red-900 dark:text-red-300">
               ${contentType}
             </span>
           </div>

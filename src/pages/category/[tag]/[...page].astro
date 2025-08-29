@@ -100,9 +100,9 @@ const tagTitle = fromSlug(tagSlug || '');
   <main class="container mx-auto px-4 py-8">
     <div class="mb-8">
       <nav class="text-sm breadcrumbs mb-4">
-        <a href="/" class="text-blue-600 hover:underline">Home</a>
+        <a href="/" class="text-red-600 hover:underline">Home</a>
         <span class="mx-2">/</span>
-        <a href="/category/" class="text-blue-600 hover:underline">Kategori</a>
+        <a href="/category/" class="text-red-600 hover:underline">Kategori</a>
         <span class="mx-2">/</span>
         <span class="text-gray-600">{tagTitle}</span>
       </nav>
@@ -163,7 +163,7 @@ const tagTitle = fromSlug(tagSlug || '');
         {page.url.prev && (
           <a 
             href={page.url.prev}
-            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+            class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
           >
             ← Sebelumnya
           </a>
@@ -176,7 +176,7 @@ const tagTitle = fromSlug(tagSlug || '');
         {page.url.next && (
           <a 
             href={page.url.next}
-            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+            class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
           >
             Selanjutnya →
           </a>

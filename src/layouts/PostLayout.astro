@@ -178,7 +178,7 @@ const popularCategories = Array.isArray((Astro.props as any).popularCategories)
 					{postData.tags?.length > 0 && (
 						<div class="flex flex-wrap gap-2">
 							{postData.tags.slice(0,4).map((tag: string) => (
-								<a href={`/category/${toSlug(tag)}/`} class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">{tag}</a>
+								<a href={`/category/${toSlug(tag)}/`} class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">{tag}</a>
 							))}
 						</div>
 					)}

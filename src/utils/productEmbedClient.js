@@ -37,7 +37,7 @@ class ProductEmbedManager {
     element.classList.add('loading');
     element.innerHTML = `
       <div class="flex items-center justify-center p-8 bg-gray-50 rounded-lg">
-        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-red-500"></div>
         <span class="ml-3 text-gray-600">Loading product...</span>
       </div>
     `;
@@ -73,8 +73,8 @@ class ProductEmbedManager {
   createEmbedHTML(slug, style) {
     // This would normally use real product data
     return `
-      <div class="product-embed-placeholder bg-blue-50 border-2 border-dashed border-blue-200 rounded-lg p-6 text-center">
-        <div class="text-blue-600 mb-2">
+      <div class="product-embed-placeholder bg-red-50 border-2 border-dashed border-red-200 rounded-lg p-6 text-center">
+        <div class="text-red-600 mb-2">
           <svg class="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
           </svg>
@@ -238,7 +238,7 @@ function showNotification(message, type = 'info') {
   notification.className = `embed-notification fixed top-4 right-4 z-50 px-4 py-2 rounded-lg text-white font-medium transition-all duration-300 ${
     type === 'success' ? 'bg-green-500' :
     type === 'error' ? 'bg-red-500' :
-    'bg-blue-500'
+    'bg-red-500'
   }`;
   notification.textContent = message;
   

@@ -135,7 +135,7 @@ function renderCustomBlock(block: any): string {
         
         // ✅ Flowbite alert styling dengan proper colors
         const alertStyles = {
-          info: 'text-blue-800 border-blue-300 bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800',
+          info: 'text-red-800 border-red-300 bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800',
           success: 'text-green-800 border-green-300 bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800',
           warning: 'text-yellow-800 border-yellow-300 bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 dark:border-yellow-800',
           error: 'text-red-800 border-red-300 bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800'
@@ -455,7 +455,7 @@ function renderCustomBlock(block: any): string {
         const bgClasses = {
           none: 'bg-white dark:bg-gray-900',
           gray: 'bg-gray-50 dark:bg-gray-800',
-          brand: 'bg-blue-50 dark:bg-blue-900',
+          brand: 'bg-red-50 dark:bg-red-900',
           dark: 'bg-gray-900 dark:bg-gray-900',
         };
         
@@ -481,7 +481,7 @@ function renderCustomBlock(block: any): string {
         const getQuoteCardClass = () => {
           switch (quotesStyle) {
             case 'classic':
-              return 'max-w-screen-md text-gray-500 sm:text-lg dark:text-gray-400 border-l-4 border-blue-500 pl-6 py-4';
+              return 'max-w-screen-md text-gray-500 sm:text-lg dark:text-gray-400 border-l-4 border-red-500 pl-6 py-4';
             case 'minimal':
               return 'max-w-screen-md text-gray-500 sm:text-lg dark:text-gray-400 border-b border-gray-200 pb-6';
             case 'card':
@@ -581,8 +581,8 @@ function renderCustomBlock(block: any): string {
           const linkAppearance = link.appearance || 'default';
           
           const linkClasses = linkAppearance === 'outline' 
-            ? 'text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 transition-all duration-300'
-            : 'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 transition-all duration-300';
+            ? 'text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-500 dark:focus:ring-red-800 transition-all duration-300'
+            : 'text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800 transition-all duration-300';
           
           return `
             <a href="${linkUrl}" class="inline-flex items-center justify-center ${linkClasses}">

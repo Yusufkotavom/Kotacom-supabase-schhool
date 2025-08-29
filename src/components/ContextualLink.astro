@@ -15,7 +15,7 @@ const getClasses = (type: string, priority: string) => {
   
   switch (type) {
     case 'service':
-      return `${baseClasses} text-blue-700 hover:text-blue-900 underline decoration-blue-300 hover:decoration-blue-500 decoration-2`;
+      return `${baseClasses} text-red-700 hover:text-red-900 underline decoration-blue-300 hover:decoration-blue-500 decoration-2`;
     case 'pillar':
       return `${baseClasses} text-purple-700 hover:text-purple-900 underline decoration-purple-300 hover:decoration-purple-500 decoration-2`;
     case 'article':
@@ -23,7 +23,7 @@ const getClasses = (type: string, priority: string) => {
     case 'external':
       return `${baseClasses} text-gray-700 hover:text-gray-900 underline decoration-gray-300 hover:decoration-gray-500`;
     default:
-      return `${baseClasses} text-blue-600 hover:text-blue-800 underline`;
+      return `${baseClasses} text-red-600 hover:text-red-800 underline`;
   }
 };
 

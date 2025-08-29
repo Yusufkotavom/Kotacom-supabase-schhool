@@ -238,9 +238,9 @@ const productsWithDiscount = page.data.filter(p => p.data.properties.pOriginalPr
         
         <!-- Stats Bar -->
         <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="bg-blue-50 rounded-lg p-3 text-center">
-            <div class="text-2xl font-bold text-blue-600">{page.total}</div>
-            <div class="text-sm text-blue-800">Total Produk</div>
+          <div class="bg-red-50 rounded-lg p-3 text-center">
+            <div class="text-2xl font-bold text-red-600">{page.total}</div>
+            <div class="text-sm text-red-800">Total Produk</div>
           </div>
           {sponsoredCount > 0 && (
             <div class="bg-green-50 rounded-lg p-3 text-center">
@@ -286,7 +286,7 @@ const productsWithDiscount = page.data.filter(p => p.data.properties.pOriginalPr
           <!-- Sort Options -->
           <select 
             id="sortSelect" 
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
           >
             <option value="priority">Terpopuler</option>
             <option value="newest">Terbaru</option>
@@ -333,7 +333,7 @@ const productsWithDiscount = page.data.filter(p => p.data.properties.pOriginalPr
           <p class="text-gray-600 mb-6">Coba ubah filter pencarian atau kembali ke halaman utama</p>
           <a 
             href="/products" 
-            class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
           >
             Lihat Semua Produk
           </a>
@@ -392,12 +392,12 @@ const productsWithDiscount = page.data.filter(p => p.data.properties.pOriginalPr
       <div class="grid md:grid-cols-3 gap-6 items-center">
         <div class="md:col-span-2 text-center md:text-left">
           <h2 class="text-2xl md:text-3xl font-bold mb-2">Minta Penawaran atau Diskon untuk Produk Ini</h2>
-          <p class="text-blue-100">Tim kami akan bantu cari harga terbaik atau promosi yang tersedia.</p>
+          <p class="text-red-100">Tim kami akan bantu cari harga terbaik atau promosi yang tersedia.</p>
         </div>
         <form action="/api/request-quote" method="post" class="bg-white/10 backdrop-blur rounded-lg p-4 flex flex-col sm:flex-row gap-3 md:gap-4">
-          <input type="text" name="name" placeholder="Nama" class="flex-1 px-4 py-3 rounded-md text-gray-900 border-0 focus:ring-2 focus:ring-blue-300" required>
-          <input type="text" name="product" placeholder="Produk (opsional)" class="flex-1 px-4 py-3 rounded-md text-gray-900 border-0 focus:ring-2 focus:ring-blue-300">
-          <select name="request" class="px-4 py-3 rounded-md text-gray-900 border-0 focus:ring-2 focus:ring-blue-300">
+          <input type="text" name="name" placeholder="Nama" class="flex-1 px-4 py-3 rounded-md text-gray-900 border-0 focus:ring-2 focus:ring-red-300" required>
+          <input type="text" name="product" placeholder="Produk (opsional)" class="flex-1 px-4 py-3 rounded-md text-gray-900 border-0 focus:ring-2 focus:ring-red-300">
+          <select name="request" class="px-4 py-3 rounded-md text-gray-900 border-0 focus:ring-2 focus:ring-red-300">
             <option value="quote">Penawaran</option>
             <option value="discount">Diskon</option>
             <option value="consult">Konsultasi</option>

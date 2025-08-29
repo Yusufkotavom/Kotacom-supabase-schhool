@@ -111,12 +111,12 @@ const relevantPillars = pillarPages.filter(pillar =>
 const serviceCTAs = pillarPages.filter(pillar => pillar.slug.includes("/services/") || pillar.slug.includes("/layanan/")).slice(0, 3);
 ---
 
-<div class="internal-links-widget bg-gray-50 p-6 rounded-lg border-l-4 border-blue-500 my-8">
+<div class="internal-links-widget bg-gray-50 p-6 rounded-lg border-l-4 border-red-500 my-8">
   <!-- Pillar Links (High Priority) -->
   {relevantPillars.length > 0 && (
     <div class="pillar-links mb-6">
       <h3 class="text-lg font-semibold text-gray-900 mb-3 flex items-center">
-        <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-5 h-5 mr-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
         </svg>
         🎯 Layanan Utama
@@ -124,9 +124,9 @@ const serviceCTAs = pillarPages.filter(pillar => pillar.slug.includes("/services
       <div class="grid gap-2">
         {relevantPillars.map(pillar => (
           <a href={pillar.slug} 
-             class="block p-3 bg-blue-50 hover:bg-blue-100 rounded-md transition-colors duration-200 border border-blue-200">
-            <div class="font-semibold text-blue-900">{pillar.title}</div>
-            <div class="text-sm text-blue-700 mt-1">{pillar.cta}</div>
+             class="block p-3 bg-red-50 hover:bg-red-100 rounded-md transition-colors duration-200 border border-red-200">
+            <div class="font-semibold text-red-900">{pillar.title}</div>
+            <div class="text-sm text-red-700 mt-1">{pillar.cta}</div>
           </a>
         ))}
       </div>

@@ -95,8 +95,8 @@ export const MARKETPLACE_AFFILIATE_CONFIG = {
     name: 'Blibli',
     baseParam: 'ref', // Blibli affiliate parameter
     color: 'text-white',
-    bgColor: 'bg-blue-500',
-    hoverColor: 'hover:bg-blue-600',
+      bgColor: 'bg-red-500',
+  hoverColor: 'hover:bg-red-600',
     icon: 'blibli',
     commission: '2-4%',
     priority: 3
@@ -105,8 +105,8 @@ export const MARKETPLACE_AFFILIATE_CONFIG = {
     name: 'Bukalapak',
     baseParam: 'from', // Bukalapak affiliate parameter
     color: 'text-white',
-    bgColor: 'bg-red-500',
-    hoverColor: 'hover:bg-red-600',
+      bgColor: 'bg-yellow-500',
+  hoverColor: 'hover:bg-yellow-600',
     icon: 'bukalapak',
     commission: '1-2%',
     priority: 4
@@ -317,8 +317,8 @@ export function getPriorityBadge(priority: string | undefined): { text: string; 
 
   const badges = {
     'featured': { text: 'Featured', class: 'bg-yellow-500 text-white' },
-    'sponsored': { text: 'Sponsored', class: 'bg-blue-500 text-white' },
-    'bestseller': { text: 'Best Seller', class: 'bg-green-500 text-white' },
+    'sponsored': { text: 'Sponsored', class: 'bg-red-500 text-white' },
+    'bestseller': { text: 'Best Seller', class: 'bg-red-500 text-white' },
     'new': { text: 'New', class: 'bg-purple-500 text-white' },
     'sale': { text: 'Sale', class: 'bg-red-500 text-white' }
   };

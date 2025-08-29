@@ -59,7 +59,7 @@ const props = isMdx
             {props.pCountry.map((country: string) => (
               <a
                 href={`/projects/${country.toLowerCase().replace(/\s+/g, "-")}`}
-                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 hover:opacity-80 transition-opacity"
+                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 hover:opacity-80 transition-opacity"
               >
                 {country}
               </a>
@@ -68,7 +68,7 @@ const props = isMdx
         )}
         
         <!-- Title -->
-        <h2 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+        <h2 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
           <a href={`/projects/${props.pSlug}/`}>
             {props.pTitle}
           </a>

@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "flowbite/src/themes/default";
 @import "prismjs/themes/prism-tomorrow.css";
+@import "./transitions.css";
 
 @plugin "@tailwindcss/typography";
 @plugin "flowbite/plugin";
@@ -17,25 +18,138 @@
 }
 
 @theme {
-    --color-primary-50: #eff6ff;
-    --color-primary-100: #dbeafe;
-    --color-primary-200: #bfdbfe;
-    --color-primary-300: #93c5fd;
-    --color-primary-400: #60a5fa;
-    --color-primary-500: #3b82f6;
-    --color-primary-600: #2563eb;
-    --color-primary-700: #1d4ed8;
-    --color-primary-800: #1e40af;
-    --color-primary-900: #1e3a8a;
+    /* Creative Red-Blue-Yellow Color Scheme */
+    --color-primary-50: #fef2f2;
+    --color-primary-100: #fee2e2;
+    --color-primary-200: #fecaca;
+    --color-primary-300: #fca5a5;
+    --color-primary-400: #f87171;
+    --color-primary-500: #ef4444;
+    --color-primary-600: #dc2626;
+    --color-primary-700: #b91c1c;
+    --color-primary-800: #991b1b;
+    --color-primary-900: #7f1d1d;
 
-    --color-gbgblue: #295483;
-    --color-gbgpink: #f1e8fb;
-    --color-gbgyellow: #ffe8b5;
-    --color-gbgteal: #b7e5e5;
+    /* Blue Accent Colors */
+    --color-blue-50: #eff6ff;
+    --color-blue-100: #dbeafe;
+    --color-blue-200: #bfdbfe;
+    --color-blue-300: #93c5fd;
+    --color-blue-400: #60a5fa;
+    --color-blue-500: #3b82f6;
+    --color-blue-600: #2563eb;
+    --color-blue-700: #1d4ed8;
+    --color-blue-800: #1e40af;
+    --color-blue-900: #1e3a8a;
+
+    /* Yellow Accent Colors */
+    --color-yellow-50: #fefce8;
+    --color-yellow-100: #fef3c7;
+    --color-yellow-200: #fde68a;
+    --color-yellow-300: #fcd34d;
+    --color-yellow-400: #fbbf24;
+    --color-yellow-500: #f59e0b;
+    --color-yellow-600: #d97706;
+    --color-yellow-700: #b45309;
+    --color-yellow-800: #92400e;
+    --color-yellow-900: #78350f;
+
+    /* Creative Gradient Colors */
+    --color-gradient-red: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    --color-gradient-blue: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    --color-gradient-yellow: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    --color-gradient-mixed: linear-gradient(135deg, #ef4444 0%, #3b82f6 50%, #f59e0b 100%);
     
+    /* Legacy GBG Colors (updated to match new scheme) */
+    --color-gbgblue: #3b82f6;
+    --color-gbgpink: #fef2f2;
+    --color-gbgyellow: #fefce8;
+    --color-gbgteal: #dbeafe;
+    
+    /* Enhanced Typography */
     --font-sans: 'Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     --font-body: 'Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     --font-mono: 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace';
+
+    /* Enhanced Transitions */
+    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Enhanced Global Transitions */
+* {
+  transition: color var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-normal);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced Focus States */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.focus-ring-red {
+  @apply focus:ring-red-500 focus:ring-offset-red-100;
+}
+
+.focus-ring-blue {
+  @apply focus:ring-blue-500 focus:ring-offset-blue-100;
+}
+
+.focus-ring-yellow {
+  @apply focus:ring-yellow-500 focus:ring-offset-yellow-100;
+}
+
+/* Creative Hover Effects */
+.hover-lift {
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.hover-scale {
+  transition: transform var(--transition-normal);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Gradient Text Effects */
+.gradient-text-red {
+  background: var(--color-gradient-red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-blue {
+  background: var(--color-gradient-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-yellow {
+  background: var(--color-gradient-yellow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-mixed {
+  background: var(--color-gradient-mixed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Hide scrollbar for all browsers */
