@@ -1,4 +1,4 @@
-/* Content Styling for Posts with Creative Red-Blue-Yellow Color Scheme */
+/* Content Styling for Posts with Creative Gradient Color Scheme */
 
 .prose {
   /* Base typography */
@@ -43,7 +43,7 @@
   left: 0;
   width: 100%;
   height: 3px;
-  background: var(--color-gradient-red);
+  background: var(--color-gradient-sunset);
   border-radius: 2px;
   transition: background var(--transition-normal);
 }
@@ -53,7 +53,7 @@
 }
 
 .dark .prose h2::after {
-  background: var(--color-gradient-red);
+  background: var(--color-gradient-sunset);
 }
 
 .prose h3 {
@@ -140,19 +140,36 @@
   margin-bottom: 0.5rem;
 }
 
-/* Blockquotes - Creative Style */
+/* Blockquotes - Creative Gradient Style */
 .prose blockquote {
   display: flex;
   align-items: flex-start;
   padding: 1rem;
   margin: 1rem 0;
-  border: 1px solid #fecaca;
-  border-radius: 0.5rem;
+  border: 1px solid transparent;
   background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
   color: #991b1b;
   font-size: 0.875rem;
   line-height: 1.5;
   transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.prose blockquote::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--color-gradient-sunset);
+  transform: scaleX(0);
+  transition: transform var(--transition-normal);
+}
+
+.prose blockquote:hover::before {
+  transform: scaleX(1);
 }
 
 .prose blockquote:hover {
@@ -160,10 +177,10 @@
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
 }
 
-.prose blockquote::before {
+.prose blockquote::after {
   content: '"';
   font-size: 2rem;
-  background: var(--color-gradient-red);
+  background: var(--color-gradient-sunset);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -174,12 +191,12 @@
 
 .dark .prose blockquote {
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-  border-color: #dc2626;
+  border-color: transparent;
   color: #fca5a5;
 }
 
-.dark .prose blockquote::before {
-  background: var(--color-gradient-red);
+.dark .prose blockquote::after {
+  background: var(--color-gradient-sunset);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -198,6 +215,18 @@
   line-height: 1.6;
   border: 1px solid #e5e7eb;
   transition: all var(--transition-normal);
+  position: relative;
+}
+
+.prose pre::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-gradient-ocean);
+  border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .prose pre:hover {
@@ -222,8 +251,8 @@
 }
 
 .prose code:hover {
-  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
-  color: #991b1b;
+  background: var(--color-gradient-sunset);
+  color: white;
 }
 
 .dark .prose code {
@@ -232,8 +261,8 @@
 }
 
 .dark .prose code:hover {
-  background: linear-gradient(135deg, #991b1b 0%, #b91c1c 100%);
-  color: #fecaca;
+  background: var(--color-gradient-sunset);
+  color: white;
 }
 
 /* Links */
@@ -242,11 +271,26 @@
   text-decoration: none;
   transition: all var(--transition-normal);
   border-bottom: 1px solid transparent;
+  position: relative;
+}
+
+.prose a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-gradient-sunset);
+  transition: width var(--transition-normal);
+}
+
+.prose a:hover::after {
+  width: 100%;
 }
 
 .prose a:hover {
   color: #b91c1c;
-  border-bottom-color: #dc2626;
   transform: translateY(-1px);
 }
 
@@ -256,7 +300,6 @@
 
 .dark .prose a:hover {
   color: #fca5a5;
-  border-bottom-color: #f87171;
 }
 
 /* Tables */
@@ -275,19 +318,19 @@
 }
 
 .prose th {
-  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
-  color: #991b1b;
+  background: var(--color-gradient-sunset);
+  color: white;
   font-weight: 600;
   padding: 0.75rem;
   text-align: left;
-  border-bottom: 2px solid #fca5a5;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
   transition: all var(--transition-normal);
 }
 
 .dark .prose th {
-  background: linear-gradient(135deg, #991b1b 0%, #b91c1c 100%);
-  color: #fecaca;
-  border-bottom-color: #dc2626;
+  background: var(--color-gradient-sunset);
+  color: white;
+  border-bottom-color: rgba(255, 255, 255, 0.2);
 }
 
 .prose td {
@@ -313,6 +356,24 @@
 .prose img {
   border-radius: 0.5rem;
   transition: all var(--transition-normal);
+  position: relative;
+}
+
+.prose img::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-gradient-sunset);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  border-radius: 0.5rem;
+}
+
+.prose img:hover::before {
+  opacity: 0.1;
 }
 
 .prose img:hover {
@@ -323,15 +384,32 @@
 /* Horizontal Rules */
 .prose hr {
   border: none;
-  height: 2px;
+  height: 3px;
   background: var(--color-gradient-mixed);
   margin: 2rem 0;
-  border-radius: 1px;
+  border-radius: 2px;
   transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.prose hr::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--color-gradient-sunset);
+  transition: left var(--transition-slow);
+}
+
+.prose hr:hover::after {
+  left: 0;
 }
 
 .prose hr:hover {
-  height: 3px;
+  height: 4px;
   box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
 }
 
@@ -364,36 +442,93 @@
   background-clip: text;
 }
 
-/* Creative Card Styles */
+.prose .text-gradient-sunset {
+  background: var(--color-gradient-sunset);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.prose .text-gradient-ocean {
+  background: var(--color-gradient-ocean);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.prose .text-gradient-forest {
+  background: var(--color-gradient-forest);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.prose .text-gradient-fire {
+  background: var(--color-gradient-fire);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.prose .text-gradient-aurora {
+  background: var(--color-gradient-aurora);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.prose .text-gradient-cosmic {
+  background: var(--color-gradient-cosmic);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Creative Card Styles with Gradients */
 .prose .creative-card {
   background: linear-gradient(135deg, #ffffff 0%, #fef2f2 100%);
-  border: 1px solid #fecaca;
+  border: 1px solid transparent;
   border-radius: 0.75rem;
   padding: 1.5rem;
   margin: 1.5rem 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.prose .creative-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--color-gradient-sunset);
+  transform: scaleX(0);
+  transition: transform var(--transition-normal);
+}
+
+.prose .creative-card:hover::before {
+  transform: scaleX(1);
 }
 
 .prose .creative-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 25px rgba(239, 68, 68, 0.15);
-  border-color: #fca5a5;
 }
 
 .dark .prose .creative-card {
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-  border-color: #dc2626;
 }
 
 .dark .prose .creative-card:hover {
   box-shadow: 0 12px 25px rgba(220, 38, 38, 0.3);
-  border-color: #f87171;
 }
 
-/* Enhanced Button Styles */
+/* Enhanced Button Styles with Gradients */
 .prose .btn-primary {
-  background: var(--color-gradient-red);
+  background: var(--color-gradient-sunset);
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
@@ -403,6 +538,24 @@
   transition: all var(--transition-normal);
   border: none;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.prose .btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--color-gradient-fire);
+  transition: left var(--transition-slow);
+  z-index: -1;
+}
+
+.prose .btn-primary:hover::before {
+  left: 0;
 }
 
 .prose .btn-primary:hover {
@@ -411,7 +564,7 @@
 }
 
 .prose .btn-secondary {
-  background: var(--color-gradient-blue);
+  background: var(--color-gradient-ocean);
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
@@ -429,7 +582,7 @@
 }
 
 .prose .btn-accent {
-  background: var(--color-gradient-yellow);
+  background: var(--color-gradient-forest);
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
@@ -443,5 +596,5 @@
 
 .prose .btn-accent:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+  box-shadow: 0 8px 25px rgba(17, 153, 142, 0.3);
 }

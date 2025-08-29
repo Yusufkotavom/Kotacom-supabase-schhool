@@ -1,4 +1,4 @@
-/* Enhanced Transitions and Animations for Creative Color Scheme */
+/* Enhanced Transitions and Animations for Creative Gradient Color Scheme */
 
 /* CSS Variables for Transitions */
 :root {
@@ -33,12 +33,12 @@
   transform: translateY(-20px);
 }
 
-/* Enhanced Button Transitions */
+/* Enhanced Button Transitions with Gradients */
 .btn-creative {
   position: relative;
   overflow: hidden;
   transition: all var(--transition-normal);
-  background: var(--color-gradient-red);
+  background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 25%, #ffd93d 50%, #ff6b6b 75%, #ff8e53 100%);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -54,7 +54,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: var(--color-gradient-mixed);
+  background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 25%, #ff6b6b 50%, #ff8e53 75%, #ff416c 100%);
   transition: left var(--transition-slow);
   z-index: -1;
 }
@@ -65,14 +65,14 @@
 
 .btn-creative:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(239, 68, 68, 0.4);
+  box-shadow: 0 12px 30px rgba(255, 107, 107, 0.4);
 }
 
 .btn-creative:active {
   transform: translateY(-1px);
 }
 
-/* Creative Card Animations */
+/* Creative Card Animations with Gradients */
 .card-creative {
   background: white;
   border-radius: 1rem;
@@ -90,7 +90,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: var(--color-gradient-mixed);
+  background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 25%, #ffd93d 50%, #ff6b6b 75%, #ff8e53 100%);
   transform: scaleX(0);
   transition: transform var(--transition-normal);
 }
@@ -122,7 +122,7 @@
   position: absolute;
   inset: 0;
   padding: 2px;
-  background: var(--color-gradient-mixed);
+  background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 25%, #ffd93d 50%, #ff6b6b 75%, #ff8e53 100%);
   border-radius: 0.5rem;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
@@ -130,7 +130,7 @@
 }
 
 .gradient-border:hover::before {
-  background: var(--color-gradient-red);
+  background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 25%, #ff6b6b 50%, #ff8e53 75%, #ff416c 100%);
   transform: scale(1.02);
 }
 
@@ -157,13 +157,13 @@
   animation-delay: 1.5s;
 }
 
-/* Pulse Animation */
+/* Pulse Animation with Gradients */
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.4);
   }
   50% {
-    box-shadow: 0 0 40px rgba(239, 68, 68, 0.8);
+    box-shadow: 0 0 40px rgba(255, 107, 107, 0.8);
   }
 }
 
@@ -255,13 +255,13 @@
   }
 }
 
-/* Hover Effects for Interactive Elements */
+/* Hover Effects for Interactive Elements with Gradients */
 .hover-glow {
   transition: all var(--transition-normal);
 }
 
 .hover-glow:hover {
-  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+  box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
 }
 
 .hover-rotate {
@@ -280,13 +280,14 @@
   transform: scale(1.1);
 }
 
-/* Loading Spinner with New Colors */
+/* Loading Spinner with Gradient Colors */
 .spinner-creative {
   width: 40px;
   height: 40px;
   border: 4px solid #f3f4f6;
-  border-top: 4px solid #ef4444;
+  border-top: 4px solid transparent;
   border-radius: 50%;
+  background: conic-gradient(from 0deg, #ff6b6b, #ffa500, #ffd93d, #ff6b6b);
   animation: spin 1s linear infinite;
 }
 
@@ -306,7 +307,7 @@
 
 .progress-creative-bar {
   height: 100%;
-  background: var(--color-gradient-red);
+  background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 25%, #ffd93d 50%, #ff6b6b 75%, #ff8e53 100%);
   border-radius: 4px;
   transition: width var(--transition-slow);
   position: relative;
@@ -328,17 +329,16 @@
   100% { transform: translateX(100%); }
 }
 
-/* Enhanced Focus States */
+/* Enhanced Focus States with Gradients */
 .focus-creative:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.3);
   transform: scale(1.02);
 }
 
 /* Dark Mode Enhancements */
 .dark .card-creative {
   background: #1e293b;
-  color: #e5e7eb;
 }
 
 .dark .gradient-border {
@@ -347,7 +347,7 @@
 
 .dark .spinner-creative {
   border-color: #374151;
-  border-top-color: #ef4444;
+  background: conic-gradient(from 0deg, #ff6b6b, #ffa500, #ffd93d, #ff6b6b);
 }
 
 .dark .progress-creative {
