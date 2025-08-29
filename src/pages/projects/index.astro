@@ -1,0 +1,224 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+
+const title = `Projects - ${SITE_TITLE}`;
+const description = `Explore our portfolio of successful projects including software development, web applications, and IT solutions. ${SITE_DESCRIPTION}`;
+
+// Sample projects data
+const projects = [
+	{ title: 'E-commerce Platform', excerpt: 'Modern online shopping experience with advanced features', category: 'Web Development' },
+	{ title: 'Business Management System', excerpt: 'Comprehensive solution for enterprise operations', category: 'Software Development' },
+	{ title: 'Mobile Banking App', excerpt: 'Secure and user-friendly banking application', category: 'Mobile Development' },
+	{ title: 'Cloud Migration Project', excerpt: 'Seamless transition to cloud infrastructure', category: 'Cloud Computing' },
+	{ title: 'IoT Smart Home System', excerpt: 'Connected home automation solution', category: 'IoT' },
+	{ title: 'Data Analytics Dashboard', excerpt: 'Real-time business intelligence platform', category: 'Data Analytics' }
+];
+
+const categories = ['Web Development', 'Software Development', 'Mobile Development', 'Cloud Computing', 'IoT', 'Data Analytics'];
+---
+
+<Layout title={title} description={description}>
+	<main id="main-content">
+		<!-- Hero Section with Gradient Background -->
+		<section class="relative py-20 overflow-hidden">
+			<!-- Animated Gradient Background -->
+			<div class="absolute inset-0 bg-gradient-to-br from-green-400 via-teal-500 to-cyan-400 animate-pulse"></div>
+			<div class="absolute inset-0 bg-gradient-to-tl from-blue-400 via-indigo-500 to-purple-400 animate-pulse" style="animation-delay: 1s;"></div>
+			<div class="absolute inset-0 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-400 animate-pulse" style="animation-delay: 2s;"></div>
+			
+			<div class="relative z-10 container mx-auto px-4 text-center text-white">
+				<div class="mb-8">
+					<div class="h-20 w-auto mx-auto mb-6 text-6xl">💼</div>
+				</div>
+				<h1 class="text-5xl md:text-6xl font-bold mb-6 gradient-text-forest">
+					Our Projects
+				</h1>
+				<p class="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto">
+					Showcasing innovative solutions and successful implementations that drive business growth
+				</p>
+				<div class="flex flex-wrap justify-center gap-4">
+					{categories.slice(0, 5).map((category) => (
+						<span class="gradient-bg-forest text-white px-4 py-2 rounded-full text-sm font-medium">
+							{category}
+						</span>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- Projects Grid with Gradient Cards -->
+		<section class="py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+			<div class="container mx-auto px-4">
+				<div class="text-center mb-16">
+					<h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text-ocean">
+						Portfolio Showcase
+					</h2>
+					<p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+						Discover how we've helped businesses transform their operations with cutting-edge technology
+					</p>
+				</div>
+				
+				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+					{projects.map((project, index) => {
+						const gradientClasses = [
+							'from-green-400 via-teal-400 to-cyan-400', // Forest
+							'from-blue-400 via-purple-400 to-pink-400', // Ocean
+							'from-red-400 via-orange-400 to-yellow-400', // Sunset
+							'from-red-400 via-pink-400 to-purple-400', // Fire
+							'from-blue-400 via-indigo-400 to-purple-400', // Aurora
+							'from-cyan-400 via-blue-400 to-indigo-400', // Cosmic
+							'from-yellow-400 via-orange-400 to-red-400', // Mixed
+							'from-purple-400 via-pink-400 to-red-400', // Custom
+							'from-teal-400 via-green-400 to-yellow-400', // Custom
+							'from-indigo-400 via-purple-400 to-pink-400' // Custom
+						];
+						
+						const textGradientClasses = [
+							'gradient-text-forest',
+							'gradient-text-ocean',
+							'gradient-text-sunset',
+							'gradient-text-fire',
+							'gradient-text-aurora',
+							'gradient-text-cosmic',
+							'gradient-text-mixed',
+							'gradient-text-forest',
+							'gradient-text-ocean',
+							'gradient-text-sunset'
+						];
+						
+						const buttonGradientClasses = [
+							'gradient-bg-forest',
+							'gradient-bg-ocean',
+							'gradient-bg-sunset',
+							'gradient-bg-fire',
+							'gradient-bg-aurora',
+							'gradient-bg-cosmic',
+							'gradient-bg-mixed',
+							'gradient-bg-forest',
+							'gradient-bg-ocean',
+							'gradient-bg-sunset'
+						];
+						
+						const gradientIndex = index % gradientClasses.length;
+						
+						return (
+							<div class="card-creative group">
+								<div class={`h-48 bg-gradient-to-br ${gradientClasses[gradientIndex]} rounded-t-xl mb-4 flex items-center justify-center`}>
+									<svg class="w-20 h-20 text-white" fill="currentColor" viewBox="0 0 20 20">
+										<path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+									</svg>
+								</div>
+								<h3 class={`text-2xl font-bold mb-3 ${textGradientClasses[gradientIndex]}`}>
+									{project.title}
+								</h3>
+								<p class="text-gray-600 dark:text-gray-300 mb-4">
+									{project.excerpt || 'Innovative project showcasing cutting-edge technology and business solutions.'}
+								</p>
+								<div class="flex items-center justify-between">
+									<a href={`/projects/${project.slug}`} class={`${buttonGradientClasses[gradientIndex]} text-white px-6 py-2 rounded-lg inline-block hover:scale-105 transition-transform`}>
+										View Project
+									</a>
+									{project.category && (
+										<span class="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
+											{project.category}
+										</span>
+									)}
+								</div>
+							</div>
+						);
+					})}
+				</div>
+			</div>
+		</section>
+
+		<!-- Project Categories with Gradient Icons -->
+		<section class="py-20 bg-gradient-to-br from-green-50 via-teal-50 to-cyan-50 dark:from-green-900 dark:via-teal-900 dark:to-cyan-900">
+			<div class="container mx-auto px-4">
+				<div class="text-center mb-16">
+					<h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text-mixed">
+						Project Categories
+					</h2>
+					<p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+						Comprehensive solutions across various industries and technologies
+					</p>
+				</div>
+				
+				<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+					{[
+						{ name: 'Software Development', icon: '💻', gradient: 'from-green-400 via-teal-400 to-cyan-400', textClass: 'gradient-text-forest' },
+						{ name: 'Web Applications', icon: '🌐', gradient: 'from-blue-400 via-purple-400 to-pink-400', textClass: 'gradient-text-ocean' },
+						{ name: 'Mobile Apps', icon: '📱', gradient: 'from-red-400 via-orange-400 to-yellow-400', textClass: 'gradient-text-sunset' },
+						{ name: 'E-commerce', icon: '🛒', gradient: 'from-red-400 via-pink-400 to-purple-400', textClass: 'gradient-text-fire' },
+						{ name: 'Business Systems', icon: '🏢', gradient: 'from-blue-400 via-indigo-400 to-purple-400', textClass: 'gradient-text-aurora' },
+						{ name: 'Data Analytics', icon: '📊', gradient: 'from-cyan-400 via-blue-400 to-indigo-400', textClass: 'gradient-text-cosmic' },
+						{ name: 'Cloud Solutions', icon: '☁️', gradient: 'from-yellow-400 via-orange-400 to-red-400', textClass: 'gradient-text-mixed' },
+						{ name: 'IoT Projects', icon: '🔌', gradient: 'from-purple-400 via-pink-400 to-red-400', textClass: 'gradient-text-sunset' }
+					].map((category) => (
+						<div class="text-center group">
+							<div class={`w-24 h-24 mx-auto mb-6 bg-gradient-to-br ${category.gradient} rounded-full flex items-center justify-center group-hover:scale-110 transition-transform`}>
+								<span class="text-4xl">{category.icon}</span>
+							</div>
+							<h3 class={`text-xl font-bold mb-3 ${category.textClass}`}>{category.name}</h3>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- Success Metrics with Gradient Numbers -->
+		<section class="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
+			<div class="container mx-auto px-4">
+				<div class="text-center mb-16">
+					<h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text-sunset">
+						Project Success Metrics
+					</h2>
+					<p class="text-xl text-gray-300 max-w-3xl mx-auto">
+						Numbers that speak to our commitment to excellence and client satisfaction
+					</p>
+				</div>
+				
+				<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+					{[
+						{ number: '100+', label: 'Projects Completed', gradient: 'from-red-400 to-orange-400', textClass: 'gradient-text-sunset' },
+						{ number: '95%', label: 'Client Satisfaction', gradient: 'from-blue-400 to-purple-400', textClass: 'gradient-text-ocean' },
+						{ number: '50+', label: 'Happy Clients', gradient: 'from-green-400 to-teal-400', textClass: 'gradient-text-forest' },
+						{ number: '24/7', label: 'Support Available', gradient: 'from-yellow-400 to-red-400', textClass: 'gradient-text-fire' }
+					].map((metric) => (
+						<div class="text-center group">
+							<div class={`w-24 h-24 mx-auto mb-6 bg-gradient-to-br ${metric.gradient} rounded-full flex items-center justify-center group-hover:scale-110 transition-transform`}>
+								<span class="text-3xl font-bold text-white">{metric.number}</span>
+							</div>
+							<h3 class={`text-xl font-bold mb-3 ${metric.textClass}`}>{metric.label}</h3>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA Section with Animated Gradients -->
+		<section class="py-20 relative overflow-hidden">
+			<!-- Animated Background Gradients -->
+			<div class="absolute inset-0 bg-gradient-to-r from-green-400 via-teal-400 to-cyan-400 animate-pulse"></div>
+			<div class="absolute inset-0 bg-gradient-to-l from-blue-400 via-indigo-400 to-purple-400 animate-pulse" style="animation-delay: 0.5s;"></div>
+			<div class="absolute inset-0 bg-gradient-to-t from-yellow-400 via-orange-400 to-red-400 animate-pulse" style="animation-delay: 1s;"></div>
+			
+			<div class="relative z-10 text-center text-white">
+				<h2 class="text-4xl md:text-6xl font-bold mb-6 gradient-text-cosmic">
+					Ready to Start Your Project?
+				</h2>
+				<p class="text-xl mb-8 text-white/90 max-w-3xl mx-auto">
+					Let's collaborate to bring your vision to life with innovative technology solutions
+				</p>
+				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+					<a href="/contact" class="btn-creative text-lg px-8 py-4">
+						Start Your Project
+					</a>
+					<a href="/services" class="gradient-bg-aurora text-white px-8 py-4 rounded-lg text-lg font-medium hover:scale-105 transition-transform">
+						Explore Our Services
+					</a>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>

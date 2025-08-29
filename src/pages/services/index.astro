@@ -1,149 +1,225 @@
 ---
-import { getCollection } from 'astro:content';
-import MainLayout from '../../layouts/MainLayout.astro';
-import ServiceCard from '../../components/ServiceCard.astro';
-import SCategoryDropdown from '../../components/SCategoryDropdown.astro';
-import { getServicesDirectFromSupabase } from '../../lib/supabase-direct';
+import Layout from '../../layouts/Layout.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 
-// Fetch services from MDX collection
-const mdxServices = await getCollection('servicesMdx');
+const title = `Services - ${SITE_TITLE}`;
+const description = `Comprehensive IT services including web development, software development, IT support, and more. ${SITE_DESCRIPTION}`;
 
-// Fetch services from Supabase
-const supabaseServices = await getServicesDirectFromSupabase(10000, 'published'); // Only published services
-console.log(`📋 MDX services found: ${mdxServices.length}`);
-console.log(`📋 Supabase services found: ${supabaseServices?.length || 0}`);
+// Sample services data
+const services = [
+	{ title: 'IT Support & Maintenance', excerpt: '24/7 technical support and maintenance services', category: 'IT Support' },
+	{ title: 'Web Development', excerpt: 'Custom websites and web applications', category: 'Web Development' },
+	{ title: 'Software Development', excerpt: 'Custom software solutions', category: 'Software Development' },
+	{ title: 'Digital Marketing', excerpt: 'Online marketing and SEO services', category: 'Digital Marketing' },
+	{ title: 'Cloud Solutions', excerpt: 'Cloud infrastructure and migration', category: 'Cloud Computing' },
+	{ title: 'Cybersecurity', excerpt: 'Security audits and protection', category: 'Security' }
+];
 
-// Normalize MDX services
-const normalizedMdxServices = mdxServices.map((entry) => ({
-  ...entry,
-  source: 'mdx',
-  data: {
-    ...entry.data,
-    properties: {
-      svTitle: entry.data.title,
-      svCategory: entry.data.category,
-      svSlug: entry.data.slug,
-      svImageURL1: entry.data.imageUrl1 || "",
-      svPublished: { start: entry.data.published },
-      svWilayah: entry.data.wilayah,
-      svProvider: entry.data.provider,
-      svType: entry.data.type,
-      svPrice: entry.data.price,
-      svURL: entry.data.url,
-      svWhatsAppURL: entry.data.whatsappUrl,
-      svMapsURL: entry.data.mapsUrl,
-      svVerify: entry.data.verify || "",
-      svImageURL2: entry.data.imageUrl2,
-      svImageURL3: entry.data.imageUrl3,
-      svReview: entry.data.review,
-    },
-  },
-}));
-
-// Normalize Supabase services to match MDX structure
-const normalizedSupabaseServices = (supabaseServices || []).map((service: any) => ({
-  source: 'supabase',
-  data: {
-    properties: {
-      svTitle: service.title,
-      svCategory: service.category || [],
-      svSlug: service.slug,
-      svImageURL1: service.imageUrl1 || service.cover_image || "",
-      svPublished: { start: service.published ? new Date(service.published) : new Date() },
-      svWilayah: service.wilayah || [],
-      svProvider: service.provider,
-      svType: service.type || [],
-      svPrice: service.price,
-      svURL: service.url,
-      svWhatsAppURL: service.whatsappUrl,
-      svMapsURL: service.mapsUrl,
-      svVerify: service.verify || "",
-      svImageURL2: service.imageUrl2 || "",
-      svImageURL3: service.imageUrl3 || "",
-      svReview: service.review || "",
-    },
-  },
-}));
-
-// Combine MDX and Supabase services
-const entries = [...normalizedMdxServices, ...normalizedSupabaseServices];
-
-// Get active category from URL
-const url = new URL(Astro.request.url);
-const activeCategory = url.searchParams.get('category');
-
-// Filter services by category if specified
-const filtered = activeCategory
-  ? entries.filter((e) => {
-      const c = e.data.properties.svCategory as any;
-      return Array.isArray(c) ? c.includes(activeCategory) : c === activeCategory;
-    })
-  : entries;
+const categories = ['IT Support', 'Web Development', 'Software Development', 'Digital Marketing', 'Cloud Computing', 'Security'];
 ---
 
-<MainLayout 
-  title="Layanan IT Profesional" 
-  description="Temukan berbagai layanan IT profesional untuk kebutuhan bisnis Anda. IT Support, Website Development, Software Development, dan Percetakan."
->
-  <section class="bg-white dark:bg-gray-900">
-    <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-      <div class="max-w-screen-md mb-8 lg:mb-16">
-        <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-          Layanan IT Profesional
-        </h1>
-        <p class="text-gray-500 sm:text-xl dark:text-gray-400">
-          Solusi teknologi terpercaya untuk UMKM dan bisnis. IT Support, Website Development, Software Development, dan layanan Percetakan berkualitas tinggi.
-        </p>
-      </div>
-      
-      <div class="flex flex-col md:flex-row mb-8 gap-4">
-        <!-- Showing count -->
-        <div class="flex-1">
-          <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-            Menampilkan <span class="font-semibold text-gray-900 dark:text-white">
-              {filtered.length}
-            </span> dari <span class="font-semibold text-gray-900 dark:text-white">
-              {entries.length}
-            </span> layanan
-            {activeCategory && (
-              <span class="ml-2">
-                dalam kategori <span class="font-semibold text-red-600 dark:text-red-400">{activeCategory}</span>
-              </span>
-            )}
-          </span>
-        </div>
-        
-        <!-- Category Dropdown -->
-        <div class="w-full md:w-1/4">
-          <SCategoryDropdown />
-        </div>
-      </div>
+<Layout title={title} description={description}>
+	<main id="main-content">
+		<!-- Hero Section with Gradient Background -->
+		<section class="relative py-20 overflow-hidden">
+			<!-- Animated Gradient Background -->
+			<div class="absolute inset-0 bg-gradient-to-br from-blue-400 via-purple-500 to-pink-400 animate-pulse"></div>
+			<div class="absolute inset-0 bg-gradient-to-tl from-green-400 via-teal-500 to-cyan-400 animate-pulse" style="animation-delay: 1s;"></div>
+			<div class="absolute inset-0 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-400 animate-pulse" style="animation-delay: 2s;"></div>
+			
+			<div class="relative z-10 container mx-auto px-4 text-center text-white">
+				<div class="mb-8">
+					<div class="h-20 w-auto mx-auto mb-6 text-6xl">🛠️</div>
+				</div>
+				<h1 class="text-5xl md:text-6xl font-bold mb-6 gradient-text-sunset">
+					Our Services
+				</h1>
+				<p class="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto">
+					Comprehensive IT solutions designed to drive your business forward with innovation and expertise
+				</p>
+				<div class="flex flex-wrap justify-center gap-4">
+					{categories.slice(0, 5).map((category) => (
+						<span class="gradient-bg-fire text-white px-4 py-2 rounded-full text-sm font-medium">
+							{category}
+						</span>
+					))}
+				</div>
+			</div>
+		</section>
 
-      <div class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
-        {filtered.map((service) => (
-          <ServiceCard service={service} />
-        ))}
-      </div>
+		<!-- Services Grid with Gradient Cards -->
+		<section class="py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+			<div class="container mx-auto px-4">
+				<div class="text-center mb-16">
+					<h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text-ocean">
+						What We Offer
+					</h2>
+					<p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+						From IT support to custom software development, we provide end-to-end solutions
+					</p>
+				</div>
+				
+				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+					{services.map((service, index) => {
+						const gradientClasses = [
+							'from-red-400 via-orange-400 to-yellow-400', // Sunset
+							'from-blue-400 via-purple-400 to-pink-400', // Ocean
+							'from-green-400 via-teal-400 to-cyan-400', // Forest
+							'from-red-400 via-pink-400 to-purple-400', // Fire
+							'from-blue-400 via-indigo-400 to-purple-400', // Aurora
+							'from-cyan-400 via-blue-400 to-indigo-400', // Cosmic
+							'from-yellow-400 via-orange-400 to-red-400', // Mixed
+							'from-purple-400 via-pink-400 to-red-400', // Custom
+							'from-teal-400 via-green-400 to-yellow-400', // Custom
+							'from-indigo-400 via-purple-400 to-pink-400' // Custom
+						];
+						
+						const textGradientClasses = [
+							'gradient-text-sunset',
+							'gradient-text-ocean',
+							'gradient-text-forest',
+							'gradient-text-fire',
+							'gradient-text-aurora',
+							'gradient-text-cosmic',
+							'gradient-text-mixed',
+							'gradient-text-sunset',
+							'gradient-text-ocean',
+							'gradient-text-forest'
+						];
+						
+						const buttonGradientClasses = [
+							'gradient-bg-sunset',
+							'gradient-bg-ocean',
+							'gradient-bg-forest',
+							'gradient-bg-fire',
+							'gradient-bg-aurora',
+							'gradient-bg-cosmic',
+							'gradient-bg-mixed',
+							'gradient-bg-sunset',
+							'gradient-bg-ocean',
+							'gradient-bg-forest'
+						];
+						
+						const gradientIndex = index % gradientClasses.length;
+						
+						return (
+							<div class="card-creative group">
+								<div class={`h-48 bg-gradient-to-br ${gradientClasses[gradientIndex]} rounded-t-xl mb-4 flex items-center justify-center`}>
+									<svg class="w-20 h-20 text-white" fill="currentColor" viewBox="0 0 20 20">
+										<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+									</svg>
+								</div>
+								<h3 class={`text-2xl font-bold mb-3 ${textGradientClasses[gradientIndex]}`}>
+									{service.title}
+								</h3>
+								<p class="text-gray-600 dark:text-gray-300 mb-4">
+									{service.excerpt || 'Professional service tailored to your business needs.'}
+								</p>
+								<div class="flex items-center justify-between">
+									<a href={`/services/${service.slug}`} class={`${buttonGradientClasses[gradientIndex]} text-white px-6 py-2 rounded-lg inline-block hover:scale-105 transition-transform`}>
+										Learn More
+									</a>
+									{service.category && (
+										<span class="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
+											{service.category}
+										</span>
+									)}
+								</div>
+							</div>
+						);
+					})}
+				</div>
+			</div>
+		</section>
 
-      {filtered.length === 0 && (
-        <div class="text-center py-12">
-          <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-          </svg>
-          <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">Tidak ada layanan ditemukan</h3>
-          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-            Tidak ada layanan dalam kategori "{activeCategory}". Coba pilih kategori lain.
-          </p>
-          <div class="mt-6">
-            <a
-              href="/services"
-              class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-            >
-              Lihat Semua Layanan
-            </a>
-          </div>
-        </div>
-      )}
-    </div>
-  </section>
-</MainLayout>
+		<!-- Service Categories with Gradient Icons -->
+		<section class="py-20 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-indigo-900 dark:via-purple-900 dark:to-pink-900">
+			<div class="container mx-auto px-4">
+				<div class="text-center mb-16">
+					<h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text-mixed">
+						Service Categories
+					</h2>
+					<p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+						Organized solutions for every aspect of your digital transformation journey
+					</p>
+				</div>
+				
+				<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+					{[
+						{ name: 'IT Support', icon: '🔧', gradient: 'from-red-400 via-orange-400 to-yellow-400', textClass: 'gradient-text-sunset' },
+						{ name: 'Web Development', icon: '🌐', gradient: 'from-blue-400 via-purple-400 to-pink-400', textClass: 'gradient-text-ocean' },
+						{ name: 'Software Development', icon: '💻', gradient: 'from-green-400 via-teal-400 to-cyan-400', textClass: 'gradient-text-forest' },
+						{ name: 'Digital Marketing', icon: '📱', gradient: 'from-red-400 via-pink-400 to-purple-400', textClass: 'gradient-text-fire' },
+						{ name: 'Cloud Solutions', icon: '☁️', gradient: 'from-blue-400 via-indigo-400 to-purple-400', textClass: 'gradient-text-aurora' },
+						{ name: 'Cybersecurity', icon: '🔒', gradient: 'from-cyan-400 via-blue-400 to-indigo-400', textClass: 'gradient-text-cosmic' },
+						{ name: 'Data Analytics', icon: '📊', gradient: 'from-yellow-400 via-orange-400 to-red-400', textClass: 'gradient-text-mixed' },
+						{ name: 'Consulting', icon: '💡', gradient: 'from-purple-400 via-pink-400 to-red-400', textClass: 'gradient-text-sunset' }
+					].map((category) => (
+						<div class="text-center group">
+							<div class={`w-24 h-24 mx-auto mb-6 bg-gradient-to-br ${category.gradient} rounded-full flex items-center justify-center group-hover:scale-110 transition-transform`}>
+								<span class="text-4xl">{category.icon}</span>
+							</div>
+							<h3 class={`text-xl font-bold mb-3 ${category.textClass}`}>{category.name}</h3>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- Process Section with Gradient Steps -->
+		<section class="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
+			<div class="container mx-auto px-4">
+				<div class="text-center mb-16">
+					<h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text-sunset">
+						Our Process
+					</h2>
+					<p class="text-xl text-gray-300 max-w-3xl mx-auto">
+						A systematic approach to delivering exceptional results
+					</p>
+				</div>
+				
+				<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+					{[
+						{ step: '01', title: 'Discovery', description: 'Understanding your needs and objectives', gradient: 'from-red-400 to-orange-400', textClass: 'gradient-text-sunset' },
+						{ step: '02', title: 'Planning', description: 'Strategic roadmap and solution design', gradient: 'from-blue-400 to-purple-400', textClass: 'gradient-text-ocean' },
+						{ step: '03', title: 'Development', description: 'Building your solution with precision', gradient: 'from-green-400 to-teal-400', textClass: 'gradient-text-forest' },
+						{ step: '04', title: 'Delivery', description: 'Launch and ongoing support', gradient: 'from-yellow-400 to-red-400', textClass: 'gradient-text-fire' }
+					].map((process, index) => (
+						<div class="text-center group">
+							<div class={`w-20 h-20 mx-auto mb-6 bg-gradient-to-br ${process.gradient} rounded-full flex items-center justify-center group-hover:scale-110 transition-transform`}>
+								<span class="text-2xl font-bold text-white">{process.step}</span>
+							</div>
+							<h3 class={`text-xl font-bold mb-3 ${process.textClass}`}>{process.title}</h3>
+							<p class="text-gray-300">{process.description}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA Section with Animated Gradients -->
+		<section class="py-20 relative overflow-hidden">
+			<!-- Animated Background Gradients -->
+			<div class="absolute inset-0 bg-gradient-to-r from-red-400 via-purple-400 to-blue-400 animate-pulse"></div>
+			<div class="absolute inset-0 bg-gradient-to-l from-yellow-400 via-green-400 to-teal-400 animate-pulse" style="animation-delay: 0.5s;"></div>
+			<div class="absolute inset-0 bg-gradient-to-t from-pink-400 via-indigo-400 to-cyan-400 animate-pulse" style="animation-delay: 1s;"></div>
+			
+			<div class="relative z-10 text-center text-white">
+				<h2 class="text-4xl md:text-6xl font-bold mb-6 gradient-text-cosmic">
+					Ready to Get Started?
+				</h2>
+				<p class="text-xl mb-8 text-white/90 max-w-3xl mx-auto">
+					Let's discuss how we can help transform your business with our comprehensive IT services
+				</p>
+				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+					<a href="/contact" class="btn-creative text-lg px-8 py-4">
+						Contact Us Today
+					</a>
+					<a href="/about" class="gradient-bg-aurora text-white px-8 py-4 rounded-lg text-lg font-medium hover:scale-105 transition-transform">
+						Learn More About Us
+					</a>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>

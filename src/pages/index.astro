@@ -1,70 +1,291 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
-import HomeHero from "../components/Homepage/HomeHero.astro";
-import ServicesHighlight from "../components/Homepage/ServicesHighlight.astro";
-import LatestProjects from "../components/Homepage/LatestProjects.astro";
-import LatestProducts from "../components/Homepage/LatestProducts.astro";
-import LatestServices from "../components/Homepage/LatestServices.astro";
-import LatestPosts from "../components/Homepage/LatestPosts.astro";
-import ClientTestimonials from "../components/Homepage/ClientTestimonials.astro";
-import SchemaMarkup from "../components/SchemaMarkup.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import Layout from '../layouts/Layout.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
-// Sample reviews for schema
-const reviews = [
-  {
-    author: "Ahmad Wijaya",
-    rating: 5,
-    reviewBody: "Layanan IT support sangat profesional dan responsif. Tim kotacom.id berhasil menyelesaikan masalah server kami dengan cepat.",
-    datePublished: "2024-11-15"
-  },
-  {
-    author: "Sari Indah",
-    rating: 5,
-    reviewBody: "Website toko online yang dibuat sangat bagus dan mudah digunakan. Penjualan online kami meningkat 150%!",
-    datePublished: "2024-12-01"
-  },
-  {
-    author: "PT Maju Bersama",
-    rating: 5,
-    reviewBody: "Sistem informasi yang dikembangkan sangat membantu efisiensi operasional perusahaan. Highly recommended!",
-    datePublished: "2024-12-10"
-  }
-];
-
-const breadcrumbs = [
-  { name: "Home", url: "/" }
-];
+const title = SITE_TITLE;
+const description = SITE_DESCRIPTION;
 ---
 
-<MainLayout
-  title={`${SITE_TITLE} - IT Service & Publications Terpercaya`}
-  description={SITE_DESCRIPTION}
->
-  <SchemaMarkup
-    type="homepage"
-    title={SITE_TITLE}
-    description={SITE_DESCRIPTION}
-    breadcrumbs={breadcrumbs}
-    reviews={reviews}
-    data={{
-      services: [
-        "IT Support & Maintenance",
-        "Website Development", 
-        "Software Development",
-        "Digital Marketing",
-        "Printing Services"
-      ]
-    }}
-  />
-  
-  <HomeHero />
-  <ServicesHighlight />
-  <main>
-    <LatestServices limit={6} />
-    <LatestProjects limit={6} />
-    <LatestProducts limit={6} />
-    <ClientTestimonials />
-    <LatestPosts limit={6} />
-  </main>
-</MainLayout>
+<Layout title={title} description={description}>
+	<main id="main-content">
+		<!-- Hero Section with Gradient Background -->
+		<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+			<!-- Animated Gradient Background -->
+			<div class="absolute inset-0 bg-gradient-to-br from-red-400 via-blue-500 to-yellow-400 animate-pulse"></div>
+			<div class="absolute inset-0 bg-gradient-to-tl from-purple-600 via-pink-500 to-orange-400 animate-pulse" style="animation-delay: 1s;"></div>
+			<div class="absolute inset-0 bg-gradient-to-r from-green-400 via-teal-500 to-cyan-400 animate-pulse" style="animation-delay: 2s;"></div>
+			
+			<!-- Content Overlay -->
+			<div class="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+				<div class="mb-8">
+					<div class="h-24 w-auto mx-auto mb-6 text-8xl">🚀</div>
+				</div>
+				<h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text-sunset">
+					Welcome to Kotacom
+				</h1>
+				<p class="text-xl md:text-2xl mb-8 text-white/90">
+					Your trusted partner for digital transformation and IT solutions
+				</p>
+				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+					<a href="/contact" class="btn-creative text-lg px-8 py-4">
+						Get Started
+					</a>
+					<a href="/services" class="gradient-bg-ocean text-white px-8 py-4 rounded-lg text-lg font-medium hover:scale-105 transition-transform">
+						Our Services
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Services Section with Gradient Cards -->
+		<section class="py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+			<div class="container mx-auto px-4">
+				<div class="text-center mb-16">
+					<h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text-ocean">
+						Our Services
+					</h2>
+					<p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+						Comprehensive IT solutions to drive your business forward
+					</p>
+				</div>
+				
+				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+					<!-- Service Card 1 - Sunset Gradient -->
+					<div class="card-creative group">
+						<div class="h-48 bg-gradient-to-br from-red-400 via-orange-400 to-yellow-400 rounded-t-xl mb-4 flex items-center justify-center">
+							<svg class="w-20 h-20 text-white" fill="currentColor" viewBox="0 0 20 20">
+								<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+							</svg>
+						</div>
+						<h3 class="text-2xl font-bold mb-3 gradient-text-sunset">IT Support</h3>
+						<p class="text-gray-600 dark:text-gray-300 mb-4">
+							24/7 technical support and maintenance services for your IT infrastructure.
+						</p>
+						<a href="/services/it-support" class="gradient-bg-sunset text-white px-6 py-2 rounded-lg inline-block hover:scale-105 transition-transform">
+							Learn More
+						</a>
+					</div>
+
+					<!-- Service Card 2 - Ocean Gradient -->
+					<div class="card-creative group">
+						<div class="h-48 bg-gradient-to-br from-blue-400 via-purple-400 to-pink-400 rounded-t-xl mb-4 flex items-center justify-center">
+							<svg class="w-20 h-20 text-white" fill="currentColor" viewBox="0 0 20 20">
+								<path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+							</svg>
+						</div>
+						<h3 class="text-2xl font-bold mb-3 gradient-text-ocean">Web Development</h3>
+						<p class="text-gray-600 dark:text-gray-300 mb-4">
+							Custom websites and web applications built with modern technologies.
+						</p>
+						<a href="/services/website-software-development" class="gradient-bg-ocean text-white px-6 py-2 rounded-lg inline-block hover:scale-105 transition-transform">
+							Learn More
+						</a>
+					</div>
+
+					<!-- Service Card 3 - Forest Gradient -->
+					<div class="card-creative group">
+						<div class="h-48 bg-gradient-to-br from-green-400 via-teal-400 to-cyan-400 rounded-t-xl mb-4 flex items-center justify-center">
+							<svg class="w-20 h-20 text-white" fill="currentColor" viewBox="0 0 20 20">
+								<path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"/>
+							</svg>
+						</div>
+						<h3 class="text-2xl font-bold mb-3 gradient-text-forest">Software Development</h3>
+						<p class="text-gray-600 dark:text-gray-300 mb-4">
+							Custom software solutions tailored to your business needs.
+						</p>
+						<a href="/services/website-software-development" class="gradient-bg-forest text-white px-6 py-2 rounded-lg inline-block hover:scale-105 transition-transform">
+							Learn More
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Features Section with Mixed Gradients -->
+		<section class="py-20 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-indigo-900 dark:via-purple-900 dark:to-pink-900">
+			<div class="container mx-auto px-4">
+				<div class="text-center mb-16">
+					<h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text-mixed">
+						Why Choose Kotacom?
+					</h2>
+					<p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+						We deliver exceptional results through innovation, expertise, and dedication
+					</p>
+				</div>
+				
+				<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+					<!-- Feature 1 - Fire Gradient -->
+					<div class="text-center group">
+						<div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-red-400 via-pink-400 to-purple-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+							<svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+								<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+							</svg>
+						</div>
+						<h3 class="text-xl font-bold mb-3 gradient-text-fire">Expert Team</h3>
+						<p class="text-gray-600 dark:text-gray-300">
+							Experienced professionals with deep industry knowledge
+						</p>
+					</div>
+
+					<!-- Feature 2 - Aurora Gradient -->
+					<div class="text-center group">
+						<div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-blue-400 via-indigo-400 to-purple-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+							<svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+								<path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 10a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM6 12a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+							</svg>
+						</div>
+						<h3 class="text-xl font-bold mb-3 gradient-text-aurora">24/7 Support</h3>
+						<p class="text-gray-600 dark:text-gray-300">
+							Round-the-clock technical support and monitoring
+						</p>
+					</div>
+
+					<!-- Feature 3 - Cosmic Gradient -->
+					<div class="text-center group">
+						<div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-cyan-400 via-blue-400 to-indigo-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+							<svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+								<path d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+							</svg>
+						</div>
+						<h3 class="text-xl font-bold mb-3 gradient-text-cosmic">Innovation</h3>
+						<p class="text-gray-600 dark:text-gray-300">
+							Cutting-edge solutions and latest technologies
+						</p>
+					</div>
+
+					<!-- Feature 4 - Mixed Gradient -->
+					<div class="text-center group">
+						<div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-yellow-400 via-orange-400 to-red-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+							<svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+								<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+							</svg>
+						</div>
+						<h3 class="text-xl font-bold mb-3 gradient-text-mixed">Security</h3>
+						<p class="text-gray-600 dark:text-gray-300">
+							Enterprise-grade security and data protection
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Latest Content Section with Gradient Borders -->
+		<section class="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
+			<div class="container mx-auto px-4">
+				<div class="text-center mb-16">
+					<h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text-sunset">
+						Latest Updates
+					</h2>
+					<p class="text-xl text-gray-300 max-w-3xl mx-auto">
+						Stay informed with our latest insights, projects, and innovations
+					</p>
+				</div>
+				
+				<div class="grid lg:grid-cols-3 gap-8">
+					<!-- Latest Posts -->
+					<div class="gradient-border-red p-6 rounded-xl">
+						<h3 class="text-2xl font-bold mb-6 gradient-text-ocean">Latest Posts</h3>
+						<article class="mb-6 last:mb-0">
+							<h4 class="text-lg font-semibold mb-2 hover:text-blue-300 transition-colors">
+								<a href="/posts">Digital Transformation Guide</a>
+							</h4>
+							<p class="text-gray-400 text-sm mb-2">Complete guide to modernizing your business with technology</p>
+							<div class="flex items-center text-xs text-gray-500">
+								<span>2024-01-15</span>
+							</div>
+						</article>
+						<article class="mb-6 last:mb-0">
+							<h4 class="text-lg font-semibold mb-2 hover:text-blue-300 transition-colors">
+								<a href="/posts">Cloud Computing Benefits</a>
+							</h4>
+							<p class="text-gray-400 text-sm mb-2">How cloud solutions can revolutionize your operations</p>
+							<div class="flex items-center text-xs text-gray-500">
+								<span>2024-01-10</span>
+							</div>
+						</article>
+						<a href="/posts" class="gradient-bg-sunset text-white px-6 py-2 rounded-lg inline-block mt-4 hover:scale-105 transition-transform">
+							View All Posts
+						</a>
+					</div>
+
+					<!-- Latest Projects -->
+					<div class="gradient-border-blue p-6 rounded-xl">
+						<h3 class="text-2xl font-bold mb-6 gradient-text-forest">Latest Projects</h3>
+						<article class="mb-6 last:mb-0">
+							<h4 class="text-lg font-semibold mb-2 hover:text-green-300 transition-colors">
+								<a href="/projects">E-commerce Platform</a>
+							</h4>
+							<p class="text-gray-400 text-sm mb-2">Modern online shopping experience with advanced features</p>
+							<div class="flex items-center text-xs text-gray-500">
+								<span>2024-01-20</span>
+							</div>
+						</article>
+						<article class="mb-6 last:mb-0">
+							<h4 class="text-lg font-semibold mb-2 hover:text-green-300 transition-colors">
+								<a href="/projects">Business Management System</a>
+							</h4>
+							<p class="text-gray-400 text-sm mb-2">Comprehensive solution for enterprise operations</p>
+							<div class="flex items-center text-xs text-gray-500">
+								<span>2024-01-18</span>
+							</div>
+						</article>
+						<a href="/projects" class="gradient-bg-forest text-white px-6 py-2 rounded-lg inline-block mt-4 hover:scale-105 transition-transform">
+							View All Projects
+						</a>
+					</div>
+
+					<!-- Latest Services -->
+					<div class="gradient-border-yellow p-6 rounded-xl">
+						<h3 class="text-2xl font-bold mb-6 gradient-text-fire">Our Services</h3>
+						<article class="mb-6 last:mb-0">
+							<h4 class="text-lg font-semibold mb-2 hover:text-orange-300 transition-colors">
+								<a href="/services">IT Support & Maintenance</a>
+							</h4>
+							<p class="text-gray-400 text-sm mb-2">24/7 technical support for your infrastructure</p>
+							<div class="flex items-center text-xs text-gray-500">
+								<span>Professional Service</span>
+							</div>
+						</article>
+						<article class="mb-6 last:mb-0">
+							<h4 class="text-lg font-semibold mb-2 hover:text-orange-300 transition-colors">
+								<a href="/services">Web Development</a>
+							</h4>
+							<p class="text-gray-400 text-sm mb-2">Custom websites and web applications</p>
+							<div class="flex items-center text-xs text-gray-500">
+								<span>Professional Service</span>
+							</div>
+						</article>
+						<a href="/services" class="gradient-bg-fire text-white px-6 py-2 rounded-lg inline-block mt-4 hover:scale-105 transition-transform">
+							View All Services
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA Section with Animated Gradients -->
+		<section class="py-20 relative overflow-hidden">
+			<!-- Animated Background Gradients -->
+			<div class="absolute inset-0 bg-gradient-to-r from-red-400 via-purple-400 to-blue-400 animate-pulse"></div>
+			<div class="absolute inset-0 bg-gradient-to-l from-yellow-400 via-green-400 to-teal-400 animate-pulse" style="animation-delay: 0.5s;"></div>
+			<div class="absolute inset-0 bg-gradient-to-t from-pink-400 via-indigo-400 to-cyan-400 animate-pulse" style="animation-delay: 1s;"></div>
+			
+			<div class="relative z-10 text-center text-white">
+				<h2 class="text-4xl md:text-6xl font-bold mb-6 gradient-text-cosmic">
+					Ready to Transform Your Business?
+				</h2>
+				<p class="text-xl mb-8 text-white/90 max-w-3xl mx-auto">
+					Let's work together to create innovative solutions that drive growth and success
+				</p>
+				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+					<a href="/contact" class="btn-creative text-lg px-8 py-4">
+						Get Started Today
+					</a>
+					<a href="/about" class="gradient-bg-aurora text-white px-8 py-4 rounded-lg text-lg font-medium hover:scale-105 transition-transform">
+						Learn More About Us
+					</a>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>

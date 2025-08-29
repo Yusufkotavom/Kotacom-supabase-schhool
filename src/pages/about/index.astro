@@ -1,201 +1,196 @@
 ---
-import MainLayout from "../../layouts/MainLayout.astro";
-import { SITE_TITLE, COMPANY_NAME, COMPANY_TAGLINE, COMPANY_LOCATION, COMPANY_WHATSAPP, COMPANY_SERVICES } from "../../consts";
+import Layout from '../../layouts/Layout.astro';
+import { SITE_TITLE, SITE_DESCRIPTION, COMPANY_NAME } from '../../consts';
+
+const title = `About - ${SITE_TITLE}`;
+const description = `Learn more about ${COMPANY_NAME}, our mission, values, and commitment to delivering exceptional IT solutions. ${SITE_DESCRIPTION}`;
 ---
 
-<MainLayout title={`About ${SITE_TITLE}`}>
-  <main>
-    <section class="bg-white dark:bg-gray-900">
-      <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-        <div
-          class="max-w-screen-lg text-gray-500 sm:text-lg dark:text-gray-400"
-        >
-          <h2
-            class="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white"
-          >
-            Tentang {COMPANY_NAME}
-          </h2>
-          <p class="mb-4 font-light">
-            {COMPANY_NAME} adalah perusahaan IT Service dan Publications yang berkomitmen memberikan 
-            solusi teknologi terpercaya untuk bisnis Anda. Berlokasi di {COMPANY_LOCATION}, kami 
-            melayani kebutuhan IT mulai dari pengadaan hardware & software, development website dan 
-            aplikasi, hingga manajemen publikasi dan social media.
-          </p>
-          <p class="mb-4 font-medium">
-            Visi kami adalah menjadi mitra teknologi terpercaya yang membantu bisnis berkembang 
-            melalui solusi IT yang inovatif dan layanan publikasi yang efektif. Kami percaya 
-            bahwa teknologi yang tepat dapat mentransformasi cara kerja dan meningkatkan 
-            produktivitas bisnis Anda.
-          </p>
-          
-          <!-- Company Services -->
-          <div class="mt-8 mb-8">
-            <h3 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
-              Layanan Kami
-            </h3>
-            <div class="grid md:grid-cols-2 gap-4">
-              {COMPANY_SERVICES.map((service) => (
-                <div class="flex items-center space-x-3">
-                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span class="font-medium text-gray-900 dark:text-white">{service}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+<Layout title={title} description={description}>
+	<main id="main-content">
+		<!-- Hero Section with Gradient Background -->
+		<section class="relative py-20 overflow-hidden">
+			<!-- Animated Gradient Background -->
+			<div class="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-500 to-red-400 animate-pulse"></div>
+			<div class="absolute inset-0 bg-gradient-to-tl from-blue-400 via-indigo-500 to-purple-400 animate-pulse" style="animation-delay: 1s;"></div>
+			<div class="absolute inset-0 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-400 animate-pulse" style="animation-delay: 2s;"></div>
+			
+			<div class="relative z-10 container mx-auto px-4 text-center text-white">
+				<div class="mb-8">
+					<div class="h-20 w-auto mx-auto mb-6 text-6xl font-bold text-white">🚀</div>
+				</div>
+				<h1 class="text-5xl md:text-6xl font-bold mb-6 gradient-text-aurora">
+					About Kotacom
+				</h1>
+				<p class="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto">
+					Your trusted partner in digital transformation and IT innovation
+				</p>
+			</div>
+		</section>
 
-          <!-- Contact Information -->
-          <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 mt-8">
-            <h3 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
-              Hubungi Kami
-            </h3>
-            <div class="space-y-3">
-              <div class="flex items-center space-x-3">
-                <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                </svg>
-                <span class="text-gray-900 dark:text-white">
-                  <strong>Lokasi:</strong> {COMPANY_LOCATION}
-                </span>
-              </div>
-              <div class="flex items-center space-x-3">
-                <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
-                </svg>
-                <span class="text-gray-900 dark:text-white">
-                  <strong>WhatsApp:</strong> 
-                  <a href="https://wa.me/{COMPANY_WHATSAPP}" class="text-red-600 hover:text-red-800 dark:text-red-400">
-                    {COMPANY_WHATSAPP}
-                  </a>
-                </span>
-              </div>
-              <div class="flex items-center space-x-3">
-                <svg class="w-5 h-5 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                </svg>
-                <span class="text-gray-900 dark:text-white">
-                  <strong>Website:</strong> 
-                  <a href="https://kotacom.id" class="text-red-600 hover:text-red-800 dark:text-red-400">
-                    kotacom.id
-                  </a>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Our Expertise Section -->
-    <section class="bg-gray-50 dark:bg-gray-800">
-      <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-        <div class="max-w-screen-md mb-8 lg:mb-16">
-          <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-            Keahlian Kami
-          </h2>
-          <p class="text-gray-500 sm:text-xl dark:text-gray-400">
-            Tim berpengalaman dengan expertise di berbagai bidang teknologi dan publikasi
-          </p>
-        </div>
-        <div class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
-          <div>
-            <div class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-red-100 lg:h-12 lg:w-12 dark:bg-red-900">
-              <svg class="w-5 h-5 text-red-600 lg:w-6 lg:h-6 dark:text-red-300" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clip-rule="evenodd"></path>
-              </svg>
-            </div>
-            <h3 class="mb-2 text-xl font-bold dark:text-white">IT Service & Support</h3>
-            <p class="text-gray-500 dark:text-gray-400">Pengadaan, instalasi, maintenance, dan support teknis untuk kebutuhan IT perusahaan Anda.</p>
-          </div>
-          <div>
-            <div class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-green-100 lg:h-12 lg:w-12 dark:bg-green-900">
-              <svg class="w-5 h-5 text-green-600 lg:w-6 lg:h-6 dark:text-green-300" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-              </svg>
-            </div>
-            <h3 class="mb-2 text-xl font-bold dark:text-white">Web & Software Development</h3>
-            <p class="text-gray-500 dark:text-gray-400">Pembuatan website, aplikasi web, mobile apps, dan sistem informasi sesuai kebutuhan bisnis.</p>
-          </div>
-          <div>
-            <div class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-purple-100 lg:h-12 lg:w-12 dark:bg-purple-900">
-              <svg class="w-5 h-5 text-purple-600 lg:w-6 lg:h-6 dark:text-purple-300" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-            </div>
-            <h3 class="mb-2 text-xl font-bold dark:text-white">Publications & Social Media</h3>
-            <p class="text-gray-500 dark:text-gray-400">Manajemen konten, publikasi digital, social media management, dan strategi komunikasi online.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+		<!-- Mission & Vision with Gradient Cards -->
+		<section class="py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+			<div class="container mx-auto px-4">
+				<div class="grid lg:grid-cols-2 gap-12 items-center">
+					<!-- Mission -->
+					<div class="gradient-border-red p-8 rounded-xl">
+						<h2 class="text-3xl md:text-4xl font-bold mb-6 gradient-text-sunset">
+							Our Mission
+						</h2>
+						<p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+							To empower businesses with innovative technology solutions that drive growth, efficiency, and competitive advantage in the digital age.
+						</p>
+						<div class="flex items-center space-x-4">
+							<div class="w-16 h-16 bg-gradient-to-br from-red-400 to-orange-400 rounded-full flex items-center justify-center">
+								<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+									<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+								</svg>
+							</div>
+							<span class="text-sm text-gray-500 dark:text-gray-400">Innovation • Excellence • Growth</span>
+						</div>
+					</div>
 
-    <section class="max-w-screen-xl mx-auto">
-      <div class="grid grid-cols-2 gap-2 mx-3">
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://res.cloudinary.com/dnxl7wsnx/image/upload/v1744197198/oslo-fjord-clean-up_yydfap.jpg" alt="Tim kotacom.id sedang bekerja mengembangkan solusi IT">
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://res.cloudinary.com/dnxl7wsnx/image/upload/v1744197237/santorini-animal-welfare_zduqln.jpg" alt="Workspace modern kotacom.id dengan teknologi terkini">
-        </div>
-    </div>
-    </section>
-    
-    <!-- Why Choose Us Section -->
-    <section class="bg-white dark:bg-gray-900">
-      <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-        <div class="max-w-screen-md mb-8 lg:mb-16">
-          <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-            Mengapa Memilih kotacom.id?
-          </h2>
-        </div>
-        <div class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-2 md:gap-12 md:space-y-0">
-          <div class="flex">
-            <div class="flex justify-center items-center mr-4 w-8 h-8 rounded-full bg-red-100 dark:bg-red-900 shrink-0">
-              <svg class="w-5 h-5 text-red-600 dark:text-red-300" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-            </div>
-            <div>
-              <h3 class="mb-2 text-xl font-bold dark:text-white">Pengalaman & Profesionalisme</h3>
-              <p class="mb-2 text-gray-500 dark:text-gray-400">Tim berpengalaman dengan track record yang terbukti dalam menangani berbagai proyek IT dan publikasi.</p>
-            </div>
-          </div>
-          <div class="flex">
-            <div class="flex justify-center items-center mr-4 w-8 h-8 rounded-full bg-green-100 dark:bg-green-900 shrink-0">
-              <svg class="w-5 h-5 text-green-600 dark:text-green-300" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-            </div>
-            <div>
-              <h3 class="mb-2 text-xl font-bold dark:text-white">Solusi Terintegrasi</h3>
-              <p class="mb-2 text-gray-500 dark:text-gray-400">One-stop solution untuk kebutuhan IT dan publikasi, dari hardware hingga digital marketing.</p>
-            </div>
-          </div>
-          <div class="flex">
-            <div class="flex justify-center items-center mr-4 w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900 shrink-0">
-              <svg class="w-5 h-5 text-purple-600 dark:text-purple-300" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-            </div>
-            <div>
-              <h3 class="mb-2 text-xl font-bold dark:text-white">Support Lokal</h3>
-              <p class="mb-2 text-gray-500 dark:text-gray-400">Tim lokal Surabaya-Sidoarjo yang siap memberikan support cepat dan responsif.</p>
-            </div>
-          </div>
-          <div class="flex">
-            <div class="flex justify-center items-center mr-4 w-8 h-8 rounded-full bg-red-100 dark:bg-red-900 shrink-0">
-              <svg class="w-5 h-5 text-red-600 dark:text-red-300" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-            </div>
-            <div>
-              <h3 class="mb-2 text-xl font-bold dark:text-white">Harga Kompetitif</h3>
-              <p class="mb-2 text-gray-500 dark:text-gray-400">Solusi berkualitas dengan harga yang kompetitif dan transparan, sesuai budget bisnis Anda.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-</MainLayout>
+					<!-- Vision -->
+					<div class="gradient-border-blue p-8 rounded-xl">
+						<h2 class="text-3xl md:text-4xl font-bold mb-6 gradient-text-ocean">
+							Our Vision
+						</h2>
+						<p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+							To be the leading technology partner for businesses seeking digital transformation, recognized for our expertise, reliability, and commitment to client success.
+						</p>
+						<div class="flex items-center space-x-4">
+							<div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full flex items-center justify-center">
+								<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+									<path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 10a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM6 12a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+								</svg>
+							</div>
+							<span class="text-sm text-gray-500 dark:text-gray-400">Leadership • Trust • Success</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Values Section with Gradient Icons -->
+		<section class="py-20 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-indigo-900 dark:via-purple-900 dark:to-pink-900">
+			<div class="container mx-auto px-4">
+				<div class="text-center mb-16">
+					<h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text-mixed">
+						Our Core Values
+					</h2>
+					<p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+						The principles that guide everything we do and every solution we deliver
+					</p>
+				</div>
+				
+				<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+					{[
+						{ name: 'Innovation', icon: '💡', gradient: 'from-yellow-400 via-orange-400 to-red-400', textClass: 'gradient-text-sunset', description: 'Pushing boundaries with cutting-edge solutions' },
+						{ name: 'Excellence', icon: '⭐', gradient: 'from-blue-400 via-indigo-400 to-purple-400', textClass: 'gradient-text-aurora', description: 'Delivering quality that exceeds expectations' },
+						{ name: 'Integrity', icon: '🤝', gradient: 'from-green-400 via-teal-400 to-cyan-400', textClass: 'gradient-text-forest', description: 'Building trust through honest partnerships' },
+						{ name: 'Collaboration', icon: '🚀', gradient: 'from-red-400 via-pink-400 to-purple-400', textClass: 'gradient-text-fire', description: 'Working together to achieve greatness' }
+					].map((value) => (
+						<div class="text-center group">
+							<div class={`w-24 h-24 mx-auto mb-6 bg-gradient-to-br ${value.gradient} rounded-full flex items-center justify-center group-hover:scale-110 transition-transform`}>
+								<span class="text-4xl">{value.icon}</span>
+							</div>
+							<h3 class={`text-xl font-bold mb-3 ${value.textClass}`}>{value.name}</h3>
+							<p class="text-gray-600 dark:text-gray-300">{value.description}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- Team Section with Gradient Cards -->
+		<section class="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
+			<div class="container mx-auto px-4">
+				<div class="text-center mb-16">
+					<h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text-sunset">
+						Our Expert Team
+					</h2>
+					<p class="text-xl text-gray-300 max-w-3xl mx-auto">
+						Meet the talented professionals who make our vision a reality
+					</p>
+				</div>
+				
+				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+					{[
+						{ name: 'Development Team', role: 'Software Engineers', gradient: 'from-green-400 to-teal-400', textClass: 'gradient-text-forest', icon: '💻' },
+						{ name: 'Design Team', role: 'UX/UI Specialists', gradient: 'from-blue-400 to-purple-400', textClass: 'gradient-text-ocean', icon: '🎨' },
+						{ name: 'Support Team', role: 'IT Professionals', gradient: 'from-red-400 to-orange-400', textClass: 'gradient-text-sunset', icon: '🔧' },
+						{ name: 'Consulting Team', role: 'Business Analysts', gradient: 'from-purple-400 to-pink-400', textClass: 'gradient-text-aurora', icon: '📊' },
+						{ name: 'Security Team', role: 'Cybersecurity Experts', gradient: 'from-cyan-400 to-blue-400', textClass: 'gradient-text-cosmic', icon: '🔒' },
+						{ name: 'Project Team', role: 'Project Managers', gradient: 'from-yellow-400 to-red-400', textClass: 'gradient-text-fire', icon: '📋' }
+					].map((member) => (
+						<div class="card-creative group">
+							<div class={`h-32 bg-gradient-to-br ${member.gradient} rounded-t-xl mb-4 flex items-center justify-center`}>
+								<span class="text-6xl">{member.icon}</span>
+							</div>
+							<h3 class={`text-xl font-bold mb-2 ${member.textClass}`}>{member.name}</h3>
+							<p class="text-gray-300 mb-4">{member.role}</p>
+							<div class="w-full bg-gray-700 rounded-full h-2">
+								<div class={`bg-gradient-to-r ${member.gradient} h-2 rounded-full`} style="width: 90%"></div>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- Stats Section with Gradient Numbers -->
+		<section class="py-20 bg-gradient-to-br from-green-50 via-teal-50 to-cyan-50 dark:from-green-900 dark:via-teal-900 dark:to-cyan-900">
+			<div class="container mx-auto px-4">
+				<div class="text-center mb-16">
+					<h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text-forest">
+						Company Statistics
+					</h2>
+					<p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+						Numbers that reflect our growth, expertise, and commitment to excellence
+					</p>
+				</div>
+				
+				<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+					{[
+						{ number: '5+', label: 'Years Experience', gradient: 'from-red-400 to-orange-400', textClass: 'gradient-text-sunset' },
+						{ number: '100+', label: 'Projects Completed', gradient: 'from-blue-400 to-purple-400', textClass: 'gradient-text-ocean' },
+						{ number: '50+', label: 'Happy Clients', gradient: 'from-green-400 to-teal-400', textClass: 'gradient-text-forest' },
+						{ number: '24/7', label: 'Support Available', gradient: 'from-yellow-400 to-red-400', textClass: 'gradient-text-fire' }
+					].map((stat) => (
+						<div class="text-center group">
+							<div class={`w-24 h-24 mx-auto mb-6 bg-gradient-to-br ${stat.gradient} rounded-full flex items-center justify-center group-hover:scale-110 transition-transform`}>
+								<span class="text-3xl font-bold text-white">{stat.number}</span>
+							</div>
+							<h3 class={`text-xl font-bold mb-3 ${stat.textClass}`}>{stat.label}</h3>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA Section with Animated Gradients -->
+		<section class="py-20 relative overflow-hidden">
+			<!-- Animated Background Gradients -->
+			<div class="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 animate-pulse"></div>
+			<div class="absolute inset-0 bg-gradient-to-l from-blue-400 via-indigo-400 to-purple-400 animate-pulse" style="animation-delay: 0.5s;"></div>
+			<div class="absolute inset-0 bg-gradient-to-t from-cyan-400 via-blue-400 to-indigo-400 animate-pulse" style="animation-delay: 1s;"></div>
+			
+			<div class="relative z-10 text-center text-white">
+				<h2 class="text-4xl md:text-6xl font-bold mb-6 gradient-text-cosmic">
+					Ready to Work Together?
+				</h2>
+				<p class="text-xl mb-8 text-white/90 max-w-3xl mx-auto">
+					Let's discuss how our expertise can help transform your business and achieve your goals
+				</p>
+				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+					<a href="/contact" class="btn-creative text-lg px-8 py-4">
+						Get in Touch
+					</a>
+					<a href="/services" class="gradient-bg-aurora text-white px-8 py-4 rounded-lg text-lg font-medium hover:scale-105 transition-transform">
+						Explore Our Services
+					</a>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
