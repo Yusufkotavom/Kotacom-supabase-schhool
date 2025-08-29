@@ -65,6 +65,7 @@ const { className = '' } = Astro.props;
       if (this.isTransitioning) return;
       this.isTransitioning = true;
       
+      // Ensure transition is visible but doesn't block scrolling
       this.transition.classList.remove('pointer-events-none');
       this.overlay.classList.remove('opacity-0');
       this.loading.classList.remove('opacity-0');
@@ -77,6 +78,10 @@ const { className = '' } = Astro.props;
     }
     
     hideTransition() {
+      // Ensure scrolling is enabled
+      document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = 'auto';
+      
       this.overlay.classList.remove('opacity-100');
       this.loading.classList.remove('opacity-100');
       
@@ -87,6 +92,9 @@ const { className = '' } = Astro.props;
         setTimeout(() => {
           this.transition.classList.add('pointer-events-none');
           this.isTransitioning = false;
+          
+          // Ensure transition is completely hidden
+          this.transition.style.display = 'none';
         }, 500);
       }, 300);
     }
@@ -94,6 +102,18 @@ const { className = '' } = Astro.props;
   
   // Initialize page transition
   new PageTransition();
+  
+  // Ensure scrolling is enabled after page load
+  document.addEventListener('astro:page-load', () => {
+    document.body.style.overflow = 'auto';
+    document.documentElement.style.overflow = 'auto';
+  });
+  
+  // Also ensure scrolling on first load
+  document.addEventListener('DOMContentLoaded', () => {
+    document.body.style.overflow = 'auto';
+    document.documentElement.style.overflow = 'auto';
+  });
 </script>
 
 <style>
@@ -128,5 +148,14 @@ const { className = '' } = Astro.props;
     50% {
       opacity: .5;
     }
+  }
+  
+  /* Ensure page transition doesn't interfere with scrolling */
+  #page-transition {
+    pointer-events: none;
+  }
+  
+  #page-transition.visible {
+    pointer-events: auto;
   }
 </style>

@@ -16,6 +16,37 @@
   }
 }
 
+/* Ensure proper scrolling */
+html, body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+html {
+  overflow-y: auto;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Force scrolling to work */
+body, html {
+  overflow: auto !important;
+  overflow-x: hidden !important;
+}
+
+/* Ensure main content can scroll */
+main {
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+}
+
 @theme {
     /* School Theme Colors - Blue, Red, Yellow */
     --color-primary-50: #eff6ff;
@@ -71,11 +102,13 @@
     --font-mono: 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace';
 }
 
-/* Universal Background - Lightweight & Mobile-Friendly */
+/* Universal Background - Fixed for scrolling */
 .universal-bg {
   background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 25%, #fefce8 50%, #fef3c7 75%, #fde68a 100%);
   position: relative;
-  overflow: hidden;
+  min-height: 100vh;
+  width: 100%;
+  overflow: visible;
 }
 
 .dark .universal-bg {
@@ -85,7 +118,7 @@
 /* Lightweight Static Background Patterns - No Animation */
 .universal-bg::before {
   content: '';
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
@@ -194,7 +227,7 @@
   }
   
   .floating-elements .floating-shape {
-    position: absolute;
+    position: fixed;
     border-radius: 50%;
     opacity: 0.1;
     pointer-events: none;

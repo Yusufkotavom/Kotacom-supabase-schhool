@@ -85,6 +85,46 @@ const isProduction = import.meta.env.PROD;
       src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"
     ></script>
     
+    <!-- Fix Scrolling Script -->
+    <script is:inline>
+      // Ensure scrolling works after page load
+      function fixScrolling() {
+        // Force enable scrolling
+        document.documentElement.style.overflow = 'auto';
+        document.body.style.overflow = 'auto';
+        
+        // Remove any fixed positioning that might block scrolling
+        const pageTransition = document.getElementById('page-transition');
+        if (pageTransition) {
+          pageTransition.style.display = 'none';
+        }
+        
+        // Ensure body can scroll
+        document.body.style.position = 'relative';
+        document.body.style.height = 'auto';
+        document.body.style.minHeight = '100vh';
+        
+        // Force scroll to top
+        window.scrollTo(0, 0);
+      }
+      
+      // Fix scrolling on multiple events
+      document.addEventListener('DOMContentLoaded', fixScrolling);
+      document.addEventListener('astro:page-load', fixScrolling);
+      window.addEventListener('load', fixScrolling);
+      
+      // Also fix after a short delay
+      setTimeout(fixScrolling, 100);
+      setTimeout(fixScrolling, 500);
+      setTimeout(fixScrolling, 1000);
+      
+      // Ensure scrolling is always enabled
+      document.addEventListener('scroll', function() {
+        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflow = 'auto';
+      });
+    </script>
+    
     <!-- WhatsApp Tracking Script (Production Only) -->
     {isProduction && (
       <script is:inline>
@@ -99,61 +139,33 @@ const isProduction = import.meta.env.PROD;
             // Fallback for older browsers
             setTimeout(() => {
               trackWhatsAppEvent(placement);
-            }, 0);
+            }, 100);
           }
         }
-
+        
         function trackWhatsAppEvent(placement) {
-          try {
-            // GA4 tracking
-            if (typeof gtag !== 'undefined') {
-              gtag('event', 'generate_lead', {
-                method: 'whatsapp',
-                content_name: `whatsapp_click_${placement}`,
-                value: 1,
-                currency: 'IDR'
-              });
-              
-              gtag('event', 'whatsapp_click', {
-                placement: placement,
-                page_url: window.location.href,
-                page_title: document.title,
-                timestamp: new Date().toISOString()
-              });
-            }
-            
-            // Local storage for development tracking
-            const clickData = {
-              placement: placement,
-              timestamp: new Date().toISOString(),
-              page: window.location.href,
-              title: document.title
-            };
-            
-            const existingClicks = JSON.parse(localStorage.getItem('whatsapp_clicks') || '[]');
-            existingClicks.push(clickData);
-            
-            // Keep only last 100 clicks to prevent storage bloat
-            if (existingClicks.length > 100) {
-              existingClicks.splice(0, existingClicks.length - 100);
-            }
-            
-            localStorage.setItem('whatsapp_clicks', JSON.stringify(existingClicks));
-            
-            // Console log for development
-            console.log('WhatsApp click tracked:', clickData);
-            
-          } catch (error) {
-            console.error('Error tracking WhatsApp click:', error);
+          // Track WhatsApp clicks with Google Analytics
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'whatsapp_click', {
+              'event_category': 'engagement',
+              'event_label': placement,
+              'value': 1
+            });
           }
         }
-
-        // Expose function globally for onclick handlers
-        window.trackWhatsAppClick = trackWhatsAppClick;
+        
+        // Add click tracking to all WhatsApp links
+        document.addEventListener('click', function(e) {
+          if (e.target.closest('a[href*="wa.me"]')) {
+            const link = e.target.closest('a[href*="wa.me"]');
+            const placement = link.getAttribute('data-placement') || 'unknown';
+            trackWhatsAppClick(placement);
+          }
+        });
       </script>
     )}
     
-    <SubscribeDrawer />
-    <SpeedInsights />
+    {isProduction && <SpeedInsights />}
+    {isProduction && <Analytics />}
   </body>
 </html>
