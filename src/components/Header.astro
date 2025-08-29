@@ -129,13 +129,13 @@ import { MEGA_MENU_CONFIG, SIMPLE_NAV_ITEMS, MOBILE_MENU_CONFIG } from "../data/
 <!-- Full Screen Mobile Menu -->
 <div
   id="fullscreen-mobile-menu"
-  class="fixed inset-0 z-50 bg-white dark:bg-gray-900 transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden overflow-hidden"
+  class="fixed inset-0 z-50 bg-white dark:bg-gray-900 transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden overflow-hidden flex flex-col"
   role="dialog"
   aria-modal="true"
   aria-labelledby="mobile-menu-title"
 >
   <!-- Mobile Menu Header -->
-  <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
+  <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 flex-shrink-0 bg-white dark:bg-gray-900">
     <a href="/" class="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">
       <Image src={KotacomLogo} class="h-8 w-auto" alt="kotacom.id" />
     </a>
@@ -152,7 +152,7 @@ import { MEGA_MENU_CONFIG, SIMPLE_NAV_ITEMS, MOBILE_MENU_CONFIG } from "../data/
   </div>
 
   <!-- Mobile Menu Content - Scrollable -->
-  <div class="flex-1 overflow-y-auto overscroll-contain">
+  <div class="flex-1 overflow-y-auto overscroll-contain min-h-0" style="height: calc(100vh - 80px);">
     <nav class="p-4 space-y-2" role="navigation">
       <!-- Mobile: Unified Mega Menu Items -->
       <div class="space-y-2">
@@ -198,6 +198,19 @@ import { MEGA_MENU_CONFIG, SIMPLE_NAV_ITEMS, MOBILE_MENU_CONFIG } from "../data/
               {MOBILE_MENU_CONFIG.footer.cta.text}
             </a>
           </div>
+        </div>
+        
+        <!-- Debug: Add some extra content to test scrolling -->
+        <div class="pt-4 mt-4 space-y-4">
+          <div class="text-center text-sm text-gray-500 dark:text-gray-400">
+            <p>Debug: Scroll test content</p>
+            <p>This should be scrollable</p>
+          </div>
+          {Array.from({ length: 10 }, (_, i) => (
+            <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
+              <p class="text-sm text-gray-600 dark:text-gray-300">Test item {i + 1}</p>
+            </div>
+          ))}
         </div>
       </div>
     </nav>
@@ -454,3 +467,87 @@ import { MEGA_MENU_CONFIG, SIMPLE_NAV_ITEMS, MOBILE_MENU_CONFIG } from "../data/
     });
   });
 </script>
+
+<style>
+  /* Mobile menu specific styles */
+  #fullscreen-mobile-menu {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  #fullscreen-mobile-menu .flex-1 {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    height: calc(100vh - 80px); /* Explicit height for mobile */
+  }
+  
+  /* Ensure proper scrolling on mobile devices */
+  @media (max-width: 1024px) {
+    #fullscreen-mobile-menu .flex-1 {
+      overflow-y: scroll;
+      scrollbar-width: thin;
+      scrollbar-color: #cbd5e0 transparent;
+      height: calc(100vh - 80px);
+    }
+    
+    #fullscreen-mobile-menu .flex-1::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    #fullscreen-mobile-menu .flex-1::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    #fullscreen-mobile-menu .flex-1::-webkit-scrollbar-thumb {
+      background: #cbd5e0;
+      border-radius: 3px;
+    }
+    
+    #fullscreen-mobile-menu .flex-1::-webkit-scrollbar-thumb:hover {
+      background: #a0aec0;
+    }
+  }
+  
+  /* Dark mode scrollbar */
+  .dark #fullscreen-mobile-menu .flex-1::-webkit-scrollbar-thumb {
+    background: #4a5568;
+  }
+  
+  .dark #fullscreen-mobile-menu .flex-1::-webkit-scrollbar-thumb:hover {
+    background: #718096;
+  }
+  
+  /* Ensure mobile menu content is properly spaced */
+  #fullscreen-mobile-menu nav {
+    min-height: 100%;
+    padding-bottom: 2rem;
+  }
+  
+  /* Mobile menu header sticky positioning */
+  #fullscreen-mobile-menu .flex-shrink-0 {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: inherit;
+  }
+  
+  /* Force mobile menu to be scrollable */
+  #fullscreen-mobile-menu .flex-1 {
+    overflow-y: scroll !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  /* Ensure content doesn't get cut off */
+  #fullscreen-mobile-menu nav {
+    padding-bottom: 4rem;
+  }
+</style>

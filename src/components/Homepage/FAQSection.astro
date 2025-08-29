@@ -1,0 +1,293 @@
+---
+export interface FAQItem {
+  question: string;
+  answer: string;
+  category?: string;
+}
+
+const faqData: FAQItem[] = [
+  {
+    question: "Apa saja layanan IT yang tersedia di kotacom.id?",
+    answer: "Kami menyediakan layanan lengkap IT termasuk Website Development, Software Development, Mobile App Development, IT Support & Maintenance, Digital Marketing, dan Printing Services. Semua layanan dapat disesuaikan dengan kebutuhan bisnis Anda."
+  },
+  {
+    question: "Berapa lama waktu pengerjaan website?",
+    answer: "Waktu pengerjaan website bervariasi tergantung kompleksitas. Website sederhana (5-7 hari), website bisnis (2-3 minggu), dan website e-commerce (3-4 minggu). Kami selalu memberikan timeline yang jelas di awal project."
+  },
+  {
+    question: "Apakah ada garansi untuk layanan yang diberikan?",
+    answer: "Ya, kami memberikan garansi 1 tahun untuk bug fixing dan technical support. Plus 24/7 emergency support untuk masalah urgent. Kami berkomitmen memberikan layanan terbaik dan support berkelanjutan."
+  },
+  {
+    question: "Bagaimana dengan maintenance setelah website selesai?",
+    answer: "Kami menyediakan paket maintenance bulanan yang mencakup update keamanan, backup data, monitoring performa, dan technical support. Anda juga bisa memilih maintenance on-demand sesuai kebutuhan."
+  },
+  {
+    question: "Apakah website yang dibuat responsive untuk mobile?",
+    answer: "Tentu! Semua website yang kami buat menggunakan pendekatan mobile-first design. Website akan terlihat dan berfungsi sempurna di semua device termasuk smartphone, tablet, dan desktop."
+  },
+  {
+    question: "Bagaimana proses konsultasi dan penawaran?",
+    answer: "Proses dimulai dengan konsultasi gratis via WhatsApp atau meeting online. Kami akan menganalisis kebutuhan, memberikan rekomendasi solusi, dan menyusun proposal lengkap dengan timeline dan budget yang transparan."
+  },
+  {
+    question: "Apakah ada layanan hosting dan domain?",
+    answer: "Ya, kami menyediakan layanan hosting dan domain dengan berbagai paket. Kami merekomendasikan hosting yang sesuai dengan kebutuhan website Anda dan membantu setup serta konfigurasi domain."
+  },
+  {
+    question: "Bagaimana dengan keamanan website?",
+    answer: "Keamanan adalah prioritas utama kami. Website dilengkapi dengan SSL certificate, firewall protection, regular security updates, dan backup otomatis. Kami juga melakukan security audit berkala."
+  }
+];
+
+const categories = [
+  { name: "Semua", value: "all", count: faqData.length },
+  { name: "Website", value: "website", count: faqData.filter(item => item.question.toLowerCase().includes('website')).length },
+  { name: "IT Support", value: "support", count: faqData.filter(item => item.question.toLowerCase().includes('support') || item.question.toLowerCase().includes('maintenance')).length },
+  { name: "Konsultasi", value: "consultation", count: faqData.filter(item => item.question.toLowerCase().includes('konsultasi') || item.question.toLowerCase().includes('proses')).length }
+];
+---
+
+<section class="py-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+  <div class="container mx-auto px-4">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        Pertanyaan yang Sering Diajukan
+      </h2>
+      <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        Temukan jawaban untuk pertanyaan umum seputar layanan IT dan digital kami
+      </p>
+    </div>
+
+    <!-- Category Filter Buttons -->
+    <div class="flex flex-wrap justify-center gap-3 mb-8">
+      {categories.map((category) => (
+        <button 
+          class="category-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-300"
+          data-category={category.value}
+          data-count={category.count}
+        >
+          {category.name}
+          <span class="ml-2 px-2 py-0.5 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs">
+            {category.count}
+          </span>
+        </button>
+      ))}
+    </div>
+
+    <!-- FAQ Items -->
+    <div class="max-w-4xl mx-auto space-y-4">
+      {faqData.map((item, index) => (
+        <div 
+          class="faq-item bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 hover:shadow-md"
+          data-category={item.category || 'general'}
+        >
+          <button
+            class="faq-question w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            aria-expanded="false"
+            aria-controls={`faq-answer-${index}`}
+          >
+            <span class="text-lg font-medium text-gray-900 dark:text-white pr-4">
+              {item.question}
+            </span>
+            <svg 
+              class="faq-icon w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          
+          <div 
+            id={`faq-answer-${index}`}
+            class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+            aria-labelledby={`faq-question-${index}`}
+          >
+            <div class="px-6 pb-4">
+              <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                {item.answer}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA Section -->
+    <div class="text-center mt-12">
+      <p class="text-gray-600 dark:text-gray-300 mb-4">
+        Masih punya pertanyaan? Tim kami siap membantu!
+      </p>
+      <a
+        href="https://wa.me/085799520350"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.965-.273-.099-.471-.149-.67.15-.198.297-.767.964-.94 1.162-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.149-.173.198-.297.298-.496.099-.198.05-.372-.025-.521-.074-.149-.669-1.611-.916-2.206-.242-.582-.487-.502-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.461 1.065 2.874 1.213 3.072.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.227 1.36.195 1.872.118.571-.085 1.758-.718 2.006-1.41.248-.694.248-1.289.173-1.41-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.999-3.648-.235-.374a9.86 9.86 0 01-1.51-5.234c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.12 1.03 6.988 2.899a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.886 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.33-1.654a11.88 11.88 0 005.713 1.456h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 00-3.47-8.421"/>
+        </svg>
+        Konsultasi Gratis via WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // FAQ functionality
+    const faqItems = document.querySelectorAll('.faq-item');
+    const categoryFilters = document.querySelectorAll('.category-filter-btn');
+    
+    // FAQ toggle functionality
+    faqItems.forEach((item) => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+      
+      if (question && answer && icon) {
+        question.addEventListener('click', () => {
+          const isExpanded = question.getAttribute('aria-expanded') === 'true';
+          
+          // Close all other FAQ items
+          faqItems.forEach((otherItem) => {
+            const otherQuestion = otherItem.querySelector('.faq-question');
+            const otherAnswer = otherItem.querySelector('.faq-answer');
+            const otherIcon = otherItem.querySelector('.faq-icon');
+            
+            if (otherQuestion && otherAnswer && otherIcon && otherItem !== item) {
+              otherQuestion.setAttribute('aria-expanded', 'false');
+              otherAnswer.style.maxHeight = '0px';
+              otherIcon.style.transform = 'rotate(0deg)';
+            }
+          });
+          
+          // Toggle current item
+          if (isExpanded) {
+            question.setAttribute('aria-expanded', 'false');
+            answer.style.maxHeight = '0px';
+            icon.style.transform = 'rotate(0deg)';
+          } else {
+            question.setAttribute('aria-expanded', 'true');
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+            icon.style.transform = 'rotate(180deg)';
+          }
+        });
+      }
+    });
+    
+    // Category filtering functionality
+    categoryFilters.forEach((filter) => {
+      filter.addEventListener('click', () => {
+        const category = filter.getAttribute('data-category');
+        
+        // Update active filter
+        categoryFilters.forEach((f) => f.classList.remove('active'));
+        filter.classList.add('active');
+        
+        // Filter FAQ items
+        faqItems.forEach((item) => {
+          const itemCategory = item.getAttribute('data-category');
+          
+          if (category === 'all' || itemCategory === category) {
+            item.style.display = 'block';
+            item.style.animation = 'fadeIn 0.5s ease-in-out';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+    
+    // Set first category as active by default
+    if (categoryFilters.length > 0) {
+      categoryFilters[0].classList.add('active');
+    }
+  });
+</script>
+
+<style>
+  /* Category filter button styles */
+  .category-filter-btn {
+    background: #f3f4f6;
+    color: #6b7280;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+  }
+  
+  .category-filter-btn:hover {
+    background: #e5e7eb;
+    transform: translateY(-1px);
+  }
+  
+  .category-filter-btn.active {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    border-color: #3b82f6;
+    box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.3);
+  }
+  
+  .dark .category-filter-btn {
+    background: #374151;
+    color: #9ca3af;
+    border-color: #4b5563;
+  }
+  
+  .dark .category-filter-btn:hover {
+    background: #4b5563;
+  }
+  
+  .dark .category-filter-btn.active {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    border-color: #3b82f6;
+  }
+  
+  /* FAQ item animations */
+  .faq-item {
+    transition: all 0.3s ease;
+  }
+  
+  .faq-item:hover {
+    transform: translateY(-2px);
+  }
+  
+  .faq-question:hover {
+    background: #f9fafb;
+  }
+  
+  .dark .faq-question:hover {
+    background: #374151;
+  }
+  
+  /* Fade in animation for filtered items */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .category-filter-btn {
+      font-size: 0.875rem;
+      padding: 0.5rem 1rem;
+    }
+    
+    .faq-question {
+      padding: 1rem 1.5rem;
+    }
+    
+    .faq-answer {
+      padding: 0 1.5rem 1rem;
+    }
+  }
+</style>

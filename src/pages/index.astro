@@ -2,6 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import HomeHero from "../components/Homepage/HomeHero.astro";
 import TechStack from "../components/Homepage/TechStack.astro";
+import FAQSection from "../components/Homepage/FAQSection.astro";
 import ServicesHighlight from "../components/Homepage/ServicesHighlight.astro";
 import LatestProjects from "../components/Homepage/LatestProjects.astro";
 import LatestProducts from "../components/Homepage/LatestProducts.astro";
@@ -61,6 +62,7 @@ const breadcrumbs = [
   
   <HomeHero />
   <TechStack />
+  <FAQSection />
   <ServicesHighlight />
   <main>
     <LatestServices limit={6} />
