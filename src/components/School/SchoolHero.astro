@@ -1,0 +1,440 @@
+---
+// Sample hero images - replace with actual school images
+const heroImages = [
+  {
+    src: "/images/school/hero-1.jpg",
+    alt: "SD Muhammadiyah 20 Surabaya - Gedung Sekolah",
+    title: "Selamat Datang di SD Muhammadiyah 20 Surabaya",
+    subtitle: "Mengembangkan Kreativitas dan Potensi Siswa"
+  },
+  {
+    src: "/images/school/hero-2.jpg", 
+    alt: "Kegiatan Belajar Mengajar",
+    title: "Pembelajaran Berkualitas",
+    subtitle: "Dengan Metode Modern dan Kreatif"
+  },
+  {
+    src: "/images/school/hero-3.jpg",
+    alt: "Kegiatan Ekstrakurikuler",
+    title: "Ekstrakurikuler Beragam",
+    subtitle: "Mengembangkan Bakat dan Minat Siswa"
+  },
+  {
+    src: "/images/school/hero-4.jpg",
+    alt: "Fasilitas Sekolah",
+    title: "Fasilitas Lengkap",
+    subtitle: "Mendukung Kegiatan Belajar Mengajar"
+  }
+];
+---
+
+<section class="hero-section">
+  <div class="hero-slideshow">
+    {heroImages.map((image, index) => (
+      <div class={`hero-slide ${index === 0 ? 'active' : ''}`} data-slide={index}>
+        <div class="hero-image">
+          <img src={image.src} alt={image.alt} />
+          <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+          <div class="container mx-auto px-4">
+            <div class="hero-text">
+              <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200">
+                {image.title}
+              </h1>
+              <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
+                {image.subtitle}
+              </p>
+              <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
+                <a href="#about" class="btn btn-primary">
+                  <span class="btn-icon">🎓</span>
+                  Kenali Kami
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                  <span class="btn-icon">📞</span>
+                  Hubungi Kami
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+    
+    <!-- Navigation dots -->
+    <div class="hero-dots">
+      {heroImages.map((_, index) => (
+        <button class={`hero-dot ${index === 0 ? 'active' : ''}`} data-slide={index}></button>
+      ))}
+    </div>
+    
+    <!-- Navigation arrows -->
+    <button class="hero-nav hero-prev" data-direction="prev">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+    <button class="hero-nav hero-next" data-direction="next">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator">
+    <div class="scroll-arrow"></div>
+    <span>Scroll untuk melihat lebih lanjut</span>
+  </div>
+</section>
+
+<script>
+  // Hero slideshow functionality
+  class HeroSlideshow {
+    constructor() {
+      this.currentSlide = 0;
+      this.slides = document.querySelectorAll('.hero-slide');
+      this.dots = document.querySelectorAll('.hero-dot');
+      this.prevBtn = document.querySelector('.hero-prev');
+      this.nextBtn = document.querySelector('.hero-next');
+      this.autoPlayInterval = null;
+      
+      this.init();
+    }
+    
+    init() {
+      this.bindEvents();
+      this.startAutoPlay();
+    }
+    
+    bindEvents() {
+      this.dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => this.goToSlide(index));
+      });
+      
+      this.prevBtn?.addEventListener('click', () => this.prevSlide());
+      this.nextBtn?.addEventListener('click', () => this.nextSlide());
+      
+      // Pause autoplay on hover
+      const slideshow = document.querySelector('.hero-slideshow');
+      slideshow?.addEventListener('mouseenter', () => this.stopAutoPlay());
+      slideshow?.addEventListener('mouseleave', () => this.startAutoPlay());
+    }
+    
+    goToSlide(index) {
+      this.slides[this.currentSlide].classList.remove('active');
+      this.dots[this.currentSlide].classList.remove('active');
+      
+      this.currentSlide = index;
+      
+      this.slides[this.currentSlide].classList.add('active');
+      this.dots[this.currentSlide].classList.add('active');
+    }
+    
+    nextSlide() {
+      const next = (this.currentSlide + 1) % this.slides.length;
+      this.goToSlide(next);
+    }
+    
+    prevSlide() {
+      const prev = this.currentSlide === 0 ? this.slides.length - 1 : this.currentSlide - 1;
+      this.goToSlide(prev);
+    }
+    
+    startAutoPlay() {
+      this.autoPlayInterval = setInterval(() => {
+        this.nextSlide();
+      }, 5000);
+    }
+    
+    stopAutoPlay() {
+      if (this.autoPlayInterval) {
+        clearInterval(this.autoPlayInterval);
+        this.autoPlayInterval = null;
+      }
+    }
+  }
+  
+  // Initialize slideshow when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new HeroSlideshow();
+  });
+</script>
+
+<style>
+  .hero-section {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+  }
+  
+  .hero-slideshow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  
+  .hero-slide.active {
+    opacity: 1;
+  }
+  
+  .hero-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.7), rgba(245, 158, 11, 0.7));
+  }
+  
+  .hero-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+  }
+  
+  .hero-text {
+    max-width: 800px;
+    padding: 0 20px;
+  }
+  
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #ffffff, #fbbf24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(45deg, #3B82F6, #1D4ED8);
+    color: white;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6);
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border-color: white;
+  }
+  
+  .btn-secondary:hover {
+    background: white;
+    color: #3B82F6;
+    transform: translateY(-2px);
+  }
+  
+  .btn-icon {
+    font-size: 1.2rem;
+  }
+  
+  /* Navigation dots */
+  .hero-dots {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
+  }
+  
+  .hero-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .hero-dot.active {
+    background: white;
+    transform: scale(1.2);
+  }
+  
+  /* Navigation arrows */
+  .hero-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+  
+  .hero-nav:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+  }
+  
+  .hero-prev {
+    left: 2rem;
+  }
+  
+  .hero-next {
+    right: 2rem;
+  }
+  
+  .hero-nav svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Scroll indicator */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-size: 0.9rem;
+    z-index: 10;
+  }
+  
+  .scroll-arrow {
+    width: 2px;
+    height: 30px;
+    background: white;
+    border-radius: 1px;
+    position: relative;
+    animation: scrollBounce 2s infinite;
+  }
+  
+  .scroll-arrow::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 6px solid white;
+  }
+  
+  @keyframes scrollBounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+    }
+    
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .btn {
+      width: 100%;
+      max-width: 300px;
+      justify-content: center;
+    }
+    
+    .hero-nav {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .hero-nav svg {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .hero-prev {
+      left: 1rem;
+    }
+    
+    .hero-next {
+      right: 1rem;
+    }
+  }
+</style>

@@ -1,0 +1,96 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import SchoolHeader from "../../components/School/SchoolHeader.astro";
+import SchoolFooter from "../../components/School/SchoolFooter.astro";
+import SchoolHero from "../../components/School/SchoolHero.astro";
+import AboutUs from "../../components/School/AboutUs.astro";
+import VisionMission from "../../components/School/VisionMission.astro";
+import Extracurricular from "../../components/School/Extracurricular.astro";
+import Gallery from "../../components/School/Gallery.astro";
+import Facilities from "../../components/School/Facilities.astro";
+import Teachers from "../../components/School/Teachers.astro";
+import NewsEvents from "../../components/School/NewsEvents.astro";
+import ContactForm from "../../components/School/ContactForm.astro";
+import Separator from "../../components/School/Separator.astro";
+import SchemaMarkup from "../../components/SchemaMarkup.astro";
+
+const SITE_TITLE = "SD Muhammadiyah 20 Surabaya";
+const SITE_DESCRIPTION = "Sekolah Dasar Muhammadiyah 20 Surabaya - Mengembangkan Kreativitas dan Potensi Siswa dengan Pendidikan Berkualitas";
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Sekolah", url: "/sekolah/" }
+];
+---
+
+<MainLayout
+  title={`${SITE_TITLE} - Fokus Kreativitas dan Pembelajaran Berkualitas`}
+  description={SITE_DESCRIPTION}
+>
+  <SchemaMarkup
+    type="school"
+    title={SITE_TITLE}
+    description={SITE_DESCRIPTION}
+    breadcrumbs={breadcrumbs}
+    data={{
+      schoolType: "Sekolah Dasar",
+      location: "Surabaya",
+      organization: "Muhammadiyah"
+    }}
+  />
+  
+  <!-- School Header -->
+  <SchoolHeader />
+  
+  <!-- Hero Section with Slideshow -->
+  <SchoolHero />
+  
+  <Separator variant="wave" color="blue-yellow" />
+  
+  <!-- About Us Section -->
+  <AboutUs />
+  
+  <Separator variant="curve" color="rainbow" />
+  
+  <!-- Vision & Mission -->
+  <VisionMission />
+  
+  <Separator variant="zigzag" color="gradient" />
+  
+  <!-- Extracurricular Activities -->
+  <Extracurricular />
+  
+  <Separator variant="dots" color="blue-yellow" />
+  
+  <!-- Gallery Section -->
+  <Gallery />
+  
+  <Separator variant="wave" color="rainbow" />
+  
+  <!-- Facilities -->
+  <Facilities />
+  
+  <Separator variant="curve" color="gradient" />
+  
+  <!-- Teachers -->
+  <Teachers />
+  
+  <Separator variant="zigzag" color="blue-yellow" />
+  
+  <!-- News & Events -->
+  <NewsEvents />
+  
+  <Separator variant="dots" color="rainbow" />
+  
+  <!-- Contact Form -->
+  <ContactForm />
+  
+  <!-- School Footer -->
+  <SchoolFooter />
+</MainLayout>
+
+<style>
+  :global(body) {
+    background: linear-gradient(135deg, #f0f8ff 0%, #fff8dc 100%);
+  }
+</style>
