@@ -3,44 +3,35 @@ export interface TechItem {
   name: string;
   icon: string;
   color: string;
-  category: string;
+  svgIcon?: string;
 }
 
 const techStack: TechItem[] = [
-  // Frontend Technologies
-  { name: "React", icon: "⚛️", color: "from-blue-500 to-cyan-500", category: "Frontend" },
-  { name: "Vue.js", icon: "💚", color: "from-green-500 to-emerald-500", category: "Frontend" },
-  { name: "Angular", icon: "🔴", color: "from-red-500 to-pink-500", category: "Frontend" },
-  { name: "Next.js", icon: "⚡", color: "from-gray-800 to-black", category: "Frontend" },
-  { name: "Nuxt.js", icon: "🟢", color: "from-green-600 to-emerald-600", category: "Frontend" },
-  
-  // Backend Technologies
-  { name: "Node.js", icon: "🟢", color: "from-green-600 to-green-800", category: "Backend" },
-  { name: "Laravel", icon: "🔴", color: "from-red-600 to-red-800", category: "Backend" },
-  { name: "Python", icon: "🐍", color: "from-blue-600 to-indigo-600", category: "Backend" },
-  { name: "PHP", icon: "🐘", color: "from-purple-600 to-indigo-600", category: "Backend" },
-  { name: "Java", icon: "☕", color: "from-orange-600 to-red-600", category: "Backend" },
-  
-  // Database & Cloud
-  { name: "MySQL", icon: "🐬", color: "from-blue-600 to-cyan-600", category: "Database" },
-  { name: "PostgreSQL", icon: "🐘", color: "from-blue-700 to-indigo-700", category: "Database" },
-  { name: "MongoDB", icon: "🍃", color: "from-green-600 to-emerald-600", category: "Database" },
-  { name: "AWS", icon: "☁️", color: "from-orange-500 to-yellow-500", category: "Cloud" },
-  { name: "Google Cloud", icon: "☁️", color: "from-blue-500 to-indigo-500", category: "Cloud" },
-  
-  // Mobile & Tools
-  { name: "React Native", icon: "📱", color: "from-blue-500 to-cyan-500", category: "Mobile" },
-  { name: "Flutter", icon: "🦋", color: "from-blue-600 to-indigo-600", category: "Mobile" },
-  { name: "Docker", icon: "🐳", color: "from-blue-500 to-cyan-500", category: "DevOps" },
-  { name: "Git", icon: "📝", color: "from-orange-500 to-red-500", category: "DevOps" },
-  { name: "Figma", icon: "🎨", color: "from-purple-500 to-pink-500", category: "Design" },
-  
-  // Additional Technologies
-  { name: "TypeScript", icon: "🔷", color: "from-blue-600 to-indigo-600", category: "Frontend" },
-  { name: "Tailwind CSS", icon: "🎨", color: "from-cyan-500 to-blue-500", category: "Frontend" },
-  { name: "GraphQL", icon: "🔮", color: "from-pink-500 to-purple-500", category: "Backend" },
-  { name: "Redis", icon: "🔴", color: "from-red-600 to-red-800", category: "Database" },
-  { name: "Kubernetes", icon: "⚓", color: "from-blue-600 to-indigo-600", category: "DevOps" }
+  { name: "React", icon: "svg", color: "from-blue-500 to-cyan-500", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10.5 -9.45 21 18.9" class="w-8 h-8"><circle cx="0" cy="0" r="2" fill="#61dafb"/><g stroke="#61dafb" stroke-width="1" fill="none"><ellipse rx="10" ry="4.5"/><ellipse rx="10" ry="4.5" transform="rotate(60)"/><ellipse rx="10" ry="4.5" transform="rotate(-60)"/></g></svg>` },
+  { name: "Vue.js", icon: "svg", color: "from-green-500 to-emerald-500", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 100 100" class="w-8 h-8"><path fill="#FF5D01" d="M35.696 85.174c-4.502-4.13-5.816-12.807-3.94-19.093 3.252 3.963 7.758 5.219 12.426 5.927 7.206 1.094 14.283.685 20.977-2.62.766-.378 1.473-.881 2.31-1.39.629 1.827.792 3.674.573 5.552-.534 4.576-2.803 8.111-6.413 10.79-1.443 1.072-2.97 2.03-4.461 3.04-4.58 3.107-5.818 6.749-4.098 12.046.041.13.078.258.17.573-2.338-1.05-4.046-2.578-5.347-4.589-1.375-2.121-2.029-4.468-2.063-7.008-.017-1.236-.017-2.483-.183-3.7-.404-2.97-1.794-4.3-4.412-4.378-2.687-.078-4.812 1.588-5.375 4.213-.043.201-.106.4-.168.634z"/><path fill="#000014" d="M10 65.034s13.332-6.517 26.7-6.517l10.08-31.302c.377-1.514 1.48-2.543 2.723-2.543 1.244 0 2.346 1.029 2.723 2.543l10.08 31.302c15.834 0 26.7 6.517 26.7 6.517L66.318 3.008c-.65-1.83-1.746-3.009-3.226-3.009H35.918c-1.48 0-2.532 1.179-3.227 3.009C32.642 3.13 10 65.034 10 65.034"/></svg>` },
+  { name: "Angular", icon: "svg", color: "from-red-500 to-pink-500", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#DD0031" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>` },
+  { name: "Next.js", icon: "svg", color: "from-gray-800 to-black", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#000000" d="M18.665 21.978C16.758 23.255 14.465 24 12 24 5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12c0 3.182-1.236 6.088-3.235 8.245L18.665 21.978z"/><path fill="#ffffff" d="M10.227 14.739c-.462.462-1.203.462-1.665 0-.462-.462-.462-1.203 0-1.665l2.769-2.769-2.769-2.769c-.462-.462-.462-1.203 0-1.665.462-.462 1.203-.462 1.665 0l2.769 2.769 2.769-2.769c.462-.462 1.203-.462 1.665 0 .462.462.462 1.203 0 1.665l-2.769 2.769 2.769 2.769c.462.462.462 1.203 0 1.665-.462.462-1.203.462-1.665 0l-2.769-2.769-2.769 2.769z"/></svg>` },
+  { name: "Nuxt.js", icon: "svg", color: "from-green-600 to-emerald-600", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#00DC82" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6-9.6-4.298-9.6-9.6S6.698 2.4 12 2.4z"/><path fill="#00DC82" d="M8.4 7.2h7.2v9.6H8.4V7.2z"/></svg>` },
+  { name: "Node.js", icon: "svg", color: "from-green-600 to-green-800", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#339933" d="M12 1.608L0 22.392h24L12 1.608z"/></svg>` },
+  { name: "Laravel", icon: "svg", color: "from-red-600 to-red-800", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#FF2D20" d="M12 0L2.4 6.4v11.2L12 24l9.6-6.4V6.4L12 0z"/></svg>` },
+  { name: "Python", icon: "svg", color: "from-blue-600 to-indigo-600", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#3776AB" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1.6 18c-2.8 0-5.2-2.2-5.2-5.2 0-2.8 2.2-5.2 5.2-5.2s5.2 2.2 5.2 5.2c0 2.8-2.2 5.2-5.2 5.2z"/></svg>` },
+  { name: "PHP", icon: "svg", color: "from-purple-600 to-indigo-600", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#777BB4" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6-9.6-4.298-9.6-9.6S6.698 2.4 12 2.4z"/><text x="12" y="16" font-family="Arial" font-size="12" fill="#777BB4" text-anchor="middle">PHP</text></svg>` },
+  { name: "Java", icon: "svg", color: "from-orange-600 to-red-600", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#ED8B00" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6-9.6-4.298-9.6-9.6S6.698 2.4 12 2.4z"/><path fill="#ED8B00" d="M8.4 7.2h7.2v9.6H8.4V7.2z"/></svg>` },
+  { name: "MySQL", icon: "svg", color: "from-blue-600 to-cyan-600", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#4479A1" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6-9.6-4.298-9.6-9.6S6.698 2.4 12 2.4z"/><text x="12" y="16" font-family="Arial" font-size="10" fill="#4479A1" text-anchor="middle">MySQL</text></svg>` },
+  { name: "PostgreSQL", icon: "svg", color: "from-blue-700 to-indigo-700", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#4169E1" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6-9.6-4.298-9.6-9.6S6.698 2.4 12 2.4z"/><circle cx="8.4" cy="8.4" r="1.2" fill="#4169E1"/><circle cx="12" cy="8.4" r="1.2" fill="#4169E1"/><circle cx="15.6" cy="8.4" r="1.2" fill="#4169E1"/></svg>` },
+  { name: "MongoDB", icon: "svg", color: "from-green-600 to-emerald-600", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#47A248" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6-9.6-4.298-9.6-9.6S6.698 2.4 12 2.4z"/><path fill="#47A248" d="M8.4 7.2h7.2v9.6H8.4V7.2z"/></svg>` },
+  { name: "AWS", icon: "svg", color: "from-orange-500 to-yellow-500", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#FF9900" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6-9.6-4.298-9.6-9.6S6.698 2.4 12 2.4z"/><path fill="#FF9900" d="M8.4 7.2h7.2v9.6H8.4V7.2z"/></svg>` },
+  { name: "Google Cloud", icon: "svg", color: "from-blue-500 to-indigo-500", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#4285F4" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6-9.6-4.298-9.6-9.6S6.698 2.4 12 2.4z"/><path fill="#4285F4" d="M8.4 7.2h7.2v9.6H8.4V7.2z"/></svg>` },
+  { name: "React Native", icon: "svg", color: "from-blue-500 to-cyan-500", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#61DAFB" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6-9.6-4.298-9.6-9.6S6.698 2.4 12 2.4z"/><circle cx="12" cy="12" r="6" fill="none" stroke="#61DAFB" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="#61DAFB"/></svg>` },
+  { name: "Flutter", icon: "svg", color: "from-blue-600 to-indigo-600", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#02569B" d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.37z"/><path fill="#0175C2" d="M.013 21.684L12 9.7l3.7 3.7L.013 21.684z"/></svg>` },
+  { name: "Docker", icon: "svg", color: "from-blue-500 to-cyan-500", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#2496ED" d="M13.8 2.4H10.2L9 4.8H6.6L7.8 2.4H4.2L3 4.8H.6L1.8 2.4H0v3.6h1.8l1.2-2.4h3.6l-1.2 2.4h2.4l1.2-2.4h3.6l-1.2 2.4h2.4l1.2-2.4h3.6l-1.2 2.4H24V2.4h-1.8l-1.2 2.4h-2.4l1.2-2.4h-3.6l-1.2 2.4h-2.4l1.2-2.4H10.2l-1.2 2.4H6.6L7.8 2.4H4.2L3 4.8H.6L1.8 2.4H0v3.6h1.8l1.2-2.4h3.6l-1.2 2.4h2.4l1.2-2.4h3.6l-1.2 2.4h2.4l1.2-2.4h3.6l-1.2 2.4H24V2.4h-1.8z"/><path fill="#2496ED" d="M4.8 7.2h1.8v1.8H4.8V7.2zm3.6 0h1.8v1.8H8.4V7.2zm3.6 0h1.8v1.8h-1.8V7.2zm3.6 0h1.8v1.8h-1.8V7.2zM3.6 9h1.8v1.8H3.6V9zm3.6 0h1.8v1.8H7.2V9zm3.6 0h1.8v1.8h-1.8V9zm3.6 0h1.8v1.8h-1.8V9z"/></svg>` },
+  { name: "Git", icon: "svg", color: "from-orange-500 to-red-500", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#F05032" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6-9.6-4.298-9.6-9.6S6.698 2.4 12 2.4z"/><path fill="#F05032" d="M8.4 7.2h7.2v9.6H8.4V7.2z"/></svg>` },
+  { name: "Figma", icon: "svg", color: "from-purple-500 to-pink-500", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#F24E1E" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6-9.6-4.298-9.6-9.6S6.698 2.4 12 2.4z"/><ellipse cx="8.4" cy="8.4" rx="3" ry="3" fill="#F24E1E"/><ellipse cx="15.6" cy="8.4" rx="3" ry="3" fill="#F24E1E"/><ellipse cx="12" cy="15.6" rx="6" ry="2.4" fill="#F24E1E"/></svg>` },
+  { name: "TypeScript", icon: "svg", color: "from-blue-600 to-indigo-600", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#3178C6" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6-9.6-4.298-9.6-9.6S6.698 2.4 12 2.4z"/><text x="12" y="16" font-family="Arial" font-size="10" fill="#3178C6" text-anchor="middle">TS</text></svg>` },
+  { name: "Tailwind CSS", icon: "svg", color: "from-cyan-500 to-blue-500", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#06B6D4" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6-9.6-4.298-9.6-9.6S6.698 2.4 12 2.4z"/><path fill="#06B6D4" d="M8.4 7.2h7.2v9.6H8.4V7.2z"/></svg>` },
+  { name: "GraphQL", icon: "svg", color: "from-pink-500 to-purple-500", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#E10098" d="M12 0L2.4 6.4v11.2L12 24l9.6-6.4V6.4L12 0z"/></svg>` },
+  { name: "Redis", icon: "svg", color: "from-red-600 to-red-800", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#DC2626" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6-9.6-4.298-9.6-9.6S6.698 2.4 12 2.4z"/><text x="12" y="16" font-family="Arial" font-size="10" fill="#DC2626" text-anchor="middle">Redis</text></svg>` },
+  { name: "Kubernetes", icon: "svg", color: "from-blue-600 to-indigo-600", svgIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8"><path fill="#326CE5" d="M12 0L2.4 6.4v11.2L12 24l9.6-6.4V6.4L12 0z"/><circle cx="12" cy="12" r="3" fill="#326CE5"/></svg>` }
 ];
 ---
 
@@ -67,12 +58,15 @@ const techStack: TechItem[] = [
         {techStack.map((tech, index) => (
           <div 
             class="tech-item flex-shrink-0 group cursor-pointer transform transition-all duration-300 hover:scale-110 hover:-translate-y-2"
-            data-category={tech.category}
           >
             <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 min-w-[140px] text-center">
               <!-- Tech Icon -->
-              <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
-                {tech.icon}
+              <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300 flex items-center justify-center">
+                {tech.icon === "svg" && tech.svgIcon ? (
+                  <div set:html={tech.svgIcon}></div>
+                ) : (
+                  tech.icon
+                )}
               </div>
               
               <!-- Tech Name -->
@@ -80,10 +74,7 @@ const techStack: TechItem[] = [
                 {tech.name}
               </h3>
               
-              <!-- Category Badge -->
-              <span class={`inline-block px-2 py-1 text-xs font-medium rounded-full bg-gradient-to-r ${tech.color} text-white opacity-80 group-hover:opacity-100 transition-opacity duration-300`}>
-                {tech.category}
-              </span>
+
             </div>
           </div>
         ))}
@@ -92,94 +83,28 @@ const techStack: TechItem[] = [
         {techStack.map((tech, index) => (
           <div 
             class="tech-item flex-shrink-0 group cursor-pointer transform transition-all duration-300 hover:scale-110 hover:-translate-y-2"
-            data-category={tech.category}
           >
             <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 min-w-[140px] text-center">
-              <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
-                {tech.icon}
+              <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300 flex items-center justify-center">
+                {tech.icon === "svg" && tech.svgIcon ? (
+                  <div set:html={tech.svgIcon}></div>
+                ) : (
+                  tech.icon
+                )}
               </div>
               <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                 {tech.name}
               </h3>
-              <span class={`inline-block px-2 py-1 text-xs font-medium rounded-full bg-gradient-to-r ${tech.color} text-white opacity-80 group-hover:opacity-100 transition-opacity duration-300`}>
-                {tech.category}
-              </span>
+
             </div>
           </div>
         ))}
       </div>
     </div>
-
-    <!-- Category Filter Buttons (Mobile) -->
-    <div class="flex flex-wrap justify-center gap-3 mt-8 lg:hidden">
-      <button 
-        class="category-filter px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 active"
-        data-category="all"
-      >
-        Semua
-      </button>
-      <button 
-        class="category-filter px-4 py-2 rounded-full text-sm font-medium transition-all duration-300"
-        data-category="Frontend"
-      >
-        Frontend
-      </button>
-      <button 
-        class="category-filter px-4 py-2 rounded-full text-sm font-medium transition-all duration-300"
-        data-category="Backend"
-      >
-        Backend
-      </button>
-      <button 
-        class="category-filter px-4 py-2 rounded-full text-sm font-medium transition-all duration-300"
-        data-category="Mobile"
-      >
-        Mobile
-      </button>
-    </div>
   </div>
 </section>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Category filtering functionality
-    const categoryFilters = document.querySelectorAll('.category-filter');
-    const techItems = document.querySelectorAll('.tech-item');
-    
-    categoryFilters.forEach(filter => {
-      filter.addEventListener('click', () => {
-        const category = filter.getAttribute('data-category');
-        
-        // Update active filter
-        categoryFilters.forEach(f => f.classList.remove('active'));
-        filter.classList.add('active');
-        
-        // Filter tech items
-        techItems.forEach(item => {
-          const itemCategory = item.getAttribute('data-category');
-          if (category === 'all' || itemCategory === category) {
-            item.style.display = 'block';
-            item.style.animation = 'fadeIn 0.5s ease-in-out';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      });
-    });
-    
-    // Pause animation on hover for better UX
-    const scrollContainer = document.querySelector('.tech-stack-scroll');
-    if (scrollContainer) {
-      scrollContainer.addEventListener('mouseenter', () => {
-        scrollContainer.style.animationPlayState = 'paused';
-      });
-      
-      scrollContainer.addEventListener('mouseleave', () => {
-        scrollContainer.style.animationPlayState = 'running';
-      });
-    }
-  });
-</script>
+
 
 <style>
   /* Horizontal scrolling animation */
@@ -196,45 +121,8 @@ const techStack: TechItem[] = [
     }
   }
   
-  /* Fade in animation for filtered items */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
   
-  /* Category filter button styles */
-  .category-filter {
-    background: #f3f4f6;
-    color: #6b7280;
-    border: 1px solid #e5e7eb;
-  }
-  
-  .category-filter.active {
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-    color: white;
-    border-color: #3b82f6;
-    box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.3);
-  }
-  
-  .dark .category-filter {
-    background: #374151;
-    color: #9ca3af;
-    border-color: #4b5563;
-  }
-  
-  .dark .category-filter.active {
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-    color: white;
-    border-color: #3b82f6;
-  }
-  
-  /* Responsive adjustments */
+    /* Responsive adjustments */
   @media (max-width: 768px) {
     .tech-stack-scroll {
       animation-duration: 20s;
