@@ -2,6 +2,8 @@
 import { Image } from "astro:assets";
 import KotacomLogo from "../assets/kotacom-logo.svg";
 import ThemeToggle from "./ThemeToggle.astro";
+import UnifiedMegaMenu from "./UnifiedMegaMenu.astro";
+import MobileUnifiedMegaMenu from "./MobileUnifiedMegaMenu.astro";
 import { MEGA_MENU_CONFIG, SIMPLE_NAV_ITEMS, MOBILE_MENU_CONFIG } from "../data/mega-menu-config";
 ---
 
@@ -217,65 +219,50 @@ import { MEGA_MENU_CONFIG, SIMPLE_NAV_ITEMS, MOBILE_MENU_CONFIG } from "../data/
   <!-- Mobile Menu Content - Scrollable -->
   <div class="flex-1 overflow-y-auto overscroll-contain min-h-0" style="height: calc(100vh - 80px);">
     <nav class="p-4 space-y-2" role="navigation">
-      <!-- Mobile Navigation Items -->
+      <!-- Mobile: Unified Mega Menu Items -->
       <div class="space-y-2">
-        <!-- Home -->
-        <a href="/" class="block py-3 px-4 text-blue-600 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md">
-          Home
-        </a>
+        <MobileUnifiedMegaMenu 
+          trigger={MEGA_MENU_CONFIG.layanan.trigger}
+          sections={MEGA_MENU_CONFIG.layanan.sections}
+        />
+        <MobileUnifiedMegaMenu 
+          trigger={MEGA_MENU_CONFIG.portfolio.trigger}
+          sections={MEGA_MENU_CONFIG.portfolio.sections}
+        />
+        <MobileUnifiedMegaMenu 
+          trigger={MEGA_MENU_CONFIG.produk.trigger}
+          sections={MEGA_MENU_CONFIG.produk.sections}
+        />
         
-        <!-- Services -->
-        <div class="space-y-2">
-          <div class="px-4 py-2 text-sm font-semibold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700">
-            Services
-          </div>
-          <a href="/jasa-pembuatan-website-surabaya" class="block py-2 px-6 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md">
-            Website Development
-          </a>
-          <a href="/jasa-pembuatan-software" class="block py-2 px-6 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md">
-            Software Development
-          </a>
-          <a href="/services/it-support" class="block py-2 px-6 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md">
-            IT Support
-          </a>
+        <!-- Simple Navigation Items on Mobile -->
+        <div class="pt-4 mt-4">
+          {MOBILE_MENU_CONFIG.secondaryItems.map((item) => (
+            <a
+              href={item.url}
+              class="block py-3 px-4 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md"
+            >
+              {item.title}
+            </a>
+          ))}
         </div>
         
-        <!-- Portfolio -->
-        <a href="/projects" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md">
-          Portfolio
-        </a>
-        
-        <!-- Products -->
-        <a href="/products" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md">
-          Products
-        </a>
-        
-        <!-- Posts -->
-        <a href="/posts" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md">
-          Posts
-        </a>
-        
-        <!-- About -->
-        <a href="/about" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md">
-          About
-        </a>
-        
-        <!-- Contact -->
-        <a href="/contact" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md">
-          Contact
-        </a>
-        
-        <!-- Debug: Add some extra content to test scrolling -->
-        <div class="pt-4 mt-4 space-y-4">
-          <div class="text-center text-sm text-gray-500 dark:text-gray-400">
-            <p>Debug: Scroll test content</p>
-            <p>This should be scrollable</p>
+        <!-- Mobile Menu Footer -->
+        <div class="pt-4 mt-4 pb-8">
+          <div class="text-center">
+            <h4 class="text-sm font-medium text-gray-900 dark:text-white mb-2">
+              {MOBILE_MENU_CONFIG.footer.title}
+            </h4>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">
+              {MOBILE_MENU_CONFIG.footer.description}
+            </p>
+            <a
+              href={MOBILE_MENU_CONFIG.footer.cta.url}
+              class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            >
+              <div class="text-white" set:html={MOBILE_MENU_CONFIG.footer.cta.icon}></div>
+              {MOBILE_MENU_CONFIG.footer.cta.text}
+            </a>
           </div>
-          {Array.from({ length: 10 }, (_, i) => (
-            <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
-              <p class="text-sm text-gray-600 dark:text-gray-300">Test item {i + 1}</p>
-            </div>
-          ))}
         </div>
       </div>
     </nav>
