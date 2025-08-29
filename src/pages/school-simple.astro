@@ -1,0 +1,165 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import SchoolLottieSeparator from "../components/SchoolLottieSeparator.astro";
+
+const title = "SD Muhammadiyah 20 Surabaya - Sekolah Unggulan dengan Pendidikan Berkualitas";
+const description = "SD Muhammadiyah 20 Surabaya menawarkan pendidikan berkualitas yang mengintegrasikan nilai-nilai Islam, kurikulum nasional, dan teknologi modern.";
+---
+
+<MainLayout title={title} description={description} type="page" section="school">
+  <!-- Simple Hero Section -->
+  <section class="py-20 px-4 text-center">
+    <h1 class="text-5xl font-bold mb-6">
+      <span class="bg-gradient-to-r from-blue-600 via-red-600 to-yellow-600 bg-clip-text text-transparent">
+        SD Muhammadiyah 20 Surabaya
+      </span>
+    </h1>
+    <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
+      Sekolah unggulan dengan pendidikan berkualitas yang mengintegrasikan nilai-nilai Islam, kurikulum nasional, dan teknologi modern.
+    </p>
+    <div class="flex justify-center gap-4">
+      <a href="/contact" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-700">
+        Daftar Sekarang
+      </a>
+      <a href="https://wa.me/085799520350" class="bg-green-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-green-700">
+        WhatsApp
+      </a>
+    </div>
+  </section>
+  
+  <!-- Separator -->
+  <SchoolLottieSeparator animation="school" height="h-20" />
+  
+  <!-- Why Choose Us Section -->
+  <section class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-16">
+        <span class="bg-gradient-to-r from-blue-600 via-red-600 to-yellow-600 bg-clip-text text-transparent">
+          Kenapa Memilih Sekolah Kami?
+        </span>
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <!-- Text Content -->
+        <div class="space-y-6">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center text-white text-xl">
+              🎓
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-2">Pendidikan Berbasis Akhlak</h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                Mengintegrasikan nilai-nilai Islam dengan kurikulum nasional untuk membentuk karakter unggul dan berakhlak mulia.
+              </p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center text-white text-xl">
+              📚
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-2">Kurikulum Unggulan</h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                Menggunakan kurikulum terbaru dengan pendekatan pembelajaran yang inovatif dan teknologi modern.
+              </p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-yellow-500 rounded-xl flex items-center justify-center text-white text-xl">
+              👥
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-2">Guru Berpengalaman</h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                Tim pengajar profesional dengan pengalaman mengajar yang luas dan dedikasi tinggi terhadap pendidikan.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Image Section -->
+        <div class="relative">
+          <div class="relative h-80 overflow-hidden rounded-2xl shadow-2xl">
+            <img 
+              src="https://res.cloudinary.com/dwxw1h9my/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1753726244/kotacom/website-images/Web_Development_hero.jpg" 
+              alt="SD Muhammadiyah 20 Surabaya" 
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute top-4 left-4 bg-white/90 rounded-full p-2 shadow-lg">
+              <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
+                <span class="text-white text-xl font-bold">M</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Separator -->
+  <SchoolLottieSeparator animation="school" height="h-20" />
+  
+  <!-- Programs Section -->
+  <section class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-16">
+        <span class="bg-gradient-to-r from-blue-600 via-red-600 to-yellow-600 bg-clip-text text-transparent">
+          Program Unggulan
+        </span>
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white/80 dark:bg-gray-800/80 rounded-2xl p-8 shadow-xl border border-gray-200/50 dark:border-gray-700/50">
+          <div class="text-4xl mb-4">📚</div>
+          <h3 class="text-xl font-bold mb-4">Program Akademik</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Kurikulum nasional yang diperkaya dengan pendekatan pembelajaran inovatif dan teknologi modern.
+          </p>
+        </div>
+        
+        <div class="bg-white/80 dark:bg-gray-800/80 rounded-2xl p-8 shadow-xl border border-gray-200/50 dark:border-gray-700/50">
+          <div class="text-4xl mb-4">🕌</div>
+          <h3 class="text-xl font-bold mb-4">Program Keagamaan</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Pendidikan Islam yang mengintegrasikan nilai-nilai akhlak mulia dalam setiap aspek pembelajaran.
+          </p>
+        </div>
+        
+        <div class="bg-white/80 dark:bg-gray-800/80 rounded-2xl p-8 shadow-xl border border-gray-200/50 dark:border-gray-700/50">
+          <div class="text-4xl mb-4">🎨</div>
+          <h3 class="text-xl font-bold mb-4">Program Seni & Budaya</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Mengembangkan kreativitas dan apresiasi seni melalui berbagai kegiatan seni dan budaya.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Separator -->
+  <SchoolLottieSeparator animation="school" height="h-20" />
+  
+  <!-- CTA Section -->
+  <section class="py-20 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-8">
+        <span class="bg-gradient-to-r from-blue-600 via-red-600 to-yellow-600 bg-clip-text text-transparent">
+          Bergabunglah dengan Keluarga Besar Kami
+        </span>
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+        Daftarkan anak Anda sekarang dan berikan pendidikan terbaik untuk masa depan yang cemerlang
+      </p>
+      <div class="flex justify-center gap-4">
+        <a href="/contact" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-blue-700">
+          Daftar Sekarang
+        </a>
+        <a href="https://wa.me/085799520350" class="bg-green-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-green-700">
+          Konsultasi WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</MainLayout>

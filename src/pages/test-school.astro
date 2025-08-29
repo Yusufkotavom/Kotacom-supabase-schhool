@@ -1,0 +1,18 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import SchoolLottieSeparator from "../components/SchoolLottieSeparator.astro";
+---
+
+<MainLayout title="Test School Page" description="Testing SchoolLottieSeparator">
+  <div class="py-20">
+    <h1 class="text-4xl font-bold text-center mb-8">Test SchoolLottieSeparator</h1>
+    
+    <div class="max-w-4xl mx-auto">
+      <p class="text-center mb-8">Testing if SchoolLottieSeparator works correctly</p>
+      
+      <SchoolLottieSeparator animation="school" height="h-20" />
+      
+      <p class="text-center mt-8">If you can see the separator above, it's working!</p>
+    </div>
+  </div>
+</MainLayout>

@@ -1,0 +1,27 @@
+import { b as createAstro, c as createComponent, m as maybeRenderHead, d as addAttribute, a as renderTemplate } from './astro/server_CJHufnQ6.mjs';
+import 'kleur/colors';
+import 'clsx';
+
+const $$Astro = createAstro("https://example.com");
+const $$ProductCategoryDropdown = createComponent(($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$ProductCategoryDropdown;
+  const { categoryCounts } = Astro2.props;
+  const pathSegments = Astro2.url.pathname.split("/");
+  const potentialCategory = pathSegments[2];
+  const currentCategory = potentialCategory && potentialCategory.trim() !== "" ? potentialCategory : null;
+  function toSlug(name) {
+    return String(name).toLowerCase().replace(/\s+/g, "-");
+  }
+  const uniqueCategories = Object.keys(categoryCounts).sort();
+  return renderTemplate`${maybeRenderHead()}<form class="w-100%"> <select id="categories" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onchange="if (this.value) window.location.href = this.value"> <option value="/products/"${addAttribute(!currentCategory, "selected")}>
+Semua Kategori
+</option> ${uniqueCategories.map((category) => {
+    const categorySlug = toSlug(category);
+    const count = categoryCounts[category] || 0;
+    return renderTemplate`<option${addAttribute(`/products/${categorySlug}/`, "value")}${addAttribute(currentCategory === categorySlug, "selected")}> ${category} (${count})
+</option>`;
+  })} </select> </form>`;
+}, "/workspace/src/components/ProductCategoryDropdown.astro", void 0);
+
+export { $$ProductCategoryDropdown as $ };

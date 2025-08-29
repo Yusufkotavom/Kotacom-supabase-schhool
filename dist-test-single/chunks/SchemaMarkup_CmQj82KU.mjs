@@ -1,0 +1,425 @@
+import { b as createAstro, c as createComponent, a as renderTemplate, u as unescapeHTML } from './astro/server_CJHufnQ6.mjs';
+import 'kleur/colors';
+import 'clsx';
+import { C as COMPANY_NAME, a as COMPANY_LOCATION, S as SITE_TITLE, c as COMPANY_WHATSAPP, d as SITE_DESCRIPTION } from './consts_BQzPd2gi.mjs';
+
+var __freeze = Object.freeze;
+var __defProp = Object.defineProperty;
+var __template = (cooked, raw) => __freeze(__defProp(cooked, "raw", { value: __freeze(cooked.slice()) }));
+var _a, _b, _c, _d;
+const $$Astro = createAstro("https://example.com");
+const $$SchemaMarkup = createComponent(($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$SchemaMarkup;
+  const {
+    type,
+    title,
+    description,
+    image = "https://res.cloudinary.com/dxyjku3eh/image/upload/v1754820661/Tanpa_judul_Presentasi__20250810_170926_0000_vdiibn.png",
+    url = Astro2.url.toString(),
+    data = {},
+    breadcrumbs = [],
+    author = COMPANY_NAME,
+    datePublished,
+    dateModified,
+    tags = [],
+    category = [],
+    price,
+    reviews = []
+  } = Astro2.props;
+  const safeTags = Array.isArray(tags) ? tags : tags ? [tags] : [];
+  const safeCategory = Array.isArray(category) ? category : category ? [category] : [];
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": COMPANY_NAME,
+    "url": Astro2.site,
+    "logo": {
+      "@type": "ImageObject",
+      "url": new URL("/kotacom-favicon.png", Astro2.site)
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": `+62${COMPANY_WHATSAPP}`,
+      "contactType": "customer service",
+      "areaServed": ["ID"],
+      "availableLanguage": ["Indonesian"]
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Surabaya",
+      "addressRegion": "Jawa Timur",
+      "addressCountry": "ID"
+    },
+    "sameAs": [
+      `https://wa.me/62${COMPANY_WHATSAPP}`
+    ]
+  };
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": COMPANY_NAME,
+    "description": SITE_DESCRIPTION,
+    "url": Astro2.site,
+    "telephone": `+62${COMPANY_WHATSAPP}`,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Surabaya",
+      "addressRegion": "Jawa Timur",
+      "addressCountry": "ID"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -7.2575,
+      "longitude": 112.7521
+    },
+    "openingHours": "Mo-Fr 09:00-17:00",
+    "priceRange": "$$",
+    "areaServed": ["Surabaya", "Sidoarjo", "Jawa Timur"],
+    "serviceType": ["IT Support", "Website Development", "Software Development", "Digital Marketing"],
+    "image": image,
+    "logo": {
+      "@type": "ImageObject",
+      "url": new URL("/kotacom-favicon.png", Astro2.site)
+    },
+    "sameAs": [
+      `https://wa.me/62${COMPANY_WHATSAPP}`
+    ],
+    // Add aggregate rating if reviews exist
+    ...reviews.length > 0 && {
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1),
+        "reviewCount": reviews.length
+      }
+    }
+  };
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": title,
+    "description": description,
+    "image": image,
+    "url": url,
+    "author": {
+      "@type": "Organization",
+      "name": author,
+      "url": Astro2.site
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": COMPANY_NAME,
+      "url": Astro2.site,
+      "logo": {
+        "@type": "ImageObject",
+        "url": new URL("/kotacom-favicon.png", Astro2.site)
+      }
+    },
+    "datePublished": datePublished || (/* @__PURE__ */ new Date()).toISOString(),
+    "dateModified": dateModified || datePublished || (/* @__PURE__ */ new Date()).toISOString(),
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": url
+    },
+    "keywords": safeTags.length > 0 ? safeTags.join(", ") : "",
+    "articleSection": safeCategory.length > 0 ? safeCategory[0] : "Technology",
+    "inLanguage": "id-ID",
+    "wordCount": data.wordCount || void 0,
+    "about": safeCategory.map((cat) => ({
+      "@type": "Thing",
+      "name": cat
+    }))
+  };
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": title,
+    "description": description,
+    "image": image,
+    "url": url,
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": COMPANY_NAME,
+      "telephone": `+62${COMPANY_WHATSAPP}`,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Surabaya",
+        "addressRegion": "Jawa Timur",
+        "addressCountry": "ID"
+      }
+    },
+    "areaServed": data.wilayah || ["Surabaya", "Sidoarjo", "Jawa Timur"],
+    "serviceType": safeCategory.length > 0 ? safeCategory : ["IT Services"],
+    "category": safeCategory.join(", "),
+    ...price && typeof price === "string" && {
+      "offers": {
+        "@type": "Offer",
+        "price": typeof price === "string" ? price.replace(/[^\d]/g, "") : "",
+        "priceCurrency": "IDR",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": COMPANY_NAME
+        }
+      }
+    },
+    // Add aggregate rating if reviews exist
+    ...reviews.length > 0 && {
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1),
+        "reviewCount": reviews.length
+      },
+      "review": reviews.map((review) => ({
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": review.author
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": review.rating,
+          "bestRating": 5
+        },
+        "reviewBody": review.reviewBody,
+        "datePublished": review.datePublished
+      }))
+    }
+  };
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": title,
+    "description": description,
+    "image": image,
+    "url": url,
+    "brand": {
+      "@type": "Brand",
+      "name": data.brand || COMPANY_NAME
+    },
+    "manufacturer": {
+      "@type": "Organization",
+      "name": COMPANY_NAME
+    },
+    "category": safeCategory.join(", "),
+    "sku": data.sku || data.slug || (typeof title === "string" ? title.replace(/\s+/g, "-").toLowerCase() : "item"),
+    ...price && typeof price === "string" && {
+      "offers": {
+        "@type": "Offer",
+        "price": price.replace(/[^\d]/g, ""),
+        // Extract numbers only
+        "priceCurrency": "IDR",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": COMPANY_NAME
+        },
+        "priceValidUntil": new Date(Date.now() + 365 * 24 * 60 * 60 * 1e3).toISOString().split("T")[0]
+        // 1 year from now
+      }
+    },
+    // Add aggregate rating if reviews exist
+    ...reviews.length > 0 && {
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1),
+        "reviewCount": reviews.length
+      },
+      "review": reviews.map((review) => ({
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": review.author
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": review.rating,
+          "bestRating": 5
+        },
+        "reviewBody": review.reviewBody,
+        "datePublished": review.datePublished
+      }))
+    }
+  };
+  const projectSchema = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": title,
+    "description": description,
+    "image": image,
+    "url": url,
+    "creator": {
+      "@type": "Organization",
+      "name": COMPANY_NAME,
+      "url": Astro2.site
+    },
+    "dateCreated": datePublished || (/* @__PURE__ */ new Date()).toISOString(),
+    "dateModified": dateModified || datePublished || (/* @__PURE__ */ new Date()).toISOString(),
+    "genre": safeCategory.length > 0 ? safeCategory : ["Software Development"],
+    "keywords": safeTags.length > 0 ? safeTags.join(", ") : "",
+    "inLanguage": "id-ID",
+    "about": safeCategory.map((cat) => ({
+      "@type": "Thing",
+      "name": cat
+    })),
+    // Add client information if available
+    ...data.client && {
+      "sponsor": {
+        "@type": "Organization",
+        "name": data.client
+      }
+    },
+    // Add technologies used
+    ...data.technologies && Array.isArray(data.technologies) && data.technologies.length > 0 && {
+      "material": data.technologies.map((tech) => ({
+        "@type": "Thing",
+        "name": tech
+      }))
+    }
+  };
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": title,
+    "description": description,
+    "url": url,
+    "image": image,
+    "inLanguage": "id-ID",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": SITE_TITLE,
+      "url": Astro2.site
+    },
+    "author": {
+      "@type": "Organization",
+      "name": COMPANY_NAME
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": COMPANY_NAME
+    },
+    "datePublished": datePublished || (/* @__PURE__ */ new Date()).toISOString(),
+    "dateModified": dateModified || datePublished || (/* @__PURE__ */ new Date()).toISOString()
+  };
+  const breadcrumbSchema = breadcrumbs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": crumb.name,
+      "item": crumb.url
+    }))
+  } : null;
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": SITE_TITLE,
+    "url": Astro2.site,
+    "description": SITE_DESCRIPTION,
+    "publisher": {
+      "@type": "Organization",
+      "name": COMPANY_NAME
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": new URL("/search?q={search_term_string}", Astro2.site)
+      },
+      "query-input": "required name=search_term_string"
+    },
+    "inLanguage": "id-ID"
+  };
+  let primarySchema;
+  switch (type) {
+    case "homepage":
+      primarySchema = [localBusinessSchema, websiteSchema, organizationSchema];
+      break;
+    case "article":
+      primarySchema = [articleSchema];
+      break;
+    case "service":
+      primarySchema = [serviceSchema];
+      break;
+    case "product":
+      primarySchema = [productSchema];
+      break;
+    case "project":
+      primarySchema = [projectSchema];
+      break;
+    case "landing":
+      primarySchema = [localBusinessSchema, webPageSchema];
+      break;
+    default:
+      primarySchema = [webPageSchema];
+  }
+  const allSchemas = Array.isArray(primarySchema) ? primarySchema : [primarySchema];
+  if (breadcrumbSchema) {
+    allSchemas.push(breadcrumbSchema);
+  }
+  return renderTemplate`<!-- Primary Schema Markup -->${allSchemas.map((schema) => renderTemplate(_a || (_a = __template(['<script type="application/ld+json">', "<\/script>"])), unescapeHTML(JSON.stringify(schema))))}<!-- FAQ Schema (if FAQ data provided) -->${data.faq && Array.isArray(data.faq) && data.faq.length > 0 && renderTemplate(_b || (_b = __template(['<script type="application/ld+json">', "<\/script>"])), unescapeHTML(JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": data.faq.map((item) => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  })))}<!-- HowTo Schema (if steps provided) -->${data.steps && Array.isArray(data.steps) && data.steps.length > 0 && renderTemplate(_c || (_c = __template(['<script type="application/ld+json">', "<\/script>"])), unescapeHTML(JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": title,
+    "description": description,
+    "image": image,
+    "totalTime": data.totalTime || "PT30M",
+    "estimatedCost": price && typeof price === "string" ? {
+      "@type": "MonetaryAmount",
+      "currency": "IDR",
+      "value": typeof price === "string" ? price.replace(/[^\d]/g, "") || "0" : "0"
+    } : void 0,
+    "supply": data.supply || [],
+    "tool": data.tools || [],
+    "step": data.steps.map((step, index) => ({
+      "@type": "HowToStep",
+      "position": index + 1,
+      "name": step.name,
+      "text": step.text,
+      "image": step.image || image
+    }))
+  })))}<!-- Event Schema (if event data provided) -->${data.eventDate && renderTemplate(_d || (_d = __template(['<script type="application/ld+json">', "<\/script>"])), unescapeHTML(JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": title,
+    "description": description,
+    "image": image,
+    "startDate": data.eventDate,
+    "endDate": data.eventEndDate || data.eventDate,
+    "location": {
+      "@type": "Place",
+      "name": data.eventLocation || COMPANY_LOCATION,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Surabaya",
+        "addressRegion": "Jawa Timur",
+        "addressCountry": "ID"
+      }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": COMPANY_NAME,
+      "url": Astro2.site
+    },
+    "offers": price && typeof price === "string" ? {
+      "@type": "Offer",
+      "price": typeof price === "string" ? price.replace(/[^\d]/g, "") : "",
+      "priceCurrency": "IDR",
+      "availability": "https://schema.org/InStock"
+    } : void 0
+  })))}`;
+}, "/workspace/src/components/SchemaMarkup.astro", void 0);
+
+export { $$SchemaMarkup as $ };
