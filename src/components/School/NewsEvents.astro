@@ -1,0 +1,624 @@
+---
+const newsEventsData = {
+  title: "Berita & Acara",
+  subtitle: "Informasi Terbaru dan Kegiatan Sekolah",
+  description: "Ikuti berita terbaru dan acara-acara menarik yang diselenggarakan oleh SD Muhammadiyah 20 Surabaya.",
+  news: [
+    {
+      title: "Penerimaan Siswa Baru Tahun Ajaran 2024/2025",
+      excerpt: "Pendaftaran siswa baru untuk tahun ajaran 2024/2025 telah dibuka. Dapatkan informasi lengkap tentang persyaratan dan jadwal pendaftaran.",
+      image: "/images/school/news/psb-2024.jpg",
+      date: "2024-01-15",
+      category: "Pendaftaran",
+      author: "Admin Sekolah",
+      readTime: "3 menit"
+    },
+    {
+      title: "Kunjungan Edukatif ke Museum Surabaya",
+      excerpt: "Siswa kelas 4 dan 5 mengikuti kunjungan edukatif ke Museum Surabaya untuk mempelajari sejarah kota Surabaya.",
+      image: "/images/school/news/museum-visit.jpg",
+      date: "2024-01-10",
+      category: "Kegiatan",
+      author: "Guru Kelas 4",
+      readTime: "2 menit"
+    },
+    {
+      title: "Juara 1 Lomba Matematika Tingkat Kota",
+      excerpt: "Tim matematika SD Muhammadiyah 20 Surabaya berhasil meraih juara 1 dalam lomba matematika tingkat kota Surabaya.",
+      image: "/images/school/news/math-competition.jpg",
+      date: "2024-01-05",
+      category: "Prestasi",
+      author: "Guru Matematika",
+      readTime: "4 menit"
+    },
+    {
+      title: "Workshop Parenting untuk Orang Tua",
+      excerpt: "Workshop parenting dengan tema 'Mendampingi Anak di Era Digital' akan diselenggarakan untuk orang tua siswa.",
+      image: "/images/school/news/parenting-workshop.jpg",
+      date: "2024-01-01",
+      category: "Workshop",
+      author: "Tim Konseling",
+      readTime: "3 menit"
+    }
+  ],
+  events: [
+    {
+      title: "Open House Sekolah",
+      description: "Acara open house untuk memperkenalkan fasilitas dan program sekolah kepada calon siswa dan orang tua.",
+      date: "2024-02-15",
+      time: "08:00 - 12:00",
+      location: "SD Muhammadiyah 20 Surabaya",
+      image: "/images/school/events/open-house.jpg",
+      status: "upcoming"
+    },
+    {
+      title: "Pentas Seni & Budaya",
+      description: "Pentas seni dan budaya yang menampilkan bakat siswa dalam bidang seni, musik, dan tari.",
+      date: "2024-02-20",
+      time: "19:00 - 21:00",
+      location: "Aula Sekolah",
+      image: "/images/school/events/art-performance.jpg",
+      status: "upcoming"
+    },
+    {
+      title: "Lomba Antar Kelas",
+      description: "Lomba antar kelas dalam berbagai bidang akademik dan non-akademik untuk mengembangkan semangat kompetisi sehat.",
+      date: "2024-02-25",
+      time: "08:00 - 15:00",
+      location: "Lapangan Sekolah",
+      image: "/images/school/events/class-competition.jpg",
+      status: "upcoming"
+    },
+    {
+      title: "Kunjungan Industri",
+      description: "Kunjungan ke pabrik dan industri untuk memberikan wawasan tentang dunia kerja kepada siswa kelas 6.",
+      date: "2024-03-01",
+      time: "08:00 - 16:00",
+      location: "PT Industri Surabaya",
+      image: "/images/school/events/industry-visit.jpg",
+      status: "upcoming"
+    }
+  ]
+};
+
+// Format date function
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('id-ID', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+
+// Get category color
+function getCategoryColor(category) {
+  const colors = {
+    'Pendaftaran': '#3B82F6',
+    'Kegiatan': '#10B981',
+    'Prestasi': '#F59E0B',
+    'Workshop': '#8B5CF6'
+  };
+  return colors[category] || '#64748B';
+}
+---
+
+<section class="news-events-section">
+  <div class="container mx-auto px-4 py-16">
+    <div class="section-header text-center mb-16" data-aos="fade-up">
+      <h2 class="section-title">{newsEventsData.title}</h2>
+      <h3 class="section-subtitle">{newsEventsData.subtitle}</h3>
+      <p class="section-description">{newsEventsData.description}</p>
+    </div>
+    
+    <div class="content-container">
+      <!-- News Section -->
+      <div class="news-section" data-aos="fade-right">
+        <div class="section-header-inline">
+          <h3 class="section-title-inline">Berita Terbaru</h3>
+          <a href="#all-news" class="view-all-link">Lihat Semua Berita →</a>
+        </div>
+        
+        <div class="news-grid">
+          {newsEventsData.news.map((article, index) => (
+            <article class="news-card" data-aos="fade-up" data-aos-delay={index * 100}>
+              <div class="news-image">
+                <img src={article.image} alt={article.title} />
+                <div class="news-category" style={`background-color: ${getCategoryColor(article.category)}`}>
+                  {article.category}
+                </div>
+              </div>
+              <div class="news-content">
+                <div class="news-meta">
+                  <span class="news-date">{formatDate(article.date)}</span>
+                  <span class="news-read-time">{article.readTime}</span>
+                </div>
+                <h4 class="news-title">{article.title}</h4>
+                <p class="news-excerpt">{article.excerpt}</p>
+                <div class="news-footer">
+                  <span class="news-author">Oleh: {article.author}</span>
+                  <a href={`#news-${index}`} class="read-more-btn">Baca Selengkapnya</a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+      
+      <!-- Events Section -->
+      <div class="events-section" data-aos="fade-left">
+        <div class="section-header-inline">
+          <h3 class="section-title-inline">Acara Mendatang</h3>
+          <a href="#all-events" class="view-all-link">Lihat Semua Acara →</a>
+        </div>
+        
+        <div class="events-list">
+          {newsEventsData.events.map((event, index) => (
+            <div class="event-card" data-aos="fade-up" data-aos-delay={index * 100}>
+              <div class="event-image">
+                <img src={event.image} alt={event.title} />
+                <div class="event-status {event.status}">
+                  {event.status === 'upcoming' ? 'Mendatang' : 'Selesai'}
+                </div>
+              </div>
+              <div class="event-content">
+                <h4 class="event-title">{event.title}</h4>
+                <p class="event-description">{event.description}</p>
+                <div class="event-details">
+                  <div class="event-detail">
+                    <span class="detail-icon">📅</span>
+                    <span class="detail-text">{formatDate(event.date)}</span>
+                  </div>
+                  <div class="event-detail">
+                    <span class="detail-icon">⏰</span>
+                    <span class="detail-text">{event.time}</span>
+                  </div>
+                  <div class="event-detail">
+                    <span class="detail-icon">📍</span>
+                    <span class="detail-text">{event.location}</span>
+                  </div>
+                </div>
+                <button class="register-btn">Daftar Acara</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+    
+    <!-- Newsletter Subscription -->
+    <div class="newsletter-section text-center mt-16" data-aos="fade-up">
+      <div class="newsletter-content">
+        <h3 class="newsletter-title">Berlangganan Newsletter</h3>
+        <p class="newsletter-description">Dapatkan informasi terbaru tentang kegiatan sekolah langsung di email Anda.</p>
+        <form class="newsletter-form">
+          <div class="form-group">
+            <input type="email" placeholder="Masukkan email Anda" required>
+            <button type="submit" class="subscribe-btn">
+              <span class="btn-icon">📧</span>
+              Berlangganan
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .news-events-section {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .news-events-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="news" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="3" fill="%23e2e8f0" opacity="0.2"/><rect x="10" y="10" width="5" height="5" fill="%23e2e8f0" opacity="0.1"/><rect x="35" y="35" width="5" height="5" fill="%23e2e8f0" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23news)"/></svg>');
+    pointer-events: none;
+  }
+  
+  .section-title {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, #3B82F6, #F59E0B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1.5rem;
+    color: #64748b;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  
+  .section-description {
+    font-size: 1.1rem;
+    color: #64748b;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+  
+  /* Content Container */
+  .content-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+  
+  /* Section Headers */
+  .section-header-inline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .section-title-inline {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e293b;
+  }
+  
+  .view-all-link {
+    color: #3B82F6;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  
+  .view-all-link:hover {
+    color: #1D4ED8;
+  }
+  
+  /* News Grid */
+  .news-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .news-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+  
+  .news-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .news-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .news-card:hover .news-image img {
+    transform: scale(1.1);
+  }
+  
+  .news-category {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  
+  .news-content {
+    padding: 1.5rem;
+  }
+  
+  .news-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #64748b;
+  }
+  
+  .news-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  
+  .news-excerpt {
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  .news-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .news-author {
+    font-size: 0.9rem;
+    color: #64748b;
+  }
+  
+  .read-more-btn {
+    color: #3B82F6;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+  
+  .read-more-btn:hover {
+    color: #1D4ED8;
+  }
+  
+  /* Events List */
+  .events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .event-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+  
+  .event-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .event-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .event-card:hover .event-image img {
+    transform: scale(1.1);
+  }
+  
+  .event-status {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  
+  .event-status.upcoming {
+    background: #10B981;
+  }
+  
+  .event-status.completed {
+    background: #64748B;
+  }
+  
+  .event-content {
+    padding: 1.5rem;
+  }
+  
+  .event-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  
+  .event-description {
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  .event-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .event-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #64748b;
+  }
+  
+  .detail-icon {
+    font-size: 1rem;
+  }
+  
+  .register-btn {
+    background: linear-gradient(45deg, #3B82F6, #1D4ED8);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .register-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+  }
+  
+  /* Newsletter Section */
+  .newsletter-section {
+    position: relative;
+  }
+  
+  .newsletter-content {
+    background: white;
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  }
+  
+  .newsletter-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1rem;
+  }
+  
+  .newsletter-description {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .newsletter-form {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .form-group input {
+    flex: 1;
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 25px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .form-group input:focus {
+    outline: none;
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  .subscribe-btn {
+    background: linear-gradient(45deg, #3B82F6, #1D4ED8);
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .subscribe-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+  }
+  
+  .btn-icon {
+    font-size: 1.2rem;
+  }
+  
+  @media (max-width: 1024px) {
+    .content-container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .section-title {
+      font-size: 2.5rem;
+    }
+    
+    .section-subtitle {
+      font-size: 1.3rem;
+    }
+    
+    .section-header-inline {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+    
+    .section-title-inline {
+      font-size: 1.5rem;
+    }
+    
+    .news-image,
+    .event-image {
+      height: 180px;
+    }
+    
+    .news-content,
+    .event-content {
+      padding: 1rem;
+    }
+    
+    .news-footer {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    
+    .newsletter-content {
+      padding: 2rem;
+    }
+    
+    .newsletter-title {
+      font-size: 2rem;
+    }
+    
+    .form-group {
+      flex-direction: column;
+    }
+    
+    .subscribe-btn {
+      justify-content: center;
+    }
+  }
+</style>

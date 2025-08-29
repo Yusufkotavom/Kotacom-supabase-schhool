@@ -1,0 +1,490 @@
+---
+const footerData = {
+  schoolInfo: {
+    name: "SD Muhammadiyah 20 Surabaya",
+    description: "Sekolah dasar yang berkomitmen untuk mengembangkan kreativitas dan potensi siswa melalui pendidikan berkualitas dengan pendekatan modern dan inovatif.",
+    address: "Jl. Ahmad Yani No. 123, Surabaya, Jawa Timur 60231",
+    phone: "+62 31 1234 5678",
+    email: "info@sdmuhamadiyah20.sch.id"
+  },
+  quickLinks: [
+    { name: "Tentang Kami", url: "#about" },
+    { name: "Visi & Misi", url: "#vision-mission" },
+    { name: "Ekstrakurikuler", url: "#extracurricular" },
+    { name: "Galeri", url: "#gallery" },
+    { name: "Fasilitas", url: "#facilities" },
+    { name: "Guru & Staff", url: "#teachers" },
+    { name: "Berita & Acara", url: "#news-events" },
+    { name: "Hubungi Kami", url: "#contact" }
+  ],
+  programs: [
+    { name: "Pendidikan Dasar", url: "#programs" },
+    { name: "Ekstrakurikuler", url: "#extracurricular" },
+    { name: "Program Tahfidz", url: "#tahfidz" },
+    { name: "Kunjungan Edukatif", url: "#field-trips" },
+    { name: "Workshop Parenting", url: "#parenting" },
+    { name: "Konseling Siswa", url: "#counseling" }
+  ],
+  socialMedia: [
+    { name: "Facebook", icon: "📘", url: "#" },
+    { name: "Instagram", icon: "📷", url: "#" },
+    { name: "YouTube", icon: "📺", url: "#" },
+    { name: "WhatsApp", icon: "💬", url: "#" }
+  ]
+};
+---
+
+<footer class="school-footer">
+  <div class="footer-content">
+    <div class="container mx-auto px-4 py-16">
+      <div class="footer-grid">
+        <!-- School Info -->
+        <div class="footer-section">
+          <div class="footer-logo">
+            <div class="logo-icon">🎓</div>
+            <h3 class="school-name">{footerData.schoolInfo.name}</h3>
+          </div>
+          <p class="school-description">{footerData.schoolInfo.description}</p>
+          <div class="contact-info">
+            <div class="contact-item">
+              <span class="contact-icon">📍</span>
+              <span class="contact-text">{footerData.schoolInfo.address}</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">📞</span>
+              <span class="contact-text">{footerData.schoolInfo.phone}</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">📧</span>
+              <span class="contact-text">{footerData.schoolInfo.email}</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Quick Links -->
+        <div class="footer-section">
+          <h4 class="footer-title">Tautan Cepat</h4>
+          <ul class="footer-links">
+            {footerData.quickLinks.map((link) => (
+              <li class="footer-link-item">
+                <a href={link.url} class="footer-link">{link.name}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        <!-- Programs -->
+        <div class="footer-section">
+          <h4 class="footer-title">Program Unggulan</h4>
+          <ul class="footer-links">
+            {footerData.programs.map((program) => (
+              <li class="footer-link-item">
+                <a href={program.url} class="footer-link">{program.name}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        <!-- Social Media & Newsletter -->
+        <div class="footer-section">
+          <h4 class="footer-title">Ikuti Kami</h4>
+          <div class="social-links">
+            {footerData.socialMedia.map((social) => (
+              <a href={social.url} class="social-link" title={social.name}>
+                <span class="social-icon">{social.icon}</span>
+              </a>
+            ))}
+          </div>
+          
+          <div class="newsletter-section">
+            <h5 class="newsletter-title">Newsletter</h5>
+            <p class="newsletter-description">Dapatkan informasi terbaru tentang kegiatan sekolah.</p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Email Anda" required>
+              <button type="submit" class="newsletter-btn">
+                <span>📧</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <div class="container mx-auto px-4 py-6">
+      <div class="footer-bottom-content">
+        <div class="copyright">
+          <p>&copy; 2024 {footerData.schoolInfo.name}. Semua hak dilindungi.</p>
+        </div>
+        <div class="footer-bottom-links">
+          <a href="#privacy" class="footer-bottom-link">Kebijakan Privasi</a>
+          <a href="#terms" class="footer-bottom-link">Syarat & Ketentuan</a>
+          <a href="#sitemap" class="footer-bottom-link">Peta Situs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop">
+    <span>⬆️</span>
+  </button>
+</footer>
+
+<script>
+  // Back to top functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    // Show/hide back to top button
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    
+    // Scroll to top when clicked
+    backToTopBtn?.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  });
+</script>
+
+<style>
+  .school-footer {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .school-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footer-pattern" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="10" cy="10" r="0.5" fill="%23ffffff" opacity="0.05"/><circle cx="30" cy="30" r="0.5" fill="%23ffffff" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23footer-pattern)"/></svg>');
+    pointer-events: none;
+  }
+  
+  .footer-content {
+    position: relative;
+  }
+  
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 3rem;
+  }
+  
+  /* Footer Section */
+  .footer-section {
+    position: relative;
+  }
+  
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .logo-icon {
+    font-size: 2.5rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #3B82F6, #F59E0B);
+    border-radius: 50%;
+    color: white;
+  }
+  
+  .school-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+  }
+  
+  .school-description {
+    color: #cbd5e1;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .contact-icon {
+    font-size: 1.2rem;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(59, 130, 246, 0.2);
+    border-radius: 50%;
+  }
+  
+  .contact-text {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+  }
+  
+  /* Footer Titles */
+  .footer-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: white;
+  }
+  
+  /* Footer Links */
+  .footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .footer-link {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+  }
+  
+  .footer-link:hover {
+    color: #3B82F6;
+    transform: translateX(5px);
+  }
+  
+  .footer-link::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(45deg, #3B82F6, #F59E0B);
+    transition: width 0.3s ease;
+  }
+  
+  .footer-link:hover::before {
+    width: 100%;
+  }
+  
+  /* Social Links */
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(59, 130, 246, 0.2);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .social-link:hover {
+    background: linear-gradient(135deg, #3B82F6, #F59E0B);
+    transform: translateY(-3px);
+  }
+  
+  .social-icon {
+    font-size: 1.5rem;
+  }
+  
+  /* Newsletter */
+  .newsletter-section {
+    margin-top: 2rem;
+  }
+  
+  .newsletter-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: white;
+  }
+  
+  .newsletter-description {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .newsletter-form input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 0.9rem;
+  }
+  
+  .newsletter-form input::placeholder {
+    color: #cbd5e1;
+  }
+  
+  .newsletter-form input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .newsletter-btn {
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3B82F6, #F59E0B);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .newsletter-btn:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Footer Bottom */
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+  }
+  
+  .footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .copyright {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+  }
+  
+  .footer-bottom-links {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .footer-bottom-link {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-bottom-link:hover {
+    color: #3B82F6;
+  }
+  
+  /* Back to Top Button */
+  .back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3B82F6, #F59E0B);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    z-index: 1000;
+  }
+  
+  .back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .back-to-top:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+  }
+  
+  @media (max-width: 1024px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .footer-bottom-content {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+    
+    .footer-bottom-links {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .newsletter-form {
+      flex-direction: column;
+    }
+    
+    .newsletter-btn {
+      align-self: center;
+    }
+    
+    .back-to-top {
+      bottom: 1rem;
+      right: 1rem;
+      width: 45px;
+      height: 45px;
+    }
+  }
+</style>

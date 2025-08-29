@@ -1,0 +1,615 @@
+---
+const contactData = {
+  title: "Hubungi Kami",
+  subtitle: "Mari Berdiskusi Tentang Masa Depan Anak Anda",
+  description: "Kami siap membantu Anda mendapatkan informasi lengkap tentang SD Muhammadiyah 20 Surabaya dan proses pendaftaran siswa baru.",
+  contactInfo: [
+    {
+      icon: "📍",
+      title: "Alamat",
+      content: "Jl. Ahmad Yani No. 123, Surabaya, Jawa Timur 60231"
+    },
+    {
+      icon: "📞",
+      title: "Telepon",
+      content: "+62 31 1234 5678"
+    },
+    {
+      icon: "📧",
+      title: "Email",
+      content: "info@sdmuhamadiyah20.sch.id"
+    },
+    {
+      icon: "⏰",
+      title: "Jam Operasional",
+      content: "Senin - Jumat: 07:00 - 16:00"
+    }
+  ]
+};
+---
+
+<section id="contact" class="contact-section">
+  <div class="container mx-auto px-4 py-16">
+    <div class="section-header text-center mb-16" data-aos="fade-up">
+      <h2 class="section-title">{contactData.title}</h2>
+      <h3 class="section-subtitle">{contactData.subtitle}</h3>
+      <p class="section-description">{contactData.description}</p>
+    </div>
+    
+    <div class="contact-container">
+      <!-- Contact Form -->
+      <div class="contact-form-container" data-aos="fade-right">
+        <div class="form-header">
+          <h3 class="form-title">Formulir Pendaftaran</h3>
+          <p class="form-subtitle">Isi formulir di bawah ini untuk mendaftarkan anak Anda</p>
+        </div>
+        
+        <form class="contact-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="parentName">Nama Orang Tua *</label>
+              <input type="text" id="parentName" name="parentName" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Nomor Telepon *</label>
+              <input type="tel" id="phone" name="phone" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email">
+            </div>
+            <div class="form-group">
+              <label for="childName">Nama Anak *</label>
+              <input type="text" id="childName" name="childName" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="childAge">Usia Anak *</label>
+              <input type="number" id="childAge" name="childAge" min="5" max="12" required>
+            </div>
+            <div class="form-group">
+              <label for="grade">Kelas yang Diinginkan *</label>
+              <select id="grade" name="grade" required>
+                <option value="">Pilih Kelas</option>
+                <option value="1">Kelas 1</option>
+                <option value="2">Kelas 2</option>
+                <option value="3">Kelas 3</option>
+                <option value="4">Kelas 4</option>
+                <option value="5">Kelas 5</option>
+                <option value="6">Kelas 6</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="extracurricular">Ekstrakurikuler yang Diminati</label>
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" name="extracurricular" value="seni">
+                <span class="checkmark">🎨 Seni & Kreativitas</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="extracurricular" value="olahraga">
+                <span class="checkmark">⚽ Olahraga</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="extracurricular" value="akademik">
+                <span class="checkmark">💻 Akademik & Teknologi</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="extracurricular" value="keagamaan">
+                <span class="checkmark">🕌 Keagamaan</span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Pesan Tambahan</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tulis pesan atau pertanyaan Anda di sini..."></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label class="checkbox-item">
+              <input type="checkbox" name="agreement" required>
+              <span class="checkmark">Saya setuju dengan syarat dan ketentuan yang berlaku *</span>
+            </label>
+          </div>
+          
+          <button type="submit" class="submit-btn">
+            <span class="btn-icon">📝</span>
+            Kirim Formulir
+          </button>
+        </form>
+      </div>
+      
+      <!-- Contact Info -->
+      <div class="contact-info-container" data-aos="fade-left">
+        <div class="contact-info">
+          <h3 class="info-title">Informasi Kontak</h3>
+          <p class="info-subtitle">Hubungi kami melalui berbagai saluran berikut</p>
+          
+          <div class="info-items">
+            {contactData.contactInfo.map((info, index) => (
+              <div class="info-item" data-aos="fade-up" data-aos-delay={index * 100}>
+                <div class="info-icon">{info.icon}</div>
+                <div class="info-content">
+                  <h4 class="info-name">{info.title}</h4>
+                  <p class="info-text">{info.content}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div class="social-links">
+            <h4 class="social-title">Ikuti Kami</h4>
+            <div class="social-buttons">
+              <a href="#" class="social-btn facebook">
+                <span>📘</span>
+                Facebook
+              </a>
+              <a href="#" class="social-btn instagram">
+                <span>📷</span>
+                Instagram
+              </a>
+              <a href="#" class="social-btn youtube">
+                <span>📺</span>
+                YouTube
+              </a>
+              <a href="#" class="social-btn whatsapp">
+                <span>💬</span>
+                WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Form submission handling
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
+    
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form data
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      
+      // Show success message
+      showNotification('Formulir berhasil dikirim! Kami akan menghubungi Anda segera.', 'success');
+      
+      // Reset form
+      form.reset();
+    });
+  });
+  
+  function showNotification(message, type) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
+      <div class="notification-content">
+        <span class="notification-icon">${type === 'success' ? '✅' : '❌'}</span>
+        <span class="notification-message">${message}</span>
+      </div>
+    `;
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Show notification
+    setTimeout(() => {
+      notification.classList.add('show');
+    }, 100);
+    
+    // Remove notification after 5 seconds
+    setTimeout(() => {
+      notification.classList.remove('show');
+      setTimeout(() => {
+        document.body.removeChild(notification);
+      }, 300);
+    }, 5000);
+  }
+</script>
+
+<style>
+  .contact-section {
+    background: linear-gradient(135deg, #f0f8ff 0%, #fff8dc 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="waves" width="100" height="20" patternUnits="userSpaceOnUse"><path d="M0,10 Q25,0 50,10 T100,10" fill="none" stroke="%23e2e8f0" stroke-width="1" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23waves)"/></svg>');
+    pointer-events: none;
+  }
+  
+  .section-title {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, #3B82F6, #F59E0B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1.5rem;
+    color: #64748b;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  
+  .section-description {
+    font-size: 1.1rem;
+    color: #64748b;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+  
+  /* Contact Container */
+  .contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Contact Form */
+  .contact-form-container {
+    background: white;
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .form-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-subtitle {
+    color: #64748b;
+    font-size: 1rem;
+  }
+  
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  .checkbox-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .checkbox-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #3B82F6;
+  }
+  
+  .checkmark {
+    font-size: 0.9rem;
+    color: #64748b;
+  }
+  
+  .submit-btn {
+    background: linear-gradient(45deg, #3B82F6, #1D4ED8);
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+  }
+  
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6);
+  }
+  
+  .btn-icon {
+    font-size: 1.2rem;
+  }
+  
+  /* Contact Info */
+  .contact-info-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .contact-info {
+    background: white;
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+  
+  .info-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  
+  .info-subtitle {
+    color: #64748b;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .info-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+  }
+  
+  .info-item:hover {
+    background: linear-gradient(135deg, #3B82F6, #F59E0B);
+    color: white;
+    transform: translateX(10px);
+  }
+  
+  .info-icon {
+    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #3B82F6, #F59E0B);
+    border-radius: 50%;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .info-item:hover .info-icon {
+    background: white;
+    color: #3B82F6;
+  }
+  
+  .info-content {
+    flex: 1;
+  }
+  
+  .info-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  
+  .info-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
+  /* Social Links */
+  .social-links {
+    text-align: center;
+  }
+  
+  .social-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 1rem;
+  }
+  
+  .social-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  .social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .social-btn.facebook {
+    background: #1877f2;
+    color: white;
+  }
+  
+  .social-btn.instagram {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+  }
+  
+  .social-btn.youtube {
+    background: #ff0000;
+    color: white;
+  }
+  
+  .social-btn.whatsapp {
+    background: #25d366;
+    color: white;
+  }
+  
+  .social-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Notification */
+  .notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .notification.show {
+    transform: translateX(0);
+  }
+  
+  .notification.success {
+    border-left: 4px solid #10b981;
+  }
+  
+  .notification.error {
+    border-left: 4px solid #ef4444;
+  }
+  
+  .notification-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .notification-icon {
+    font-size: 1.2rem;
+  }
+  
+  .notification-message {
+    font-weight: 500;
+  }
+  
+  @media (max-width: 1024px) {
+    .contact-container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .section-title {
+      font-size: 2.5rem;
+    }
+    
+    .section-subtitle {
+      font-size: 1.3rem;
+    }
+    
+    .contact-form-container,
+    .contact-info {
+      padding: 2rem;
+    }
+    
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+    
+    .checkbox-group {
+      grid-template-columns: 1fr;
+    }
+    
+    .social-buttons {
+      grid-template-columns: 1fr;
+    }
+    
+    .info-item {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .info-icon {
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+    }
+  }
+</style>
