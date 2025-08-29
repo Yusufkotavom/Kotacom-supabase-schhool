@@ -1,0 +1,276 @@
+---
+export interface LottieAnimationProps {
+  src: string;
+  alt?: string;
+  className?: string;
+  autoplay?: boolean;
+  loop?: boolean;
+  speed?: number;
+  width?: string | number;
+  height?: string | number;
+  hover?: boolean;
+  click?: boolean;
+}
+
+const { 
+  src, 
+  alt = "Animation", 
+  className = "", 
+  autoplay = true, 
+  loop = true, 
+  speed = 1, 
+  width = "100%", 
+  height = "100%",
+  hover = false,
+  click = false
+} = Astro.props as LottieAnimationProps;
+
+const animationId = `lottie-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div 
+  id={animationId}
+  class={`lottie-container ${className}`}
+  data-src={src}
+  data-autoplay={autoplay}
+  data-loop={loop}
+  data-speed={speed}
+  data-hover={hover}
+  data-click={click}
+  style={`width: ${width}; height: ${height};`}
+  role="img"
+  aria-label={alt}
+>
+  <!-- Fallback content -->
+  <div class="lottie-fallback flex items-center justify-center w-full h-full bg-gray-100 dark:bg-gray-800 rounded-lg">
+    <div class="text-center">
+      <div class="text-2xl mb-2">🎬</div>
+      <div class="text-sm text-gray-500 dark:text-gray-400">Loading animation...</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Lottie animation loader
+  class LottieManager {
+    private static instance: LottieManager;
+    private lottie: any;
+    private animations: Map<string, any> = new Map();
+    
+    private constructor() {
+      this.loadLottie();
+    }
+    
+    public static getInstance(): LottieManager {
+      if (!LottieManager.instance) {
+        LottieManager.instance = new LottieManager();
+      }
+      return LottieManager.instance;
+    }
+    
+    private async loadLottie() {
+      try {
+        // Try to load Lottie from CDN if not already loaded
+        if (typeof window !== 'undefined' && !window.lottie) {
+          const script = document.createElement('script');
+          script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js';
+          script.onload = () => {
+            this.lottie = window.lottie;
+            this.initializeAnimations();
+          };
+          document.head.appendChild(script);
+        } else if (window.lottie) {
+          this.lottie = window.lottie;
+          this.initializeAnimations();
+        }
+      } catch (error) {
+        console.warn('Lottie library could not be loaded:', error);
+      }
+    }
+    
+    private initializeAnimations() {
+      if (!this.lottie) return;
+      
+      document.querySelectorAll('.lottie-container').forEach(container => {
+        this.createAnimation(container as HTMLElement);
+      });
+    }
+    
+    private async createAnimation(container: HTMLElement) {
+      const src = container.getAttribute('data-src');
+      const autoplay = container.getAttribute('data-autoplay') === 'true';
+      const loop = container.getAttribute('data-loop') === 'true';
+      const speed = parseFloat(container.getAttribute('data-speed') || '1');
+      const hover = container.getAttribute('data-hover') === 'true';
+      const click = container.getAttribute('data-click') === 'true';
+      
+      if (!src) return;
+      
+      try {
+        // Fetch the animation data
+        const response = await fetch(src);
+        const animationData = await response.json();
+        
+        // Create the animation
+        const animation = this.lottie.loadAnimation({
+          container,
+          renderer: 'svg',
+          loop,
+          autoplay,
+          animationData,
+          rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice'
+          }
+        });
+        
+        // Set speed
+        animation.setSpeed(speed);
+        
+        // Store animation reference
+        const id = container.id;
+        this.animations.set(id, animation);
+        
+        // Remove fallback content
+        const fallback = container.querySelector('.lottie-fallback');
+        if (fallback) {
+          fallback.remove();
+        }
+        
+        // Add hover interactions
+        if (hover) {
+          container.addEventListener('mouseenter', () => {
+            animation.play();
+          });
+          
+          container.addEventListener('mouseleave', () => {
+            animation.pause();
+            animation.goToAndStop(0);
+          });
+        }
+        
+        // Add click interactions
+        if (click) {
+          container.addEventListener('click', () => {
+            if (animation.isPaused) {
+              animation.play();
+            } else {
+              animation.pause();
+            }
+          });
+        }
+        
+        // Add loading state management
+        animation.addEventListener('DOMLoaded', () => {
+          container.classList.add('lottie-loaded');
+        });
+        
+        animation.addEventListener('error', (error: any) => {
+          console.error('Lottie animation error:', error);
+          container.classList.add('lottie-error');
+        });
+        
+      } catch (error) {
+        console.error('Failed to load Lottie animation:', error);
+        container.classList.add('lottie-error');
+      }
+    }
+    
+    public getAnimation(id: string) {
+      return this.animations.get(id);
+    }
+    
+    public playAnimation(id: string) {
+      const animation = this.animations.get(id);
+      if (animation) {
+        animation.play();
+      }
+    }
+    
+    public pauseAnimation(id: string) {
+      const animation = this.animations.get(id);
+      if (animation) {
+        animation.pause();
+      }
+    }
+    
+    public stopAnimation(id: string) {
+      const animation = this.animations.get(id);
+      if (animation) {
+        animation.stop();
+      }
+    }
+  }
+  
+  // Initialize Lottie manager when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    LottieManager.getInstance();
+  });
+  
+  // Re-initialize animations for dynamically added content
+  if (typeof window !== 'undefined') {
+    window.addEventListener('lottie:reload', () => {
+      LottieManager.getInstance();
+    });
+  }
+</script>
+
+<style>
+  .lottie-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+  }
+  
+  .lottie-container svg {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .lottie-fallback {
+    min-height: 120px;
+  }
+  
+  .lottie-loaded {
+    opacity: 1;
+  }
+  
+  .lottie-error {
+    opacity: 0.5;
+  }
+  
+  .lottie-error .lottie-fallback {
+    background: #fef2f2;
+    color: #dc2626;
+  }
+  
+  .dark .lottie-error .lottie-fallback {
+    background: #450a0a;
+    color: #fca5a5;
+  }
+  
+  /* Loading animation for fallback */
+  .lottie-fallback {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  /* Hover effects */
+  .lottie-container[data-hover="true"]:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Click effects */
+  .lottie-container[data-click="true"]:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+</style>

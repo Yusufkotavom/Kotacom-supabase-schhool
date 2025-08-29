@@ -129,13 +129,13 @@ import { MEGA_MENU_CONFIG, SIMPLE_NAV_ITEMS, MOBILE_MENU_CONFIG } from "../data/
 <!-- Full Screen Mobile Menu -->
 <div
   id="fullscreen-mobile-menu"
-  class="fixed inset-0 z-50 bg-white dark:bg-gray-900 transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden"
+  class="fixed inset-0 z-50 bg-white dark:bg-gray-900 transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden overflow-hidden"
   role="dialog"
   aria-modal="true"
   aria-labelledby="mobile-menu-title"
 >
   <!-- Mobile Menu Header -->
-  <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+  <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
     <a href="/" class="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">
       <Image src={KotacomLogo} class="h-8 w-auto" alt="kotacom.id" />
     </a>
@@ -151,8 +151,8 @@ import { MEGA_MENU_CONFIG, SIMPLE_NAV_ITEMS, MOBILE_MENU_CONFIG } from "../data/
     </button>
   </div>
 
-  <!-- Mobile Menu Content -->
-  <div class="flex-1 overflow-y-auto">
+  <!-- Mobile Menu Content - Scrollable -->
+  <div class="flex-1 overflow-y-auto overscroll-contain">
     <nav class="p-4 space-y-2" role="navigation">
       <!-- Mobile: Unified Mega Menu Items -->
       <div class="space-y-2">
@@ -182,7 +182,7 @@ import { MEGA_MENU_CONFIG, SIMPLE_NAV_ITEMS, MOBILE_MENU_CONFIG } from "../data/
         </div>
         
         <!-- Mobile Menu Footer -->
-        <div class="pt-4 mt-4">
+        <div class="pt-4 mt-4 pb-8">
           <div class="text-center">
             <h4 class="text-sm font-medium text-gray-900 dark:text-white mb-2">
               {MOBILE_MENU_CONFIG.footer.title}
