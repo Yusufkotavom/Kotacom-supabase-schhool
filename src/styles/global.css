@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "flowbite/src/themes/default";
 @import "prismjs/themes/prism-tomorrow.css";
-@import "./transitions.css";
 
 @plugin "@tailwindcss/typography";
 @plugin "flowbite/plugin";

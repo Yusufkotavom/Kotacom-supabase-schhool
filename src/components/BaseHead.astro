@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/transitions.css';
 import { SITE_TITLE, SITE_DESCRIPTION, COMPANY_NAME, COMPANY_LOCATION, COMPANY_WHATSAPP } from '../consts';
 import { generateOgImageFromTitle } from '../utils/og';
 import CriticalResources from './CriticalResources.astro';
@@ -70,7 +71,7 @@ const GA_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID as string | undefined;
 <title>{pageTitle}</title>
 <meta name="title" content={pageTitle} />
 <meta name="description" content={pageDescription} />
-<meta name="theme-color" content="#3b82f6" />
+<meta name="theme-color" content="#ef4444" />
 {GSC_TOKEN && (<meta name="google-site-verification" content={GSC_TOKEN} />)}
 
 <!-- Open Graph / Facebook -->
