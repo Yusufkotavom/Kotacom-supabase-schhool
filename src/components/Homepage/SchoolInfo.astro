@@ -1,0 +1,211 @@
+---
+interface Props {
+  className?: string;
+}
+
+const { className = '' } = Astro.props;
+
+// School information data
+const schoolInfo = [
+  {
+    icon: "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5",
+    title: "Academic Excellence",
+    description: "Consistently achieving high academic standards with personalized learning approaches and experienced educators.",
+    color: "from-blue-500 to-blue-600",
+    bgColor: "from-blue-50 to-blue-100",
+    darkBgColor: "from-blue-900/20 to-blue-800/20"
+  },
+  {
+    icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z",
+    title: "Innovation & Technology",
+    description: "Cutting-edge technology integration with computer labs, robotics programs, and digital learning tools.",
+    color: "from-red-500 to-red-600",
+    bgColor: "from-red-50 to-red-100",
+    darkBgColor: "from-red-900/20 to-red-800/20"
+  },
+  {
+    icon: "M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01",
+    title: "Creative Arts",
+    description: "Comprehensive arts program including visual arts, music, drama, and digital media to foster creativity.",
+    color: "from-yellow-500 to-orange-500",
+    bgColor: "from-yellow-50 to-orange-100",
+    darkBgColor: "from-yellow-900/20 to-orange-800/20"
+  },
+  {
+    icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
+    title: "Community & Leadership",
+    description: "Building strong community bonds through leadership programs, teamwork activities, and social responsibility.",
+    color: "from-green-500 to-emerald-600",
+    bgColor: "from-green-50 to-emerald-100",
+    darkBgColor: "from-green-900/20 to-emerald-800/20"
+  }
+];
+
+const stats = [
+  { number: "500+", label: "Students" },
+  { number: "50+", label: "Expert Teachers" },
+  { number: "25+", label: "Years Experience" },
+  { number: "95%", label: "Success Rate" }
+];
+---
+
+<section class={`py-16 px-4 ${className}`}>
+  <div class="max-w-7xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-16" data-reveal="fade-up">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+        <span class="bg-gradient-to-r from-blue-600 via-red-600 to-yellow-600 bg-clip-text text-transparent">
+          Why Choose Our School?
+        </span>
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Discover what makes our school the perfect place for your child's education and growth
+      </p>
+    </div>
+    
+    <!-- School Features Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+      {schoolInfo.map((info, index) => (
+        <div 
+          class="text-center group"
+          data-reveal="fade-up"
+          data-reveal-delay={index * 200}
+        >
+          <div class={`w-20 h-20 mx-auto mb-6 bg-gradient-to-br ${info.bgColor} dark:${info.darkBgColor} rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+            <svg 
+              class={`w-10 h-10 bg-gradient-to-r ${info.color} bg-clip-text text-transparent`}
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={info.icon}></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">
+            {info.title}
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+            {info.description}
+          </p>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Statistics Section -->
+    <div class="bg-gradient-to-r from-blue-50 via-white to-yellow-50 dark:from-blue-900/20 dark:via-gray-900 dark:to-yellow-900/20 rounded-2xl p-8 md:p-12 mb-16" data-reveal="fade-up">
+      <div class="text-center mb-12">
+        <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          <span class="bg-gradient-to-r from-blue-600 via-red-600 to-yellow-600 bg-clip-text text-transparent">
+            School Statistics
+          </span>
+        </h3>
+        <p class="text-lg text-gray-600 dark:text-gray-300">
+          Numbers that speak for our commitment to excellence
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {stats.map((stat, index) => (
+          <div 
+            class="text-center"
+            data-reveal="fade-up"
+            data-reveal-delay={index * 150}
+          >
+            <div class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-red-600 to-yellow-600 bg-clip-text text-transparent mb-2">
+              {stat.number}
+            </div>
+            <div class="text-lg font-semibold text-gray-700 dark:text-gray-300">
+              {stat.label}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <!-- Call to Action -->
+    <div class="text-center" data-reveal="fade-up">
+      <div class="bg-gradient-to-r from-blue-600 via-red-600 to-yellow-600 rounded-2xl p-8 md:p-12 text-white">
+        <h3 class="text-3xl font-bold mb-4">
+          Ready to Join Our School Family?
+        </h3>
+        <p class="text-xl mb-8 opacity-90">
+          Take the first step towards an exceptional educational experience
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="bg-white text-blue-600 px-8 py-3 rounded-lg text-lg font-bold hover:scale-105 transition-all duration-200 shadow-lg">
+            Schedule a Visit
+          </a>
+          <a href="https://wa.me/085799520350" class="bg-white/20 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-3 rounded-lg text-lg font-bold hover:bg-white/30 transition-all duration-200 shadow-lg">
+            Get More Info
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Scroll reveal functionality
+  class ScrollReveal {
+    constructor() {
+      this.elements = document.querySelectorAll('[data-reveal]');
+      this.init();
+    }
+    
+    init() {
+      this.createObserver();
+      this.handleScroll();
+    }
+    
+    createObserver() {
+      const options = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            this.revealElement(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, options);
+      
+      this.elements.forEach(el => observer.observe(el));
+    }
+    
+    revealElement(element) {
+      const delay = element.getAttribute('data-reveal-delay') || 0;
+      
+      setTimeout(() => {
+        element.style.opacity = '1';
+        element.style.transform = 'translateY(0)';
+        element.classList.add('revealed');
+      }, parseInt(delay));
+    }
+    
+    handleScroll() {
+      // Add initial styles
+      this.elements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+      });
+    }
+  }
+  
+  // Initialize scroll reveal when page loads
+  document.addEventListener('astro:page-load', () => {
+    new ScrollReveal();
+  });
+  
+  // Also initialize on first load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new ScrollReveal();
+    });
+  } else {
+    new ScrollReveal();
+  }
+</script>

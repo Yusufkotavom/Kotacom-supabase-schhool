@@ -1,0 +1,124 @@
+---
+interface Props {
+  className?: string;
+}
+
+const { className = '' } = Astro.props;
+---
+
+<div id="page-transition" class={`fixed inset-0 z-50 pointer-events-none ${className}`}>
+  <!-- Transition overlay -->
+  <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-red-600 to-yellow-600 opacity-0 transition-opacity duration-500" id="transition-overlay"></div>
+  
+  <!-- Loading animation -->
+  <div class="absolute inset-0 flex items-center justify-center opacity-0" id="loading-animation">
+    <div class="relative">
+      <!-- School icon -->
+      <svg class="w-16 h-16 text-white animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+      </svg>
+      
+      <!-- Decorative elements -->
+      <div class="absolute -top-2 -right-2 w-4 h-4 bg-yellow-400 rounded-full animate-ping"></div>
+      <div class="absolute -bottom-2 -left-2 w-3 h-3 bg-red-400 rounded-full animate-pulse"></div>
+      <div class="absolute top-1/2 -right-2 w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Page transition functionality
+  class PageTransition {
+    constructor() {
+      this.overlay = document.getElementById('transition-overlay');
+      this.loading = document.getElementById('loading-animation');
+      this.transition = document.getElementById('page-transition');
+      this.isTransitioning = false;
+      
+      this.init();
+    }
+    
+    init() {
+      // Show transition on page load
+      this.showTransition();
+      
+      // Listen for navigation events
+      document.addEventListener('astro:page-load', () => {
+        this.hideTransition();
+      });
+      
+      // Listen for before navigation
+      document.addEventListener('astro:before-preparation', () => {
+        this.showTransition();
+      });
+    }
+    
+    showTransition() {
+      if (this.isTransitioning) return;
+      this.isTransitioning = true;
+      
+      this.transition.classList.remove('pointer-events-none');
+      this.overlay.classList.remove('opacity-0');
+      this.loading.classList.remove('opacity-0');
+      
+      // Add entrance animation
+      setTimeout(() => {
+        this.overlay.classList.add('opacity-100');
+        this.loading.classList.add('opacity-100');
+      }, 100);
+    }
+    
+    hideTransition() {
+      this.overlay.classList.remove('opacity-100');
+      this.loading.classList.remove('opacity-100');
+      
+      setTimeout(() => {
+        this.overlay.classList.add('opacity-0');
+        this.loading.classList.add('opacity-0');
+        
+        setTimeout(() => {
+          this.transition.classList.add('pointer-events-none');
+          this.isTransitioning = false;
+        }, 500);
+      }, 300);
+    }
+  }
+  
+  // Initialize page transition
+  new PageTransition();
+</script>
+
+<style>
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .animate-bounce {
+    animation: bounce 2s infinite;
+  }
+  
+  .animate-ping {
+    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+  
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes ping {
+    75%, 100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: .5;
+    }
+  }
+</style>

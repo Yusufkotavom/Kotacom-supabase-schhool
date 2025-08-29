@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SubscribeDrawer from "../components/Popups/SubscribeDrawer.astro";
 import ContactButtons from "../components/ContactButtons.astro";
+import PageTransition from "../components/PageTransition.astro";
 import { getCollection } from 'astro:content';
 import SpeedInsights from "@vercel/speed-insights/astro";
 import Analytics from "@vercel/analytics/astro";
@@ -70,6 +71,9 @@ const isProduction = import.meta.env.PROD;
     <slot name="head" />
   </head>
   <body>
+    <!-- Page Transition -->
+    <PageTransition />
+    
     <Header />
     <slot />
     <Footer />
