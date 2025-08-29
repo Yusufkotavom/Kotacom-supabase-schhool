@@ -1,0 +1,338 @@
+---
+import SchoolLayout from "../../layouts/SchoolLayout.astro";
+
+const title = "Kontak Kami - SD Muhammadiyah 20 Surabaya";
+const description = "Hubungi SD Muhammadiyah 20 Surabaya untuk informasi pendaftaran, konsultasi, atau pertanyaan lainnya. Kami siap membantu Anda.";
+---
+
+<SchoolLayout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="pt-24 pb-16 px-4 bg-gradient-to-br from-blue-50 to-yellow-50 dark:from-blue-900/20 dark:to-yellow-900/20">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-6">
+        <span class="gradient-text">Kontak Kami</span>
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        Hubungi kami untuk informasi pendaftaran, konsultasi, atau pertanyaan lainnya. Tim kami siap membantu Anda.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Form & Info Section -->
+  <section class="py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        <!-- Contact Form -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200/50 dark:border-gray-700/50">
+          <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+            Kirim Pesan
+          </h2>
+          
+          <form class="space-y-6" id="contact-form">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label for="firstName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Nama Depan *
+                </label>
+                <input 
+                  type="text" 
+                  id="firstName" 
+                  name="firstName" 
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors duration-200"
+                  placeholder="Masukkan nama depan"
+                />
+              </div>
+              
+              <div>
+                <label for="lastName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Nama Belakang
+                </label>
+                <input 
+                  type="text" 
+                  id="lastName" 
+                  name="lastName"
+                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors duration-200"
+                  placeholder="Masukkan nama belakang"
+                />
+              </div>
+            </div>
+            
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Email *
+              </label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors duration-200"
+                placeholder="contoh@email.com"
+              />
+            </div>
+            
+            <div>
+              <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Nomor Telepon *
+              </label>
+              <input 
+                type="tel" 
+                id="phone" 
+                name="phone" 
+                required
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors duration-200"
+                placeholder="0812-3456-7890"
+              />
+            </div>
+            
+            <div>
+              <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Subjek *
+              </label>
+              <select 
+                id="subject" 
+                name="subject" 
+                required
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors duration-200"
+              >
+                <option value="">Pilih subjek</option>
+                <option value="pendaftaran">Pendaftaran Siswa Baru</option>
+                <option value="konsultasi">Konsultasi Pendidikan</option>
+                <option value="fasilitas">Informasi Fasilitas</option>
+                <option value="program">Program Unggulan</option>
+                <option value="lainnya">Lainnya</option>
+              </select>
+            </div>
+            
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Pesan *
+              </label>
+              <textarea 
+                id="message" 
+                name="message" 
+                rows="5" 
+                required
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors duration-200 resize-none"
+                placeholder="Tulis pesan Anda di sini..."
+              ></textarea>
+            </div>
+            
+            <button 
+              type="submit"
+              class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4 px-6 rounded-lg font-bold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:scale-105 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+            >
+              Kirim Pesan
+            </button>
+          </form>
+        </div>
+        
+        <!-- Contact Information -->
+        <div class="space-y-8">
+          <!-- School Info Card -->
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200/50 dark:border-gray-700/50">
+            <div class="flex items-center space-x-4 mb-6">
+              <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg">
+                <span class="text-white text-2xl font-bold">M</span>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">SD Muhammadiyah 20</h3>
+                <p class="text-gray-600 dark:text-gray-400">Surabaya</p>
+              </div>
+            </div>
+            
+            <p class="text-gray-600 dark:text-gray-300 mb-6">
+              Sekolah unggulan dengan pendidikan berkualitas yang mengintegrasikan nilai-nilai Islam, kurikulum nasional, dan teknologi modern.
+            </p>
+            
+            <div class="space-y-4">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
+                  <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-gray-900 dark:text-white">Akreditasi A</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">Badan Akreditasi Nasional</p>
+                </div>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                  <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-gray-900 dark:text-white">25+ Tahun</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">Pengalaman Mengajar</p>
+                </div>
+              </div>
+              
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center">
+                  <svg class="w-5 h-5 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-gray-900 dark:text-white">500+ Siswa</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">Aktif Belajar</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Contact Details -->
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200/50 dark:border-gray-700/50">
+            <h3 class="text-xl font-bold mb-6 text-gray-900 dark:text-white">Informasi Kontak</h3>
+            
+            <div class="space-y-4">
+              <div class="flex items-start space-x-3">
+                <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-gray-900 dark:text-white">Alamat</p>
+                  <p class="text-gray-600 dark:text-gray-400">Jl. Contoh No. 123, Surabaya, Jawa Timur, Indonesia</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-3">
+                <div class="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-gray-900 dark:text-white">WhatsApp</p>
+                  <a href="https://wa.me/085799520350" class="text-blue-600 dark:text-blue-400 hover:underline">+62 857-9952-0350</a>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-3">
+                <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-gray-900 dark:text-white">Telepon</p>
+                  <p class="text-gray-600 dark:text-gray-400">(031) 123-4567</p>
+                  <p class="text-gray-600 dark:text-gray-400">(031) 123-4568</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-3">
+                <div class="w-10 h-10 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-gray-900 dark:text-white">Email</p>
+                  <a href="mailto:info@muhammadiyah20.sch.id" class="text-blue-600 dark:text-blue-400 hover:underline">info@muhammadiyah20.sch.id</a>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-3">
+                <div class="w-10 h-10 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-gray-900 dark:text-white">Jam Operasional</p>
+                  <p class="text-gray-600 dark:text-gray-400">Senin - Jumat: 07:00 - 15:00</p>
+                  <p class="text-gray-600 dark:text-gray-400">Sabtu: 07:00 - 12:00</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="py-16 px-4 bg-gray-100 dark:bg-gray-800">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
+          Lokasi Kami
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300">
+          Kunjungi sekolah kami untuk melihat langsung fasilitas dan suasana belajar
+        </p>
+      </div>
+      
+      <div class="bg-white dark:bg-gray-700 rounded-2xl p-8 shadow-xl border border-gray-200/50 dark:border-gray-600/50">
+        <div class="aspect-video bg-gray-200 dark:bg-gray-600 rounded-lg flex items-center justify-center">
+          <div class="text-center">
+            <svg class="w-16 h-16 text-gray-400 dark:text-gray-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <p class="text-gray-500 dark:text-gray-400">Peta lokasi akan ditampilkan di sini</p>
+            <p class="text-sm text-gray-400 dark:text-gray-500 mt-2">Jl. Contoh No. 123, Surabaya, Jawa Timur</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+        Siap Bergabung dengan Kami?
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+        Daftarkan anak Anda sekarang dan berikan pendidikan terbaik untuk masa depan yang cemerlang
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="https://wa.me/085799520350" class="bg-green-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-green-700 transition-all duration-300 shadow-lg hover:scale-105">
+          WhatsApp Konsultasi
+        </a>
+        <a href="/school" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-blue-700 transition-all duration-300 shadow-lg hover:scale-105">
+          Kembali ke Beranda
+        </a>
+      </div>
+    </div>
+  </section>
+</SchoolLayout>
+
+<script>
+  // Contact form handling
+  document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
+    
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData);
+        
+        // Simple validation
+        if (!data.firstName || !data.email || !data.phone || !data.subject || !data.message) {
+          alert('Mohon lengkapi semua field yang wajib diisi');
+          return;
+        }
+        
+        // Here you would typically send the data to your backend
+        // For now, we'll just show a success message
+        alert('Terima kasih! Pesan Anda telah berhasil dikirim. Kami akan segera menghubungi Anda.');
+        
+        // Reset form
+        this.reset();
+      });
+    }
+  });
+</script>

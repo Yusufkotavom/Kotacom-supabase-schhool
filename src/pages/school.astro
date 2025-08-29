@@ -1,5 +1,5 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
+import SchoolLayout from "../layouts/SchoolLayout.astro";
 import SchoolHero from "../components/Homepage/SchoolHero.astro";
 import WhyChooseUs from "../components/Homepage/WhyChooseUs.astro";
 import SwipeGallery from "../components/Homepage/SwipeGallery.astro";
@@ -7,13 +7,12 @@ import ServicesHighlight from "../components/Homepage/ServicesHighlight.astro";
 import SchoolInfo from "../components/Homepage/SchoolInfo.astro";
 import SchoolFAQ from "../components/Homepage/SchoolFAQ.astro";
 import ClientTestimonials from "../components/Homepage/ClientTestimonials.astro";
-import ScrollReveal from "../components/ScrollReveal.astro";
 
 const title = "SD Muhammadiyah 20 Surabaya - Sekolah Unggulan dengan Pendidikan Berkualitas";
 const description = "SD Muhammadiyah 20 Surabaya menawarkan pendidikan berkualitas yang mengintegrasikan nilai-nilai Islam, kurikulum nasional, dan teknologi modern. Daftar sekarang untuk masa depan cemerlang anak Anda.";
 ---
 
-<MainLayout title={title} description={description} type="page" section="school">
+<SchoolLayout title={title} description={description}>
   <!-- School Hero Section -->
   <SchoolHero />
   
@@ -34,7 +33,4 @@ const description = "SD Muhammadiyah 20 Surabaya menawarkan pendidikan berkualit
   
   <!-- Testimonials -->
   <ClientTestimonials />
-  
-  <!-- Scroll Reveal Script -->
-  <ScrollReveal />
-</MainLayout>
+</SchoolLayout>
