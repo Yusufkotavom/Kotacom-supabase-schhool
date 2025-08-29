@@ -29,28 +29,36 @@
     --color-primary-800: #1e40af;
     --color-primary-900: #1e3a8a;
 
-    /* School Theme Specific Colors */
+    /* School Theme Specific Colors - Seamless & Soft */
     --color-school-blue: #3b82f6;
     --color-school-blue-light: #60a5fa;
     --color-school-blue-dark: #1d4ed8;
+    --color-school-blue-soft: #dbeafe;
+    --color-school-blue-soft-dark: #1e3a8a;
     
     --color-school-red: #ef4444;
     --color-school-red-light: #f87171;
     --color-school-red-dark: #dc2626;
+    --color-school-red-soft: #fee2e2;
+    --color-school-red-soft-dark: #7f1d1d;
     
     --color-school-yellow: #fbbf24;
     --color-school-yellow-light: #fcd34d;
     --color-school-yellow-dark: #f59e0b;
+    --color-school-yellow-soft: #fef3c7;
+    --color-school-yellow-soft-dark: #92400e;
     
     --color-school-orange: #f97316;
     --color-school-orange-light: #fb923c;
     --color-school-orange-dark: #ea580c;
-    
-    /* Card Background Gradients */
-    --color-card-gradient-start: #fef3c7;
-    --color-card-gradient-end: #fed7aa;
-    --color-card-gradient-dark-start: #92400e;
-    --color-card-gradient-dark-end: #78350f;
+    --color-school-orange-soft: #fed7aa;
+    --color-school-orange-soft-dark: #78350f;
+
+    /* Card Background Gradients - Seamless */
+    --color-card-gradient-start: #fefce8;
+    --color-card-gradient-end: #fef3c7;
+    --color-card-gradient-dark-start: #1f2937;
+    --color-card-gradient-dark-end: #374151;
 
     /* Legacy Colors (keeping for compatibility) */
     --color-gbgblue: #295483;
@@ -63,24 +71,94 @@
     --font-mono: 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace';
 }
 
-/* School Theme Card Styles */
+/* Universal Background with Creative Particles */
+.universal-bg {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 25%, #fefce8 50%, #fef3c7 75%, #fde68a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.dark .universal-bg {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
+}
+
+/* Creative Particle Shapes */
+.universal-bg::before,
+.universal-bg::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.universal-bg::before {
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(239, 68, 68, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 90% 90%, rgba(249, 115, 22, 0.1) 0%, transparent 50%);
+  animation: float 20s ease-in-out infinite;
+}
+
+.universal-bg::after {
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23fbbf24' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.05'%3E%3Cpolygon points='20,0 24,16 40,20 24,24 20,40 16,24 0,20 16,16'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ef4444' fill-opacity='0.05'%3E%3Cpath d='M40,0 L50,30 L80,40 L50,50 L40,80 L30,50 L0,40 L30,30 Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  animation: float-reverse 25s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-20px) rotate(120deg); }
+  66% { transform: translateY(10px) rotate(240deg); }
+}
+
+@keyframes float-reverse {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(20px) rotate(-120deg); }
+  66% { transform: translateY(-10px) rotate(-240deg); }
+}
+
+/* School Theme Card Styles - Seamless & No Borders */
 .school-card {
   background: linear-gradient(135deg, var(--color-card-gradient-start) 0%, var(--color-card-gradient-end) 100%);
-  border: 2px solid var(--color-school-blue);
-  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 
 .dark .school-card {
   background: linear-gradient(135deg, var(--color-card-gradient-dark-start) 0%, var(--color-card-gradient-dark-end) 100%);
-  border-color: var(--color-school-blue-light);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* School Theme Button Styles */
+.school-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.dark .school-card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* School Theme Button Styles - Seamless */
 .school-btn-primary {
   background: linear-gradient(135deg, var(--color-school-blue) 0%, var(--color-school-blue-dark) 100%);
   color: white;
   border: none;
   box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+  transition: all 0.3s ease;
+}
+
+.school-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
 }
 
 .school-btn-secondary {
@@ -88,6 +166,12 @@
   color: white;
   border: none;
   box-shadow: 0 4px 16px rgba(239, 68, 68, 0.3);
+  transition: all 0.3s ease;
+}
+
+.school-btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
 }
 
 .school-btn-accent {
@@ -95,6 +179,31 @@
   color: white;
   border: none;
   box-shadow: 0 4px 16px rgba(251, 191, 36, 0.3);
+  transition: all 0.3s ease;
+}
+
+.school-btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
+}
+
+/* Seamless Section Backgrounds */
+.section-bg-light {
+  background: linear-gradient(135deg, rgba(239, 246, 255, 0.8) 0%, rgba(254, 252, 232, 0.8) 100%);
+  backdrop-filter: blur(10px);
+}
+
+.section-bg-dark {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.9) 100%);
+  backdrop-filter: blur(10px);
+}
+
+.dark .section-bg-light {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.9) 100%);
+}
+
+.dark .section-bg-dark {
+  background: linear-gradient(135deg, rgba(239, 246, 255, 0.8) 0%, rgba(254, 252, 232, 0.8) 100%);
 }
 
 /* Hide scrollbar for all browsers */

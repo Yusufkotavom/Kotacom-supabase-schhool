@@ -32,7 +32,7 @@ const DEFAULT_IMAGE = 'https://res.cloudinary.com/dxyjku3eh/image/upload/v175482
 const imageUrl = p.svImageURL1 || DEFAULT_IMAGE;
 ---
 
-<article class="group relative school-card rounded-xl shadow-lg hover:shadow-xl dark:shadow-gray-900/50 transition-all duration-300 transform hover:-translate-y-2 border-2 border-blue-500 dark:border-blue-400 overflow-hidden">
+<article class="group relative school-card rounded-xl shadow-lg hover:shadow-xl dark:shadow-gray-900/50 transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
   <div class="relative">
     <a href={`/services/${p.svSlug}/`}>
       <ResponsiveImage
@@ -54,17 +54,17 @@ const imageUrl = p.svImageURL1 || DEFAULT_IMAGE;
 
     <!-- Price -->
     {formattedPrice && (
-      <p class="mb-3 text-lg font-bold text-green-600 dark:text-green-400 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 px-3 py-2 rounded-lg inline-block">
+      <p class="mb-3 text-lg font-bold text-green-600/80 dark:text-green-400/80 bg-gradient-to-r from-green-100/60 to-emerald-100/60 dark:from-green-900/20 dark:to-emerald-900/20 px-3 py-2 rounded-lg inline-block backdrop-blur-sm">
         {formattedPrice}
       </p>
     )}
 
     <!-- Description -->
     <p class="mb-4 text-sm text-gray-700 dark:text-gray-300">
-      {p.svProvider && (<span class="font-bold text-red-600 dark:text-red-400">{p.svProvider}</span>)}
-      {p.svType && (<span> adalah <span class="font-bold text-orange-600 dark:text-orange-400">{p.svType}</span></span>)}
+      {p.svProvider && (<span class="font-bold text-red-600/80 dark:text-red-400/80">{p.svProvider}</span>)}
+      {p.svType && (<span> adalah <span class="font-bold text-orange-600/80 dark:text-orange-400/80">{p.svType}</span></span>)}
       {p.svWilayah && (
-        <span> di <span class="font-bold text-blue-600 dark:text-blue-400">
+        <span> di <span class="font-bold text-blue-600/80 dark:text-blue-400/80">
           {Array.isArray(p.svWilayah) ? p.svWilayah.join(', ') : p.svWilayah}
         </span></span>
       )}

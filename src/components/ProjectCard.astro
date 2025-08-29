@@ -18,7 +18,7 @@ const props = isMdx
   : project.data.properties;
 ---
 
-<article class="group relative school-card rounded-xl shadow-lg hover:shadow-xl dark:shadow-gray-900/50 transition-all duration-300 transform hover:-translate-y-2 border-2 border-blue-500 dark:border-blue-400 overflow-hidden">
+<article class="group relative school-card rounded-xl shadow-lg hover:shadow-xl dark:shadow-gray-900/50 transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
     <div class="relative">
         <a href={`/projects/${props.pSlug}/`}>
           <ResponsiveImage
@@ -29,7 +29,7 @@ const props = isMdx
             fallbackWidth={600}
           />
           {props.pVerify && (
-            <div class="absolute top-2 left-2 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-md px-3 py-2 flex items-center gap-2 shadow-lg">
+            <div class="absolute top-2 left-2 bg-gradient-to-r from-yellow-400/90 to-orange-500/90 rounded-md px-3 py-2 flex items-center gap-2 shadow-lg backdrop-blur-sm">
               <svg
                 class="h-5 w-5 text-white"
                 aria-hidden="true"
@@ -59,7 +59,7 @@ const props = isMdx
             {props.pCountry.map((country: string) => (
               <a
                 href={`/projects/${country.toLowerCase().replace(/\s+/g, "-")}`}
-                class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105"
+                class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold bg-gradient-to-r from-blue-100/80 to-blue-200/80 dark:from-blue-900/50 dark:to-blue-800/50 text-blue-700 dark:text-blue-200 hover:from-blue-200/90 hover:to-blue-300/90 dark:hover:from-blue-800/60 dark:hover:to-blue-700/60 transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105 backdrop-blur-sm"
               >
                 {country}
               </a>
@@ -76,9 +76,9 @@ const props = isMdx
         
         <!-- Meta Info -->
         <p class="text-sm text-gray-700 dark:text-gray-300">
-          By <span class="font-bold text-red-600 dark:text-red-400">{props.pOrganiser}</span>
+          By <span class="font-bold text-red-600/80 dark:text-red-400/80">{props.pOrganiser}</span>
           {Array.isArray(props.pLocale) && props.pLocale.length > 0 && (
-            <span> in <span class="font-bold text-orange-600 dark:text-orange-400">
+            <span> in <span class="font-bold text-orange-600/80 dark:text-orange-400/80">
               {props.pLocale.join(', ')}
             </span></span>
           )}

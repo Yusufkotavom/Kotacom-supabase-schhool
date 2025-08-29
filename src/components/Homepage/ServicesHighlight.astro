@@ -2,8 +2,15 @@
 import { COMPANY_SERVICES } from "../../consts";
 ---
 
-<section class="bg-gradient-to-br from-blue-50 via-white to-yellow-50 dark:from-blue-900/20 dark:via-gray-900 dark:to-yellow-900/20">
-  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+<section class="section-bg-light dark:section-bg-dark py-16 lg:py-20 relative overflow-hidden">
+  <!-- Creative floating shapes -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-10 right-10 w-24 h-24 bg-gradient-to-br from-blue-200/20 to-blue-300/20 rounded-full blur-xl animate-pulse"></div>
+    <div class="absolute bottom-10 left-10 w-20 h-20 bg-gradient-to-br from-yellow-200/20 to-orange-300/20 rounded-full blur-xl animate-pulse" style="animation-delay: 1.5s;"></div>
+    <div class="absolute top-1/2 right-1/4 w-16 h-16 bg-gradient-to-br from-red-200/20 to-pink-300/20 rounded-full blur-xl animate-pulse" style="animation-delay: 3s;"></div>
+  </div>
+  
+  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 relative z-10">
     <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-16" data-reveal="fade-up">
       <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
         <span class="bg-gradient-to-r from-blue-600 via-red-600 to-yellow-600 bg-clip-text text-transparent">
@@ -26,7 +33,7 @@ import { COMPANY_SERVICES } from "../../consts";
         data-reveal-delay="200"
       >
         <div class="flex items-center mb-4">
-          <div class="flex justify-center items-center w-12 h-12 rounded-lg bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800">
+          <div class="flex justify-center items-center w-12 h-12 rounded-lg bg-gradient-to-r from-blue-100/80 to-blue-200/80 dark:from-blue-900/50 dark:to-blue-800/50">
             <svg class="w-6 h-6 text-blue-600 dark:text-blue-300" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clip-rule="evenodd"></path>
             </svg>
@@ -86,7 +93,7 @@ import { COMPANY_SERVICES } from "../../consts";
         data-reveal-delay="400"
       >
         <div class="flex items-center mb-4">
-          <div class="flex justify-center items-center w-12 h-12 rounded-lg bg-gradient-to-r from-green-100 to-green-200 dark:from-green-900 dark:to-green-800">
+          <div class="flex justify-center items-center w-12 h-12 rounded-lg bg-gradient-to-r from-green-100/80 to-green-200/80 dark:from-green-900/50 dark:to-green-800/50">
             <svg class="w-6 h-6 text-green-600 dark:text-green-300" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
             </svg>

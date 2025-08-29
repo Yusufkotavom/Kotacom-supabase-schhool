@@ -70,12 +70,14 @@ const isProduction = import.meta.env.PROD;
     </script>
     <slot name="head" />
   </head>
-  <body>
+  <body class="universal-bg min-h-screen">
     <!-- Page Transition -->
     <PageTransition />
     
     <Header />
-    <slot />
+    <main class="relative z-10">
+      <slot />
+    </main>
     <Footer />
     <ContactButtons />
     <script
