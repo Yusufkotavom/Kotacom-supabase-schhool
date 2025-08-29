@@ -42,9 +42,17 @@ const { className = '' } = Astro.props;
       // Show transition on page load
       this.showTransition();
       
+      // Hide transition after 1 second
+      setTimeout(() => {
+        this.hideTransition();
+      }, 1000);
+      
       // Listen for navigation events
       document.addEventListener('astro:page-load', () => {
-        this.hideTransition();
+        // Add 1 second delay before hiding
+        setTimeout(() => {
+          this.hideTransition();
+        }, 1000);
       });
       
       // Listen for before navigation
