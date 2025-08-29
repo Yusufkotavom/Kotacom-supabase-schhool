@@ -71,7 +71,7 @@
     --font-mono: 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace';
 }
 
-/* Universal Background with Creative Particles */
+/* Universal Background - Lightweight & Mobile-Friendly */
 .universal-bg {
   background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 25%, #fefce8 50%, #fef3c7 75%, #fde68a 100%);
   position: relative;
@@ -82,9 +82,8 @@
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
 }
 
-/* Creative Particle Shapes */
-.universal-bg::before,
-.universal-bg::after {
+/* Lightweight Static Background Patterns - No Animation */
+.universal-bg::before {
   content: '';
   position: absolute;
   width: 100%;
@@ -93,35 +92,13 @@
   left: 0;
   pointer-events: none;
   z-index: 0;
-}
-
-.universal-bg::before {
+  opacity: 0.03;
   background-image: 
-    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(239, 68, 68, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 90% 90%, rgba(249, 115, 22, 0.1) 0%, transparent 50%);
-  animation: float 20s ease-in-out infinite;
-}
-
-.universal-bg::after {
-  background-image: 
-    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23fbbf24' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.05'%3E%3Cpolygon points='20,0 24,16 40,20 24,24 20,40 16,24 0,20 16,16'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ef4444' fill-opacity='0.05'%3E%3Cpath d='M40,0 L50,30 L80,40 L50,50 L40,80 L30,50 L0,40 L30,30 Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  animation: float-reverse 25s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33% { transform: translateY(-20px) rotate(120deg); }
-  66% { transform: translateY(10px) rotate(240deg); }
-}
-
-@keyframes float-reverse {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33% { transform: translateY(20px) rotate(-120deg); }
-  66% { transform: translateY(-10px) rotate(-240deg); }
+    radial-gradient(circle at 20% 80%, #3b82f6 1px, transparent 1px),
+    radial-gradient(circle at 80% 20%, #ef4444 1px, transparent 1px),
+    radial-gradient(circle at 40% 40%, #fbbf24 1px, transparent 1px),
+    radial-gradient(circle at 90% 90%, #f97316 1px, transparent 1px);
+  background-size: 100px 100px, 80px 80px, 120px 120px, 60px 60px;
 }
 
 /* School Theme Card Styles - Seamless & No Borders */
@@ -204,6 +181,57 @@
 
 .dark .section-bg-dark {
   background: linear-gradient(135deg, rgba(239, 246, 255, 0.8) 0%, rgba(254, 252, 232, 0.8) 100%);
+}
+
+/* Lightweight Floating Elements - Only on larger screens */
+.floating-elements {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .floating-elements {
+    display: block;
+  }
+  
+  .floating-elements .floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .floating-elements .floating-shape:nth-child(1) {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    top: 10%;
+    left: 5%;
+    animation: float-slow 8s ease-in-out infinite;
+  }
+  
+  .floating-elements .floating-shape:nth-child(2) {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #ef4444, #f87171);
+    top: 20%;
+    right: 10%;
+    animation: float-slow 10s ease-in-out infinite reverse;
+  }
+  
+  .floating-elements .floating-shape:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #fbbf24, #fcd34d);
+    bottom: 15%;
+    left: 15%;
+    animation: float-slow 12s ease-in-out infinite;
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
 }
 
 /* Hide scrollbar for all browsers */
