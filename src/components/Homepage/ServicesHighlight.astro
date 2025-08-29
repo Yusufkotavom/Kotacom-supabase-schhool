@@ -1,8 +1,52 @@
 ---
-import { COMPANY_SERVICES } from "../../consts";
+interface Props {
+  className?: string;
+}
+
+const { className = '' } = Astro.props;
+
+// School programs/services data
+const programs = [
+  {
+    icon: "📚",
+    title: "Program Akademik",
+    description: "Kurikulum nasional yang diperkaya dengan pendekatan pembelajaran inovatif dan teknologi modern.",
+    features: ["Matematika Kreatif", "Sains Eksperimen", "Bahasa Indonesia", "Bahasa Inggris", "IPS & IPA"]
+  },
+  {
+    icon: "🕌",
+    title: "Program Keagamaan",
+    description: "Pendidikan Islam yang mengintegrasikan nilai-nilai akhlak mulia dalam setiap aspek pembelajaran.",
+    features: ["Tahfidz Al-Qur'an", "Aqidah & Akhlak", "Fiqih", "Sejarah Islam", "Praktik Ibadah"]
+  },
+  {
+    icon: "🎨",
+    title: "Program Seni & Budaya",
+    description: "Mengembangkan kreativitas dan apresiasi seni melalui berbagai kegiatan seni dan budaya.",
+    features: ["Seni Tari", "Seni Musik", "Seni Rupa", "Teater", "Kebudayaan Nusantara"]
+  },
+  {
+    icon: "🏃",
+    title: "Program Olahraga",
+    description: "Mengembangkan kebugaran jasmani dan sportivitas melalui berbagai cabang olahraga.",
+    features: ["Futsal", "Basket", "Voli", "Atletik", "Senam"]
+  },
+  {
+    icon: "🔬",
+    title: "Program Sains & Teknologi",
+    description: "Mengenalkan sains dan teknologi melalui eksperimen dan proyek-proyek menarik.",
+    features: ["Laboratorium Sains", "Komputer & IT", "Robotik", "Eksperimen", "Proyek Sains"]
+  },
+  {
+    icon: "🌍",
+    title: "Program Internasional",
+    description: "Mempersiapkan siswa untuk menghadapi tantangan global dengan program bahasa dan budaya.",
+    features: ["English Club", "Bahasa Mandarin", "Budaya Global", "Pen Pal Program", "International Day"]
+  }
+];
 ---
 
-<section class="section-bg-light dark:section-bg-dark py-8 sm:py-12 lg:py-16 xl:py-20 relative overflow-hidden">
+<section class={`py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 ${className} section-bg-light dark:section-bg-dark relative overflow-hidden`}>
   <!-- Lightweight Floating Elements - Only on larger screens -->
   <div class="floating-elements">
     <div class="floating-shape"></div>
@@ -10,203 +54,113 @@ import { COMPANY_SERVICES } from "../../consts";
     <div class="floating-shape"></div>
   </div>
   
-  <div class="py-8 px-4 sm:px-6 lg:px-8 mx-auto max-w-screen-xl lg:py-16 lg:px-6 relative z-10">
-    <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-16" data-reveal="fade-up">
-      <h2 class="mb-4 text-3xl sm:text-4xl lg:text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+  <div class="max-w-7xl mx-auto relative z-10">
+    <!-- Section Header -->
+    <div class="text-center mb-12 sm:mb-16" data-reveal="fade-up">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
         <span class="bg-gradient-to-r from-blue-600 via-red-600 to-yellow-600 bg-clip-text text-transparent">
-          Best Service
+          Program Unggulan Sekolah
         </span>
       </h2>
-      <p class="text-base sm:text-lg lg:text-xl text-gray-600 sm:text-xl dark:text-gray-300">
-        Layanan Spesial Untuk Bisnis Anda<br class="hidden sm:block" />
-        <strong>IT Service – Web & Software Development – Percetakan</strong>
+      <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4">
+        Berbagai program unggulan yang dirancang untuk mengembangkan potensi akademik, spiritual, dan kreativitas siswa
       </p>
     </div>
     
-    <!-- Services Grid - Responsive -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-      
-      <!-- 1. IT Support Service -->
-      <div 
-        class="school-card rounded-lg p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-        data-reveal="fade-up"
-        data-reveal-delay="200"
-      >
-        <div class="flex items-center mb-4">
-          <div class="flex justify-center items-center w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-r from-blue-100/80 to-blue-200/80 dark:from-blue-900/50 dark:to-blue-800/50">
-            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 dark:text-blue-300" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clip-rule="evenodd"></path>
-            </svg>
-          </div>
-          <h3 class="ml-3 sm:ml-4 text-lg sm:text-xl font-bold text-gray-900 dark:text-white">1. Dukungan IT Profesional</h3>
-        </div>
-        <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4">Pastikan operasional bisnis Anda berjalan lancar tanpa gangguan teknis dengan layanan support kami</p>
-        
-        <ul class="space-y-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-6">
-          <li class="flex items-center">
-            <svg class="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            Macbook Service
-          </li>
-          <li class="flex items-center">
-            <svg class="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            Windows Service
-          </li>
-          <li class="flex items-center">
-            <svg class="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            Server Maintain & Service
-          </li>
-          <li class="flex items-center">
-            <svg class="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            Rakit PC
-          </li>
-          <li class="flex items-center">
-            <svg class="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            Pengadaan Alat IT
-          </li>
-        </ul>
-        
-        <a
-          href="/services/it-supports"
-          class="inline-flex items-center px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-center text-white school-btn-primary rounded-lg hover:scale-105 transition-all duration-200 shadow-lg w-full justify-center"
+    <!-- Programs Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" data-reveal="fade-up" data-reveal-delay="200">
+      {programs.map((program, index) => (
+        <div 
+          class="group relative overflow-hidden rounded-2xl p-6 sm:p-8 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-500 hover:scale-105"
+          data-reveal="fade-up"
+          data-reveal-delay={300 + (index * 100)}
         >
-          Lihat Detail
-          <svg class="w-3 h-3 sm:w-4 sm:h-4 ml-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-          </svg>
-        </a>
-      </div>
-
-      <!-- 2. Website & Software Development -->
-      <div 
-        class="school-card rounded-lg p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-        data-reveal="fade-up"
-        data-reveal-delay="400"
-      >
-        <div class="flex items-center mb-4">
-          <div class="flex justify-center items-center w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-r from-green-100/80 to-green-200/80 dark:from-green-900/50 dark:to-green-800/50">
-            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-green-600 dark:text-green-300" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-            </svg>
+          <!-- Icon -->
+          <div class="text-4xl sm:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
+            {program.icon}
           </div>
-          <h3 class="ml-3 sm:ml-4 text-lg sm:text-xl font-bold text-gray-900 dark:text-white">2. Jasa Pembuatan Website & Software</h3>
+          
+          <!-- Content -->
+          <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+            {program.title}
+          </h3>
+          
+          <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+            {program.description}
+          </p>
+          
+          <!-- Features List -->
+          <ul class="space-y-2">
+            {program.features.map((feature, featureIndex) => (
+              <li 
+                class="flex items-center text-sm text-gray-600 dark:text-gray-400"
+                key={featureIndex}
+              >
+                <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+          
+          <!-- Hover effect overlay -->
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+          
+          <!-- Decorative elements -->
+          <div class="absolute top-4 right-4 w-2 h-2 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-ping"></div>
+          <div class="absolute bottom-4 left-4 w-1.5 h-1.5 bg-red-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-pulse" style="transition-delay: 0.2s;"></div>
         </div>
-        <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4">Solusi website profesional untuk berbagai kebutuhan bisnis dan institusi</p>
-        
-        <ul class="space-y-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-6">
-          <li class="flex items-center">
-            <svg class="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            Website Company Profile
-          </li>
-          <li class="flex items-center">
-            <svg class="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            Website E-commerce
-          </li>
-          <li class="flex items-center">
-            <svg class="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            Website Sekolah
-          </li>
-          <li class="flex items-center">
-            <svg class="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            Software Custom
-          </li>
-          <li class="flex items-center">
-            <svg class="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            Maintenance Website
-          </li>
-        </ul>
-        
-        <a
-          href="/services/web-development"
-          class="inline-flex items-center px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-center text-white school-btn-primary rounded-lg hover:scale-105 transition-all duration-200 shadow-lg w-full justify-center"
-        >
-          Lihat Detail
-          <svg class="w-3 h-3 sm:w-4 sm:h-4 ml-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-          </svg>
-        </a>
-      </div>
-
-      <!-- 3. Percetakan -->
-      <div 
-        class="school-card rounded-lg p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-        data-reveal="fade-up"
-        data-reveal-delay="600"
-      >
-        <div class="flex items-center mb-4">
-          <div class="flex justify-center items-center w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-r from-yellow-100/80 to-orange-200/80 dark:from-yellow-900/50 dark:to-orange-800/50">
-            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-yellow-600 dark:text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8H6l-2 4h12l-2-4h-2l4 8z" clip-rule="evenodd"></path>
-            </svg>
+      ))}
+    </div>
+    
+    <!-- Additional Programs Info -->
+    <div class="mt-16 sm:mt-20" data-reveal="fade-up" data-reveal-delay="800">
+      <div class="bg-gradient-to-r from-blue-50/80 to-yellow-50/80 dark:from-blue-900/20 dark:to-yellow-900/20 rounded-2xl p-8 sm:p-12 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div>
+            <h3 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+              Program Ekstrakurikuler
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+              Selain program akademik, kami juga menyediakan berbagai ekstrakurikuler yang dapat dipilih siswa sesuai minat dan bakat mereka.
+            </p>
+            
+            <div class="grid grid-cols-2 gap-4">
+              <div class="flex items-center space-x-3">
+                <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                <span class="text-sm text-gray-700 dark:text-gray-300">Pramuka</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                <span class="text-sm text-gray-700 dark:text-gray-300">PMR</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <span class="text-sm text-gray-700 dark:text-gray-300">Paskibra</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                <span class="text-sm text-gray-700 dark:text-gray-300">Klub Sains</span>
+              </div>
+            </div>
           </div>
-          <h3 class="ml-3 sm:ml-4 text-lg sm:text-xl font-bold text-gray-900 dark:text-white">3. Jasa Percetakan</h3>
+          
+          <div class="text-center lg:text-right">
+            <div class="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold text-white bg-gradient-to-r from-blue-600 via-red-600 to-yellow-600 rounded-lg hover:from-blue-700 hover:via-red-700 hover:to-yellow-700 transform hover:scale-105 transition-all duration-300 shadow-lg">
+              Lihat Semua Program
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+              </svg>
+            </div>
+          </div>
         </div>
-        <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4">Layanan percetakan berkualitas tinggi untuk berbagai kebutuhan bisnis dan personal</p>
-        
-        <ul class="space-y-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-6">
-          <li class="flex items-center">
-            <svg class="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            Brosur & Flyer
-          </li>
-          <li class="flex items-center">
-            <svg class="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            Kartu Nama
-          </li>
-          <li class="flex items-center">
-            <svg class="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            Banner & Spanduk
-          </li>
-          <li class="flex items-center">
-            <svg class="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            Buku & Majalah
-          </li>
-          <li class="flex items-center">
-            <svg class="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            Packaging & Label
-          </li>
-        </ul>
-        
-        <a
-          href="/services/printing"
-          class="inline-flex items-center px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-center text-white school-btn-primary rounded-lg hover:scale-105 transition-all duration-200 shadow-lg w-full justify-center"
-        >
-          Lihat Detail
-          <svg class="w-3 h-3 sm:w-4 sm:h-4 ml-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-          </svg>
-        </a>
       </div>
     </div>
   </div>
+  
+  <!-- Lottie Separator -->
+  <SchoolLottieSeparator animation="school" height="h-16 sm:h-20" className="mt-12 sm:mt-16" />
 </section>
 
 <script>

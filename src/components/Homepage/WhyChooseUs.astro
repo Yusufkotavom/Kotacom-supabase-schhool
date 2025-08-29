@@ -1,0 +1,169 @@
+---
+interface Props {
+  className?: string;
+}
+
+const { className = '' } = Astro.props;
+---
+
+<section class={`py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 ${className} section-bg-light dark:section-bg-dark relative overflow-hidden`}>
+  <!-- Lightweight Floating Elements - Only on larger screens -->
+  <div class="floating-elements">
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+  </div>
+  
+  <div class="max-w-7xl mx-auto relative z-10">
+    <!-- Section Header -->
+    <div class="text-center mb-12 sm:mb-16" data-reveal="fade-up">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
+        <span class="bg-gradient-to-r from-blue-600 via-red-600 to-yellow-600 bg-clip-text text-transparent">
+          Kenapa Memilih Sekolah Kami?
+        </span>
+      </h2>
+      <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4">
+        Temukan keunggulan yang membuat SD Muhammadiyah 20 Surabaya menjadi pilihan terbaik untuk pendidikan anak Anda
+      </p>
+    </div>
+    
+    <!-- Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <!-- Text Content - Left Side -->
+      <div class="order-2 lg:order-1" data-reveal="fade-right">
+        <div class="space-y-6 sm:space-y-8">
+          <!-- Feature 1 -->
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                Pendidikan Berbasis Akhlak
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                Mengintegrasikan nilai-nilai Islam dengan kurikulum nasional untuk membentuk karakter unggul dan berakhlak mulia.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Feature 2 -->
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                Kurikulum Unggulan
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                Menggunakan kurikulum terbaru dengan pendekatan pembelajaran yang inovatif dan teknologi modern.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Feature 3 -->
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                Guru Berpengalaman
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                Tim pengajar profesional dengan pengalaman mengajar yang luas dan dedikasi tinggi terhadap pendidikan.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Feature 4 -->
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                Fasilitas Lengkap
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                Ruang kelas modern, laboratorium, perpustakaan, dan area bermain yang nyaman untuk mendukung pembelajaran.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- CTA Button -->
+        <div class="mt-8 sm:mt-10">
+          <a href="/contact" class="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold text-white bg-gradient-to-r from-blue-600 via-red-600 to-yellow-600 rounded-lg hover:from-blue-700 hover:via-red-700 hover:to-yellow-700 transform hover:scale-105 transition-all duration-300 shadow-lg">
+            Daftar Sekarang
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Creative Image Layout - Right Side -->
+      <div class="order-1 lg:order-2 relative" data-reveal="fade-left">
+        <div class="relative">
+          <!-- Top Image - Slightly overlapping -->
+          <div class="relative z-20 mb-6 transform -rotate-2 hover:rotate-0 transition-transform duration-500">
+            <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+              <img 
+                src="https://res.cloudinary.com/dwxw1h9my/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1753726244/kotacom/website-images/Web_Development_hero.jpg" 
+                alt="Kegiatan Belajar Mengajar" 
+                class="w-full h-64 sm:h-72 lg:h-80 object-cover"
+                loading="lazy"
+              />
+              <!-- Decorative overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-blue-600/20 via-transparent to-transparent"></div>
+              <!-- Floating badge -->
+              <div class="absolute top-4 right-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-bold text-blue-600 dark:text-blue-400 shadow-lg">
+                ✨ Unggulan
+              </div>
+            </div>
+          </div>
+          
+          <!-- Bottom Image - Creative positioning -->
+          <div class="relative z-10 transform rotate-1 hover:rotate-0 transition-transform duration-500">
+            <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+              <img 
+                src="https://res.cloudinary.com/dwxw1h9my/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1753726244/kotacom/website-images/Web_Development_hero.jpg" 
+                alt="Fasilitas Sekolah" 
+                class="w-full h-56 sm:h-64 lg:h-72 object-cover"
+                loading="lazy"
+              />
+              <!-- Decorative overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-red-600/20 via-transparent to-transparent"></div>
+              <!-- Floating badge -->
+              <div class="absolute top-4 left-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-bold text-red-600 dark:text-red-400 shadow-lg">
+                🏆 Terbaik
+              </div>
+            </div>
+          </div>
+          
+          <!-- Decorative Elements -->
+          <div class="absolute -top-4 -right-4 w-8 h-8 bg-yellow-400 rounded-full animate-ping opacity-75"></div>
+          <div class="absolute -bottom-4 -left-4 w-6 h-6 bg-blue-400 rounded-full animate-pulse"></div>
+          <div class="absolute top-1/2 -right-2 w-4 h-4 bg-red-400 rounded-full animate-bounce"></div>
+          
+          <!-- Creative shapes -->
+          <div class="absolute top-1/4 -left-6 w-12 h-12 bg-gradient-to-br from-yellow-200 to-orange-300 rounded-full opacity-60 animate-pulse"></div>
+          <div class="absolute bottom-1/4 -right-6 w-16 h-16 bg-gradient-to-br from-blue-200 to-blue-300 rounded-full opacity-40 animate-pulse" style="animation-delay: 1s;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Lottie Separator -->
+  <SchoolLottieSeparator animation="school" height="h-16 sm:h-20" className="mt-12 sm:mt-16" />
+</section>

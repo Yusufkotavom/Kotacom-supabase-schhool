@@ -1,0 +1,132 @@
+---
+// ScrollReveal component for scroll animations
+---
+
+<script>
+  class ScrollReveal {
+    constructor() {
+      this.elements = document.querySelectorAll('[data-reveal]');
+      this.threshold = 0.1;
+      this.rootMargin = '0px 0px -50px 0px';
+      
+      this.init();
+    }
+    
+    init() {
+      if (!this.elements.length) return;
+      
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              this.revealElement(entry.target);
+            }
+          });
+        },
+        {
+          threshold: this.threshold,
+          rootMargin: this.rootMargin
+        }
+      );
+      
+      this.elements.forEach((element) => {
+        this.observer.observe(element);
+      });
+    }
+    
+    revealElement(element) {
+      const revealType = element.getAttribute('data-reveal');
+      const delay = element.getAttribute('data-reveal-delay') || 0;
+      
+      setTimeout(() => {
+        element.style.opacity = '1';
+        element.style.transform = 'none';
+        
+        // Add animation class based on reveal type
+        switch (revealType) {
+          case 'fade-up':
+            element.style.transform = 'translateY(0)';
+            break;
+          case 'fade-down':
+            element.style.transform = 'translateY(0)';
+            break;
+          case 'fade-left':
+            element.style.transform = 'translateX(0)';
+            break;
+          case 'fade-right':
+            element.style.transform = 'translateX(0)';
+            break;
+          case 'scale':
+            element.style.transform = 'scale(1)';
+            break;
+          case 'rotate':
+            element.style.transform = 'rotate(0deg)';
+            break;
+        }
+      }, delay);
+    }
+  }
+  
+  // Initialize scroll reveal
+  function initScrollReveal() {
+    new ScrollReveal();
+  }
+  
+  // Initialize on page load
+  document.addEventListener('astro:page-load', initScrollReveal);
+  document.addEventListener('DOMContentLoaded', initScrollReveal);
+  
+  // Also initialize after a short delay to ensure all elements are rendered
+  setTimeout(initScrollReveal, 100);
+</script>
+
+<style>
+  /* Initial states for reveal animations */
+  [data-reveal] {
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  [data-reveal="fade-up"] {
+    transform: translateY(30px);
+  }
+  
+  [data-reveal="fade-down"] {
+    transform: translateY(-30px);
+  }
+  
+  [data-reveal="fade-left"] {
+    transform: translateX(-30px);
+  }
+  
+  [data-reveal="fade-right"] {
+    transform: translateX(30px);
+  }
+  
+  [data-reveal="scale"] {
+    transform: scale(0.8);
+  }
+  
+  [data-reveal="rotate"] {
+    transform: rotate(-10deg);
+  }
+  
+  /* Staggered animations for multiple elements */
+  [data-reveal-delay="100"] { transition-delay: 0.1s; }
+  [data-reveal-delay="200"] { transition-delay: 0.2s; }
+  [data-reveal-delay="300"] { transition-delay: 0.3s; }
+  [data-reveal-delay="400"] { transition-delay: 0.4s; }
+  [data-reveal-delay="500"] { transition-delay: 0.5s; }
+  [data-reveal-delay="600"] { transition-delay: 0.6s; }
+  [data-reveal-delay="700"] { transition-delay: 0.7s; }
+  [data-reveal-delay="800"] { transition-delay: 0.8s; }
+  
+  /* Responsive adjustments */
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      transition: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
