@@ -3,7 +3,9 @@
 
 import { getCollection } from "astro:content";
 import ServiceCard from "../ServiceCard.astro";
-import { getServicesDirectFromSupabase } from "../../lib/supabase-direct";
+import SCategoryDropdown from "../SCategoryDropdown.astro";
+import SchoolLottieSeparator from "../SchoolLottieSeparator.astro";
+import { getServicesDirectFromSupabase, convertSupabaseService } from "../../lib/supabase-direct";
 
 // Props: limit specifies the number of services to display
 interface Props {
@@ -12,17 +14,12 @@ interface Props {
 
 const { limit } = Astro.props;
 
-// Helper function to parse dates in dd/mm/yyyy format
-function parseDate(dateStr: string): Date {
-  const [day, month, year] = dateStr.split("/");
-  return new Date(`${year}-${month}-${day}`);
-}
-
-// Fetch services from MD and Supabase Direct (much faster!)
-const mdxServices = await getCollection("servicesMdx");
+// Fetch from MD and Supabase Direct (much faster!)
+let mdxServices = [] as any[];
+try { mdxServices = await getCollection("servicesMdx"); } catch {}
 const supabaseServices = await getServicesDirectFromSupabase(1000, 'published'); // Only published services
 
-// Normalize MD services to a common shape
+// Normalize MDX services
 const normalizedMdxServices = mdxServices.map((entry) => ({
   ...entry,
   source: 'mdx',
@@ -30,73 +27,57 @@ const normalizedMdxServices = mdxServices.map((entry) => ({
     ...entry.data,
     properties: {
       svTitle: entry.data.title,
+      svProvider: entry.data.provider,
+      svWilayah: entry.data.wilayah,
       svCategory: entry.data.category,
       svSlug: entry.data.slug,
-      svImageURL1: entry.data.imageUrl1 || "",
+      svImageURL1: entry.data.imageUrl || "",
       svPublished: { start: entry.data.published },
-      svWilayah: entry.data.wilayah,
-      svProvider: entry.data.provider,
-      svType: entry.data.type,
-      svPrice: entry.data.price,
-      svURL: entry.data.url,
-      svWhatsAppURL: entry.data.whatsappUrl,
-      svMapsURL: entry.data.mapsUrl,
-      svVerify: entry.data.verify || "",
-      svImageURL2: entry.data.imageUrl2,
-      svImageURL3: entry.data.imageUrl3,
-      svReview: entry.data.review,
+      svDescription: entry.data.description,
+      svPrice: entry.data.price || "",
+      svWhatsAppURL: entry.data.whatsappUrl || "",
     },
   },
 }));
 
 // Normalize Supabase services
-const normalizedSupabase = (supabaseServices || []).map((entry: any) => ({
+const normalizedSupabase = supabaseServices.map((s: any) => ({
   source: 'supabase',
   data: { properties: {
-    svTitle: entry.title,
-    svCategory: (entry.category||[]).map((x:any)=>x.value||x),
-    svSlug: entry.slug,
-    svImageURL1: entry.imageUrl1 || '',
-    svPublished: { start: entry.published ? new Date(entry.published) : new Date(0) },
-    svWilayah: (entry.wilayah||[]).map((x:any)=>x.value||x),
-    svProvider: entry.provider,
-    svType: (entry.type||[]).map((x:any)=>x.value||x),
-    svPrice: entry.price,
-    svURL: entry.url,
-    svWhatsAppURL: entry.whatsappUrl,
-    svMapsURL: entry.mapsUrl,
-    svVerify: entry.verify || '',
-    svImageURL2: entry.imageUrl2 || '',
-    svImageURL3: entry.imageUrl3 || '',
-    svReview: entry.description,
+    svTitle: s.title,
+    svProvider: s.provider,
+    svWilayah: (s.wilayah||[]).map((x:any)=>x.value||x),
+    svCategory: (s.category||[]).map((x:any)=>x.value||x),
+    svSlug: s.slug,
+    svImageURL1: s.imageUrl || s.cover_image || "",
+    svPublished: { start: s.published ? new Date(s.published) : new Date(0) },
+    svDescription: s.description,
+    svPrice: s.price || "",
+    svWhatsAppURL: s.whatsappUrl || "",
   } }
 }));
 
 // Merge
 const allServices = [...normalizedMdxServices, ...normalizedSupabase];
 
-console.log(`LatestServices: Found ${normalizedMdxServices.length} MD services, supabase ${normalizedSupabase.length}, showing ${Math.min(allServices.length, limit)} total`);
-
-// Sort services by svPublished date (descending order)
+// Sort by svPublished date (descending)
 const sortedEntries = allServices.sort((a, b) => {
-  const dateA = a.data.properties.svPublished?.start 
-    ? (typeof a.data.properties.svPublished.start === 'string' 
-        ? parseDate(a.data.properties.svPublished.start) 
-        : a.data.properties.svPublished.start) 
-    : new Date(0);
-  const dateB = b.data.properties.svPublished?.start 
-    ? (typeof b.data.properties.svPublished.start === 'string' 
-        ? parseDate(b.data.properties.svPublished.start) 
-        : b.data.properties.svPublished.start) 
-    : new Date(0);
-  return dateB.getTime() - dateA.getTime(); // Most recent first
+  const dateA = a.data.properties.svPublished?.start || new Date(0);
+  const dateB = b.data.properties.svPublished?.start || new Date(0);
+  return dateB.getTime() - dateA.getTime();
 });
 
-// Limit the number of services based on the limit prop
+// Limit
 const limitedEntries = sortedEntries.slice(0, limit);
+
+// Debug info
+console.log(`LatestServices: Found ${mdxServices.length} MD services, supabase ${supabaseServices.length}, showing ${limitedEntries.length} total`);
 ---
 
-<section class="bg-white dark:bg-gray-900">
+<section class="bg-gradient-to-br from-yellow-50 via-white to-blue-50 dark:from-yellow-900/20 dark:via-gray-900 dark:to-blue-900/20">
+  <!-- Lottie Separator -->
+  <SchoolLottieSeparator animation="heart" height="h-16" className="pt-8" />
+  
   <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
     <div class="flex flex-col items-start justify-between p-2 space-y-3 md:flex-row md:space-y-0 mb-4">
       <div class="max-w-screen-md">

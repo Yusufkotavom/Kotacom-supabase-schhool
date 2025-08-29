@@ -2,9 +2,10 @@
 // Latest Projects section for homepage
 
 import { getCollection } from "astro:content";
-import { getProjectsDirectFromSupabase } from "../../lib/supabase-direct";
 import ProjectCard from "../ProjectCard.astro";
 import PCategoryDropdown from "../PCategoryDropdown.astro";
+import SchoolLottieSeparator from "../SchoolLottieSeparator.astro";
+import { getProjectsDirectFromSupabase, convertSupabaseProject } from "../../lib/supabase-direct";
 
 // Props: limit specifies the number of projects to display
 interface Props {
@@ -13,17 +14,12 @@ interface Props {
 
 const { limit } = Astro.props;
 
-// Helper function to parse dates in dd/mm/yyyy format
-function parseDate(dateStr: string): Date {
-  const [day, month, year] = dateStr.split("/");
-  return new Date(`${year}-${month}-${day}`);
-}
-
-// Fetch projects from MD and Supabase Direct (much faster!)
-const mdxProjects = await getCollection("projectsMdx");
+// Fetch from MD and Supabase Direct (much faster!)
+let mdxProjects = [] as any[];
+try { mdxProjects = await getCollection("projectsMdx"); } catch {}
 const supabaseProjects = await getProjectsDirectFromSupabase(1000, 'published'); // Only published projects
 
-// Normalize MD projects to a common shape
+// Normalize MDX projects
 const normalizedMdxProjects = mdxProjects.map((entry) => ({
   ...entry,
   source: 'mdx',
@@ -33,64 +29,53 @@ const normalizedMdxProjects = mdxProjects.map((entry) => ({
       pTitle: entry.data.title,
       pCountry: entry.data.country,
       pLocale: entry.data.locale,
-      pCategory: entry.data.category,
-      pOrganiser: entry.data.organiser,
       pSlug: entry.data.slug,
-      pCost: entry.data.cost,
-      pURL: entry.data.url,
-      pGYGURL: entry.data.gygUrl,
-      pMapsURL: entry.data.mapsUrl,
-      pVerify: entry.data.verify || "",
       pImageURL: entry.data.imageUrl || "",
       pPublished: { start: entry.data.published },
-      pReview: entry.data.review,
-      pGetInvolved: entry.data.getInvolved,
+      pDescription: entry.data.description,
+      pVerify: entry.data.verify || "",
+      pOrganiser: entry.data.organiser || "",
     },
   },
 }));
 
-// Normalize Supabase
-const normalizedSupabase = supabaseProjects.map((entry: any) => ({
+// Normalize Supabase projects
+const normalizedSupabase = supabaseProjects.map((p: any) => ({
   source: 'supabase',
   data: { properties: {
-    pTitle: entry.title,
-    pCountry: (entry.country||[]).map((x:any)=>x.value||x),
-    pLocale: (entry.locale||[]).map((x:any)=>x.value||x),
-    pCategory: (entry.category||[]).map((x:any)=>x.value||x),
-    pOrganiser: entry.organiser,
-    pSlug: entry.slug,
-    pCost: [],
-    pURL: '', pGYGURL:'', pMapsURL:'', pVerify: entry.verify || '',
-    pImageURL: entry.imageUrl || '',
-    pPublished: { start: entry.published ? new Date(entry.published) : new Date(0) },
-    pReview: entry.description,
-    pGetInvolved: '',
+    pTitle: p.title,
+    pCountry: (p.country||[]).map((x:any)=>x.value||x),
+    pLocale: (p.locale||[]).map((x:any)=>x.value||x),
+    pSlug: p.slug,
+    pImageURL: p.imageUrl || p.cover_image || "",
+    pPublished: { start: p.published ? new Date(p.published) : new Date(0) },
+    pDescription: p.description,
+    pVerify: p.verify || "",
+    pOrganiser: p.organiser || "",
   } }
 }));
 
 // Merge
-const entries = [...normalizedMdxProjects, ...normalizedSupabase];
+const allProjects = [...normalizedMdxProjects, ...normalizedSupabase];
 
-// Sort projects by pPublished date (descending order)
-const sortedEntries = entries.sort((a, b) => {
-  const dateA = a.data.properties.pPublished?.start
-    ? typeof a.data.properties.pPublished.start === "string"
-      ? parseDate(a.data.properties.pPublished.start)
-      : a.data.properties.pPublished.start
-    : new Date(0);
-  const dateB = b.data.properties.pPublished?.start
-    ? typeof b.data.properties.pPublished.start === "string"
-      ? parseDate(b.data.properties.pPublished.start)
-      : b.data.properties.pPublished.start
-    : new Date(0);
-  return dateB.getTime() - dateA.getTime(); // Most recent first
+// Sort by pPublished date (descending)
+const sortedEntries = allProjects.sort((a, b) => {
+  const dateA = a.data.properties.pPublished?.start || new Date(0);
+  const dateB = b.data.properties.pPublished?.start || new Date(0);
+  return dateB.getTime() - dateA.getTime();
 });
 
-// Limit the number of entries
+// Limit
 const limitedEntries = sortedEntries.slice(0, limit);
+
+// Debug info
+console.log(`LatestProjects: Found ${mdxProjects.length} MD projects, supabase ${supabaseProjects.length}, showing ${limitedEntries.length} total`);
 ---
 
-<section class="bg-white dark:bg-gray-900">
+<section class="bg-gradient-to-br from-red-50 via-white to-yellow-50 dark:from-red-900/20 dark:via-gray-900 dark:to-yellow-900/20">
+  <!-- Lottie Separator -->
+  <SchoolLottieSeparator animation="pencil" height="h-16" className="pt-8" />
+  
   <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
     <div class="flex flex-col items-start justify-between p-2 space-y-3 md:flex-row md:space-y-0 mb-4">
       <div class="max-w-screen-md">

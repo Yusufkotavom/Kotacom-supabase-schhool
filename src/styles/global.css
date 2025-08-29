@@ -17,6 +17,7 @@
 }
 
 @theme {
+    /* School Theme Colors - Blue, Red, Yellow */
     --color-primary-50: #eff6ff;
     --color-primary-100: #dbeafe;
     --color-primary-200: #bfdbfe;
@@ -28,6 +29,30 @@
     --color-primary-800: #1e40af;
     --color-primary-900: #1e3a8a;
 
+    /* School Theme Specific Colors */
+    --color-school-blue: #3b82f6;
+    --color-school-blue-light: #60a5fa;
+    --color-school-blue-dark: #1d4ed8;
+    
+    --color-school-red: #ef4444;
+    --color-school-red-light: #f87171;
+    --color-school-red-dark: #dc2626;
+    
+    --color-school-yellow: #fbbf24;
+    --color-school-yellow-light: #fcd34d;
+    --color-school-yellow-dark: #f59e0b;
+    
+    --color-school-orange: #f97316;
+    --color-school-orange-light: #fb923c;
+    --color-school-orange-dark: #ea580c;
+    
+    /* Card Background Gradients */
+    --color-card-gradient-start: #fef3c7;
+    --color-card-gradient-end: #fed7aa;
+    --color-card-gradient-dark-start: #92400e;
+    --color-card-gradient-dark-end: #78350f;
+
+    /* Legacy Colors (keeping for compatibility) */
     --color-gbgblue: #295483;
     --color-gbgpink: #f1e8fb;
     --color-gbgyellow: #ffe8b5;
@@ -36,6 +61,40 @@
     --font-sans: 'Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     --font-body: 'Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     --font-mono: 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace';
+}
+
+/* School Theme Card Styles */
+.school-card {
+  background: linear-gradient(135deg, var(--color-card-gradient-start) 0%, var(--color-card-gradient-end) 100%);
+  border: 2px solid var(--color-school-blue);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);
+}
+
+.dark .school-card {
+  background: linear-gradient(135deg, var(--color-card-gradient-dark-start) 0%, var(--color-card-gradient-dark-end) 100%);
+  border-color: var(--color-school-blue-light);
+}
+
+/* School Theme Button Styles */
+.school-btn-primary {
+  background: linear-gradient(135deg, var(--color-school-blue) 0%, var(--color-school-blue-dark) 100%);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+}
+
+.school-btn-secondary {
+  background: linear-gradient(135deg, var(--color-school-red) 0%, var(--color-school-red-dark) 100%);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.3);
+}
+
+.school-btn-accent {
+  background: linear-gradient(135deg, var(--color-school-yellow) 0%, var(--color-school-orange) 100%);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 16px rgba(251, 191, 36, 0.3);
 }
 
 /* Hide scrollbar for all browsers */
