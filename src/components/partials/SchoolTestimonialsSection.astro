@@ -1,0 +1,220 @@
+---
+export interface SchoolTestimonial {
+  schoolName: string;
+  schoolType: string;
+  location: string;
+  principalName: string;
+  rating: number;
+  testimonial: string;
+  benefits: string[];
+  packageUsed: string;
+  image?: string;
+}
+
+const testimonials: SchoolTestimonial[] = [
+  {
+    schoolName: "SMA Negeri 1 Surabaya",
+    schoolType: "SMA Negeri",
+    location: "Surabaya",
+    principalName: "Dr. H. Ahmad Susanto, M.Pd",
+    rating: 5,
+    testimonial: "Website dan sistem management yang sangat membantu operasional sekolah. Orang tua sekarang bisa memantau perkembangan anak dengan mudah, guru lebih efisien dalam mengelola nilai, dan administrasi sekolah jauh lebih terorganisir. Sistem yang sangat recommended untuk sekolah modern.",
+    benefits: [
+      "Orang tua bisa monitoring anak 24/7",
+      "Input nilai lebih cepat 80%",
+      "Administrasi lebih rapi",
+      "Komunikasi lebih efektif"
+    ],
+    packageUsed: "Professional School",
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+  },
+  {
+    schoolName: "SMP Islam Al-Azhar",
+    schoolType: "SMP Swasta",
+    location: "Surabaya",
+    principalName: "Dra. Hj. Siti Aminah",
+    rating: 5,
+    testimonial: "Dari awal konsultasi sampai training, tim kotacom sangat profesional. Website sekolah kami sekarang terlihat lebih modern dan representatif. Sistem management membantu kami mengelola 500+ siswa dengan lebih efisien. Pembayaran SPP online juga sangat memudahkan orang tua.",
+    benefits: [
+      "Website lebih representatif",
+      "Manajemen siswa lebih mudah",
+      "Pembayaran SPP online sukses",
+      "Komunikasi parents-teacher lancar"
+    ],
+    packageUsed: "Professional School",
+    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+  },
+  {
+    schoolName: "SD Santa Maria",
+    schoolType: "SD Katolik",
+    location: "Surabaya",
+    principalName: "Sr. Maria Goretti, S.Pd",
+    rating: 5,
+    testimonial: "Website starter yang kami pilih sudah sangat memadai untuk kebutuhan SD. Orang tua senang bisa melihat informasi sekolah, berita kegiatan, dan bahkan galeri foto anak-anak. Sistem yang user friendly dan support tim kotacom sangat membantu saat ada kendala.",
+    benefits: [
+      "Informasi sekolah mudah diakses",
+      "Galeri kegiatan anak-anak",
+      "Komunikasi dengan orang tua lancar",
+      "Support tim sangat responsif"
+    ],
+    packageUsed: "Starter School",
+    image: "https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+  },
+  {
+    schoolName: "SMK Negeri Teknologi",
+    schoolType: "SMK Negeri",
+    location: "Surabaya",
+    principalName: "Ir. Budi Santoso, M.T",
+    rating: 5,
+    testimonial: "Untuk sekolah kejuruan seperti kami, sistem management yang terintegrasi sangat penting. Portal siswa untuk tugas digital, sistem akademik yang lengkap, dan dashboard monitoring yang comprehensive. Investment yang sangat worth it untuk meningkatkan kualitas pendidikan.",
+    benefits: [
+      "Portal e-learning terintegrasi",
+      "Sistem akademik comprehensive",
+      "Dashboard monitoring lengkap",
+      "Kualitas pendidikan meningkat"
+    ],
+    packageUsed: "Enterprise School",
+    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+  }
+];
+---
+
+<section class="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Cerita Sukses Sekolah Kami
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Lebih dari 50+ sekolah telah mempercayai sistem digital dari kotacom.id
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+      {testimonials.map((testimonial, index) => (
+        <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+          <div class="flex items-start space-x-4 mb-6">
+            <div class="flex-shrink-0">
+              <img
+                src={testimonial.image || "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"}
+                alt={testimonial.schoolName}
+                class="w-16 h-16 rounded-full object-cover border-2 border-gray-200"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-semibold text-gray-900">{testimonial.schoolName}</h3>
+              <p class="text-sm text-gray-600">{testimonial.schoolType} • {testimonial.location}</p>
+              <p class="text-sm text-blue-600 font-medium">{testimonial.principalName}</p>
+
+              <div class="flex items-center mt-2">
+                {[...Array(5)].map((_, i) => (
+                  <svg
+                    key={i}
+                    class={`w-4 h-4 ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                ))}
+                <span class="ml-2 text-sm text-gray-600">{testimonial.rating}.0/5.0</span>
+              </div>
+            </div>
+          </div>
+
+          <blockquote class="text-gray-700 mb-6 leading-relaxed italic">
+            "{testimonial.testimonial}"
+          </blockquote>
+
+          <div class="border-t pt-6">
+            <h4 class="font-semibold text-gray-900 mb-3">Manfaat yang Diraskan:</h4>
+            <ul class="grid grid-cols-1 gap-2">
+              {testimonial.benefits.map((benefit) => (
+                <li class="flex items-center text-sm text-gray-700">
+                  <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="mt-6 pt-6 border-t">
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-gray-500">Paket:</span>
+              <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
+                {testimonial.packageUsed}
+              </span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Statistics Section -->
+    <div class="mt-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
+      <div class="text-center mb-8">
+        <h3 class="text-2xl md:text-3xl font-bold mb-4">Pencapaian Kami</h3>
+        <p class="text-blue-100">Angka-angka yang membuktikan kepercayaan sekolah terhadap sistem kami</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold mb-2">50+</div>
+          <div class="text-blue-100 text-sm">Sekolah Terintegrasi</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold mb-2">15.000+</div>
+          <div class="text-blue-100 text-sm">Siswa Terdaftar</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold mb-2">98%</div>
+          <div class="text-blue-100 text-sm">Kepuasan User</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold mb-2">24/7</div>
+          <div class="text-blue-100 text-sm">Support Online</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case Study Preview -->
+    <div class="mt-16">
+      <div class="bg-white rounded-2xl shadow-lg p-8">
+        <div class="text-center mb-8">
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Studi Kasus: SMA Negeri 1 Surabaya</h3>
+          <p class="text-gray-600">Transformasi digital yang sukses dengan peningkatan efisiensi operasional</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="text-center p-6 bg-gray-50 rounded-lg">
+            <div class="text-3xl font-bold text-blue-600 mb-2">80%</div>
+            <div class="text-sm text-gray-600">Pengurangan waktu input nilai</div>
+          </div>
+          <div class="text-center p-6 bg-gray-50 rounded-lg">
+            <div class="text-3xl font-bold text-green-600 mb-2">95%</div>
+            <div class="text-sm text-gray-600">Kepuasan orang tua</div>
+          </div>
+          <div class="text-center p-6 bg-gray-50 rounded-lg">
+            <div class="text-sm text-gray-600">Rp 25jt/tahun</div>
+            <div class="text-xs text-gray-500 mt-1">Penghematan biaya operasional</div>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center">
+          <a
+            href="https://wa.me/6285799520350?text=Halo,%20saya%20ingin%20mendapatkan%20studi%20kasus%20SMA%20Negeri%201%20Surabaya"
+            class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300"
+          >
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 3.05 1.05 4.42L2 22l5.58-1.05C8.95 21.64 10.46 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.34 0-2.64-.34-3.78-.95l-.27-.14-2.8.66.66-2.8-.14-.27c-.61-1.14-.95-2.44-.95-3.78 0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7zm3.5-10.5l-1.5 1.5L12 10.5 9.5 13l1.5 1.5L12 13.5l2.5 2.5 1.5-1.5L13.5 13l2.5-2.5z"/>
+            </svg>
+            Request Case Study Lengkap
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

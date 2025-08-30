@@ -1,0 +1,178 @@
+---
+// ScrollReveal Component - Reusable scroll animation component
+export interface Props {
+  animation?: 'fadeIn' | 'fadeInUp' | 'fadeInDown' | 'fadeInLeft' | 'fadeInRight' | 'zoomIn' | 'slideInUp';
+  delay?: number;
+  duration?: number;
+  threshold?: number;
+  once?: boolean;
+  className?: string;
+  children?: any;
+}
+
+const {
+  animation = 'fadeInUp',
+  delay = 0,
+  duration = 600,
+  threshold = 0.1,
+  once = true,
+  className = '',
+  children
+} = Astro.props as Props;
+---
+
+<div
+  class={`scroll-reveal ${className}`}
+  data-animation={animation}
+  data-delay={delay}
+  data-duration={duration}
+  data-threshold={threshold}
+  data-once={once}
+  style={`--animation-delay: ${delay}ms; --animation-duration: ${duration}ms;`}
+>
+  <slot>{children}</slot>
+</div>
+
+<style>
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity var(--animation-duration) ease-out var(--animation-delay),
+                transform var(--animation-duration) ease-out var(--animation-delay);
+    will-change: opacity, transform;
+  }
+
+  .scroll-reveal[data-animation="fadeIn"] {
+    transform: none;
+  }
+
+  .scroll-reveal[data-animation="fadeInUp"] {
+    transform: translateY(30px);
+  }
+
+  .scroll-reveal[data-animation="fadeInDown"] {
+    transform: translateY(-30px);
+  }
+
+  .scroll-reveal[data-animation="fadeInLeft"] {
+    transform: translateX(-30px);
+  }
+
+  .scroll-reveal[data-animation="fadeInRight"] {
+    transform: translateX(30px);
+  }
+
+  .scroll-reveal[data-animation="zoomIn"] {
+    transform: scale(0.8);
+  }
+
+  .scroll-reveal[data-animation="slideInUp"] {
+    transform: translateY(100px);
+  }
+
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: none;
+  }
+
+  .scroll-reveal.revealed[data-animation="zoomIn"] {
+    transform: scale(1);
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // Intersection Observer for scroll reveal animations
+  class ScrollRevealManager {
+    private observer: IntersectionObserver;
+    private elements: Set<Element> = new Set();
+
+    constructor() {
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const element = entry.target as HTMLElement;
+
+            if (entry.isIntersecting) {
+              const delay = parseInt(element.dataset.delay || '0');
+              const once = element.dataset.once !== 'false';
+
+              setTimeout(() => {
+                element.classList.add('revealed');
+
+                if (once) {
+                  this.observer.unobserve(element);
+                }
+              }, delay);
+            } else if (element.dataset.once === 'false') {
+              element.classList.remove('revealed');
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        }
+      );
+
+      this.observeExistingElements();
+    }
+
+    private observeExistingElements() {
+      const elements = document.querySelectorAll('.scroll-reveal');
+      elements.forEach((element) => {
+        this.observe(element);
+      });
+    }
+
+    observe(element: Element) {
+      if (!this.elements.has(element)) {
+        this.elements.add(element);
+        this.observer.observe(element);
+      }
+    }
+
+    unobserve(element: Element) {
+      if (this.elements.has(element)) {
+        this.elements.delete(element);
+        this.observer.unobserve(element);
+      }
+    }
+
+    disconnect() {
+      this.observer.disconnect();
+      this.elements.clear();
+    }
+  }
+
+  // Initialize scroll reveal manager
+  let scrollRevealManager: ScrollRevealManager;
+
+  // Wait for DOM to be ready
+  document.addEventListener('DOMContentLoaded', () => {
+    scrollRevealManager = new ScrollRevealManager();
+  });
+
+  // Also handle dynamically added elements
+  document.addEventListener('astro:page-load', () => {
+    if (scrollRevealManager) {
+      scrollRevealManager.disconnect();
+    }
+    scrollRevealManager = new ScrollRevealManager();
+  });
+
+  // Clean up on page unload
+  document.addEventListener('astro:before-preparation', () => {
+    if (scrollRevealManager) {
+      scrollRevealManager.disconnect();
+    }
+  });
+</script>

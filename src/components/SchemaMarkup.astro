@@ -1,5 +1,6 @@
 ---
 import { SITE_TITLE, SITE_DESCRIPTION, COMPANY_NAME, COMPANY_LOCATION, COMPANY_WHATSAPP } from '../consts';
+import { getReviewsForService, getRandomReviews, MockReview } from '../data/mockReviews';
 
 interface Props {
   type: 'homepage' | 'article' | 'service' | 'product' | 'project' | 'landing' | 'page';
@@ -23,10 +24,10 @@ interface Props {
   }>;
 }
 
-const { 
-  type, 
-  title, 
-  description, 
+const {
+  type,
+  title,
+  description,
   image = 'https://res.cloudinary.com/dxyjku3eh/image/upload/v1754820661/Tanpa_judul_Presentasi__20250810_170926_0000_vdiibn.png',
   url = Astro.url.toString(),
   data = {},
@@ -39,6 +40,30 @@ const {
   price,
   reviews = []
 } = Astro.props;
+
+// Auto-generate mock reviews if none provided
+let finalReviews = reviews;
+if (!reviews || reviews.length === 0) {
+  // Determine service type based on URL or title
+  const currentUrl = Astro.url.toString();
+  const currentTitle = title.toLowerCase();
+
+  let serviceType: 'website' | 'software' | 'seo' | 'marketing' | 'homepage' = 'homepage';
+
+  if (currentUrl.includes('/software') || currentTitle.includes('software') || currentTitle.includes('pengembangan')) {
+    serviceType = 'software';
+  } else if (currentUrl.includes('/pembuatan-website') || currentTitle.includes('website') || currentTitle.includes('web')) {
+    serviceType = 'website';
+  } else if (currentUrl.includes('/seo') || currentTitle.includes('seo') || currentTitle.includes('optimasi')) {
+    serviceType = 'seo';
+  } else if (currentUrl.includes('/marketing') || currentTitle.includes('marketing') || currentTitle.includes('digital')) {
+    serviceType = 'marketing';
+  }
+
+  // Get appropriate reviews and take random subset
+  const serviceReviews = getReviewsForService(serviceType);
+  finalReviews = getRandomReviews(serviceReviews, Math.min(50, serviceReviews.length));
+}
 
 // Ensure tags and category are always arrays
 const safeTags = Array.isArray(tags) ? tags : (tags ? [tags] : []);
@@ -92,7 +117,7 @@ const localBusinessSchema = {
     "longitude": 112.7521
   },
   "openingHours": "Mo-Fr 09:00-17:00",
-  "priceRange": "$$",
+  "priceRange": "$",
   "areaServed": ["Surabaya", "Sidoarjo", "Jawa Timur"],
   "serviceType": ["IT Support", "Website Development", "Software Development", "Digital Marketing"],
   "image": image,
@@ -104,11 +129,11 @@ const localBusinessSchema = {
     `https://wa.me/62${COMPANY_WHATSAPP}`
   ],
   // Add aggregate rating if reviews exist
-  ...(reviews.length > 0 && {
+  ...(finalReviews.length > 0 && {
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1),
-      "reviewCount": reviews.length
+      "ratingValue": (finalReviews.reduce((sum, review) => sum + review.rating, 0) / finalReviews.length).toFixed(1),
+      "reviewCount": finalReviews.length
     }
   })
 };
@@ -186,13 +211,13 @@ const serviceSchema = {
     }
   }),
   // Add aggregate rating if reviews exist
-  ...(reviews.length > 0 && {
+  ...(finalReviews.length > 0 && {
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1),
+      "ratingValue": (finalReviews.reduce((sum, review) => sum + review.rating, 0) / finalReviews.length).toFixed(1),
       "reviewCount": reviews.length
     },
-    "review": reviews.map(review => ({
+    "review": finalReviews.map(review => ({
       "@type": "Review",
       "author": {
         "@type": "Person",
@@ -241,13 +266,13 @@ const productSchema = {
     }
   }),
   // Add aggregate rating if reviews exist
-  ...(reviews.length > 0 && {
+  ...(finalReviews.length > 0 && {
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1),
+      "ratingValue": (finalReviews.reduce((sum, review) => sum + review.rating, 0) / finalReviews.length).toFixed(1),
       "reviewCount": reviews.length
     },
-    "review": reviews.map(review => ({
+    "review": finalReviews.map(review => ({
       "@type": "Review",
       "author": {
         "@type": "Person",

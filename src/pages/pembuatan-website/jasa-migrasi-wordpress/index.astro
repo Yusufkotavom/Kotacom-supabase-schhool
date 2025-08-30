@@ -1,0 +1,1310 @@
+---
+import MainLayout from "../../../layouts/MainLayout.astro";
+import TechStack from "../../../components/Homepage/TechStack.astro";
+import WebsitePricing from "../../../components/partials/WebsitePricing.astro";
+import WebsiteFAQ from "../../../components/partials/WebsiteFAQ.astro";
+import WebsiteTemplates from "../../../components/partials/WebsiteTemplates.astro";
+import UniversalLottie from "../../../components/UniversalLottie.astro";
+import { Image } from "astro:assets";
+---
+
+<MainLayout
+  title="Jasa Migrasi WordPress ke Astro/Next.js Terpercaya Surabaya - kotacom.id"
+  description="Jasa migrasi WordPress ke static site Astro/Next.js profesional. Tingkatkan performa website Anda hingga 10x lebih cepat dengan hosting optimal dan biaya maintenance lebih rendah."
+>
+
+<!-- Hero Section WordPress Migration -->
+<section class="bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900 text-white relative overflow-hidden">
+  <div class="absolute inset-0 bg-black opacity-10"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Left Column - Content -->
+      <div class="text-center lg:text-left">
+        <!-- Trust Badge -->
+        <div class="inline-flex items-center bg-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
+          <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </svg>
+          50+ Website WordPress Berhasil Dimigrasikan
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          Migrasi WordPress ke<br>
+          <span class="text-yellow-400">Astro/Next.js</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl mb-8 text-purple-100 max-w-2xl">
+          Tingkatkan performa website Anda hingga <strong class="text-yellow-400">10x lebih cepat</strong> dengan migrasi ke static site modern.
+          Hemat biaya hosting & maintenance hingga 80%.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-12">
+          <a href="https://wa.me/6285799520350?text=Halo,%20saya%20tertarik%20dengan%20jasa%20migrasi%20WordPress%20ke%20Astro/Next.js"
+             class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center">
+            <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+            Konsultasi Migrasi Gratis
+          </a>
+
+          <a href="#pricing"
+             class="bg-transparent border-2 border-white hover:bg-white hover:text-purple-900 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300">
+            Lihat Paket Migrasi
+          </a>
+        </div>
+
+        <!-- Social Proof -->
+        <div class="flex flex-wrap justify-center lg:justify-start items-center gap-8 text-purple-200">
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+            <span>Loading 10x Lebih Cepat</span>
+          </div>
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            <span>50+ Website Dimigrasikan</span>
+          </div>
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Garansi 1 Tahun</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column - Lottie Animation -->
+      <div class="hidden lg:block">
+        <div class="relative">
+          <!-- Background decorative elements -->
+          <div class="absolute -top-4 -left-4 w-24 h-24 bg-yellow-400 rounded-full opacity-20 animate-pulse"></div>
+          <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-blue-400 rounded-full opacity-20 animate-pulse delay-1000"></div>
+
+          <!-- Main Lottie Animation Container -->
+          <div class="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-2xl">
+            <UniversalLottie
+              theme="migration"
+              alt="WordPress to Astro/Next.js Migration"
+              className="w-full"
+              height="400px"
+              priority={true}
+            />
+
+            <!-- Floating stats -->
+            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg">
+              <div class="text-xs font-semibold text-gray-800">10x Faster</div>
+            </div>
+
+            <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg">
+              <div class="text-xs font-semibold text-gray-800">80% Cost Savings</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WordPress Problems Section -->
+<section class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center justify-center px-4 py-2 bg-red-100 text-red-800 text-sm font-medium rounded-full mb-4">
+        ⚠️ Masalah WordPress
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Apakah Website WordPress Anda Mengalami Masalah Ini?
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        80% website WordPress mengalami masalah performa dan keamanan. Saatnya migrasi ke teknologi modern!
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Problem 1 -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg border border-red-200 hover:shadow-xl transition-all duration-300">
+        <div class="flex items-center justify-center w-16 h-16 bg-red-600 rounded-2xl mb-6">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-4">Loading Lambat</h3>
+        <p class="text-gray-600 leading-relaxed">
+          Website WordPress sering lambat loading karena plugin berlebihan, database besar, dan kode yang tidak optimal. Pengunjung tidak sabar menunggu!
+        </p>
+        <div class="mt-4 p-3 bg-red-50 rounded-lg border border-red-200">
+          <div class="text-sm text-red-800 font-semibold">⏱️ Rata-rata loading: 8-15 detik</div>
+        </div>
+      </div>
+
+      <!-- Problem 2 -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg border border-red-200 hover:shadow-xl transition-all duration-300">
+        <div class="flex items-center justify-center w-16 h-16 bg-red-600 rounded-2xl mb-6">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-4">Rentan Serangan</h3>
+        <p class="text-gray-600 leading-relaxed">
+          WordPress adalah target utama hacker karena popularitasnya. Plugin yang tidak update dan tema yang tidak aman membuat website rentan diserang.
+        </p>
+        <div class="mt-4 p-3 bg-red-50 rounded-lg border border-red-200">
+          <div class="text-sm text-red-800 font-semibold">🔒 70% website WordPress pernah diretas</div>
+        </div>
+      </div>
+
+      <!-- Problem 3 -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg border border-red-200 hover:shadow-xl transition-all duration-300">
+        <div class="flex items-center justify-center w-16 h-16 bg-red-600 rounded-2xl mb-6">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-4">Biaya Hosting Tinggi</h3>
+        <p class="text-gray-600 leading-relaxed">
+          WordPress membutuhkan hosting yang powerful karena resource intensif. Biaya hosting bisa mencapai jutaan per bulan untuk traffic sedang.
+        </p>
+        <div class="mt-4 p-3 bg-red-50 rounded-lg border border-red-200">
+          <div class="text-sm text-red-800 font-semibold">💰 Biaya hosting: Rp 500rb - Rp 2jt/bulan</div>
+        </div>
+      </div>
+
+      <!-- Problem 4 -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg border border-red-200 hover:shadow-xl transition-all duration-300">
+        <div class="flex items-center justify-center w-16 h-16 bg-red-600 rounded-2xl mb-6">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-4">Maintenance Kompleks</h3>
+        <p class="text-gray-600 leading-relaxed">
+          WordPress membutuhkan maintenance rutin: update plugin, tema, core, backup database, dan monitoring keamanan. Sangat memakan waktu dan biaya.
+        </p>
+        <div class="mt-4 p-3 bg-red-50 rounded-lg border border-red-200">
+          <div class="text-sm text-red-800 font-semibold">🛠️ 20+ jam maintenance per bulan</div>
+        </div>
+      </div>
+
+      <!-- Problem 5 -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg border border-red-200 hover:shadow-xl transition-all duration-300">
+        <div class="flex items-center justify-center w-16 h-16 bg-red-600 rounded-2xl mb-6">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-4">SEO Tidak Optimal</h3>
+        <p class="text-gray-600 leading-relaxed">
+          WordPress sering menghasilkan kode HTML yang berantakan dan loading lambat, yang berdampak negatif pada SEO dan peringkat Google.
+        </p>
+        <div class="mt-4 p-3 bg-red-50 rounded-lg border border-red-200">
+          <div class="text-sm text-red-800 font-semibold">📈 Ranking turun 30-50% di Google</div>
+        </div>
+      </div>
+
+      <!-- Problem 6 -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg border border-red-200 hover:shadow-xl transition-all duration-300">
+        <div class="flex items-center justify-center w-16 h-16 bg-red-600 rounded-2xl mb-6">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-4">Scalability Terbatas</h3>
+        <p class="text-gray-600 leading-relaxed">
+          WordPress kesulitan menangani traffic tinggi dan fitur kompleks. Saat bisnis berkembang, performa justru menurun drastis.
+        </p>
+        <div class="mt-4 p-3 bg-red-50 rounded-lg border border-red-200">
+          <div class="text-sm text-red-800 font-semibold">📊 Crash saat traffic &gt; 10k/hari</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Migration Benefits Section -->
+<section class="py-20 bg-gradient-to-br from-green-50 to-blue-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center justify-center px-4 py-2 bg-green-100 text-green-800 text-sm font-medium rounded-full mb-4">
+        🚀 Keuntungan Migrasi
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Keuntungan Migrasi ke Astro/Next.js
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Dapatkan performa website impian dengan teknologi static site modern yang 10x lebih cepat dan aman
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Benefit 1 -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-green-200">
+        <div class="flex items-center justify-center w-16 h-16 bg-green-600 rounded-2xl mb-6">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-4">Loading 10x Lebih Cepat</h3>
+        <p class="text-gray-600 leading-relaxed mb-6">
+          Static site generation membuat website Anda loading dalam hitungan detik, bukan menit. Tingkatkan user experience dan SEO ranking.
+        </p>
+        <div class="space-y-3">
+          <div class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Loading time: 0.5 - 2 detik</span>
+          </div>
+          <div class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Perfect Google PageSpeed score</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benefit 2 -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-green-200">
+        <div class="flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-6">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-4">Keamanan Maksimal</h3>
+        <p class="text-gray-600 leading-relaxed mb-6">
+          Tanpa database dan admin panel, website Anda kebal terhadap hacking, SQL injection, dan serangan cyber lainnya.
+        </p>
+        <div class="space-y-3">
+          <div class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Zero vulnerability points</span>
+          </div>
+          <div class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>SSL certificate included</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benefit 3 -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-green-200">
+        <div class="flex items-center justify-center w-16 h-16 bg-purple-600 rounded-2xl mb-6">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-4">Biaya Hosting Hemat 80%</h3>
+        <p class="text-gray-600 leading-relaxed mb-6">
+          Static site bisa di-host di CDN global dengan biaya sangat murah. Tidak perlu hosting mahal dengan resource intensif.
+        </p>
+        <div class="space-y-3">
+          <div class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Hosting: Rp 50rb - Rp 200rb/bulan</span>
+          </div>
+          <div class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Zero maintenance cost</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benefit 4 -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-green-200">
+        <div class="flex items-center justify-center w-16 h-16 bg-orange-600 rounded-2xl mb-6">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-4">SEO Optimal</h3>
+        <p class="text-gray-600 leading-relaxed mb-6">
+          Website yang super cepat dengan HTML bersih dan optimal untuk mesin pencari. Ranking Google Anda akan melesat naik!
+        </p>
+        <div class="space-y-3">
+          <div class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Core Web Vitals perfect score</span>
+          </div>
+          <div class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Mobile-first indexing ready</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benefit 5 -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-green-200">
+        <div class="flex items-center justify-center w-16 h-16 bg-red-600 rounded-2xl mb-6">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-4">Scalability Unlimited</h3>
+        <p class="text-gray-600 leading-relaxed mb-6">
+          Static site dapat menangani jutaan visitor tanpa masalah performa. Saat bisnis Anda berkembang, website ikut skalabel.
+        </p>
+        <div class="space-y-3">
+          <div class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Handle 1M+ visitors/day</span>
+          </div>
+          <div class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Zero downtime scaling</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benefit 6 -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-green-200">
+        <div class="flex items-center justify-center w-16 h-16 bg-teal-600 rounded-2xl mb-6">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-4">Developer Experience</h3>
+        <p class="text-gray-600 leading-relaxed mb-6">
+          Astro/Next.js memberikan pengalaman development yang modern dengan TypeScript, hot reload, dan ecosystem yang lengkap.
+        </p>
+        <div class="space-y-3">
+          <div class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Modern development tools</span>
+          </div>
+          <div class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Future-proof technology</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Migration Process Section -->
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center justify-center px-4 py-2 bg-blue-100 text-blue-800 text-sm font-medium rounded-full mb-4">
+        📋 Proses Migrasi
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Bagaimana Proses Migrasi Berjalan?
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Proses migrasi yang aman dan sistematis dalam 7 langkah mudah
+      </p>
+    </div>
+
+    <div class="relative">
+      <!-- Timeline line -->
+      <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-blue-200"></div>
+
+      <div class="space-y-16">
+        <!-- Step 1 -->
+        <div class="relative flex items-center">
+          <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center justify-center w-12 h-12 bg-blue-600 rounded-full text-white font-bold text-lg">
+            1
+          </div>
+          <div class="md:w-1/2 md:pr-16">
+            <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl border border-blue-200">
+              <div class="flex items-center mb-4">
+                <div class="flex items-center justify-center w-12 h-12 bg-blue-600 rounded-xl mr-4 md:hidden">
+                  <span class="text-white font-bold">1</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Audit & Analysis</h3>
+              </div>
+              <p class="text-gray-600 leading-relaxed">
+                Kami menganalisis website WordPress Anda secara menyeluruh: struktur konten, plugin yang digunakan, performa saat ini, dan kebutuhan migrasi.
+              </p>
+              <div class="mt-4 space-y-2">
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Content inventory & structure analysis</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Performance benchmark</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>SEO audit & migration plan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative flex items-center">
+          <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center justify-center w-12 h-12 bg-green-600 rounded-full text-white font-bold text-lg">
+            2
+          </div>
+          <div class="md:w-1/2 md:ml-16 md:flex md:justify-end">
+            <div class="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl border border-green-200">
+              <div class="flex items-center mb-4">
+                <div class="flex items-center justify-center w-12 h-12 bg-green-600 rounded-xl mr-4 md:hidden">
+                  <span class="text-white font-bold">2</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Content Migration</h3>
+              </div>
+              <p class="text-gray-600 leading-relaxed">
+                Kami mentransfer semua konten: posting, halaman, gambar, dan file dengan struktur yang sama. Tidak ada konten yang hilang.
+              </p>
+              <div class="mt-4 space-y-2">
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Posts & pages migration</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Media files optimization</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>URL structure preservation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative flex items-center">
+          <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center justify-center w-12 h-12 bg-purple-600 rounded-full text-white font-bold text-lg">
+            3
+          </div>
+          <div class="md:w-1/2 md:pr-16">
+            <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-2xl border border-purple-200">
+              <div class="flex items-center mb-4">
+                <div class="flex items-center justify-center w-12 h-12 bg-purple-600 rounded-xl mr-4 md:hidden">
+                  <span class="text-white font-bold">3</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Design Development</h3>
+              </div>
+              <p class="text-gray-600 leading-relaxed">
+                Kami membangun design baru dengan Astro/Next.js yang lebih modern, responsif, dan SEO-friendly berdasarkan template WordPress Anda.
+              </p>
+              <div class="mt-4 space-y-2">
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-purple-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Modern UI/UX design</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-purple-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Mobile-first responsive</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-purple-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Performance optimized</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="relative flex items-center">
+          <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center justify-center w-12 h-12 bg-orange-600 rounded-full text-white font-bold text-lg">
+            4
+          </div>
+          <div class="md:w-1/2 md:ml-16 md:flex md:justify-end">
+            <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-2xl border border-orange-200">
+              <div class="flex items-center mb-4">
+                <div class="flex items-center justify-center w-12 h-12 bg-orange-600 rounded-xl mr-4 md:hidden">
+                  <span class="text-white font-bold">4</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">SEO & Performance</h3>
+              </div>
+              <p class="text-gray-600 leading-relaxed">
+                Optimasi SEO lengkap dan performance tuning untuk memastikan website baru Anda mendapat ranking terbaik di Google.
+              </p>
+              <div class="mt-4 space-y-2">
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-orange-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Meta tags & schema markup</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-orange-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Image optimization</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-orange-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Core Web Vitals optimization</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="relative flex items-center">
+          <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center justify-center w-12 h-12 bg-red-600 rounded-full text-white font-bold text-lg">
+            5
+          </div>
+          <div class="md:w-1/2 md:pr-16">
+            <div class="bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-2xl border border-red-200">
+              <div class="flex items-center mb-4">
+                <div class="flex items-center justify-center w-12 h-12 bg-red-600 rounded-xl mr-4 md:hidden">
+                  <span class="text-white font-bold">5</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Testing & QA</h3>
+              </div>
+              <p class="text-gray-600 leading-relaxed">
+                Kami melakukan testing menyeluruh untuk memastikan semua fitur berfungsi dengan baik dan tidak ada broken links atau error.
+              </p>
+              <div class="mt-4 space-y-2">
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Cross-browser testing</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Mobile responsiveness test</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Performance benchmark</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="relative flex items-center">
+          <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center justify-center w-12 h-12 bg-teal-600 rounded-full text-white font-bold text-lg">
+            6
+          </div>
+          <div class="md:w-1/2 md:ml-16 md:flex md:justify-end">
+            <div class="bg-gradient-to-br from-teal-50 to-teal-100 p-8 rounded-2xl border border-teal-200">
+              <div class="flex items-center mb-4">
+                <div class="flex items-center justify-center w-12 h-12 bg-teal-600 rounded-xl mr-4 md:hidden">
+                  <span class="text-white font-bold">6</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Deployment & Launch</h3>
+              </div>
+              <p class="text-gray-600 leading-relaxed">
+                Website baru di-deploy ke hosting optimal dan diluncurkan. Kami memastikan zero downtime selama transisi.
+              </p>
+              <div class="mt-4 space-y-2">
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-teal-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>CDN deployment</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-teal-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>DNS configuration</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-teal-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Zero downtime migration</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 7 -->
+        <div class="relative flex items-center">
+          <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center justify-center w-12 h-12 bg-indigo-600 rounded-full text-white font-bold text-lg">
+            7
+          </div>
+          <div class="md:w-1/2 md:pr-16">
+            <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 p-8 rounded-2xl border border-indigo-200">
+              <div class="flex items-center mb-4">
+                <div class="flex items-center justify-center w-12 h-12 bg-indigo-600 rounded-xl mr-4 md:hidden">
+                  <span class="text-white font-bold">7</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Support & Training</h3>
+              </div>
+              <p class="text-gray-600 leading-relaxed">
+                Kami memberikan training lengkap kepada Anda dan tim untuk mengelola website baru. Support 24/7 selama 1 tahun penuh.
+              </p>
+              <div class="mt-4 space-y-2">
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-indigo-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Admin panel training</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-indigo-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>24/7 support hotline</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-4 h-4 text-indigo-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Maintenance documentation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<WebsitePricing />
+<!-- Migration Pricing Section -->
+<section id="pricing" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center justify-center px-4 py-2 bg-green-100 text-green-800 text-sm font-medium rounded-full mb-4">
+        💰 Paket Migrasi
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Paket Migrasi WordPress ke Astro/Next.js
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Pilih paket migrasi yang sesuai dengan kompleksitas website WordPress Anda
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Paket Basic -->
+      <div class="bg-white rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+        <div class="p-8">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-gray-900">Basic</h3>
+            <span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Populer</span>
+          </div>
+          <div class="text-4xl font-bold text-green-600 mb-2">Rp 900.000</div>
+          <p class="text-gray-600 mb-6">Website sederhana dengan 5-15 halaman</p>
+
+          <div class="space-y-4 mb-8">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-sm">Audit & content migration</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-sm">Responsive design (1 template)</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-sm">SEO optimization</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-sm">Domain & hosting setup</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-sm">Training & dokumentasi</span>
+            </div>
+          </div>
+
+          <a href="https://wa.me/6285799520350?text=Halo,%20saya%20tertarik%20dengan%20paket%20Basic%20migrasi%20WordPress"
+             class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+            </svg>
+            Pilih Paket Basic
+          </a>
+        </div>
+      </div>
+
+      <!-- Paket Professional -->
+      <div class="bg-white rounded-2xl shadow-xl border-2 border-blue-500 relative transform scale-105">
+        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+          <span class="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold">Most Popular</span>
+        </div>
+        <div class="p-8">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-gray-900">Professional</h3>
+            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">Recommended</span>
+          </div>
+          <div class="text-4xl font-bold text-blue-600 mb-2">Rp 1.500.000</div>
+          <p class="text-gray-600 mb-6">Website kompleks dengan 15-50 halaman + e-commerce</p>
+
+          <div class="space-y-4 mb-8">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-blue-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-sm">Semua fitur paket Basic</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-blue-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-sm">Custom design development</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-blue-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-sm">E-commerce functionality</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-blue-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-sm">Advanced SEO & Analytics</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-blue-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-sm">Performance optimization</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-blue-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-sm">3 bulan free maintenance</span>
+            </div>
+          </div>
+
+          <a href="https://wa.me/6285799520350?text=Halo,%20saya%20tertarik%20dengan%20paket%20Professional%20migrasi%20WordPress"
+             class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+            </svg>
+            Pilih Paket Professional
+          </a>
+        </div>
+      </div>
+
+      <!-- Paket Enterprise -->
+      <div class="bg-white rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+        <div class="p-8">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-gray-900">Enterprise</h3>
+            <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">Custom</span>
+          </div>
+          <div class="text-4xl font-bold text-purple-600 mb-2">Rp 2.000.000+</div>
+          <p class="text-gray-600 mb-6">Website enterprise dengan &gt;50 halaman + integrasi kompleks</p>
+
+          <div class="space-y-4 mb-8">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-purple-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-sm">Semua fitur paket Professional</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-purple-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-sm">Custom functionality development</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-purple-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-sm">Third-party integrations</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-purple-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-sm">Advanced security features</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-purple-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-sm">Dedicated project manager</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-purple-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-sm">6 bulan free maintenance</span>
+            </div>
+          </div>
+
+          <a href="https://wa.me/6285799520350?text=Halo,%20saya%20tertarik%20dengan%20paket%20Enterprise%20migrasi%20WordPress"
+             class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+            </svg>
+            Konsultasi Enterprise
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Services -->
+    <div class="mt-16 bg-white rounded-2xl p-8 shadow-lg">
+      <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Layanan Tambahan</h3>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="text-center">
+          <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h4 class="font-semibold text-gray-900 mb-2">Domain Transfer</h4>
+          <p class="text-sm text-gray-600">Rp 250.000</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+          </div>
+          <h4 class="font-semibold text-gray-900 mb-2">SSL Certificate</h4>
+          <p class="text-sm text-gray-600">Rp 150.000/tahun</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
+            </svg>
+          </div>
+          <h4 class="font-semibold text-gray-900 mb-2">Analytics Setup</h4>
+          <p class="text-sm text-gray-600">Rp 300.000</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+          </div>
+          <h4 class="font-semibold text-gray-900 mb-2">Training Premium</h4>
+          <p class="text-sm text-gray-600">Rp 500.000</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Before After Comparison Section -->
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center justify-center px-4 py-2 bg-blue-100 text-blue-800 text-sm font-medium rounded-full mb-4">
+        📊 Before vs After
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Perbandingan WordPress vs Astro/Next.js
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Lihat perbedaan drastis performa dan biaya setelah migrasi
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Before -->
+      <div class="bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-2xl border border-red-200">
+        <div class="flex items-center mb-6">
+          <div class="flex items-center justify-center w-16 h-16 bg-red-600 rounded-2xl mr-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900">Before: WordPress</h3>
+        </div>
+
+        <div class="space-y-6">
+          <div class="flex items-center justify-between p-4 bg-white rounded-lg border border-red-200">
+            <div class="flex items-center">
+              <svg class="w-6 h-6 text-red-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span class="font-semibold">Loading Speed</span>
+            </div>
+            <div class="text-right">
+              <div class="text-2xl font-bold text-red-600">8-15 detik</div>
+              <div class="text-sm text-gray-500">Mobile: 12-20 detik</div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between p-4 bg-white rounded-lg border border-red-200">
+            <div class="flex items-center">
+              <svg class="w-6 h-6 text-red-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+              </svg>
+              <span class="font-semibold">Biaya Hosting</span>
+            </div>
+            <div class="text-right">
+              <div class="text-2xl font-bold text-red-600">Rp 500k-2jt</div>
+              <div class="text-sm text-gray-500">Per bulan</div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between p-4 bg-white rounded-lg border border-red-200">
+            <div class="flex items-center">
+              <svg class="w-6 h-6 text-red-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+              <span class="font-semibold">Security Issues</span>
+            </div>
+            <div class="text-right">
+              <div class="text-2xl font-bold text-red-600">70%</div>
+              <div class="text-sm text-gray-500">Website pernah diretas</div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between p-4 bg-white rounded-lg border border-red-200">
+            <div class="flex items-center">
+              <svg class="w-6 h-6 text-red-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+              </svg>
+              <span class="font-semibold">Maintenance Time</span>
+            </div>
+            <div class="text-right">
+              <div class="text-2xl font-bold text-red-600">20+ jam</div>
+              <div class="text-sm text-gray-500">Per bulan</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- After -->
+      <div class="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl border border-green-200">
+        <div class="flex items-center mb-6">
+          <div class="flex items-center justify-center w-16 h-16 bg-green-600 rounded-2xl mr-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900">After: Astro/Next.js</h3>
+        </div>
+
+        <div class="space-y-6">
+          <div class="flex items-center justify-between p-4 bg-white rounded-lg border border-green-200">
+            <div class="flex items-center">
+              <svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+              <span class="font-semibold">Loading Speed</span>
+            </div>
+            <div class="text-right">
+              <div class="text-2xl font-bold text-green-600">0.5-2 detik</div>
+              <div class="text-sm text-gray-500">Mobile: 1-3 detik</div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between p-4 bg-white rounded-lg border border-green-200">
+            <div class="flex items-center">
+              <svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+              </svg>
+              <span class="font-semibold">Biaya Hosting</span>
+            </div>
+            <div class="text-right">
+              <div class="text-2xl font-bold text-green-600">Rp 50k-200k</div>
+              <div class="text-sm text-gray-500">Per bulan (80% hemat)</div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between p-4 bg-white rounded-lg border border-green-200">
+            <div class="flex items-center">
+              <svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+              <span class="font-semibold">Security Level</span>
+            </div>
+            <div class="text-right">
+              <div class="text-2xl font-bold text-green-600">100%</div>
+              <div class="text-sm text-gray-500">Zero vulnerability</div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between p-4 bg-white rounded-lg border border-green-200">
+            <div class="flex items-center">
+              <svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+              </svg>
+              <span class="font-semibold">Maintenance Time</span>
+            </div>
+            <div class="text-right">
+              <div class="text-2xl font-bold text-green-600">0 jam</div>
+              <div class="text-sm text-gray-500">Auto deployment</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary Stats -->
+    <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+        <div class="text-3xl font-bold text-blue-600 mb-2">10x</div>
+        <div class="text-gray-600">Lebih Cepat Loading</div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+        <div class="text-3xl font-bold text-green-600 mb-2">80%</div>
+        <div class="text-gray-600">Hemat Biaya Hosting</div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+        <div class="text-3xl font-bold text-purple-600 mb-2">100%</div>
+        <div class="text-gray-600">Lebih Aman</div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+        <div class="text-3xl font-bold text-orange-600 mb-2">0</div>
+        <div class="text-gray-600">Maintenance Manual</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Migration Testimonials Section -->
+<section class="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center justify-center px-4 py-2 bg-green-100 text-green-800 text-sm font-medium rounded-full mb-4">
+        💬 Testimonial Migrasi
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Cerita Sukses Klien Kami
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Pengalaman klien yang telah berhasil migrasi dari WordPress ke Astro/Next.js
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Testimonial 1 -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+        <div class="flex items-center mb-6">
+          <div class="flex text-yellow-400 mr-4">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+          </div>
+          <div class="text-sm text-gray-500">Loading speed improved by 85%</div>
+        </div>
+
+        <p class="text-gray-600 mb-6 italic leading-relaxed">
+          "Website WordPress saya sering down karena traffic tinggi. Setelah migrasi ke Next.js, website super cepat dan biaya hosting turun drastis. Traffic naik 200% tanpa masalah performa!"
+        </p>
+
+        <div class="border-t pt-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="font-semibold text-gray-900">Pak Ahmad</div>
+              <div class="text-sm text-gray-500">E-commerce Owner</div>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-semibold text-green-600">Hemat Rp 1.2jt/bulan</div>
+              <div class="text-xs text-gray-500">Biaya hosting</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+        <div class="flex items-center mb-6">
+          <div class="flex text-yellow-400 mr-4">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+          </div>
+          <div class="text-sm text-gray-500">Ranking naik 150 posisi di Google</div>
+        </div>
+
+        <p class="text-gray-600 mb-6 italic leading-relaxed">
+          "WordPress website saya sering diretas karena plugin yang tidak aman. Setelah migrasi ke Astro, website aman 100% dan ranking Google naik drastis. Sangat worth it!"
+        </p>
+
+        <div class="border-t pt-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="font-semibold text-gray-900">Bu Maya</div>
+              <div class="text-sm text-gray-500">Blog & Content Creator</div>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-semibold text-green-600">Zero Hacking</div>
+              <div class="text-xs text-gray-500">Sejak migrasi</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+        <div class="flex items-center mb-6">
+          <div class="flex text-yellow-400 mr-4">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+          </div>
+          <div class="text-sm text-gray-500">Pengunjung naik 300%</div>
+        </div>
+
+        <p class="text-gray-600 mb-6 italic leading-relaxed">
+          "Biaya hosting WordPress terlalu mahal untuk traffic yang saya dapat. Migrasi ke Next.js menghemat Rp 800rb per bulan dan website jauh lebih stabil. Best decision ever!"
+        </p>
+
+        <div class="border-t pt-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="font-semibold text-gray-900">Mas Rudi</div>
+              <div class="text-sm text-gray-500">Startup Founder</div>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-semibold text-green-600">Hemat Rp 800rb/bulan</div>
+              <div class="text-xs text-gray-500">Biaya operasional</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<WebsiteFAQ />
+
+<!-- CTA Final Section -->
+<section class="py-20 bg-gradient-to-br from-indigo-900 via-indigo-800 to-purple-900 text-white relative overflow-hidden">
+  <div class="absolute inset-0 bg-black opacity-10"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">
+        Siap Tingkatkan Website Anda?
+      </h2>
+      <p class="text-xl mb-8 text-indigo-100 max-w-3xl mx-auto">
+        Jangan biarkan website WordPress Anda tertinggal. Migrasi ke Astro/Next.js sekarang dan dapatkan performa impian!
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+        <a href="https://wa.me/6285799520350?text=Halo,%20saya%20tertarik%20dengan%20jasa%20migrasi%20WordPress%20ke%20Astro/Next.js"
+           class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center">
+          <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+          </svg>
+          Konsultasi Gratis Sekarang
+        </a>
+
+        <a href="#pricing"
+           class="bg-transparent border-2 border-white hover:bg-white hover:text-indigo-900 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300">
+          Lihat Paket Lengkap
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div>
+          <div class="text-3xl font-bold text-yellow-400 mb-2">10x</div>
+          <div class="text-indigo-100">Lebih Cepat</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-yellow-400 mb-2">80%</div>
+          <div class="text-indigo-100">Hemat Biaya</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-yellow-400 mb-2">100%</div>
+          <div class="text-indigo-100">Lebih Aman</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</MainLayout>

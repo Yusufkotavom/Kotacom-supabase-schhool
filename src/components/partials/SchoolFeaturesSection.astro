@@ -1,0 +1,145 @@
+---
+export interface SchoolFeature {
+  title: string;
+  description: string;
+  icon: string;
+  features: string[];
+}
+
+const features: SchoolFeature[] = [
+  {
+    title: "Website Profil Sekolah",
+    description: "Website modern yang menampilkan informasi lengkap tentang sekolah Anda",
+    icon: "🏫",
+    features: [
+      "Desain responsif untuk semua device",
+      "Informasi sekolah lengkap",
+      "Galeri foto & video",
+      "Berita & pengumuman sekolah",
+      "Kontak & lokasi sekolah"
+    ]
+  },
+  {
+    title: "Sistem Management Sekolah",
+    description: "Platform terintegrasi untuk mengelola semua aspek operasional sekolah",
+    icon: "⚙️",
+    features: [
+      "Dashboard admin sekolah",
+      "Manajemen data siswa & guru",
+      "Sistem akademik terintegrasi",
+      "Laporan & analitik sekolah",
+      "Komunikasi orang tua-siswa"
+    ]
+  },
+  {
+    title: "Portal Orang Tua",
+    description: "Akses mudah bagi orang tua untuk memantau perkembangan anak",
+    icon: "👨‍👩‍👧‍👦",
+    features: [
+      "Monitoring nilai & absensi",
+      "Jadwal pelajaran & kegiatan",
+      "Komunikasi dengan guru",
+      "Pembayaran SPP online",
+      "Raport digital"
+    ]
+  },
+  {
+    title: "Portal Siswa",
+    description: "Platform belajar digital untuk siswa dengan fitur modern",
+    icon: "📚",
+    features: [
+      "Materi pembelajaran online",
+      "Tugas & submission digital",
+      "Forum diskusi kelas",
+      "E-learning terintegrasi",
+      "Tracking progress belajar"
+    ]
+  },
+  {
+    title: "Sistem Pembayaran",
+    description: "Sistem pembayaran SPP dan biaya sekolah yang terintegrasi",
+    icon: "💳",
+    features: [
+      "Pembayaran SPP online",
+      "Invoice otomatis",
+      "Riwayat pembayaran",
+      "Notifikasi pembayaran",
+      "Laporan keuangan"
+    ]
+  },
+  {
+    title: "Sistem Akademik",
+    description: "Manajemen akademik lengkap dari input hingga rapor",
+    icon: "🎓",
+    features: [
+      "Input nilai otomatis",
+      "Penilaian berkala",
+      "Raport digital",
+      "Analitik akademik",
+      "Arsip nilai siswa"
+    ]
+  }
+];
+---
+
+<section class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Fitur Lengkap Website & Sistem Sekolah
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Platform terintegrasi yang mencakup semua kebutuhan digital sekolah modern
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {features.map((feature, index) => (
+        <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100">
+          <div class="text-center mb-6">
+            <div class="text-4xl mb-4">{feature.icon}</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
+            <p class="text-gray-600">{feature.description}</p>
+          </div>
+
+          <ul class="space-y-2">
+            {feature.features.map((item) => (
+              <li class="flex items-center text-sm text-gray-700">
+                <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Additional Benefits -->
+    <div class="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
+      <div class="text-center mb-8">
+        <h3 class="text-2xl md:text-3xl font-bold mb-4">Keunggulan Sistem Terintegrasi</h3>
+        <p class="text-blue-100 text-lg">Semua fitur terhubung dalam satu platform yang mudah digunakan</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center">
+          <div class="text-3xl mb-3">🔄</div>
+          <h4 class="font-semibold mb-2">Data Terintegrasi</h4>
+          <p class="text-blue-100 text-sm">Semua data siswa, guru, dan akademik terhubung secara real-time</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl mb-3">📱</div>
+          <h4 class="font-semibold mb-2">Akses Mobile</h4>
+          <p class="text-blue-100 text-sm">Akses penuh melalui smartphone dan tablet untuk semua pengguna</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl mb-3">🔒</div>
+          <h4 class="font-semibold mb-2">Keamanan Data</h4>
+          <p class="text-blue-100 text-sm">Sistem keamanan berlapis dengan backup otomatis dan enkripsi data</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

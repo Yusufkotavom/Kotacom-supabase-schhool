@@ -1,0 +1,229 @@
+---
+export interface CompanyPackage {
+  name: string;
+  price: string;
+  originalPrice?: string;
+  description: string;
+  features: string[];
+  popular?: boolean;
+  icon: string;
+  whatsappMessage: string;
+  target: string;
+}
+
+const packages: CompanyPackage[] = [
+  {
+    name: "Business Starter",
+    price: "Rp 5.500.000",
+    originalPrice: "Rp 7.500.000",
+    description: "Website company profile untuk UMKM dan startup",
+    icon: "🏪",
+    target: "UMKM & Startup",
+    features: [
+      "Website company profile responsif",
+      "5-10 halaman custom",
+      "Portfolio & case studies",
+      "Berita & artikel perusahaan",
+      "Contact form & lead capture",
+      "Domain & hosting 1 tahun",
+      "Training admin perusahaan",
+      "Garansi 1 tahun"
+    ],
+    whatsappMessage: "Halo, saya tertarik dengan paket Business Starter untuk website company profile"
+  },
+  {
+    name: "Professional Business",
+    price: "Rp 12.000.000",
+    originalPrice: "Rp 15.000.000",
+    description: "Website lengkap + CRM untuk perusahaan menengah",
+    icon: "🏢",
+    popular: true,
+    target: "Perusahaan Menengah",
+    features: [
+      "Semua fitur Business Starter",
+      "Sistem CRM terintegrasi",
+      "Project management dashboard",
+      "Client portal lengkap",
+      "Invoice & payment system",
+      "HR management basic",
+      "API integration ready",
+      "Domain & hosting 2 tahun",
+      "Training & onboarding",
+      "Priority support"
+    ],
+    whatsappMessage: "Halo, saya tertarik dengan paket Professional Business untuk website dan CRM perusahaan"
+  },
+  {
+    name: "Enterprise Solution",
+    price: "Rp 25.000.000+",
+    description: "Sistem enterprise lengkap untuk perusahaan besar",
+    icon: "🏗️",
+    target: "Perusahaan Besar",
+    features: [
+      "Semua fitur Professional Business",
+      "Enterprise resource planning (ERP)",
+      "Advanced HR management",
+      "E-commerce integration",
+      "Business intelligence dashboard",
+      "Multi-branch support",
+      "Custom feature development",
+      "Dedicated infrastructure",
+      "Domain & hosting 3 tahun",
+      "24/7 premium support",
+      "SLA guarantee",
+      "On-site consulting"
+    ],
+    whatsappMessage: "Halo, saya tertarik dengan paket Enterprise Solution untuk sistem enterprise perusahaan"
+  }
+];
+---
+
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Paket Website & Sistem Perusahaan
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Pilih paket yang sesuai dengan skala dan kebutuhan perusahaan Anda
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+      {packages.map((pkg, index) => (
+        <div class={`relative bg-white rounded-2xl shadow-lg border-2 transition-all duration-300 hover:shadow-xl ${
+          pkg.popular ? 'border-blue-500 scale-105' : 'border-gray-200 hover:border-gray-300'
+        }`}>
+          {pkg.popular && (
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+              <span class="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
+                Paling Populer
+              </span>
+            </div>
+          )}
+
+          <div class="p-8">
+            <div class="text-center mb-6">
+              <div class="text-5xl mb-4">{pkg.icon}</div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
+              <p class="text-sm text-blue-600 font-semibold mb-2">{pkg.target}</p>
+              <p class="text-gray-600 mb-4">{pkg.description}</p>
+
+              <div class="mb-6">
+                {pkg.originalPrice && (
+                  <div class="text-lg text-gray-500 line-through mb-1">{pkg.originalPrice}</div>
+                )}
+                <div class="text-3xl font-bold text-blue-600">{pkg.price}</div>
+                {pkg.name !== "Enterprise Solution" && (
+                  <div class="text-sm text-gray-500 mt-1">Satu kali pembayaran</div>
+                )}
+              </div>
+            </div>
+
+            <ul class="space-y-3 mb-8">
+              {pkg.features.map((feature) => (
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={`https://wa.me/6285799520350?text=${encodeURIComponent(pkg.whatsappMessage)}`}
+              class="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-3 px-6 rounded-lg font-semibold transition-colors duration-300"
+            >
+              Konsultasi Gratis
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Additional Info -->
+    <div class="mt-16 bg-gray-50 rounded-2xl p-8">
+      <div class="text-center mb-8">
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">Yang Termasuk Dalam Setiap Paket</h3>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="text-center">
+          <div class="text-3xl mb-3">🎯</div>
+          <h4 class="font-semibold mb-2">Konsultasi Gratis</h4>
+          <p class="text-gray-600 text-sm">Analisis kebutuhan perusahaan dan diskusi solusi terbaik</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl mb-3">📋</div>
+          <h4 class="font-semibold mb-2">Proposal Detail</h4>
+          <p class="text-gray-600 text-sm">Dokumen lengkap dengan timeline dan spesifikasi teknis</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl mb-3">👨‍💻</div>
+          <h4 class="font-semibold mb-2">Development</h4>
+          <p class="text-gray-600 text-sm">Pengembangan sistem sesuai spesifikasi yang disepakati</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl mb-3">🎓</div>
+          <h4 class="font-semibold mb-2">Training & Support</h4>
+          <p class="text-gray-600 text-sm">Pelatihan penggunaan sistem dan dukungan teknis</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Section -->
+    <div class="mt-16">
+      <div class="text-center mb-12">
+        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Timeline Pengembangan</h3>
+        <p class="text-gray-600">Proses pengembangan yang terstruktur dan transparan</p>
+      </div>
+
+      <div class="relative">
+        <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-blue-200"></div>
+
+        <div class="space-y-8">
+          <div class="relative flex items-center">
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white"></div>
+            <div class="w-1/2 pr-8 text-right">
+              <div class="bg-white p-6 rounded-lg shadow-md">
+                <h4 class="font-semibold text-gray-900">Minggu 1-2: Planning</h4>
+                <p class="text-gray-600 text-sm">Analisis kebutuhan, desain UI/UX, dan perencanaan teknis</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative flex items-center">
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white"></div>
+            <div class="w-1/2 ml-8">
+              <div class="bg-white p-6 rounded-lg shadow-md">
+                <h4 class="font-semibold text-gray-900">Minggu 3-7: Development</h4>
+                <p class="text-gray-600 text-sm">Pengembangan fitur utama dan testing berkala</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative flex items-center">
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white"></div>
+            <div class="w-1/2 pr-8 text-right">
+              <div class="bg-white p-6 rounded-lg shadow-md">
+                <h4 class="font-semibold text-gray-900">Minggu 8-9: Testing</h4>
+                <p class="text-gray-600 text-sm">Testing menyeluruh dan optimasi performa</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative flex items-center">
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-green-600 rounded-full border-4 border-white"></div>
+            <div class="w-1/2 ml-8">
+              <div class="bg-green-50 p-6 rounded-lg border border-green-200">
+                <h4 class="font-semibold text-green-900">Minggu 9-10: Launch</h4>
+                <p class="text-green-700 text-sm">Deployment dan training pengguna</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

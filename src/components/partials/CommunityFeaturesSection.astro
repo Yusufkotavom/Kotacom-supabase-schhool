@@ -1,0 +1,160 @@
+---
+export interface CommunityFeature {
+  title: string;
+  description: string;
+  icon: string;
+  features: string[];
+  keywords: string[];
+}
+
+const features: CommunityFeature[] = [
+  {
+    title: "Website Komunitas Gratis",
+    description: "Website gratis untuk komunitas dan NGO dengan desain professional dan fitur lengkap",
+    icon: "🌍",
+    features: [
+      "Website responsif untuk semua device",
+      "Informasi komunitas & program lengkap",
+      "Galeri kegiatan & impact stories",
+      "Kontak & lokasi komunitas",
+      "Donation & volunteer registration"
+    ],
+    keywords: ["website komunitas gratis", "website NGO gratis", "website organisasi gratis", "free website community"]
+  },
+  {
+    title: "Content Management System",
+    description: "CMS sederhana untuk mengelola konten website tanpa perlu skill teknis",
+    icon: "📝",
+    features: [
+      "Easy content editor",
+      "Photo & video gallery management",
+      "News & event posting",
+      "Donation campaign management",
+      "Volunteer management system"
+    ],
+    keywords: ["CMS gratis", "content management", "website editor", "volunteer management"]
+  },
+  {
+    title: "Donation & Fundraising",
+    description: "Sistem donasi terintegrasi dengan berbagai metode pembayaran untuk menggalang dana",
+    icon: "💝",
+    features: [
+      "Multiple payment gateways",
+      "Donation tracking & reports",
+      "Campaign management",
+      "Donor management system",
+      "Tax receipt generation"
+    ],
+    keywords: ["donation system", "fundraising platform", "online donation", "charity website"]
+  },
+  {
+    title: "Event Management",
+    description: "Sistem manajemen acara untuk workshop, seminar, dan kegiatan komunitas",
+    icon: "📅",
+    features: [
+      "Online event registration",
+      "Event calendar & scheduling",
+      "Participant management",
+      "Event promotion tools",
+      "Attendance tracking"
+    ],
+    keywords: ["event management", "community events", "online registration", "event calendar"]
+  },
+  {
+    title: "Impact Reporting",
+    description: "Dashboard untuk melaporkan dampak program dan kegiatan komunitas",
+    icon: "📊",
+    features: [
+      "Impact measurement tools",
+      "Progress tracking dashboard",
+      "Photo & story documentation",
+      "Annual report generation",
+      "Stakeholder reporting"
+    ],
+    keywords: ["impact reporting", "community impact", "social impact", "NGO reporting"]
+  },
+  {
+    title: "Community Engagement",
+    description: "Fitur untuk meningkatkan engagement dengan member dan supporter komunitas",
+    icon: "🤝",
+    features: [
+      "Member registration & profiles",
+      "Discussion forums",
+      "Newsletter subscription",
+      "Social media integration",
+      "Feedback & survey tools"
+    ],
+    keywords: ["community engagement", "member management", "volunteer engagement", "community building"]
+  }
+];
+---
+
+<section class="py-20 bg-gray-50 dark:bg-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center justify-center px-4 py-2 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm font-medium rounded-full mb-4">
+        🌍 Website Gratis Komunitas
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        Fitur Lengkap Website <span class="text-green-600">Gratis</span> untuk Komunitas
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Website <strong>gratis</strong> untuk <strong>komunitas</strong>, <strong>NGO</strong>, dan <strong>organisasi sosial</strong> dengan fitur lengkap
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {features.map((feature, index) => (
+        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 dark:border-gray-600 hover:border-green-300 dark:hover:border-green-500">
+          <div class="text-center mb-6">
+            <div class="text-4xl mb-4">{feature.icon}</div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">{feature.title}</h3>
+            <p class="text-gray-600 dark:text-gray-300">{feature.description}</p>
+          </div>
+
+          <ul class="space-y-2">
+            {feature.features.map((item) => (
+              <li class="flex items-center text-sm text-gray-700 dark:text-gray-300">
+                <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <!-- SEO Keywords (hidden but accessible to search engines) -->
+          <div class="sr-only">
+            Keywords: {feature.keywords.join(", ")}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Additional Benefits -->
+    <div class="mt-16 bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-8 text-white">
+      <div class="text-center mb-8">
+        <h3 class="text-2xl font-bold mb-4">Mengapa Website <span class="text-white">Gratis</span> untuk Komunitas?</h3>
+        <p class="text-green-100">Website gratis yang powerful untuk membantu komunitas dan NGO mencapai tujuan mereka</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center">
+          <div class="text-3xl mb-3">🎯</div>
+          <h4 class="font-semibold mb-2">Reach More People</h4>
+          <p class="text-green-100 text-sm">Tingkatkan visibilitas komunitas dan jangkau lebih banyak orang</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl mb-3">💰</div>
+          <h4 class="font-semibold mb-2">Increase Donations</h4>
+          <p class="text-green-100 text-sm">Sistem donasi terintegrasi untuk menggalang dana lebih efektif</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl mb-3">🤝</div>
+          <h4 class="font-semibold mb-2">Build Community</h4>
+          <p class="text-green-100 text-sm">Platform untuk membangun komunitas yang kuat dan engaged</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

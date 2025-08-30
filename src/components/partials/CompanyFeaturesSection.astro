@@ -1,0 +1,145 @@
+---
+export interface CompanyFeature {
+  title: string;
+  description: string;
+  icon: string;
+  features: string[];
+}
+
+const features: CompanyFeature[] = [
+  {
+    title: "Website Company Profile",
+    description: "Website profesional yang menampilkan identitas perusahaan dan layanan yang ditawarkan",
+    icon: "🏢",
+    features: [
+      "Desain modern & professional",
+      "Informasi perusahaan lengkap",
+      "Portfolio & case studies",
+      "Berita & artikel perusahaan",
+      "Kontak & lokasi perusahaan"
+    ]
+  },
+  {
+    title: "Sistem Management Perusahaan",
+    description: "Platform terintegrasi untuk mengelola semua aspek operasional perusahaan",
+    icon: "⚙️",
+    features: [
+      "Dashboard admin perusahaan",
+      "Manajemen data karyawan & klien",
+      "Sistem project management",
+      "CRM terintegrasi",
+      "Laporan & analitik bisnis"
+    ]
+  },
+  {
+    title: "Portal Klien",
+    description: "Akses mudah bagi klien untuk memantau progress project dan komunikasi",
+    icon: "🤝",
+    features: [
+      "Tracking project progress",
+      "Komunikasi dengan tim project",
+      "Invoice & pembayaran online",
+      "Download deliverables",
+      "Support ticket system"
+    ]
+  },
+  {
+    title: "HR Management System",
+    description: "Sistem manajemen SDM untuk mengelola karyawan dan proses HR",
+    icon: "👥",
+    features: [
+      "Database karyawan terintegrasi",
+      "Sistem absensi digital",
+      "Manajemen gaji & payroll",
+      "Performance appraisal",
+      "Training & development"
+    ]
+  },
+  {
+    title: "E-Commerce Integration",
+    description: "Integrasi toko online untuk perusahaan yang menjual produk",
+    icon: "🛒",
+    features: [
+      "Multi-channel e-commerce",
+      "Inventory management",
+      "Payment gateway integration",
+      "Order tracking system",
+      "Customer management"
+    ]
+  },
+  {
+    title: "Business Intelligence",
+    description: "Dashboard analitik untuk monitoring performa bisnis secara real-time",
+    icon: "📊",
+    features: [
+      "Real-time analytics dashboard",
+      "Sales & revenue reports",
+      "Customer behavior insights",
+      "Performance KPIs tracking",
+      "Predictive analytics"
+    ]
+  }
+];
+---
+
+<section class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Fitur Lengkap Website & Sistem Perusahaan
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Solusi digital terintegrasi yang mencakup semua kebutuhan perusahaan modern
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {features.map((feature, index) => (
+        <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100">
+          <div class="text-center mb-6">
+            <div class="text-4xl mb-4">{feature.icon}</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
+            <p class="text-gray-600">{feature.description}</p>
+          </div>
+
+          <ul class="space-y-2">
+            {feature.features.map((item) => (
+              <li class="flex items-center text-sm text-gray-700">
+                <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Additional Benefits -->
+    <div class="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
+      <div class="text-center mb-8">
+        <h3 class="text-2xl font-bold mb-4">Keunggulan Sistem Enterprise</h3>
+        <p class="text-blue-100">Semua fitur terhubung dalam satu platform yang scalable dan aman</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center">
+          <div class="text-3xl mb-3">🔄</div>
+          <h4 class="font-semibold mb-2">Data Integration</h4>
+          <p class="text-blue-100 text-sm">Semua data perusahaan terhubung secara real-time dengan API modern</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl mb-3">📱</div>
+          <h4 class="font-semibold mb-2">Multi-Platform</h4>
+          <p class="text-blue-100 text-sm">Akses penuh melalui web, mobile, dan desktop untuk semua pengguna</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl mb-3">🔒</div>
+          <h4 class="font-semibold mb-2">Enterprise Security</h4>
+          <p class="text-blue-100 text-sm">Keamanan tingkat enterprise dengan compliance GDPR & ISO 27001</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,237 @@
+---
+// PrintingPricing Component - Comprehensive pricing packages for printing services
+import ScrollReveal from './ScrollReveal.astro';
+
+export interface PricingPackage {
+  name: string;
+  description: string;
+  price: string;
+  originalPrice?: string;
+  discount?: string;
+  popular?: boolean;
+  features: {
+    included: string[];
+    notIncluded?: string[];
+  };
+  recommendedFor: string[];
+  ctaText: string;
+  ctaLink: string;
+  icon: string;
+}
+
+const pricingPackages: PricingPackage[] = [
+  {
+    name: "BRONZE",
+    description: "Paket dasar untuk kebutuhan percetakan sederhana",
+    price: "IDR 50K",
+    originalPrice: "IDR 75K",
+    discount: "33%",
+    features: {
+      included: [
+        "Cetak Banner A3 (max 10 lembar)",
+        "Cetak Kartu Nama (max 100 pcs)",
+        "Cetak Flyer A5 (max 50 pcs)",
+        "Kualitas Standard",
+        "Waktu Pengerjaan 2-3 hari",
+        "Free Design Template"
+      ]
+    },
+    recommendedFor: ["UMKM Pemula", "Startup", "Event Kecil"],
+    ctaText: "Pilih Paket Bronze",
+    ctaLink: "https://wa.me/6285799520350?text=Halo%20KOTACOM,%20saya%20tertarik%20dengan%20Paket%20BRONZE%20untuk%20kebutuhan%20percetakan.",
+    icon: "🖨️"
+  },
+  {
+    name: "SILVER",
+    description: "Paket lengkap untuk bisnis menengah dengan kualitas premium",
+    price: "IDR 125K",
+    originalPrice: "IDR 175K",
+    discount: "29%",
+    popular: true,
+    features: {
+      included: [
+        "Semua fitur Bronze +",
+        "Cetak Banner A2 (max 20 lembar)",
+        "Cetak Kartu Nama Premium (max 500 pcs)",
+        "Cetak Brosur A4 (max 100 pcs)",
+        "Cetak Stiker Custom",
+        "Kualitas Premium (300dpi)",
+        "Waktu Pengerjaan 1-2 hari",
+        "Free Design Konsultasi",
+        "Free Revisi Design (2x)"
+      ]
+    },
+    recommendedFor: ["Bisnis Menengah", "Restoran", "Klinik", "Toko Retail"],
+    ctaText: "Pilih Paket Silver",
+    ctaLink: "https://wa.me/6285799520350?text=Halo%20KOTACOM,%20saya%20tertarik%20dengan%20Paket%20SILVER%20(Best%20Seller)%20untuk%20bisnis%20saya.",
+    icon: "⭐"
+  },
+  {
+    name: "GOLD",
+    description: "Paket premium untuk perusahaan besar dengan layanan VIP",
+    price: "IDR 250K",
+    originalPrice: "IDR 400K",
+    discount: "38%",
+    features: {
+      included: [
+        "Semua fitur Silver +",
+        "Cetak Banner A1 (unlimited)",
+        "Cetak Company Profile Lengkap",
+        "Cetak Kemasan Produk Custom",
+        "Cetak Merchandise (Kaos, Topi, dll)",
+        "Kualitas Ultra Premium (600dpi)",
+        "Waktu Pengerjaan Express (6-12 jam)",
+        "Free Design Full Custom",
+        "Free Revisi Design (unlimited)",
+        "Free Pickup & Delivery",
+        "Dedicated Project Manager"
+      ]
+    },
+    recommendedFor: ["Perusahaan Besar", "Brand Ternama", "Event Organizer", "Konstruksi"],
+    ctaText: "Pilih Paket Gold",
+    ctaLink: "https://wa.me/6285799520350?text=Halo%20KOTACOM,%20saya%20tertarik%20dengan%20Paket%20GOLD%20untuk%20solusi%20percetakan%20premium.",
+    icon: "👑"
+  }
+];
+---
+
+<section class="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <ScrollReveal animation="fadeInUp" className="text-center mb-16">
+      <div class="inline-flex items-center justify-center px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 text-sm font-medium rounded-full mb-4">
+        💰 Harga Terjangkau & Kompetitif
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        Pilih Paket Percetakan Yang Sesuai Kebutuhan Anda
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+        Kami menyediakan berbagai paket percetakan dengan harga transparan dan kualitas terjamin. Mulai dari paket dasar hingga premium untuk kebutuhan bisnis Anda.
+      </p>
+    </ScrollReveal>
+
+    <!-- Pricing Cards -->
+    <div class="grid md:grid-cols-3 gap-8 mb-12">
+      {pricingPackages.map((pkg, index) => (
+        <ScrollReveal
+          animation={index === 1 ? 'zoomIn' : index === 0 ? 'fadeInLeft' : 'fadeInRight'}
+          delay={index * 200}
+          className="h-full"
+        >
+          <div class={`bg-white dark:bg-gray-800 rounded-2xl shadow-lg border p-8 h-full flex flex-col relative overflow-hidden transition-all duration-300 hover:shadow-xl ${
+            pkg.popular
+              ? 'ring-2 ring-red-500 dark:ring-red-400 transform scale-105'
+              : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600'
+          }`}>
+
+            <!-- Popular Badge -->
+            {pkg.popular && (
+              <div class="absolute -top-3 -right-3 bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                BEST SELLER
+              </div>
+            )}
+
+            <!-- Package Icon & Name -->
+            <div class="text-center mb-6">
+              <div class="text-4xl mb-3">{pkg.icon}</div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{pkg.name}</h3>
+              <p class="text-gray-600 dark:text-gray-400">{pkg.description}</p>
+            </div>
+
+            <!-- Pricing -->
+            <div class="text-center mb-6">
+              <div class="flex items-center justify-center space-x-2 mb-2">
+                <span class="text-4xl font-extrabold text-blue-600 dark:text-blue-400">{pkg.price}</span>
+                {pkg.originalPrice && (
+                  <span class="text-lg text-gray-500 line-through">{pkg.originalPrice}</span>
+                )}
+              </div>
+              {pkg.discount && (
+                <div class="inline-block bg-green-500 text-white text-sm font-semibold px-3 py-1 rounded-full mb-4">
+                  Diskon {pkg.discount}
+                </div>
+              )}
+              <p class="text-sm text-gray-500 dark:text-gray-400">per bulan / minimal 3 bulan</p>
+            </div>
+
+            <!-- Features -->
+            <div class="flex-grow mb-6">
+              <h4 class="font-semibold text-gray-900 dark:text-white mb-4">Yang Didapat:</h4>
+              <ul class="space-y-3">
+                {pkg.features.included.map((feature) => (
+                  <li class="flex items-start text-sm">
+                    <svg class="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-gray-700 dark:text-gray-300">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Recommended For -->
+            <div class="mb-6">
+              <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Cocok untuk:</h4>
+              <div class="flex flex-wrap gap-2">
+                {pkg.recommendedFor.map((target) => (
+                  <span class="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 text-xs px-3 py-1 rounded-full">
+                    {target}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <!-- CTA Button -->
+            <a
+              href={pkg.ctaLink}
+              class={`w-full font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg text-center ${
+                pkg.popular
+                  ? 'bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white'
+                  : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white'
+              }`}
+              target="_blank"
+              rel="noopener"
+            >
+              {pkg.ctaText}
+            </a>
+          </div>
+        </ScrollReveal>
+      ))}
+    </div>
+
+    <!-- Additional Info -->
+    <ScrollReveal animation="fadeInUp" delay={600} className="text-center">
+      <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          💡 Butuh Paket Custom?
+        </h3>
+        <p class="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
+          Kebutuhan percetakan Anda unik? Kami siap membuat paket custom yang sesuai dengan budget dan kebutuhan spesifik bisnis Anda. Diskusikan dengan tim kami untuk solusi terbaik.
+        </p>
+        <a
+          href="https://wa.me/6285799520350?text=Halo%20KOTACOM,%20saya%20ingin%20membahas%20paket%20percetakan%20custom%20untuk%20bisnis%20saya."
+          class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg transform hover:scale-105"
+          target="_blank"
+          rel="noopener"
+        >
+          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+          </svg>
+          Konsultasi Gratis
+        </a>
+      </div>
+    </ScrollReveal>
+
+    <!-- Terms & Conditions -->
+    <ScrollReveal animation="fadeInUp" delay={800} className="text-center mt-12">
+      <div class="text-sm text-gray-500 dark:text-gray-400 max-w-4xl mx-auto">
+        <p class="mb-2">
+          *Harga belum termasuk PPN 11%. **Harga dapat berubah sewaktu-waktu tanpa pemberitahuan sebelumnya.
+        </p>
+        <p>
+          ***Minimal order 3 bulan berlangganan untuk paket Bronze & Silver. ****Garansi kualitas 30 hari untuk semua paket.
+        </p>
+      </div>
+    </ScrollReveal>
+  </div>
+</section>

@@ -1,0 +1,316 @@
+---
+export interface OptimizedLottieProps {
+  src: string;
+  alt?: string;
+  className?: string;
+  autoplay?: boolean;
+  loop?: boolean;
+  speed?: number;
+  width?: string | number;
+  height?: string | number;
+  priority?: boolean;
+  preload?: boolean;
+  hover?: boolean;
+  click?: boolean;
+  fallbackImage?: string;
+  theme?: 'web' | 'mobile' | 'seo' | 'business' | 'generic';
+}
+
+const {
+  src,
+  alt = "Animation",
+  className = "",
+  autoplay = true,
+  loop = true,
+  speed = 1,
+  width = "100%",
+  height = "100%",
+  priority = false,
+  preload = false,
+  hover = false,
+  click = false,
+  fallbackImage,
+  theme = 'generic'
+} = Astro.props as OptimizedLottieProps;
+
+const animationId = `optimized-lottie-${Math.random().toString(36).substr(2, 9)}`;
+
+// Get fallback image based on theme
+const getFallbackImage = (theme: string) => {
+  const fallbackImages = {
+    web: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+    mobile: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+    seo: 'https://images.unsplash.com/photo-1562577309-2592ab84b1bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+    business: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+    generic: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+  };
+  return fallbackImages[theme as keyof typeof fallbackImages] || fallbackImages.generic;
+};
+
+const defaultFallbackImage = fallbackImage || getFallbackImage(theme);
+---
+
+<!-- Preload Lottie library only for priority animations -->
+{priority && (
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js" as="script" crossorigin="anonymous" fetchpriority="high">
+)}
+
+<div
+  id={animationId}
+  class={`optimized-lottie-container ${className}`}
+  data-src={src}
+  data-autoplay={autoplay}
+  data-loop={loop}
+  data-speed={speed}
+  data-hover={hover}
+  data-click={click}
+  data-priority={priority}
+  data-fallback-image={defaultFallbackImage}
+  style={`width: ${width}; height: ${height};`}
+  role="img"
+  aria-label={alt}
+>
+  <!-- Optimized fallback with beautiful image -->
+  <div class="optimized-lottie-fallback relative w-full h-full">
+    <img
+      src={defaultFallbackImage}
+      alt={alt}
+      class="w-full h-full object-cover rounded-lg"
+      loading="lazy"
+    />
+    <!-- Overlay with loading indicator -->
+    <div class="absolute inset-0 bg-black/20 flex items-center justify-center rounded-lg">
+      <div class="bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2 flex items-center">
+        <div class="animate-spin rounded-full h-4 w-4 border-2 border-blue-600 border-t-transparent mr-2"></div>
+        <span class="text-sm font-medium text-gray-700">Loading...</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ animationId }}>
+  // Simple and reliable Lottie loader with image-first approach
+  class SimpleLottieLoader {
+    constructor() {
+      this.init();
+    }
+
+    static getInstance() {
+      if (!SimpleLottieLoader.instance) {
+        SimpleLottieLoader.instance = new SimpleLottieLoader();
+      }
+      return SimpleLottieLoader.instance;
+    }
+
+    init() {
+      // Load Lottie library only when needed
+      this.loadLottieWhenNeeded();
+    }
+
+    async loadLottieWhenNeeded() {
+      // Wait for user interaction or after page load
+      const loadLottie = async () => {
+        if (this.loaded || typeof window === 'undefined') return;
+
+        try {
+          // Check if already loaded
+          if (window.lottie) {
+            this.lottie = window.lottie;
+            this.loaded = true;
+            this.processContainers();
+            return;
+          }
+
+          // Load Lottie library
+          await this.loadScript();
+          this.loaded = true;
+          this.processContainers();
+        } catch (error) {
+          console.warn('Lottie loading failed, keeping fallback images:', error);
+        }
+      };
+
+      // Load after initial page load
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          setTimeout(loadLottie, 2000); // Load 2 seconds after DOM ready
+        });
+      } else {
+        setTimeout(loadLottie, 2000);
+      }
+
+      // Also load on user interaction for better performance
+      const loadOnInteraction = () => {
+        loadLottie();
+        // Remove listeners after first interaction
+        document.removeEventListener('click', loadOnInteraction);
+        document.removeEventListener('scroll', loadOnInteraction);
+        document.removeEventListener('touchstart', loadOnInteraction);
+      };
+
+      document.addEventListener('click', loadOnInteraction, { once: true });
+      document.addEventListener('scroll', loadOnInteraction, { once: true });
+      document.addEventListener('touchstart', loadOnInteraction, { once: true });
+    }
+
+    async loadScript() {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js';
+        script.crossOrigin = 'anonymous';
+        script.onload = () => {
+          this.lottie = window.lottie;
+          resolve();
+        };
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    }
+
+    processContainers() {
+      // Find all containers and process them
+      document.querySelectorAll('.optimized-lottie-container').forEach(container => {
+        this.createAnimation(container);
+      });
+    }
+
+    async createAnimation(container) {
+      if (!this.lottie) return;
+
+      const src = container.getAttribute('data-src');
+      const autoplay = container.getAttribute('data-autoplay') === 'true';
+      const loop = container.getAttribute('data-loop') === 'true';
+      const speed = parseFloat(container.getAttribute('data-speed') || '1');
+
+      if (!src) return;
+
+      try {
+        // Fetch animation data
+        const response = await fetch(src);
+        if (!response.ok) throw new Error('Failed to fetch animation');
+
+        const animationData = await response.json();
+
+        // Create animation
+        const animation = this.lottie.loadAnimation({
+          container,
+          renderer: 'svg',
+          loop,
+          autoplay,
+          animationData,
+          rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice'
+          }
+        });
+
+        // Set speed
+        animation.setSpeed(speed);
+
+        // Remove fallback smoothly
+        const fallback = container.querySelector('.optimized-lottie-fallback');
+        if (fallback) {
+          fallback.style.transition = 'opacity 0.5s ease-out';
+          fallback.style.opacity = '0';
+          setTimeout(() => {
+            if (fallback.parentNode) {
+              fallback.parentNode.removeChild(fallback);
+            }
+          }, 500);
+        }
+
+        // Add hover effect if enabled
+        if (container.getAttribute('data-hover') === 'true') {
+          container.style.cursor = 'pointer';
+          container.style.transition = 'transform 0.3s ease';
+
+          container.addEventListener('mouseenter', () => {
+            container.style.transform = 'scale(1.02)';
+          });
+
+          container.addEventListener('mouseleave', () => {
+            container.style.transform = 'scale(1)';
+          });
+        }
+
+      } catch (error) {
+        console.warn('Animation failed to load:', error);
+        // Keep the fallback image visible
+      }
+    }
+  }
+
+  // Initialize the loader
+  if (typeof document !== 'undefined') {
+    SimpleLottieLoader.getInstance();
+  }
+</script>
+
+<style>
+  .optimized-lottie-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    contain: layout style paint;
+    /* Optimize for performance */
+    will-change: transform;
+  }
+
+  .optimized-lottie-container svg {
+    width: 100%;
+    height: 100%;
+    /* Optimize rendering */
+    shape-rendering: geometricPrecision;
+  }
+
+  .optimized-lottie-fallback {
+    min-height: 120px;
+    /* Optimize for performance */
+    contain: layout style;
+  }
+
+  .optimized-lottie-loaded {
+    opacity: 1;
+    /* Smooth transition when loaded */
+    transition: opacity 0.3s ease-in;
+  }
+
+  .optimized-lottie-error {
+    opacity: 0.8;
+  }
+
+  .optimized-lottie-error .optimized-lottie-fallback {
+    background: linear-gradient(to bottom right, #fef2f2, #fee2e2);
+  }
+
+  /* Performance optimizations */
+  .optimized-lottie-container[data-priority="true"] {
+    /* High priority animations get better performance hints */
+    content-visibility: auto;
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .optimized-lottie-error .optimized-lottie-fallback {
+      background: linear-gradient(to bottom right, #450a0a, #7f1d1d);
+    }
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    .optimized-lottie-container {
+      will-change: auto;
+    }
+
+    .optimized-lottie-container[data-hover="true"]:hover {
+      transform: none !important;
+    }
+  }
+
+  /* Optimize for mobile */
+  @media (max-width: 768px) {
+    .optimized-lottie-container {
+      /* Reduce complexity on mobile for better performance */
+      contain: layout style;
+    }
+  }
+</style>

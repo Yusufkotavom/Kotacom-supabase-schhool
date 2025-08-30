@@ -1,0 +1,160 @@
+---
+export interface ConstructionFeature {
+  title: string;
+  description: string;
+  icon: string;
+  features: string[];
+  keywords: string[];
+}
+
+const features: ConstructionFeature[] = [
+  {
+    title: "Website Konstruksi Professional",
+    description: "Website perusahaan konstruksi dengan portfolio project dan sistem manajemen proyek terintegrasi",
+    icon: "🏗️",
+    features: [
+      "Website responsif untuk semua device",
+      "Portfolio project konstruksi lengkap",
+      "Company profile & sertifikasi",
+      "Kontak & lokasi project site",
+      "Safety & quality assurance info"
+    ],
+    keywords: ["website konstruksi", "portfolio konstruksi", "company profile konstruksi", "project management"]
+  },
+  {
+    title: "Project Management System",
+    description: "Platform terintegrasi untuk mengelola semua aspek proyek konstruksi dari planning hingga completion",
+    icon: "📋",
+    features: [
+      "Dashboard project management",
+      "Timeline & milestone tracking",
+      "Resource allocation & scheduling",
+      "Budget & cost monitoring",
+      "Quality control system"
+    ],
+    keywords: ["project management", "construction management", "timeline tracking", "resource allocation"]
+  },
+  {
+    title: "Client Portal",
+    description: "Portal khusus klien untuk monitoring progress project, approval, dan komunikasi real-time",
+    icon: "👷‍♂️",
+    features: [
+      "Real-time project progress",
+      "Photo & video documentation",
+      "Approval & sign-off system",
+      "Payment milestone tracking",
+      "Client communication hub"
+    ],
+    keywords: ["client portal", "project progress", "construction monitoring", "client communication"]
+  },
+  {
+    title: "Safety Management",
+    description: "Sistem manajemen keselamatan kerja dengan reporting, training, dan compliance tracking",
+    icon: "🛡️",
+    features: [
+      "Safety incident reporting",
+      "PPE & equipment tracking",
+      "Safety training records",
+      "Compliance monitoring",
+      "Emergency response system"
+    ],
+    keywords: ["safety management", "construction safety", "safety compliance", "emergency response"]
+  },
+  {
+    title: "Equipment & Inventory",
+    description: "Sistem manajemen peralatan dan inventory konstruksi dengan maintenance scheduling",
+    icon: "🔧",
+    features: [
+      "Equipment tracking & maintenance",
+      "Inventory management system",
+      "Fuel & consumables monitoring",
+      "Equipment utilization reports",
+      "Maintenance scheduling"
+    ],
+    keywords: ["equipment management", "inventory system", "construction equipment", "maintenance scheduling"]
+  },
+  {
+    title: "Financial & Reporting",
+    description: "Dashboard keuangan dan reporting komprehensif untuk monitoring profitabilitas project",
+    icon: "💰",
+    features: [
+      "Project cost analysis",
+      "Profit & loss tracking",
+      "Financial forecasting",
+      "Regulatory compliance reports",
+      "Performance analytics"
+    ],
+    keywords: ["construction finance", "project reporting", "financial analysis", "construction analytics"]
+  }
+];
+---
+
+<section class="py-20 bg-gray-50 dark:bg-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center justify-center px-4 py-2 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-sm font-medium rounded-full mb-4">
+        🏗️ Layanan Lengkap Konstruksi
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        Fitur Lengkap Website & Sistem <span class="text-yellow-600">Konstruksi</span>
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Solusi digital terintegrasi untuk perusahaan <strong>konstruksi</strong> dan <strong>project management</strong> modern
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {features.map((feature, index) => (
+        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 dark:border-gray-600 hover:border-yellow-300 dark:hover:border-yellow-500">
+          <div class="text-center mb-6">
+            <div class="text-4xl mb-4">{feature.icon}</div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">{feature.title}</h3>
+            <p class="text-gray-600 dark:text-gray-300">{feature.description}</p>
+          </div>
+
+          <ul class="space-y-2">
+            {feature.features.map((item) => (
+              <li class="flex items-center text-sm text-gray-700 dark:text-gray-300">
+                <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <!-- SEO Keywords (hidden but accessible to search engines) -->
+          <div class="sr-only">
+            Keywords: {feature.keywords.join(", ")}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Additional Benefits -->
+    <div class="mt-16 bg-gradient-to-r from-yellow-600 to-red-600 rounded-2xl p-8 text-white">
+      <div class="text-center mb-8">
+        <h3 class="text-2xl font-bold mb-4">Keunggulan Sistem <span class="text-white">Konstruksi</span> Digital</h3>
+        <p class="text-yellow-100">Semua fitur terhubung dalam satu platform untuk project management yang efisien</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center">
+          <div class="text-3xl mb-3">📊</div>
+          <h4 class="font-semibold mb-2">Real-time Monitoring</h4>
+          <p class="text-yellow-100 text-sm">Monitoring project real-time dengan foto progress dan timeline tracking</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl mb-3">🛡️</div>
+          <h4 class="font-semibold mb-2">Safety First</h4>
+          <p class="text-yellow-100 text-sm">Sistem safety management terintegrasi dengan compliance tracking</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl mb-3">💰</div>
+          <h4 class="font-semibold mb-2">Cost Control</h4>
+          <p class="text-yellow-100 text-sm">Budget monitoring dan cost control yang akurat untuk setiap project</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

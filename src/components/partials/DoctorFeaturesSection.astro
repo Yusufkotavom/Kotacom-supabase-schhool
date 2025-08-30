@@ -1,0 +1,145 @@
+---
+export interface DoctorFeature {
+  title: string;
+  description: string;
+  icon: string;
+  features: string[];
+}
+
+const features: DoctorFeature[] = [
+  {
+    title: "Website Klinik Modern",
+    description: "Website profesional yang menampilkan informasi lengkap klinik dan layanan kesehatan yang tersedia",
+    icon: "🏥",
+    features: [
+      "Desain modern & medical-friendly",
+      "Informasi klinik & dokter lengkap",
+      "Jadwal praktek & layanan kesehatan",
+      "Kontak & lokasi klinik",
+      "Emergency contact 24/7"
+    ]
+  },
+  {
+    title: "Sistem Management Klinik",
+    description: "Platform terintegrasi untuk mengelola semua aspek operasional klinik dan administrasi pasien",
+    icon: "⚕️",
+    features: [
+      "Dashboard admin klinik",
+      "Manajemen data pasien & dokter",
+      "Sistem appointment online",
+      "Medical records digital",
+      "Inventory obat & alat medis"
+    ]
+  },
+  {
+    title: "Portal Pasien",
+    description: "Akses mudah bagi pasien untuk booking appointment, melihat riwayat kesehatan, dan komunikasi dengan dokter",
+    icon: "👨‍⚕️",
+    features: [
+      "Online appointment booking",
+      "Medical history & records",
+      "Prescription tracking",
+      "Payment & billing online",
+      "Health reminders"
+    ]
+  },
+  {
+    title: "Telemedicine System",
+    description: "Sistem telemedicine untuk konsultasi jarak jauh dengan dokter melalui video call",
+    icon: "📱",
+    features: [
+      "Video consultation",
+      "Digital prescription",
+      "E-prescription integration",
+      "Follow-up scheduling",
+      "Health monitoring"
+    ]
+  },
+  {
+    title: "Sistem Pembayaran",
+    description: "Sistem pembayaran terintegrasi untuk biaya konsultasi, obat, dan layanan kesehatan",
+    icon: "💳",
+    features: [
+      "Online payment gateway",
+      "Insurance integration",
+      "Invoice & receipt digital",
+      "Payment history",
+      "Auto reminder pembayaran"
+    ]
+  },
+  {
+    title: "Health Analytics",
+    description: "Dashboard analitik untuk monitoring performa klinik, pasien satisfaction, dan insights kesehatan",
+    icon: "📊",
+    features: [
+      "Patient satisfaction analytics",
+      "Appointment analytics",
+      "Revenue & financial reports",
+      "Popular services tracking",
+      "Performance KPIs"
+    ]
+  }
+];
+---
+
+<section class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Fitur Lengkap Website & Sistem Klinik
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Solusi digital terintegrasi yang mencakup semua kebutuhan klinik modern dan layanan kesehatan
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {features.map((feature, index) => (
+        <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100">
+          <div class="text-center mb-6">
+            <div class="text-4xl mb-4">{feature.icon}</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
+            <p class="text-gray-600">{feature.description}</p>
+          </div>
+
+          <ul class="space-y-2">
+            {feature.features.map((item) => (
+              <li class="flex items-center text-sm text-gray-700">
+                <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Additional Benefits -->
+    <div class="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
+      <div class="text-center mb-8">
+        <h3 class="text-2xl font-bold mb-4">Keunggulan Sistem Healthcare</h3>
+        <p class="text-blue-100">Semua fitur terhubung dalam satu platform yang aman dan compliant</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center">
+          <div class="text-3xl mb-3">🔒</div>
+          <h4 class="font-semibold mb-2">HIPAA Compliant</h4>
+          <p class="text-blue-100 text-sm">Standar keamanan data kesehatan internasional dengan enkripsi end-to-end</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl mb-3">📱</div>
+          <h4 class="font-semibold mb-2">Multi-Platform</h4>
+          <p class="text-blue-100 text-sm">Akses penuh melalui web, mobile, dan tablet untuk semua pengguna</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl mb-3">⚡</div>
+          <h4 class="font-semibold mb-2">Emergency Ready</h4>
+          <p class="text-blue-100 text-sm">Sistem emergency response dan notifikasi instan untuk kondisi darurat</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

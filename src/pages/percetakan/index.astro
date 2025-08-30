@@ -1,0 +1,574 @@
+---
+// Halaman Percetakan Komprehensif - Jasa Percetakan Terpercaya Surabaya
+import MainLayout from "../../layouts/MainLayout.astro";
+import ScrollReveal from "../../components/ScrollReveal.astro";
+import PrintingServiceCard from "../../components/PrintingServiceCard.astro";
+import PrintingPricing from "../../components/PrintingPricing.astro";
+import PrintingFAQ from "../../components/PrintingFAQ.astro";
+
+const title = "Jasa Percetakan Surabaya Terpercaya - Cetak Banner, Kartu Nama, Brosur | Kotacom.id";
+const description = "Jasa percetakan profesional Surabaya dengan harga terjangkau. Cetak banner, kartu nama, brosur, spanduk, stiker, kaos, merchandise. Kualitas premium, harga kompetitif, pengiriman cepat ke seluruh Indonesia.";
+
+const services = [
+  {
+    title: "Cetak Banner & Spanduk",
+    slug: "cetak-banner-spanduk",
+    description: "Banner dan spanduk berkualitas tinggi untuk promosi bisnis, event, dan iklan outdoor. Bahan vinyl tahan cuaca dengan printing full color.",
+    icon: "🏷️",
+    features: [
+      "Bahan Vinyl Premium",
+      "Tahan Cuaca 6 Bulan",
+      "Printing Full Color",
+      "Finishing Eyelet & Tassel",
+      "Garansi Kualitas 30 Hari"
+    ],
+    startingPrice: "Rp 25.000/m²",
+    timeline: "1-2 hari",
+    colors: ["color-full", "color-4color"],
+    category: "Outdoor Advertising"
+  },
+  {
+    title: "Cetak Kartu Nama",
+    slug: "cetak-kartu-nama",
+    description: "Kartu nama premium dengan finishing gloss/matte. Design profesional untuk memperkuat branding bisnis Anda.",
+    icon: "📇",
+    features: [
+      "Kertas Art Paper 310gsm",
+      "Finishing Gloss/Matte",
+      "Cutting Laser Presisi",
+      "Design Template Premium",
+      "Packaging Mewah"
+    ],
+    startingPrice: "Rp 150/pcs",
+    timeline: "1 hari",
+    colors: ["color-full", "color-4color", "color-2color"],
+    category: "Business Cards"
+  },
+  {
+    title: "Cetak Brosur & Flyer",
+    slug: "cetak-brosur-flyer",
+    description: "Brosur dan flyer dengan design menarik untuk promosi produk dan jasa. Berbagai ukuran dan pilihan kertas tersedia.",
+    icon: "📄",
+    features: [
+      "Berbagai Ukuran (A4, A5, A6)",
+      "Kertas Art Paper/Duplex",
+      "Finishing Lipat Presisi",
+      "Design Kreatif",
+      "Distribusi Bonus"
+    ],
+    startingPrice: "Rp 500/lembar",
+    timeline: "2-3 hari",
+    colors: ["color-full", "color-4color", "color-2color"],
+    category: "Print Media"
+  },
+  {
+    title: "Cetak Stiker & Label",
+    slug: "cetak-stiker-label",
+    description: "Stiker dan label custom untuk branding produk. Bahan vinyl tahan air dengan lem kuat untuk berbagai aplikasi.",
+    icon: "🏷️",
+    features: [
+      "Bahan Vinyl Tahan Air",
+      "Lem Kuat Anti Air",
+      "Cutting Plotter Presisi",
+      "Die Cut Custom Shape",
+      "UV Protection"
+    ],
+    startingPrice: "Rp 100/pcs",
+    timeline: "1-2 hari",
+    colors: ["color-full", "color-4color", "color-1color"],
+    category: "Labels & Stickers"
+  },
+  {
+    title: "Cetak Kaos & Merchandise",
+    slug: "cetak-kaos-merchandise",
+    description: "Kaos dan merchandise custom untuk event, promosi, atau souvenir. Printing berkualitas dengan bahan premium.",
+    icon: "👕",
+    features: [
+      "Bahan Cotton Combed 30s",
+      "Printing DTG/Heat Transfer",
+      "Warna Tahan Lama",
+      "Size Custom Available",
+      "Packaging Plastik"
+    ],
+    startingPrice: "Rp 45.000/pcs",
+    timeline: "3-5 hari",
+    popular: true,
+    colors: ["color-full", "color-4color", "color-2color", "color-1color"],
+    category: "Merchandise"
+  },
+  {
+    title: "Cetak Kemasan Produk",
+    slug: "cetak-kemasan-produk",
+    description: "Kemasan produk custom dengan design menarik untuk meningkatkan nilai jual produk Anda di pasaran.",
+    icon: "📦",
+    features: [
+      "Design Kemasan Kreatif",
+      "Bahan Karton Duplex",
+      "Hot Print/Stempel",
+      "Finishing UV Spot",
+      "Konsultasi Packaging"
+    ],
+    startingPrice: "Rp 2.000/pcs",
+    timeline: "5-7 hari",
+    colors: ["color-full", "color-4color", "color-2color"],
+    category: "Packaging"
+  },
+  {
+    title: "Cetak Company Profile",
+    slug: "cetak-company-profile",
+    description: "Company profile lengkap untuk memperkenalkan perusahaan Anda kepada klien dan mitra bisnis.",
+    icon: "🏢",
+    features: [
+      "Layout Professional",
+      "Kertas Art Paper Premium",
+      "Hard Cover + Ring Binder",
+      "Infografis & Chart",
+      "CD/DVD Bonus"
+    ],
+    startingPrice: "Rp 150.000/paket",
+    timeline: "7-10 hari",
+    colors: ["color-full", "color-4color", "color-2color"],
+    category: "Corporate"
+  },
+  {
+    title: "Cetak Undangan & Souvenir",
+    slug: "cetak-undangan-souvenir",
+    description: "Undangan dan souvenir untuk acara spesial. Design elegan dengan finishing mewah untuk kesan berkesan.",
+    icon: "💌",
+    features: [
+      "Design Elegan & Mewah",
+      "Envelope Kertas Mewah",
+      "Finishing Emboss/Deboss",
+      "Custom Shape Available",
+      "Wedding Gift Set"
+    ],
+    startingPrice: "Rp 5.000/pcs",
+    timeline: "3-5 hari",
+    colors: ["color-full", "color-4color", "color-2color", "color-custom"],
+    category: "Events"
+  }
+];
+---
+
+<MainLayout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-black opacity-10"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Left Column - Content -->
+        <ScrollReveal animation="fadeInLeft" className="text-center lg:text-left">
+          <!-- Trust Badge -->
+          <div class="inline-flex items-center bg-green-500 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            500+ Klien Percetakan Puas
+          </div>
+
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            Jasa <span class="text-yellow-400">Percetakan</span><br>
+            Surabaya Terpercaya
+          </h1>
+
+          <p class="text-xl md:text-2xl mb-8 text-blue-100 max-w-2xl">
+            Cetak banner, kartu nama, brosur, stiker, kaos, merchandise dengan <strong class="text-yellow-400">kualitas premium</strong> dan harga terjangkau. Pengiriman ke seluruh Indonesia.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-12">
+            <a href="https://wa.me/6285799520350?text=Halo%20KOTACOM,%20saya%20tertarik%20dengan%20jasa%20percetakan.%20Bisa%20konsultasi%20dulu%3F"
+               class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center">
+              <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+              </svg>
+              Konsultasi Gratis
+            </a>
+
+            <a href="#layanan-percetakan"
+               class="bg-yellow-500 hover:bg-yellow-600 text-blue-900 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300">
+              Lihat Layanan
+            </a>
+          </div>
+
+          <!-- Social Proof -->
+          <div class="flex flex-wrap justify-center lg:justify-start items-center gap-8 text-blue-200">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+              <span>4.8/5 Rating</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span>500+ Proyek Selesai</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Garansi 30 Hari</span>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        <!-- Right Column - Lottie Animation -->
+        <ScrollReveal animation="fadeInRight" delay={300}>
+          <div class="relative">
+            <!-- Background decorative elements -->
+            <div class="absolute -top-4 -left-4 w-24 h-24 bg-yellow-400 rounded-full opacity-20 animate-pulse"></div>
+            <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-green-400 rounded-full opacity-20 animate-pulse delay-1000"></div>
+
+            <!-- Main Animation Container -->
+            <div class="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-2xl">
+              <div class="text-center">
+                <div class="text-6xl mb-4">🖨️</div>
+                <h3 class="text-2xl font-bold mb-2">Percetakan Modern</h3>
+                <p class="text-blue-100 mb-6">Teknologi tercanggih untuk hasil maksimal</p>
+
+                <!-- Floating stats -->
+                <div class="grid grid-cols-3 gap-4 text-center">
+                  <div class="bg-white/20 rounded-lg p-3">
+                    <div class="text-2xl font-bold text-yellow-400">600</div>
+                    <div class="text-xs text-blue-100">DPI Quality</div>
+                  </div>
+                  <div class="bg-white/20 rounded-lg p-3">
+                    <div class="text-2xl font-bold text-green-400">24/7</div>
+                    <div class="text-xs text-blue-100">Support</div>
+                  </div>
+                  <div class="bg-white/20 rounded-lg p-3">
+                    <div class="text-2xl font-bold text-blue-400">1-2</div>
+                    <div class="text-xs text-blue-100">Hari Proses</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- Layanan Percetakan Section -->
+  <section id="layanan-percetakan" class="py-20 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <ScrollReveal animation="fadeInUp" className="text-center mb-16">
+        <div class="inline-flex items-center justify-center px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 text-sm font-medium rounded-full mb-4">
+          🎯 Layanan Lengkap
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Layanan Percetakan Komprehensif
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          Dari cetak banner hingga merchandise, kami menyediakan semua kebutuhan percetakan Anda dengan kualitas premium dan harga terjangkau
+        </p>
+      </ScrollReveal>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        {services.map((service, index) => (
+          <PrintingServiceCard
+            service={service}
+            animation={index % 4 === 0 ? 'fadeInUp' : index % 4 === 1 ? 'fadeInLeft' : index % 4 === 2 ? 'fadeInRight' : 'zoomIn'}
+            delay={index * 100}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <ScrollReveal animation="fadeInUp" className="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Mengapa Memilih Kotacom untuk Percetakan?
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          Kami berkomitmen memberikan layanan percetakan terbaik dengan standar kualitas tinggi
+        </p>
+      </ScrollReveal>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Keunggulan 1 -->
+        <ScrollReveal animation="fadeInUp" delay={200}>
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Kualitas Premium Terjamin</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Menggunakan bahan berkualitas tinggi dan mesin cetak modern dengan resolusi hingga 600dpi. Setiap produk melalui quality control ketat.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <!-- Keunggulan 2 -->
+        <ScrollReveal animation="fadeInUp" delay={400}>
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex items-center justify-center w-16 h-16 bg-green-600 rounded-2xl mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Waktu Pengerjaan Cepat</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Express service 6-12 jam untuk urgent order. Standard 1-2 hari, dan normal 2-5 hari dengan kualitas tetap terjamin.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <!-- Keunggulan 3 -->
+        <ScrollReveal animation="fadeInUp" delay={600}>
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex items-center justify-center w-16 h-16 bg-purple-600 rounded-2xl mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Harga Kompetitif</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Harga transparan tanpa biaya tersembunyi. Diskon hingga 50% untuk paket berlangganan. Kualitas premium dengan harga terjangkau.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <!-- Keunggulan 4 -->
+        <ScrollReveal animation="fadeInUp" delay={800}>
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex items-center justify-center w-16 h-16 bg-red-600 rounded-2xl mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Customer Service 24/7</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Tim customer service siap membantu Anda kapan saja. Konsultasi gratis untuk kebutuhan percetakan custom dan spesial.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <!-- Keunggulan 5 -->
+        <ScrollReveal animation="fadeInUp" delay={1000}>
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex items-center justify-center w-16 h-16 bg-yellow-600 rounded-2xl mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Pengiriman Seluruh Indonesia</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Layanan pengiriman ke seluruh Indonesia melalui jasa ekspedisi terpercaya. Free ongkir untuk area Surabaya dan Sidoarjo.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <!-- Keunggulan 6 -->
+        <ScrollReveal animation="fadeInUp" delay={1200}>
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex items-center justify-center w-16 h-16 bg-teal-600 rounded-2xl mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Garansi Kepuasan</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Garansi 30 hari untuk semua produk cetak. Jika tidak puas, kami siap revisi atau refund. Kepuasan pelanggan adalah prioritas utama.
+            </p>
+          </div>
+        </ScrollReveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <PrintingPricing />
+
+  <!-- Testimonials Section -->
+  <section class="py-20 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <ScrollReveal animation="fadeInUp" className="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Apa Kata Klien Kami?
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          Testimoni dari berbagai klien yang telah menggunakan jasa percetakan Kotacom
+        </p>
+      </ScrollReveal>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Testimonial 1 -->
+        <ScrollReveal animation="fadeInUp" delay={200}>
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 hover:shadow-xl transition-all duration-300">
+            <div class="flex items-center mb-4">
+              <div class="flex text-yellow-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+              </div>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300 mb-6 italic">
+              "Banner dan spanduk dari Kotacom sangat berkualitas tinggi. Tahan cuaca dan warnanya tajam. Sudah 6 bulan dipasang masih terlihat bagus!"
+            </p>
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-4">
+                <span class="text-blue-600 dark:text-blue-400 font-bold">AB</span>
+              </div>
+              <div>
+                <div class="font-semibold text-gray-900 dark:text-white">Ahmad Budi</div>
+                <div class="text-gray-600 dark:text-gray-400 text-sm">Owner Toko Elektronik</div>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        <!-- Testimonial 2 -->
+        <ScrollReveal animation="fadeInUp" delay={400}>
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 hover:shadow-xl transition-all duration-300">
+            <div class="flex items-center mb-4">
+              <div class="flex text-yellow-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+              </div>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300 mb-6 italic">
+              "Kartu nama yang dicetak Kotacom sangat premium. Kertas tebal, cutting rapi, dan finishing gloss yang bagus. Sudah sering direkomendasikan ke klien!"
+            </p>
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mr-4">
+                <span class="text-green-600 dark:text-green-400 font-bold">SR</span>
+              </div>
+              <div>
+                <div class="font-semibold text-gray-900 dark:text-white">Sari Rahayu</div>
+                <div class="text-gray-600 dark:text-gray-400 text-sm">Konsultan Bisnis</div>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        <!-- Testimonial 3 -->
+        <ScrollReveal animation="fadeInUp" delay={600}>
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 hover:shadow-xl transition-all duration-300">
+            <div class="flex items-center mb-4">
+              <div class="flex text-yellow-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+              </div>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300 mb-6 italic">
+              "Kaos dan merchandise untuk event perusahaan sangat berkualitas. Printing DTG tajam, bahan adem, dan harga bersaing. Recommended banget!"
+            </p>
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mr-4">
+                <span class="text-purple-600 dark:text-purple-400 font-bold">DW</span>
+              </div>
+              <div>
+                <div class="font-semibold text-gray-900 dark:text-white">Dwi Wahyudi</div>
+                <div class="text-gray-600 dark:text-gray-400 text-sm">Event Organizer</div>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <PrintingFAQ />
+
+  <!-- Final CTA Section -->
+  <section class="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <ScrollReveal animation="fadeInUp">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          Siap Memulai Proyek Percetakan Anda?
+        </h2>
+        <p class="text-xl mb-8 text-blue-100">
+          Dapatkan konsultasi gratis dan penawaran terbaik untuk semua kebutuhan percetakan bisnis Anda
+        </p>
+      </ScrollReveal>
+
+      <ScrollReveal animation="fadeInUp" delay={300}>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          <a href="https://wa.me/6285799520350?text=Halo%20KOTACOM,%20saya%20tertarik%20dengan%20jasa%20percetakan.%20Bisa%20minta%20penawaran%20harga%3F"
+             class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center">
+            <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+            Konsultasi Gratis via WhatsApp
+          </a>
+
+          <a href="tel:085799520350"
+             class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-900 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center">
+            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+            </svg>
+            Telepon Langsung
+          </a>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal animation="fadeInUp" delay={500}>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+          <div>
+            <div class="text-3xl font-bold text-yellow-400 mb-2">500+</div>
+            <div class="text-blue-100">Proyek Selesai</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-green-400 mb-2">98%</div>
+            <div class="text-blue-100">Kepuasan Klien</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-blue-400 mb-2">24/7</div>
+            <div class="text-blue-100">Support</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-purple-400 mb-2">30</div>
+            <div class="text-blue-100">Hari Garansi</div>
+          </div>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+</MainLayout>
