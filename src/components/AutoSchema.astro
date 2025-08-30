@@ -1,0 +1,219 @@
+---
+import SchemaMarkup from "./SchemaMarkup.astro";
+import { SITE_TITLE, SITE_DESCRIPTION, COMPANY_NAME, COMPANY_LOCATION, COMPANY_WHATSAPP } from '../consts';
+
+// Auto-detect page type and generate appropriate schema
+const currentUrl = Astro.url.toString();
+const currentPath = Astro.url.pathname;
+const currentTitle = Astro.props.title || SITE_TITLE;
+
+// Auto-detect service type based on URL
+function detectServiceType(url: string, title: string) {
+  const urlLower = url.toLowerCase();
+  const titleLower = title.toLowerCase();
+
+  // Software services
+  if (urlLower.includes('/software') || titleLower.includes('software') || titleLower.includes('pengembangan')) {
+    return 'software';
+  }
+
+  // Website services
+  if (urlLower.includes('/pembuatan-website') || titleLower.includes('website') || titleLower.includes('web')) {
+    return 'website';
+  }
+
+  // SEO services
+  if (urlLower.includes('/seo') || titleLower.includes('seo') || titleLower.includes('optimasi')) {
+    return 'seo';
+  }
+
+  // Marketing services
+  if (urlLower.includes('/marketing') || titleLower.includes('marketing') || titleLower.includes('digital')) {
+    return 'marketing';
+  }
+
+  // Projects/portfolio
+  if (urlLower.includes('/projects') || urlLower.includes('/portfolio')) {
+    return 'project';
+  }
+
+  // Homepage
+  if (currentPath === '/' || currentPath === '/index') {
+    return 'homepage';
+  }
+
+  // Default to service for business pages
+  return 'service';
+}
+
+// Auto-generate schema data based on detected type
+function generateAutoSchemaData(serviceType: string, title: string, description: string) {
+  const baseData = {
+    title,
+    description,
+    url: currentUrl,
+    breadcrumbs: [
+      { name: "Home", url: "/" },
+      { name: title, url: currentPath }
+    ]
+  };
+
+  switch (serviceType) {
+    case 'software':
+      return {
+        ...baseData,
+        type: 'service',
+        category: ['Software Development', 'Custom Software', 'Enterprise Solutions'],
+        tags: ['software development', 'custom software', 'enterprise software', 'web application'],
+        data: {
+          wilayah: ['Surabaya', 'Sidoarjo', 'Jawa Timur', 'Indonesia'],
+          faq: [
+            {
+              question: "Berapa lama waktu pengembangan software?",
+              answer: "Waktu pengembangan tergantung kompleksitas, mulai dari 2-6 bulan untuk software enterprise."
+            },
+            {
+              question: "Apakah software yang dibuat scalable?",
+              answer: "Ya, semua software kami dibuat dengan arsitektur yang scalable dan maintainable."
+            },
+            {
+              question: "Bahasa pemrograman apa yang digunakan?",
+              answer: "Kami menggunakan teknologi modern seperti Node.js, Python, React, dan database seperti PostgreSQL."
+            }
+          ]
+        }
+      };
+
+    case 'website':
+      return {
+        ...baseData,
+        type: 'service',
+        category: ['Website Development', 'Web Design', 'Digital Marketing'],
+        tags: ['pembuatan website', 'jasa website', 'website surabaya', 'web development', 'responsive design'],
+        data: {
+          wilayah: ['Surabaya', 'Sidoarjo', 'Gresik', 'Lamongan', 'Jember', 'Malang', 'Kediri', 'Madiun', 'Jawa Timur', 'Indonesia'],
+          faq: [
+            {
+              question: "Berapa lama waktu pengerjaan website?",
+              answer: "Waktu pengerjaan website tergantung kompleksitas, mulai dari 1-4 minggu."
+            },
+            {
+              question: "Apakah website yang dibuat responsive?",
+              answer: "Ya, semua website yang kami buat 100% responsive dan mobile-friendly."
+            },
+            {
+              question: "Apakah website sudah include SEO?",
+              answer: "Ya, kami menggunakan teknik SEO terbaik untuk meningkatkan peringkat website Anda."
+            },
+            {
+              question: "Apakah ada maintenance dan support?",
+              answer: "Ya, kami memberikan garansi 1 tahun maintenance dan support teknis 24/7."
+            }
+          ]
+        }
+      };
+
+    case 'seo':
+      return {
+        ...baseData,
+        type: 'service',
+        category: ['SEO Services', 'Digital Marketing', 'Search Engine Optimization'],
+        tags: ['seo', 'optimasi mesin pencari', 'digital marketing', 'seo surabaya'],
+        data: {
+          wilayah: ['Surabaya', 'Jawa Timur', 'Indonesia', 'Global'],
+          faq: [
+            {
+              question: "Berapa lama hasil SEO terlihat?",
+              answer: "Hasil SEO umumnya terlihat dalam 3-6 bulan dengan optimasi yang konsisten."
+            },
+            {
+              question: "Apakah ada garansi peringkat?",
+              answer: "Kami memberikan garansi peningkatan traffic organik dan tidak menggunakan black hat SEO."
+            }
+          ]
+        }
+      };
+
+    case 'marketing':
+      return {
+        ...baseData,
+        type: 'service',
+        category: ['Digital Marketing', 'Social Media Marketing', 'Content Marketing'],
+        tags: ['digital marketing', 'social media', 'content marketing', 'marketing surabaya'],
+        data: {
+          wilayah: ['Surabaya', 'Jawa Timur', 'Indonesia'],
+          faq: [
+            {
+              question: "Platform media sosial apa yang didukung?",
+              answer: "Kami mendukung semua platform utama: Instagram, Facebook, Twitter, LinkedIn, dan TikTok."
+            },
+            {
+              question: "Apakah ada laporan progress bulanan?",
+              answer: "Ya, kami memberikan laporan lengkap setiap bulan dengan analisis performa dan rekomendasi."
+            }
+          ]
+        }
+      };
+
+    case 'project':
+      return {
+        ...baseData,
+        type: 'project',
+        category: ['Portfolio', 'Case Study', 'Project Showcase'],
+        tags: ['portfolio', 'case study', 'project', 'showcase'],
+        data: {
+          client: COMPANY_NAME,
+          technologies: ['Web Development', 'Digital Solutions']
+        }
+      };
+
+    case 'homepage':
+      return {
+        ...baseData,
+        type: 'homepage',
+        category: ['IT Services', 'Digital Solutions'],
+        tags: ['jasa it', 'digital agency', 'surabaya', 'website', 'software'],
+        data: {
+          services: [
+            'Website Development',
+            'Software Development',
+            'Digital Marketing',
+            'IT Support & Maintenance',
+            'SEO Services'
+          ]
+        }
+      };
+
+    default:
+      return {
+        ...baseData,
+        type: 'service',
+        category: ['IT Services', 'Digital Solutions'],
+        tags: ['jasa it', 'digital agency', 'surabaya'],
+        data: {
+          wilayah: ['Surabaya', 'Jawa Timur', 'Indonesia']
+        }
+      };
+  }
+}
+
+// Auto-generate schema for current page
+const detectedServiceType = detectServiceType(currentUrl, currentTitle);
+const autoSchemaData = generateAutoSchemaData(
+  detectedServiceType,
+  currentTitle,
+  Astro.props.description || SITE_DESCRIPTION
+);
+---
+
+<!-- Auto-generated Schema Markup -->
+<SchemaMarkup
+  type={autoSchemaData.type}
+  title={autoSchemaData.title}
+  description={autoSchemaData.description}
+  url={autoSchemaData.url}
+  breadcrumbs={autoSchemaData.breadcrumbs}
+  category={autoSchemaData.category}
+  tags={autoSchemaData.tags}
+  data={autoSchemaData.data}
+/>

@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SubscribeDrawer from "../components/Popups/SubscribeDrawer.astro";
 import ContactButtons from "../components/ContactButtons.astro";
+import AutoSchema from "../components/AutoSchema.astro";
 import { getCollection } from 'astro:content';
 import SpeedInsights from "@vercel/speed-insights/astro";
 import Analytics from "@vercel/analytics/astro";
@@ -259,5 +260,8 @@ const isProduction = import.meta.env.PROD;
 
     <SubscribeDrawer />
     <SpeedInsights />
+
+    <!-- Auto-generated Schema Markup for SEO -->
+    <AutoSchema title={title} description={description} />
   </body>
 </html>

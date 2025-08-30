@@ -215,7 +215,7 @@ const serviceSchema = {
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": (finalReviews.reduce((sum, review) => sum + review.rating, 0) / finalReviews.length).toFixed(1),
-      "reviewCount": reviews.length
+      "reviewCount": finalReviews.length
     },
     "review": finalReviews.map(review => ({
       "@type": "Review",
@@ -270,7 +270,7 @@ const productSchema = {
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": (finalReviews.reduce((sum, review) => sum + review.rating, 0) / finalReviews.length).toFixed(1),
-      "reviewCount": reviews.length
+      "reviewCount": finalReviews.length
     },
     "review": finalReviews.map(review => ({
       "@type": "Review",
@@ -323,6 +323,30 @@ const projectSchema = {
     "material": data.technologies.map((tech: string) => ({
       "@type": "Thing",
       "name": tech
+    }))
+  }),
+  // Add aggregate rating if reviews exist
+  ...(finalReviews.length > 0 && {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": (finalReviews.reduce((sum, review) => sum + review.rating, 0) / finalReviews.length).toFixed(1),
+      "reviewCount": finalReviews.length,
+      "bestRating": 5,
+      "worstRating": 1
+    },
+    "review": finalReviews.slice(0, 10).map(review => ({ // Limit to 10 reviews for projects
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": review.author
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": review.rating,
+        "bestRating": 5
+      },
+      "reviewBody": review.reviewBody,
+      "datePublished": review.datePublished
     }))
   })
 };
