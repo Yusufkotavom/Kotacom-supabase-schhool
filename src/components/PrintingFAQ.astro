@@ -1,170 +1,450 @@
 ---
-// PrintingFAQ Component - Comprehensive FAQ section for printing services
-import ScrollReveal from './ScrollReveal.astro';
-
-interface FAQItem {
-  question: string;
-  answer: string;
-  category: 'general' | 'pricing' | 'quality' | 'timeline' | 'custom';
+// Printing FAQ Component - Universal untuk semua jenis percetakan
+export interface PrintingFAQProps {
+  serviceType?: string;
+  serviceName?: string;
+  whatsappNumber?: string;
+  phoneNumber?: string;
+  email?: string;
 }
 
-const faqItems: FAQItem[] = [
-  {
-    question: "Apa saja jenis layanan percetakan yang tersedia?",
-    answer: "Kami menyediakan berbagai layanan percetakan meliputi: cetak banner, spanduk, baliho, kartu nama, brosur, flyer, booklet, undangan, kemasan produk, stiker, label, kaos, topi, merchandise, dan masih banyak lagi. Semua dengan kualitas premium dan harga terjangkau.",
-    category: 'general'
-  },
-  {
-    question: "Berapa lama waktu pengerjaan untuk setiap pesanan?",
-    answer: "Waktu pengerjaan tergantung kompleksitas dan jumlah pesanan: Express (6-12 jam) untuk pesanan urgent, Standard (1-2 hari) untuk kebanyakan produk, dan Normal (2-5 hari) untuk pesanan besar atau custom design. Kami selalu berkomitmen memberikan informasi waktu pengerjaan yang akurat.",
-    category: 'timeline'
-  },
-  {
-    question: "Apakah ada jasa design grafis untuk percetakan?",
-    answer: "Ya, kami memiliki tim designer profesional yang siap membantu Anda membuat design yang menarik dan sesuai branding. Mulai dari konsultasi konsep hingga final design siap cetak. Design service kami sudah termasuk dalam paket Silver dan Gold.",
-    category: 'general'
-  },
-  {
-    question: "Bagaimana sistem harga dan pembayaran?",
-    answer: "Kami menggunakan sistem harga transparan tanpa biaya tersembunyi. Pembayaran dapat dilakukan via transfer bank, e-wallet, atau tunai. Untuk paket berlangganan, minimal pembayaran 3 bulan di awal. Kami juga menerima DP 50% untuk pesanan custom.",
-    category: 'pricing'
-  },
-  {
-    question: "Apakah ada minimal order untuk setiap produk?",
-    answer: "Minimal order bervariasi per produk: Kartu nama (50 pcs), Brosur (100 pcs), Banner (1 lembar), Stiker (100 pcs), Kaos (10 pcs). Untuk pesanan di bawah minimal, akan ada penyesuaian harga. Konsultasikan dengan kami untuk kebutuhan khusus.",
-    category: 'pricing'
-  },
-  {
-    question: "Bagaimana kualitas hasil percetakan?",
-    answer: "Kami menggunakan bahan berkualitas tinggi dan mesin cetak modern dengan resolusi hingga 600dpi. Semua produk melalui quality control ketat sebelum dikirim. Kami memberikan garansi kualitas 30 hari dan siap revisi jika ada cacat produksi.",
-    category: 'quality'
-  },
-  {
-    question: "Apakah bisa request design custom?",
-    answer: "Tentu saja! Kami menerima design custom dari klien. Anda cukup kirim file design dalam format yang didukung (AI, PSD, PDF, JPG, PNG) dengan resolusi minimal 300dpi. Tim kami akan review dan beri feedback jika diperlukan perbaikan.",
-    category: 'custom'
-  },
-  {
-    question: "Format file apa saja yang didukung?",
-    answer: "Kami menerima berbagai format file: Adobe Illustrator (.ai), Photoshop (.psd), CorelDRAW (.cdr), PDF, JPG, PNG, dan EPS. Pastikan file dalam mode CMYK, resolusi minimal 300dpi, dan bleed area 3mm untuk hasil cetak optimal.",
-    category: 'custom'
-  },
-  {
-    question: "Apakah ada layanan pengiriman ke seluruh Indonesia?",
-    answer: "Ya, kami melayani pengiriman ke seluruh Indonesia melalui jasa ekspedisi terpercaya (JNE, TIKI, POS Indonesia). Biaya pengiriman ditanggung pemesan. Untuk area Surabaya dan Sidoarjo, tersedia layanan pickup dan delivery gratis.",
-    category: 'general'
-  },
-  {
-    question: "Bagaimana jika hasil cetak tidak sesuai ekspektasi?",
-    answer: "Kami berkomitmen dengan kepuasan pelanggan. Jika ada kesalahan dari pihak kami, kami siap revisi gratis atau refund. Namun, untuk perubahan design dari sisi klien setelah proses produksi dimulai, akan dikenakan biaya revisi.",
-    category: 'quality'
-  },
-  {
-    question: "Apakah bisa cetak dengan bahan custom?",
-    answer: "Ya, kami menyediakan berbagai pilihan bahan: kertas art paper, art carton, duplex, ivory, bahan sintetis, vinyl, dan masih banyak lagi. Bahkan kami bisa sourcing bahan custom sesuai kebutuhan spesifik Anda.",
-    category: 'custom'
-  },
-  {
-    question: "Berapa lama masa garansi produk cetak?",
-    answer: "Semua produk cetak memiliki garansi 30 hari dari tanggal pengiriman. Garansi mencakup cacat produksi seperti: warna tidak sesuai, resolusi blur, atau kerusakan saat pengiriman. Untuk produk outdoor seperti banner, garansi tahan cuaca 6 bulan.",
-    category: 'quality'
-  }
-];
+const {
+  serviceType = "percetakan",
+  serviceName = "produk percetakan",
+  whatsappNumber = "6285799520350",
+  phoneNumber = "6285799520350",
+  email = "info@kotacom.id"
+} = Astro.props as PrintingFAQProps;
 
-const categories = [
-  { key: 'general', label: 'Umum', icon: '❓' },
-  { key: 'pricing', label: 'Harga', icon: '💰' },
-  { key: 'quality', label: 'Kualitas', icon: '⭐' },
-  { key: 'timeline', label: 'Waktu', icon: '⏰' },
-  { key: 'custom', label: 'Custom', icon: '🎨' }
-];
+// WhatsApp URLs untuk FAQ
+const whatsappUrls = {
+  konsultasi: `https://wa.me/${whatsappNumber}?text=Halo%20KOTACOM,%20saya%20ingin%20konsultasi%20tentang%20${serviceType}.%20Bisa%20berikan%20informasi%20detail%3F`,
+  custom: `https://wa.me/${whatsappNumber}?text=Halo%20KOTACOM,%20saya%20butuh%20${serviceName}%20custom.%20Bisa%20diskusi%20spesifikasi%3F`,
+  urgent: `https://wa.me/${whatsappNumber}?text=Halo%20KOTACOM,%20saya%20butuh%20${serviceName}%20urgent.%20Apakah%20tersedia%20layanan%20express%3F`
+};
 ---
 
-<section class="py-20 bg-white dark:bg-gray-900">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Section Header -->
-    <ScrollReveal animation="fadeInUp" className="text-center mb-16">
-      <div class="inline-flex items-center justify-center px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 text-sm font-medium rounded-full mb-4">
-        ❓ Pertanyaan Umum
-      </div>
+<section class="py-20 bg-gray-50 dark:bg-gray-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
       <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-        FAQ Layanan Percetakan Kotacom
+        Pertanyaan yang Sering Diajukan
       </h2>
       <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-        Temukan jawaban atas pertanyaan paling sering ditanyakan tentang jasa percetakan kami
+        Temukan jawaban atas pertanyaan umum seputar jasa {serviceType} Kotacom
       </p>
-    </ScrollReveal>
+    </div>
 
-    <!-- Category Filter -->
-    <ScrollReveal animation="fadeInUp" delay={200} className="flex flex-wrap justify-center gap-4 mb-12">
-      {categories.map((category) => (
-        <button
-          class="category-filter px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border"
-          data-category={category.key}
-          onclick={`filterFAQ('${category.key}')`}
-        >
-          <span class="mr-2">{category.icon}</span>
-          {category.label}
-        </button>
-      ))}
-      <button
-        class="category-filter px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border bg-blue-600 text-white border-blue-600"
-        data-category="all"
-        onclick="filterFAQ('all')"
-      >
-        <span class="mr-2">📋</span>
-        Semua
-      </button>
-    </ScrollReveal>
+    <div class="max-w-4xl mx-auto space-y-6">
+      <!-- FAQ 1 -->
+      <details class="group bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+        <summary class="flex items-center justify-between cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white pr-4">Berapa lama waktu proses produksi untuk {serviceName}?</h3>
+          <svg class="w-6 h-6 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Waktu proses produksi {serviceName} tergantung pada kompleksitas dan quantity pesanan:
+          </p>
+          <ul class="mt-3 space-y-2 text-gray-600 dark:text-gray-400">
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">•</span>
+              <span>Pesanan sederhana: 1-3 hari kerja</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">•</span>
+              <span>Pesanan sedang: 3-5 hari kerja</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">•</span>
+              <span>Pesanan kompleks: 5-7 hari kerja</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">•</span>
+              <span>Layanan express: Tersedia untuk kebutuhan urgent</span>
+            </li>
+          </ul>
+          <div class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+            <p class="text-blue-800 dark:text-blue-300 text-sm">
+              💡 <strong>Tips:</strong> Untuk hasil terbaik, kami sarankan memesan minimal 2-3 hari sebelum deadline Anda.
+            </p>
+          </div>
+        </div>
+      </details>
 
-    <!-- FAQ Items -->
-    <div class="space-y-4">
-      {faqItems.map((faq, index) => (
-        <ScrollReveal animation="fadeInUp" delay={300 + index * 50} className="faq-item" data-category={faq.category}>
-          <div class="bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-            <button
-              class="faq-button flex justify-between items-center p-6 w-full text-left font-medium text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
-              data-faq-id={`faq-${index}`}
+      <!-- FAQ 2 -->
+      <details class="group bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+        <summary class="flex items-center justify-between cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white pr-4">Apakah bahan yang digunakan berkualitas tinggi?</h3>
+          <svg class="w-6 h-6 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Ya, kami hanya menggunakan bahan berkualitas premium untuk memastikan hasil yang maksimal:
+          </p>
+          <ul class="mt-3 space-y-2 text-gray-600 dark:text-gray-400">
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2">•</span>
+              <span>Bahan baku dari supplier terpercaya</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2">•</span>
+              <span>Standar kualitas internasional</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2">•</span>
+              <span>Tes kualitas sebelum produksi massal</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2">•</span>
+              <span>Sertifikasi bahan aman dan tahan lama</span>
+            </li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- FAQ 3 -->
+      <details class="group bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+        <summary class="flex items-center justify-between cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white pr-4">Apakah bisa request design custom?</h3>
+          <svg class="w-6 h-6 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Tentu saja! Kami menyediakan layanan design custom untuk kebutuhan spesifik Anda:
+          </p>
+          <ul class="mt-3 space-y-2 text-gray-600 dark:text-gray-400">
+            <li class="flex items-start">
+              <span class="text-purple-500 mr-2">•</span>
+              <span>Konsultasi konsep design gratis</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-purple-500 mr-2">•</span>
+              <span>Tim designer berpengalaman</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-purple-500 mr-2">•</span>
+              <span>Revisi design hingga sesuai keinginan</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-purple-500 mr-2">•</span>
+              <span>Format file siap produksi</span>
+            </li>
+          </ul>
+          <div class="mt-4">
+            <a
+              href={whatsappUrls.konsultasi}
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white text-sm font-medium rounded-lg transition-colors"
             >
-              <span class="text-lg pr-4">{faq.question}</span>
-              <svg class="faq-icon w-6 h-6 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path>
               </svg>
-            </button>
-            <div class={`faq-content hidden overflow-hidden transition-all duration-300`} id={`faq-${index}`}>
-              <div class="p-6 pt-0 text-gray-700 dark:text-gray-300 leading-relaxed">
-                {faq.answer}
-              </div>
+              Konsultasi Design
+            </a>
+          </div>
+        </div>
+      </details>
+
+      <!-- FAQ 4 -->
+      <details class="group bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+        <summary class="flex items-center justify-between cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white pr-4">Bagaimana cara monitoring progress pesanan?</h3>
+          <svg class="w-6 h-6 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Kami menyediakan sistem monitoring yang transparan untuk setiap pesanan:
+          </p>
+          <ul class="mt-3 space-y-2 text-gray-600 dark:text-gray-400">
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">•</span>
+              <span>Update status via WhatsApp secara berkala</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">•</span>
+              <span>Foto progress produksi</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">•</span>
+              <span>Estimasi waktu penyelesaian</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">•</span>
+              <span>Konfirmasi sebelum pengiriman</span>
+            </li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- FAQ 5 -->
+      <details class="group bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+        <summary class="flex items-center justify-between cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white pr-4">Apakah ada minimum order quantity?</h3>
+          <svg class="w-6 h-6 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Kebijakan minimum order kami disesuaikan dengan jenis {serviceName}:
+          </p>
+          <div class="mt-4 grid md:grid-cols-2 gap-4">
+            <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+              <h4 class="font-semibold text-green-800 dark:text-green-300 mb-2">Produk Standard</h4>
+              <ul class="text-sm text-green-700 dark:text-green-400 space-y-1">
+                <li>• Minimum order: 10-50 pcs</li>
+                <li>• Tergantung jenis produk</li>
+                <li>• Bisa nego untuk sample</li>
+              </ul>
+            </div>
+            <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+              <h4 class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Produk Custom</h4>
+              <ul class="text-sm text-blue-700 dark:text-blue-400 space-y-1">
+                <li>• Minimum order fleksibel</li>
+                <li>• Konsultasi berdasarkan design</li>
+                <li>• Sample bisa dibuat</li>
+              </ul>
             </div>
           </div>
-        </ScrollReveal>
-      ))}
+        </div>
+      </details>
+
+      <!-- FAQ 6 -->
+      <details class="group bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+        <summary class="flex items-center justify-between cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white pr-4">Bagaimana jika hasil tidak sesuai ekspektasi?</h3>
+          <svg class="w-6 h-6 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Kepuasan pelanggan adalah prioritas utama kami. Kami memiliki kebijakan sebagai berikut:
+          </p>
+          <ul class="mt-3 space-y-2 text-gray-600 dark:text-gray-400">
+            <li class="flex items-start">
+              <span class="text-red-500 mr-2">•</span>
+              <span>Proofing sebelum produksi massal</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-red-500 mr-2">•</span>
+              <span>Revisi gratis untuk kesalahan dari pihak kami</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-red-500 mr-2">•</span>
+              <span>Garansi kualitas produk</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-red-500 mr-2">•</span>
+              <span>Proses pengembalian yang mudah</span>
+            </li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- FAQ 7 -->
+      <details class="group bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+        <summary class="flex items-center justify-between cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white pr-4">Apakah bisa urgent atau deadline ketat?</h3>
+          <svg class="w-6 h-6 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Kami mengerti kebutuhan urgent. Berikut opsi yang tersedia:
+          </p>
+          <ul class="mt-3 space-y-2 text-gray-600 dark:text-gray-400">
+            <li class="flex items-start">
+              <span class="text-orange-500 mr-2">•</span>
+              <span>Layanan express untuk deadline 1-2 hari</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-orange-500 mr-2">•</span>
+              <span>Prioritas produksi untuk pesanan urgent</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-orange-500 mr-2">•</span>
+              <span>Tim dedicated untuk handling rush order</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-orange-500 mr-2">•</span>
+              <span>Koordinasi intensif dengan customer</span>
+            </li>
+          </ul>
+          <div class="mt-4">
+            <a
+              href={whatsappUrls.urgent}
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium rounded-lg transition-colors"
+            >
+              <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z" clip-rule="evenodd"></path>
+              </svg>
+              Pesan Urgent
+            </a>
+          </div>
+        </div>
+      </details>
+
+      <!-- FAQ 8 -->
+      <details class="group bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+        <summary class="flex items-center justify-between cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white pr-4">Bagaimana sistem pembayaran yang berlaku?</h3>
+          <svg class="w-6 h-6 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Kami menyediakan berbagai opsi pembayaran untuk kemudahan Anda:
+          </p>
+          <ul class="mt-3 space-y-2 text-gray-600 dark:text-gray-400">
+            <li class="flex items-start">
+              <span class="text-indigo-500 mr-2">•</span>
+              <span>Transfer bank (BCA, Mandiri, BNI, BRI)</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-indigo-500 mr-2">•</span>
+              <span>E-wallet (GoPay, OVO, Dana, LinkAja)</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-indigo-500 mr-2">•</span>
+              <span>Cash on Delivery (COD) tersedia</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-indigo-500 mr-2">•</span>
+              <span>DP 50% untuk konfirmasi pesanan</span>
+            </li>
+          </ul>
+          <div class="mt-4 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
+            <p class="text-yellow-800 dark:text-yellow-300 text-sm">
+              ⚠️ <strong>Penting:</strong> Pembayaran dilakukan setelah konfirmasi final design dan sebelum produksi dimulai.
+            </p>
+          </div>
+        </div>
+      </details>
+
+      <!-- FAQ 9 -->
+      <details class="group bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+        <summary class="flex items-center justify-between cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white pr-4">Apakah ada layanan pengiriman ke seluruh Indonesia?</h3>
+          <svg class="w-6 h-6 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Ya, kami melayani pengiriman ke seluruh wilayah Indonesia dengan jasa ekspedisi terpercaya:
+          </p>
+          <ul class="mt-3 space-y-2 text-gray-600 dark:text-gray-400">
+            <li class="flex items-start">
+              <span class="text-teal-500 mr-2">•</span>
+              <span>JNE, TIKI, POS Indonesia, dan Wahana</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-teal-500 mr-2">•</span>
+              <span>Pengiriman door-to-door</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-teal-500 mr-2">•</span>
+              <span>Asuransi pengiriman untuk nilai tinggi</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-teal-500 mr-2">•</span>
+              <span>Tracking nomor resi real-time</span>
+            </li>
+          </ul>
+          <div class="mt-4 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+            <p class="text-green-800 dark:text-green-300 text-sm">
+              💡 <strong>Free Ongkir:</strong> Gratis biaya kirim untuk area Surabaya dan Sidoarjo dengan minimal pembelian tertentu.
+            </p>
+          </div>
+        </div>
+      </details>
+
+      <!-- FAQ 10 -->
+      <details class="group bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+        <summary class="flex items-center justify-between cursor-pointer p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white pr-4">Apakah bisa custom ukuran dan spesifikasi?</h3>
+          <svg class="w-6 h-6 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Tentu saja! Kami menerima pesanan custom sesuai kebutuhan spesifik Anda:
+          </p>
+          <ul class="mt-3 space-y-2 text-gray-600 dark:text-gray-400">
+            <li class="flex items-start">
+              <span class="text-pink-500 mr-2">•</span>
+              <span>Ukuran custom tanpa batasan</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-pink-500 mr-2">•</span>
+              <span>Bahan dan finishing sesuai request</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-pink-500 mr-2">•</span>
+              <span>Design unik dan eksklusif</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-pink-500 mr-2">•</span>
+              <span>Packaging special untuk corporate gifts</span>
+            </li>
+          </ul>
+          <div class="mt-4">
+            <a
+              href={whatsappUrls.custom}
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white text-sm font-medium rounded-lg transition-colors"
+            >
+              <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path>
+              </svg>
+              Request Custom
+            </a>
+          </div>
+        </div>
+      </details>
     </div>
 
     <!-- Contact CTA -->
-    <ScrollReveal animation="fadeInUp" delay={800} className="text-center mt-16">
-      <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-8 border border-gray-200 dark:border-gray-700">
-        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-          Masih Ada Pertanyaan?
+    <div class="text-center mt-12">
+      <div class="bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 rounded-2xl p-8 max-w-2xl mx-auto">
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">
+          Masih ada pertanyaan?
         </h3>
-        <p class="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
-          Tim customer service kami siap membantu Anda 24/7. Hubungi kami untuk konsultasi gratis dan penjelasan lebih detail tentang layanan percetakan.
+        <p class="text-gray-600 dark:text-gray-400 mb-6">
+          Tim kami siap membantu Anda dengan konsultasi gratis. Hubungi kami sekarang juga!
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="https://wa.me/6285799520350?text=Halo%20KOTACOM,%20saya%20punya%20pertanyaan%20tentang%20layanan%20percetakan."
-            class="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg transform hover:scale-105"
+            href={whatsappUrls.konsultasi}
             target="_blank"
             rel="noopener"
+            class="inline-flex items-center px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors"
           >
             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+              <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path>
             </svg>
             WhatsApp Kami
           </a>
           <a
-            href="tel:085799520350"
-            class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg transform hover:scale-105"
+            href={`tel:${phoneNumber}`}
+            class="inline-flex items-center px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition-colors"
           >
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
@@ -173,73 +453,6 @@ const categories = [
           </a>
         </div>
       </div>
-    </ScrollReveal>
+    </div>
   </div>
 </section>
-
-<style>
-  .category-filter {
-    @apply bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 dark:hover:border-blue-600;
-  }
-
-  .category-filter[data-active="true"] {
-    @apply bg-blue-600 text-white border-blue-600;
-  }
-</style>
-
-<script>
-  // FAQ Accordion functionality
-  document.addEventListener('DOMContentLoaded', function() {
-    const faqButtons = document.querySelectorAll('.faq-button');
-
-    faqButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        const faqId = this.getAttribute('data-faq-id');
-        const content = document.getElementById(faqId);
-        const icon = this.querySelector('.faq-icon');
-
-        // Close all other FAQs
-        document.querySelectorAll('.faq-content').forEach(otherContent => {
-          if (otherContent.id !== faqId && !otherContent.classList.contains('hidden')) {
-            otherContent.classList.add('hidden');
-            const otherButton = otherContent.previousElementSibling;
-            const otherIcon = otherButton.querySelector('.faq-icon');
-            otherIcon.classList.remove('rotate-180');
-          }
-        });
-
-        // Toggle current FAQ
-        if (content.classList.contains('hidden')) {
-          content.classList.remove('hidden');
-          icon.classList.add('rotate-180');
-        } else {
-          content.classList.add('hidden');
-          icon.classList.remove('rotate-180');
-        }
-      });
-    });
-  });
-
-  // Category filter functionality
-  function filterFAQ(category) {
-    const faqItems = document.querySelectorAll('.faq-item');
-    const categoryButtons = document.querySelectorAll('.category-filter');
-
-    // Update button states
-    categoryButtons.forEach(button => {
-      button.setAttribute('data-active', button.getAttribute('data-category') === category);
-    });
-
-    // Filter FAQ items
-    faqItems.forEach(item => {
-      if (category === 'all' || item.getAttribute('data-category') === category) {
-        item.style.display = 'block';
-      } else {
-        item.style.display = 'none';
-      }
-    });
-  }
-
-  // Make filterFAQ globally available
-  window.filterFAQ = filterFAQ;
-</script>

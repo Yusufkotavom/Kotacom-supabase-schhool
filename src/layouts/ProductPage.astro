@@ -1,5 +1,5 @@
 ---
-import type { CollectionEntry } from "astro:content";
+
 import MainLayout from "./MainLayout.astro";
 import ResponsiveImage from "../components/ResponsiveImage.astro";
 import SchemaMarkup from "../components/SchemaMarkup.astro";
@@ -15,7 +15,7 @@ import {
 } from "../utils/affiliateUtils";
 import RelatedList from "../components/RelatedList.astro";
 
-type Props = CollectionEntry<"products">["data"] | CollectionEntry<"productsMdx">["data"];
+type Props = any;
 
 const { properties = {} } = Astro.props as any;
 const isNotionProduct = !!(properties && (properties as any).pTitle);
@@ -187,7 +187,7 @@ const images: string[] = oneSec.length > 0 ? oneSec : [fallbackImage];
     breadcrumbs={breadcrumbs}
     datePublished={publishedDate}
     dateModified={publishedDate}
-    category={productData.category}
+    category={productData.category?.filter((cat: string) => cat && typeof cat === 'string') || []}
     price={productData.price}
     reviews={reviews}
     data={{
@@ -388,11 +388,13 @@ const images: string[] = oneSec.length > 0 ? oneSec : [fallbackImage];
               <div>
                 <h3 class="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Categories</h3>
                 <div class="flex flex-wrap gap-2">
-                  {productData.category.map((cat: string) => (
-                    <span class="bg-blue-100 text-blue-800 text-xs sm:text-sm font-medium px-2 sm:px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-                      {cat}
-                    </span>
-                  ))}
+                  {productData.category
+                    .filter((cat: string) => cat && typeof cat === 'string' && cat.trim() !== '')
+                    .map((cat: string) => (
+                      <span class="bg-blue-100 text-blue-800 text-xs sm:text-sm font-medium px-2 sm:px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                        {cat}
+                      </span>
+                    ))}
                 </div>
               </div>
             )}
@@ -484,7 +486,7 @@ const images: string[] = oneSec.length > 0 ? oneSec : [fallbackImage];
       <article class="prose md:prose-lg max-w-none" data-pagefind-body data-pagefind-filter="type:product">
         <slot />
         {productData.category && productData.category.length > 0 && (
-          <span class="hidden" data-pagefind-meta="categories">{productData.category.join(', ')}</span>
+          <span class="hidden" data-pagefind-meta="categories">{productData.category.filter((cat: string) => cat && typeof cat === 'string').join(', ')}</span>
         )}
       </article>
     </div>

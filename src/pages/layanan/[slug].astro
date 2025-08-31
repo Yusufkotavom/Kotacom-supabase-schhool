@@ -28,7 +28,7 @@ export async function getStaticPaths(): Promise<any[]> {
     const filename = filePath.split('/').pop()?.replace('.json', '') || '';
     
     // Convert to kebab-case: replace underscores with hyphens and convert to lowercase
-    let slug = filename
+    let slug = (filename || '')
       .replace(/_/g, '-') // Replace underscores with hyphens
       .toLowerCase(); // Convert to lowercase
     

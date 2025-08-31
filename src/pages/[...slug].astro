@@ -2,7 +2,6 @@
 import { getCollection } from "astro:content";
 import PostLayout from "../layouts/PostLayout.astro";
 import { getPostsDirectFromSupabase } from "../lib/supabase-direct";
-import { getPostsFromPayload, convertPayloadPost } from "../lib/payload-api";
 import { renderLexicalBlocks } from "../lib/lexical-renderer";
 import { marked } from 'marked';
 import { logger } from "../lib/logger";
@@ -18,27 +17,10 @@ export async function getStaticPaths(): Promise<Array<{params: {slug: string}, p
     Content: post.default // Store the component
   }));
   
-  // ✅ Try to get posts from Payload API first (with populated media)
-  let supabasePostsData: any[] = [];
-  
-  try {
-    logger.info('Attempting to fetch posts from Payload API...');
-    const payloadPosts = await getPostsFromPayload({ 
-      limit: 1000, 
-      status: 'published' 
-    });
-    
-    if (payloadPosts && payloadPosts.length > 0) {
-      supabasePostsData = payloadPosts.map(convertPayloadPost);
-      logger.success(`Successfully fetched ${supabasePostsData.length} posts from Payload API`);
-    } else {
-      throw new Error('No posts returned from Payload API');
-    }
-  } catch (error) {
-    logger.warn('Payload API failed, falling back to Supabase direct:', error);
-    // Fallback to Supabase direct
-    supabasePostsData = await getPostsDirectFromSupabase(1000, 'published');
-  }
+  // ✅ Get posts directly from Supabase
+  logger.info('Fetching posts from Supabase...');
+  const supabasePostsData = await getPostsDirectFromSupabase(1000, 'published');
+  logger.success(`Successfully fetched ${supabasePostsData.length} posts from Supabase`);
 
   // Build popular categories (top 10) once from MDX + Supabase
   const counts: Record<string, number> = {};

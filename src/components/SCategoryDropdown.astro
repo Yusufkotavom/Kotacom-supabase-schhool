@@ -40,8 +40,8 @@ const currentCategoryPromise = (async () => {
   
   const validCategories = allServices.reduce((acc: Set<string>, service) => {
     const categories = Array.isArray(service.data.properties.svCategory)
-      ? service.data.properties.svCategory.map((c: string) => c.toLowerCase().replace(/\s+/g, "-"))
-      : [String(service.data.properties.svCategory).toLowerCase().replace(/\s+/g, "-")];
+      ? (service.data.properties.svCategory || []).map((c: string) => (c || '').toLowerCase().replace(/\s+/g, "-"))
+      : [String(service.data.properties.svCategory || "").toLowerCase().replace(/\s+/g, "-")];
     categories.forEach((category) => acc.add(category));
     return acc;
   }, new Set<string>());

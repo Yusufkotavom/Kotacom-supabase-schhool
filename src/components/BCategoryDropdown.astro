@@ -56,7 +56,7 @@ const currentCategoryPromise = (async () => {
   
   const validCategories = allPosts.reduce((acc: Set<string>, post) => {
     const tags = Array.isArray(post.data.properties.bTags)
-      ? post.data.properties.bTags.map((t: string) => t.toLowerCase().replace(/\s+/g, "-"))
+      ? (post.data.properties.bTags || []).map((t: string) => (t || '').toLowerCase().replace(/\s+/g, "-"))
       : [String(post.data.properties.bTags || "").toLowerCase().replace(/\s+/g, "-")];
     tags.forEach((tag: string) => {
       if (tag && tag !== "") acc.add(tag);

@@ -55,7 +55,6 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }
-
 /* Prism minor adjustments to fit prose */
 .prose pre code { background: transparent; padding: 0; }
 .prose pre { background: #2d2d2d; color: #e4e7ee; }

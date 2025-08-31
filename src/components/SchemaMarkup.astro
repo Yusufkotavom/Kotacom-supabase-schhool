@@ -46,7 +46,7 @@ let finalReviews = reviews;
 if (!reviews || reviews.length === 0) {
   // Determine service type based on URL or title
   const currentUrl = Astro.url.toString();
-  const currentTitle = title.toLowerCase();
+  const currentTitle = (title || '').toLowerCase();
 
   let serviceType: 'website' | 'software' | 'seo' | 'marketing' | 'homepage' = 'homepage';
 

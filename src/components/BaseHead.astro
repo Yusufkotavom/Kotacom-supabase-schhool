@@ -23,7 +23,7 @@ const { title, description, image, type = 'website', published, modified, sectio
 const siteTitle = SITE_TITLE;
 const siteDescription = SITE_DESCRIPTION;
 const rawTitle = title ? `${title}` : siteTitle;
-const pageTitle = rawTitle.toLowerCase().includes(siteTitle.toLowerCase()) ? rawTitle : `${rawTitle} - ${siteTitle}`;
+const pageTitle = (rawTitle || '').toLowerCase().includes((siteTitle || '').toLowerCase()) ? rawTitle : `${rawTitle} - ${siteTitle}`;
 const pageDescription = description || siteDescription;
 
 const ogImage = image || (title ? generateOgImageFromTitle(title) : undefined);

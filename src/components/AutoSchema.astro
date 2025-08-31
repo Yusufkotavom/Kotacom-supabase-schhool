@@ -9,8 +9,8 @@ const currentTitle = Astro.props.title || SITE_TITLE;
 
 // Auto-detect service type based on URL
 function detectServiceType(url: string, title: string) {
-  const urlLower = url.toLowerCase();
-  const titleLower = title.toLowerCase();
+  const urlLower = (url || '').toLowerCase();
+  const titleLower = (title || '').toLowerCase();
 
   // Software services
   if (urlLower.includes('/software') || titleLower.includes('software') || titleLower.includes('pengembangan')) {

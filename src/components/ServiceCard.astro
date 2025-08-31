@@ -36,8 +36,10 @@ const imageUrl = p.svImageURL1 || DEFAULT_IMAGE;
 // Lottie animation URLs for different service categories
 const getLottieAnimation = (category?: string | string[]) => {
   if (!category) return '/animations/web-development.json';
-  
+
   const cat = Array.isArray(category) ? category[0] : category;
+  if (!cat) return '/animations/general-service.json';
+
   const catLower = cat.toLowerCase();
   
   if (catLower.includes('website') || catLower.includes('web')) {

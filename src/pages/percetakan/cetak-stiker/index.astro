@@ -1,0 +1,602 @@
+---
+// Halaman Cetak Stiker - Jasa Percetakan Stiker Terpercaya Surabaya
+import MainLayout from "../../../layouts/MainLayout.astro";
+import ScrollReveal from "../../../components/ScrollReveal.astro";
+import PrintingOrderProcess from "../../../components/PrintingOrderProcess.astro";
+import PrintingFAQ from "../../../components/PrintingFAQ.astro";
+
+const title = "Jasa Cetak Stiker Surabaya Terpercaya - Stiker Waterproof, Label, Decal | Kotacom.id";
+const description = "Jasa cetak stiker profesional Surabaya. Cetak stiker waterproof, label produk, decal, stiker promosi dengan bahan vinyl tahan air, harga kompetitif, pengiriman cepat.";
+
+const stickerTypes = [
+  {
+    name: "Stiker Waterproof Premium",
+    description: "Stiker tahan air dengan bahan vinyl premium untuk berbagai aplikasi outdoor",
+    features: ["Bahan Vinyl Premium", "Tahan Air & Cuaca", "Lem Kuat Anti Air", "Cutting Laser Presisi", "UV Protection"],
+    price: "Rp 150/pcs",
+    icon: "🏷️",
+    minOrder: "50 pcs"
+  },
+  {
+    name: "Stiker Label Produk",
+    description: "Label produk custom untuk kemasan dan branding produk",
+    features: ["Bahan sesuai kebutuhan", "Cutting custom shape", "Barcode integration", "Harga kompetitif", "Free design"],
+    price: "Rp 100/pcs",
+    icon: "📦",
+    minOrder: "100 pcs",
+    popular: true
+  },
+  {
+    name: "Stiker Decal Dinding",
+    description: "Decal dinding besar untuk dekorasi interior dan eksterior",
+    features: ["Ukuran besar", "Mudah dipasang", "Tahan lama", "Design custom", "Free konsultasi"],
+    price: "Rp 25.000/m²",
+    icon: "🏠",
+    minOrder: "1 m²"
+  },
+  {
+    name: "Stiker Promosi Event",
+    description: "Stiker promosi untuk event, kampanye, dan aktivitas marketing",
+    features: ["Design eye-catching", "Mudah didistribusikan", "Tahan lama", "Harga ekonomis", "Bulk discount"],
+    price: "Rp 75/pcs",
+    icon: "🎯",
+    minOrder: "200 pcs"
+  },
+  {
+    name: "Stiker Custom Shape",
+    description: "Stiker dengan bentuk custom sesuai permintaan",
+    features: ["Die cut custom", "Bentuk unik", "Bahan premium", "Finishing khusus", "Konsultasi design"],
+    price: "Rp 200/pcs",
+    icon: "✨",
+    minOrder: "100 pcs"
+  },
+  {
+    name: "Stiker Vinyl Cutting",
+    description: "Stiker vinyl cutting untuk aplikasi kendaraan dan signage",
+    features: ["Bahan vinyl", "Cutting plotter", "Mudah dipasang", "Tahan cuaca", "Warna cerah"],
+    price: "Rp 50.000/m²",
+    icon: "🚗",
+    minOrder: "0.5 m²"
+  }
+];
+
+const pageSizes = [
+  { size: "5x5cm Standard", price: "Rp 75/pcs", type: "Label Kecil" },
+  { size: "10x10cm Medium", price: "Rp 150/pcs", type: "Stiker Medium" },
+  { size: "20x30cm Large", price: "Rp 450/pcs", type: "Stiker Besar" },
+  { size: "Custom Size", price: "Konsultasi", type: "Sesuai Kebutuhan" }
+];
+---
+
+<MainLayout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-lime-900 via-lime-800 to-green-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-black opacity-10"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Left Column - Content -->
+        <ScrollReveal animation="fadeInLeft" className="text-center lg:text-left">
+          <!-- Trust Badge -->
+          <div class="inline-flex items-center bg-green-500 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            300+ Stiker Berhasil Dicetak
+          </div>
+
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            Cetak Stiker<br>
+            <span class="text-yellow-400">Waterproof Premium</span>
+          </h1>
+
+          <p class="text-xl md:text-2xl mb-8 text-lime-100 max-w-2xl">
+            Cetak stiker tahan air dengan bahan vinyl premium, cutting presisi, dan <strong class="text-yellow-400">harga terjangkau</strong> untuk semua kebutuhan branding dan promosi Anda.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-12">
+            <a href="https://wa.me/6285799520350?text=Halo%20KOTACOM,%20saya%20ingin%20cetak%20stiker.%20Bisa%20konsultasi%20harga%20dan%20spesifikasi%3F"
+               class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center">
+              <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+              </svg>
+              Konsultasi Cetak Stiker
+            </a>
+
+            <a href="#jenis-stiker"
+               class="bg-yellow-500 hover:bg-yellow-600 text-lime-900 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300">
+              Lihat Jenis Stiker
+            </a>
+          </div>
+
+          <!-- Social Proof -->
+          <div class="flex flex-wrap justify-center lg:justify-start items-center gap-8 text-lime-200">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+              <span>4.9/5 Rating</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span>300+ Stiker Dicetak</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 mr-2 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Garansi 30 Hari</span>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        <!-- Right Column - Visual -->
+        <ScrollReveal animation="fadeInRight" delay={300}>
+          <div class="relative">
+            <!-- Background decorative elements -->
+            <div class="absolute -top-4 -left-4 w-24 h-24 bg-yellow-400 rounded-full opacity-20 animate-pulse"></div>
+            <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-green-400 rounded-full opacity-20 animate-pulse delay-1000"></div>
+
+            <div class="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-2xl">
+              <div class="text-center">
+                <div class="text-6xl mb-4">🏷️</div>
+                <h3 class="text-2xl font-bold mb-2">Stiker Waterproof</h3>
+                <p class="text-lime-100 mb-6">Tahan air, cuaca, dan waktu</p>
+
+                <!-- Features -->
+                <div class="space-y-3 text-left">
+                  <div class="flex items-center text-sm">
+                    <svg class="w-4 h-4 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-lime-100">Bahan Vinyl Premium</span>
+                  </div>
+                  <div class="flex items-center text-sm">
+                    <svg class="w-4 h-4 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-lime-100">Cutting Laser Presisi</span>
+                  </div>
+                  <div class="flex items-center text-sm">
+                    <svg class="w-4 h-4 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-lime-100">Free Konsultasi Design</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticker Types Section -->
+  <section id="jenis-stiker" class="py-20 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <ScrollReveal animation="fadeInUp" className="text-center mb-16">
+        <div class="inline-flex items-center justify-center px-4 py-2 bg-lime-100 dark:bg-lime-900/30 text-lime-800 dark:text-lime-300 text-sm font-medium rounded-full mb-4">
+          🏷️ Jenis Stiker
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Pilih Jenis Stiker Yang Anda Butuhkan
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          Berbagai jenis stiker dengan bahan dan spesifikasi berbeda untuk kebutuhan branding, labeling, dan promosi Anda
+        </p>
+      </ScrollReveal>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {stickerTypes.map((type, index) => (
+          <ScrollReveal
+            animation={index % 4 === 0 ? 'fadeInUp' : index % 4 === 1 ? 'fadeInLeft' : index % 4 === 2 ? 'fadeInRight' : 'zoomIn'}
+            delay={index * 100}
+            className="h-full"
+          >
+            <div class={`bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-full border border-gray-200 dark:border-gray-700 relative ${
+              type.popular ? 'ring-2 ring-lime-500 dark:ring-lime-400' : ''
+            }`}>
+
+              <!-- Popular Badge -->
+              {type.popular && (
+                <div class="absolute -top-3 -right-3 bg-gradient-to-r from-lime-500 to-lime-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                  TERLARIS
+                </div>
+              )}
+
+              <div class="text-center mb-6">
+                <div class="text-4xl mb-3">{type.icon}</div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{type.name}</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">{type.description}</p>
+              </div>
+
+              <div class="space-y-3 mb-6">
+                {type.features.map((feature) => (
+                  <div class="flex items-center text-sm">
+                    <svg class="w-4 h-4 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-gray-700 dark:text-gray-300">{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div class="text-center border-t border-gray-200 dark:border-gray-700 pt-4">
+                <div class="text-2xl font-bold text-lime-600 dark:text-lime-400 mb-2">{type.price}</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">Min order: {type.minOrder}</div>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Page Sizes & Pricing Section -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 to-lime-50 dark:from-gray-900 dark:to-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <ScrollReveal animation="fadeInUp" className="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Ukuran & Estimasi Harga Stiker
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          Pilih ukuran stiker yang sesuai dengan kebutuhan Anda. Harga sudah termasuk design, cutting, dan finishing premium.
+        </p>
+      </ScrollReveal>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {pageSizes.map((size, index) => (
+          <ScrollReveal animation="fadeInUp" delay={index * 100} className="h-full">
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-full">
+              <div class="text-center">
+                <div class="text-3xl mb-4">📐</div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">{size.size}</h3>
+                <div class="text-2xl font-bold text-lime-600 dark:text-lime-400 mb-2">{size.price}</div>
+                <p class="text-gray-500 dark:text-gray-400 text-sm mb-6">
+                  {size.type}
+                </p>
+                <a
+                  href={`https://wa.me/6285799520350?text=Halo%20KOTACOM,%20saya%20ingin%20cetak%20stiker%20ukuran%20${size.size}%20dengan%20harga%20${size.price}.%20Bisa%20berikan%20detail%20lebih%20lanjut%3F`}
+                  class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-lime-600 to-green-600 hover:from-lime-700 hover:to-green-700 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg transform hover:scale-105"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <span>Pilih Ukuran Ini</span>
+                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+
+      <!-- Custom Sticker CTA -->
+      <ScrollReveal animation="fadeInUp" delay={600} className="text-center mt-16">
+        <div class="bg-gradient-to-r from-lime-50 to-green-50 dark:from-lime-900/20 dark:to-green-900/20 rounded-2xl p-8 border border-gray-200 dark:border-gray-700">
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            Butuh Stiker Custom?
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
+            Kami bisa membuat stiker dengan spesifikasi khusus sesuai kebutuhan branding Anda. Dari ukuran hingga design yang unik.
+          </p>
+          <a
+            href="https://wa.me/6285799520350?text=Halo%20KOTACOM,%20saya%20butuh%20stiker%20custom.%20Bisa%20diskusi%20detail%3F"
+            class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-lime-500 to-green-500 hover:from-lime-600 hover:to-green-600 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg transform hover:scale-105"
+            target="_blank"
+            rel="noopener"
+          >
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+            </svg>
+            Konsultasi Custom Stiker
+          </a>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <!-- Why Choose Our Sticker Printing -->
+  <section class="py-20 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <ScrollReveal animation="fadeInUp" className="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Mengapa Memilih Jasa Cetak Stiker Kami?
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          Kami berkomitmen memberikan hasil cetak stiker terbaik dengan standar kualitas tinggi
+        </p>
+      </ScrollReveal>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Quality -->
+        <ScrollReveal animation="fadeInUp" delay={200}>
+          <div class="bg-gradient-to-br from-lime-50 to-lime-100 dark:from-lime-900/30 dark:to-lime-900/50 p-8 rounded-2xl border border-lime-200 dark:border-lime-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex items-center justify-center w-16 h-16 bg-lime-600 rounded-2xl mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Kualitas Premium Terjamin</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Menggunakan bahan vinyl premium dan mesin cutting laser untuk hasil yang presisi dan tahan lama.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <!-- Waterproof -->
+        <ScrollReveal animation="fadeInUp" delay={400}>
+          <div class="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-900/50 p-8 rounded-2xl border border-green-200 dark:border-green-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex items-center justify-center w-16 h-16 bg-green-600 rounded-2xl mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Bahan Waterproof Premium</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Bahan vinyl tahan air dan cuaca dengan lem kuat yang tidak mudah lepas untuk berbagai aplikasi outdoor.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <!-- Fast Delivery -->
+        <ScrollReveal animation="fadeInUp" delay={600}>
+          <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-900/50 p-8 rounded-2xl border border-blue-200 dark:border-blue-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Pengerjaan Cepat</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Express service 1-2 hari untuk urgent order, standard 2-3 hari, dan normal 3-5 hari dengan kualitas tetap terjamin.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <!-- Precision Cutting -->
+        <ScrollReveal animation="fadeInUp" delay={800}>
+          <div class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-900/50 p-8 rounded-2xl border border-purple-200 dark:border-purple-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex items-center justify-center w-16 h-16 bg-purple-600 rounded-2xl mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Cutting Laser Presisi</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Teknologi cutting laser untuk hasil yang presisi dan rapi, mendukung berbagai bentuk custom shape.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <!-- Price -->
+        <ScrollReveal animation="fadeInUp" delay={1000}>
+          <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/30 dark:to-yellow-900/50 p-8 rounded-2xl border border-yellow-200 dark:border-yellow-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex items-center justify-center w-16 h-16 bg-yellow-600 rounded-2xl mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Harga Kompetitif</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Harga transparan tanpa biaya tersembunyi. Mulai Rp 75/pcs dengan kualitas premium dan garansi kepuasan.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <!-- Warranty -->
+        <ScrollReveal animation="fadeInUp" delay={1200}>
+          <div class="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/30 dark:to-red-900/50 p-8 rounded-2xl border border-red-200 dark:border-red-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex items-center justify-center w-16 h-16 bg-red-600 rounded-2xl mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Garansi Kepuasan</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Garansi 30 hari untuk semua produk stiker. Jika tidak puas dengan hasil cetak, kami siap revisi atau refund tanpa biaya tambahan.
+            </p>
+          </div>
+        </ScrollReveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-20 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <ScrollReveal animation="fadeInUp" className="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Apa Kata Klien Kami?
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          Testimoni dari berbagai klien yang telah menggunakan jasa cetak stiker Kotacom
+        </p>
+      </ScrollReveal>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Testimonial 1 -->
+        <ScrollReveal animation="fadeInUp" delay={200}>
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 hover:shadow-xl transition-all duration-300">
+            <div class="flex items-center mb-4">
+              <div class="flex text-yellow-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+              </div>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300 mb-6 italic">
+              "Stiker waterproof dari Kotacom sangat berkualitas. Sudah 1 tahun dipasang di mobil dan masih terlihat bagus meski sering terkena hujan dan panas. Cutting-nya juga sangat presisi dan rapi!"
+            </p>
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-lime-100 dark:bg-lime-900/30 rounded-full flex items-center justify-center mr-4">
+                <span class="text-lime-600 dark:text-lime-400 font-bold">PT</span>
+              </div>
+              <div>
+                <div class="font-semibold text-gray-900 dark:text-white">PT Maju Transport</div>
+                <div class="text-gray-600 dark:text-gray-400 text-sm">Perusahaan Transportasi</div>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        <!-- Testimonial 2 -->
+        <ScrollReveal animation="fadeInUp" delay={400}>
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 hover:shadow-xl transition-all duration-300">
+            <div class="flex items-center mb-4">
+              <div class="flex text-yellow-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+              </div>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300 mb-6 italic">
+              "Label produk dari Kotacom sangat membantu branding produk UMKM saya. Stiker waterproof dengan design yang menarik membuat produk terlihat lebih profesional dan mahal. Sudah direkomendasikan ke teman-teman pengusaha!"
+            </p>
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mr-4">
+                <span class="text-green-600 dark:text-green-400 font-bold">CV</span>
+              </div>
+              <div>
+                <div class="font-semibold text-gray-900 dark:text-white">CV Sukses Makmur</div>
+                <div class="text-gray-600 dark:text-gray-400 text-sm">UMKM Makanan</div>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        <!-- Testimonial 3 -->
+        <ScrollReveal animation="fadeInUp" delay={600}>
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 hover:shadow-xl transition-all duration-300">
+            <div class="flex items-center mb-4">
+              <div class="flex text-yellow-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+              </div>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300 mb-6 italic">
+              "Stiker promosi untuk event perusahaan sangat sukses. Design yang eye-catching dan bahan yang kuat membuat stiker ini tahan lama. Distribusi ke 500 peserta event sangat lancar dan banyak yang memberikan feedback positif!"
+            </p>
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-4">
+                <span class="text-blue-600 dark:text-blue-400 font-bold">PT</span>
+              </div>
+              <div>
+                <div class="font-semibold text-gray-900 dark:text-white">PT Event Indonesia</div>
+                <div class="text-gray-600 dark:text-gray-400 text-sm">Event Organizer</div>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step by Step Order Process -->
+  <PrintingOrderProcess
+    serviceType="cetak stiker"
+    serviceName="stiker waterproof"
+  />
+
+  <!-- FAQ Section -->
+  <PrintingFAQ
+    serviceType="cetak stiker"
+    serviceName="stiker"
+  />
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-br from-lime-900 via-lime-800 to-green-900 text-white">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <ScrollReveal animation="fadeInUp">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          Siap Tingkatkan Branding Anda?
+        </h2>
+        <p class="text-xl mb-8 text-lime-100">
+          Dapatkan stiker waterproof premium dengan design custom untuk branding maksimal
+        </p>
+      </ScrollReveal>
+
+      <ScrollReveal animation="fadeInUp" delay={300}>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          <a href="https://wa.me/6285799520350?text=Halo%20KOTACOM,%20saya%20ingin%20cetak%20stiker.%20Bisa%20konsultasi%20harga%20dan%20design%3F"
+             class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center">
+            <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+            Pesan Cetak Stiker Sekarang
+          </a>
+
+          <a href="tel:085799520350"
+             class="bg-transparent border-2 border-white hover:bg-white hover:text-lime-900 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center">
+            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+            </svg>
+            (0857) 9952-0350
+          </a>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal animation="fadeInUp" delay={500}>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+          <div>
+            <div class="text-3xl font-bold text-yellow-400 mb-2">300+</div>
+            <div class="text-lime-100">Stiker Dicetak</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-green-400 mb-2">98%</div>
+            <div class="text-lime-100">Kepuasan Klien</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-blue-400 mb-2">30</div>
+            <div class="text-lime-100">Hari Garansi</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-purple-400 mb-2">1-3</div>
+            <div class="text-lime-100">Hari Proses</div>
+          </div>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+</MainLayout>

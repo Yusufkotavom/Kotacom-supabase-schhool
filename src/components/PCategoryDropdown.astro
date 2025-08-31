@@ -39,7 +39,7 @@ const currentCategoryPromise = (async () => {
   
   const validCategories = allProjects.reduce((acc: Set<string>, project) => {
     const categories = Array.isArray(project.data.properties.pCategory)
-      ? project.data.properties.pCategory.map((c: string) => c.toLowerCase().replace(/\s+/g, "-"))
+      ? (project.data.properties.pCategory || []).map((c: string) => (c || '').toLowerCase().replace(/\s+/g, "-"))
       : [String(project.data.properties.pCategory || "").toLowerCase().replace(/\s+/g, "-")];
     categories.forEach((category) => {
       if (category && category !== "") acc.add(category);

@@ -143,7 +143,7 @@ export class LinkAnalyzer {
     });
 
     // Calculate anchor text diversity
-    const anchorTexts = new Set(this.links.map(link => link.anchorText.toLowerCase()));
+    const anchorTexts = new Set(this.links.map(link => (link.anchorText || '').toLowerCase()));
     const anchorTextDiversity = anchorTexts.size / totalLinks;
 
     // Find top linked pages

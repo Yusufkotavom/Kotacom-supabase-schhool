@@ -69,7 +69,7 @@ const contentClusters = {
 
 // Function to determine content category based on current content
 function determineCategory(slug: string, tags: string[], title: string = ""): string {
-  const content = slug.toLowerCase() + " " + tags.join(" ").toLowerCase() + " " + title.toLowerCase();
+  const content = (slug || '').toLowerCase() + " " + (tags || []).join(" ").toLowerCase() + " " + (title || '').toLowerCase();
   
   if (content.includes("website") || content.includes("web") || content.includes("template") || content.includes("toko online")) {
     return "website-development";
@@ -99,11 +99,11 @@ const crossPillarContent = otherCategories.flatMap(cat =>
 ).slice(0, 2);
 
 // Get relevant pillar pages
-const relevantPillars = pillarPages.filter(pillar => 
-  pillar.category === currentCategory || 
-  pillar.keywords.some(keyword => 
-    currentTags.some(tag => tag.toLowerCase().includes(keyword.toLowerCase())) ||
-    (currentTitle || "").toLowerCase().includes(keyword.toLowerCase())
+const relevantPillars = pillarPages.filter(pillar =>
+  pillar.category === currentCategory ||
+  pillar.keywords.some(keyword =>
+    (currentTags || []).some(tag => (tag || '').toLowerCase().includes(keyword.toLowerCase())) ||
+    ((currentTitle || "").toLowerCase().includes(keyword.toLowerCase()))
   )
 ).slice(0, 2);
 
