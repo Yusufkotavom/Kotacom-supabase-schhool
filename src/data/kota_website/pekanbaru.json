@@ -1,0 +1,235 @@
+{
+  "nama": "Pekanbaru",
+  "slug": "pekanbaru",
+  "provinsi": "Riau",
+  "populasi": 1000000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Pekanbaru Kota",
+        "kota": "Pekanbaru"
+      },
+      {
+        "nama": "Sukajadi",
+        "kota": "Pekanbaru"
+      },
+      {
+        "nama": "Senapelan",
+        "kota": "Pekanbaru"
+      },
+      {
+        "nama": "Rumbai",
+        "kota": "Pekanbaru"
+      },
+      {
+        "nama": "Rumbai Pesisir",
+        "kota": "Pekanbaru"
+      },
+      {
+        "nama": "Tampan",
+        "kota": "Pekanbaru"
+      },
+      {
+        "nama": "Payung Sekaki",
+        "kota": "Pekanbaru"
+      },
+      {
+        "nama": "Lima Puluh",
+        "kota": "Pekanbaru"
+      },
+      {
+        "nama": "Sail",
+        "kota": "Pekanbaru"
+      },
+      {
+        "nama": "Tenayan Raya",
+        "kota": "Pekanbaru"
+      },
+      {
+        "nama": "Marpoyan Damai",
+        "kota": "Pekanbaru"
+      },
+      {
+        "nama": "Bukit Raya",
+        "kota": "Pekanbaru"
+      }
+    ],
+    "kota_administrasi": [
+      "Pekanbaru"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Pekanbaru Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Pekanbaru terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Pekanbaru. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website pekanbaru",
+      "pembuatan web pekanbaru",
+      "developer pekanbaru",
+      "web design pekanbaru",
+      "website pekanbaru",
+      "toko online pekanbaru"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Pekanbaru",
+    "subtitle_highlight": "Profesional Pekanbaru",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Riau dengan ekonomi minyak terbesar di luar Jawa - 1+ juta penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Pekanbaru dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Pekanbaru",
+      "SEO khusus untuk pencarian lokal Pekanbaru",
+      "Integrasi dengan Google My Business Pekanbaru"
+    ],
+    "local_stats": {
+      "businesses": "85.000+ bisnis di Pekanbaru",
+      "digital_transformation": "64% bisnis Pekanbaru butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Sudirman Pekanbaru",
+      "Mall SKA Pekanbaru",
+      "Living World Pekanbaru",
+      "Plaza Amal Pekanbaru",
+      "Pekanbaru Mall",
+      "Lippo Plaza Pekanbaru",
+      "Central Plaza Pekanbaru",
+      "Grand Mall Pekanbaru"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Riau, terletak di pesisir timur Sumatera",
+      "luas_wilayah": "632.26 km²",
+      "ketinggian": "5-50 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 2.500-3.000 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan kabut asap musiman",
+      "transportasi": [
+        "Bandar Udara Internasional Sultan Syarif Kasim II (PKU)",
+        "Pelabuhan Dumai",
+        "Stasiun Pekanbaru",
+        "Trans Metro Pekanbaru"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Riau",
+        "5G network coverage 82%",
+        "Data center di Pekanbaru"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Pekanbaru untuk air bersih",
+        "Gas untuk industri"
+      ],
+      "keunggulan_lokasi": [
+        "Pusat industri minyak",
+        "Dekat dengan kilang Dumai",
+        "Akses ke sumber daya migas",
+        "Gerbang timur Sumatera"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 50-80 juta per tahun",
+      "pertumbuhan_ekonomi": "5.3% per tahun (2023)",
+      "pdb_kota": "Rp 220 triliun (2023)",
+      "sektor_dominan": [
+        "Minyak & Gas",
+        "Industri",
+        "Perdagangan",
+        "Logistik",
+        "Pendidikan",
+        "Jasa"
+      ],
+      "investasi": {
+        "asing": "US$ 4+ miliar per tahun",
+        "domestik": "Rp 35+ triliun per tahun",
+        "startup_ecosystem": "70+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "18% populasi",
+        "kelas_menengah": "50% populasi",
+        "kelas_bawah": "32% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.0% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "95.000",
+      "sektor_usaha": {
+        "mikro": "70.000",
+        "kecil": "20.000",
+        "menengah": "4.000",
+        "besar": "1.000"
+      },
+      "startup": {
+        "total": "100+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "EnergyTech",
+          "Logistics",
+          "E-commerce",
+          "Education",
+          "Manufacturing"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Sudirman Business District",
+        "Pekanbaru Industrial Area",
+        "Dumai Port Area",
+        "Oil & Gas Complex"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 30+ triliun per tahun",
+        "ecommerce_gmv": "Rp 11+ triliun per tahun",
+        "startup_funding": "US$ 100+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Kabut asap musiman",
+        "Biaya logistik tinggi",
+        "Fluktuasi harga minyak",
+        "Ketersediaan tenaga ahli"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi energy sector",
+        "Platform logistik",
+        "E-commerce regional",
+        "Education technology",
+        "Manufacturing 4.0"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "1.0 juta",
+      "kepadatan_penduduk": "1.600 jiwa/km²",
+      "usia_produktif": "70% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "18%",
+        "diploma": "16%",
+        "sma": "38%",
+        "smp": "19%",
+        "sd": "9%"
+      },
+      "pendapatan_rata_rata": "Rp 3-5 juta per bulan",
+      "digital_literacy": "68% populasi aktif online",
+      "mobile_penetration": "85% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "680.000",
+      "social_media_users": "600.000",
+      "online_shopping": "480.000",
+      "digital_payment": "380.000",
+      "ecommerce_penetration": "48% populasi",
+      "startup_density": "Sedang untuk kota industri",
+      "tech_talent_pool": "8.000+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Pekanbaru, Riau",
+    "phone": "085799520350",
+    "email": "pekanbaru@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Pekanbaru"
+  }
+}

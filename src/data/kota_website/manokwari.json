@@ -1,0 +1,227 @@
+{
+  "nama": "Manokwari",
+  "slug": "manokwari",
+  "provinsi": "Papua Barat",
+  "populasi": 180000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Manokwari Barat",
+        "kota": "Manokwari"
+      },
+      {
+        "nama": "Manokwari Timur",
+        "kota": "Manokwari"
+      },
+      {
+        "nama": "Manokwari Utara",
+        "kota": "Manokwari"
+      },
+      {
+        "nama": "Manokwari Selatan",
+        "kota": "Manokwari"
+      },
+      {
+        "nama": "Tanah Rubuh",
+        "kota": "Manokwari"
+      },
+      {
+        "nama": "Wosi",
+        "kota": "Manokwari"
+      },
+      {
+        "nama": "Mansinam",
+        "kota": "Manokwari"
+      },
+      {
+        "nama": "Prafi",
+        "kota": "Manokwari"
+      },
+      {
+        "nama": "Warmare",
+        "kota": "Manokwari"
+      },
+      {
+        "nama": "Masni",
+        "kota": "Manokwari"
+      }
+    ],
+    "kota_administrasi": [
+      "Manokwari"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Manokwari Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Manokwari terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Manokwari. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website manokwari",
+      "pembuatan web manokwari",
+      "developer manokwari",
+      "web design manokwari",
+      "website manokwari",
+      "toko online manokwari"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Manokwari",
+    "subtitle_highlight": "Profesional Manokwari",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Papua Barat dengan ekonomi strategis - 180+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Manokwari dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Manokwari",
+      "SEO khusus untuk pencarian lokal Manokwari",
+      "Integrasi dengan Google My Business Manokwari"
+    ],
+    "local_stats": {
+      "businesses": "16.000+ bisnis di Manokwari",
+      "digital_transformation": "55% bisnis Manokwari butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Sudirman Manokwari",
+      "Manokwari Mall",
+      "Transmart Manokwari",
+      "Plaza Papua",
+      "Manokwari Trade Center",
+      "Lippo Plaza Manokwari",
+      "Manokwari City Center",
+      "Mall Matahari"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Papua Barat, terletak di pesisir utara Papua",
+      "luas_wilayah": "534.43 km²",
+      "ketinggian": "0-100 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 3.000-4.000 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan hujan tinggi sepanjang tahun",
+      "transportasi": [
+        "Bandar Udara Internasional Rendani (MKW)",
+        "Pelabuhan Manokwari",
+        "Terminal Bus Manokwari",
+        "Trans Manokwari"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Papua Barat",
+        "5G network coverage 65%",
+        "Data center di Manokwari"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Manokwari untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Gerbang barat Papua",
+        "Dekat dengan sumber daya alam",
+        "Akses ke laut",
+        "Pusat perdagangan regional"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 35-65 juta per tahun",
+      "pertumbuhan_ekonomi": "6.2% per tahun (2023)",
+      "pdb_kota": "Rp 65 triliun (2023)",
+      "sektor_dominan": [
+        "Pertambangan",
+        "Perikanan",
+        "Perdagangan",
+        "Jasa",
+        "Logistik",
+        "Pendidikan"
+      ],
+      "investasi": {
+        "asing": "US$ 1.8+ miliar per tahun",
+        "domestik": "Rp 12+ triliun per tahun",
+        "startup_ecosystem": "20+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "16% populasi",
+        "kelas_menengah": "48% populasi",
+        "kelas_bawah": "36% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.5% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "19.000",
+      "sektor_usaha": {
+        "mikro": "14.000",
+        "kecil": "4.000",
+        "menengah": "900",
+        "besar": "100"
+      },
+      "startup": {
+        "total": "25+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Mining Tech",
+          "Fishery Tech",
+          "E-commerce",
+          "Logistics",
+          "Education"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Sudirman Business District",
+        "Port Area",
+        "Mining Complex",
+        "Education Complex"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 6+ triliun per tahun",
+        "ecommerce_gmv": "Rp 2.5+ triliun per tahun",
+        "startup_funding": "US$ 25+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Persaingan regional",
+        "Ketersediaan tenaga ahli"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi pertambangan",
+        "Platform logistik",
+        "E-commerce regional",
+        "Education technology",
+        "Environmental monitoring"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "180 ribu",
+      "kepadatan_penduduk": "340 jiwa/km²",
+      "usia_produktif": "70% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "16%",
+        "diploma": "15%",
+        "sma": "38%",
+        "smp": "20%",
+        "sd": "11%"
+      },
+      "pendapatan_rata_rata": "Rp 2.5-4.5 juta per bulan",
+      "digital_literacy": "62% populasi aktif online",
+      "mobile_penetration": "78% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "110.000",
+      "social_media_users": "95.000",
+      "online_shopping": "65.000",
+      "digital_payment": "50.000",
+      "ecommerce_penetration": "36% populasi",
+      "startup_density": "Rendah untuk kota terpencil",
+      "tech_talent_pool": "1.200+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Manokwari, Papua Barat",
+    "phone": "085799520350",
+    "email": "manokwari@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Manokwari"
+  }
+}

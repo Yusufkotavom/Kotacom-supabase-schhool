@@ -1,0 +1,243 @@
+{
+  "nama": "Yogyakarta",
+  "slug": "yogyakarta",
+  "provinsi": "DI Yogyakarta",
+  "populasi": 400000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Mantrijeron",
+        "kota": "Yogyakarta"
+      },
+      {
+        "nama": "Kraton",
+        "kota": "Yogyakarta"
+      },
+      {
+        "nama": "Mergangsan",
+        "kota": "Yogyakarta"
+      },
+      {
+        "nama": "Umbulharjo",
+        "kota": "Yogyakarta"
+      },
+      {
+        "nama": "Kota Gede",
+        "kota": "Yogyakarta"
+      },
+      {
+        "nama": "Gondokusuman",
+        "kota": "Yogyakarta"
+      },
+      {
+        "nama": "Danurejan",
+        "kota": "Yogyakarta"
+      },
+      {
+        "nama": "Pakualaman",
+        "kota": "Yogyakarta"
+      },
+      {
+        "nama": "Gondomanan",
+        "kota": "Yogyakarta"
+      },
+      {
+        "nama": "Ngampilan",
+        "kota": "Yogyakarta"
+      },
+      {
+        "nama": "Wirobrajan",
+        "kota": "Yogyakarta"
+      },
+      {
+        "nama": "Gedongtengen",
+        "kota": "Yogyakarta"
+      },
+      {
+        "nama": "Jetis",
+        "kota": "Yogyakarta"
+      },
+      {
+        "nama": "Tegalrejo",
+        "kota": "Yogyakarta"
+      }
+    ],
+    "kota_administrasi": [
+      "Yogyakarta"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Yogyakarta Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Yogyakarta terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Yogyakarta. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website yogyakarta",
+      "pembuatan web yogyakarta",
+      "developer yogyakarta",
+      "web design yogyakarta",
+      "website yogyakarta",
+      "toko online yogyakarta"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Yogyakarta",
+    "subtitle_highlight": "Profesional Yogyakarta",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Kota Pendidikan dan Budaya dengan ekonomi kreatif terkemuka - 400+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Yogyakarta dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Yogyakarta",
+      "SEO khusus untuk pencarian lokal Yogyakarta",
+      "Integrasi dengan Google My Business Yogyakarta"
+    ],
+    "local_stats": {
+      "businesses": "80.000+ bisnis di Yogyakarta",
+      "digital_transformation": "70% bisnis Yogyakarta butuh website"
+    },
+    "local_business_areas": [
+      "Malioboro Yogyakarta",
+      "Jalan Solo",
+      "Jalan Prawirotaman",
+      "Condongcatur",
+      "Pakuwon Mall Jogja",
+      "Galeria Mall",
+      "Lippo Plaza Jogja",
+      "Jogja City Mall"
+    ],
+    "geografis": {
+      "lokasi": "Kota Istimewa Yogyakarta, terletak di dataran tinggi Jawa Tengah",
+      "luas_wilayah": "32.50 km²",
+      "ketinggian": "100-150 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan sedang (rata-rata 1.800-2.200 mm/tahun)",
+      "cuaca": "Sejuk dengan suhu 20-35°C sepanjang tahun",
+      "transportasi": [
+        "Bandar Udara Internasional Yogyakarta (YIA)",
+        "Stasiun Tugu Yogyakarta",
+        "Terminal Giwangan",
+        "Trans Jogja (BRT)"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Yogyakarta",
+        "5G network coverage 90%",
+        "Data center modern di Yogyakarta"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Yogyakarta untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Pusat pendidikan terkemuka",
+        "Kota budaya dan wisata",
+        "Dekat dengan Borobudur",
+        "Kota pelajar terbesar"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 40-70 juta per tahun",
+      "pertumbuhan_ekonomi": "5.8% per tahun (2023)",
+      "pdb_kota": "Rp 150 triliun (2023)",
+      "sektor_dominan": [
+        "Pendidikan & Perguruan Tinggi",
+        "Wisata",
+        "Kerajinan",
+        "Kuliner",
+        "Teknologi",
+        "Budaya"
+      ],
+      "investasi": {
+        "asing": "US$ 2+ miliar per tahun",
+        "domestik": "Rp 25+ triliun per tahun",
+        "startup_ecosystem": "100+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "20% populasi",
+        "kelas_menengah": "60% populasi",
+        "kelas_bawah": "20% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 3.2% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "95.000",
+      "sektor_usaha": {
+        "mikro": "75.000",
+        "kecil": "15.000",
+        "menengah": "4.000",
+        "besar": "1.000"
+      },
+      "startup": {
+        "total": "150+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Edtech",
+          "Tourism",
+          "CulturalTech",
+          "FoodTech",
+          "Creative Economy"
+        ]
+      },
+      "pusat_bisnis": [
+        "Malioboro District",
+        "Condongcatur IT Center",
+        "Jogja International Airport Area",
+        "Universitas Gadjah Mada Area"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 25+ triliun per tahun",
+        "ecommerce_gmv": "Rp 8+ triliun per tahun",
+        "startup_funding": "US$ 150+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Persaingan bisnis kreatif tinggi",
+        "Keterbatasan lahan",
+        "Kepadatan turis",
+        "Biaya properti tinggi"
+      ],
+      "peluang_bisnis": [
+        "Digital marketing untuk UMKM",
+        "Platform pendidikan online",
+        "Wisata digital",
+        "Cultural technology",
+        "Student economy"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "400 ribu",
+      "kepadatan_penduduk": "12.300 jiwa/km²",
+      "usia_produktif": "75% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "30%",
+        "diploma": "25%",
+        "sma": "30%",
+        "smp": "10%",
+        "sd": "5%"
+      },
+      "pendapatan_rata_rata": "Rp 3-5 juta per bulan",
+      "digital_literacy": "80% populasi aktif online",
+      "mobile_penetration": "90% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "320.000",
+      "social_media_users": "300.000",
+      "online_shopping": "250.000",
+      "digital_payment": "200.000",
+      "ecommerce_penetration": "62% populasi",
+      "startup_density": "Tinggi untuk kota pendidikan",
+      "tech_talent_pool": "20.000+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Yogyakarta, DI Yogyakarta",
+    "phone": "085799520350",
+    "email": "yogyakarta@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Yogyakarta"
+  }
+}

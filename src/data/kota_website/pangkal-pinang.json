@@ -1,0 +1,215 @@
+{
+  "nama": "Pangkal Pinang",
+  "slug": "pangkal-pinang",
+  "provinsi": "Bangka Belitung",
+  "populasi": 220000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Taman Sari",
+        "kota": "Pangkal Pinang"
+      },
+      {
+        "nama": "Gerunggang",
+        "kota": "Pangkal Pinang"
+      },
+      {
+        "nama": "Gabek",
+        "kota": "Pangkal Pinang"
+      },
+      {
+        "nama": "Bukit Intan",
+        "kota": "Pangkal Pinang"
+      },
+      {
+        "nama": "Rangkui",
+        "kota": "Pangkal Pinang"
+      },
+      {
+        "nama": "Girimaya",
+        "kota": "Pangkal Pinang"
+      },
+      {
+        "nama": "Pangkal Balam",
+        "kota": "Pangkal Pinang"
+      }
+    ],
+    "kota_administrasi": [
+      "Pangkal Pinang"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Pangkal Pinang Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Pangkal Pinang terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Pangkal Pinang. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website pangkal-pinang",
+      "pembuatan web pangkal-pinang",
+      "developer pangkal-pinang",
+      "web design pangkal-pinang",
+      "website pangkal-pinang",
+      "toko online pangkal-pinang"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Pangkal Pinang",
+    "subtitle_highlight": "Profesional Pangkal Pinang",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Bangka Belitung dengan ekonomi pertambangan terbesar - 220+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Pangkal Pinang dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Pangkal Pinang",
+      "SEO khusus untuk pencarian lokal Pangkal Pinang",
+      "Integrasi dengan Google My Business Pangkal Pinang"
+    ],
+    "local_stats": {
+      "businesses": "20.000+ bisnis di Pangkal Pinang",
+      "digital_transformation": "63% bisnis Pangkal Pinang butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Sudirman Pangkal Pinang",
+      "Pangkal Pinang Mall",
+      "Transmart Pangkal Pinang",
+      "Plaza Baloi",
+      "Pangkal Pinang Trade Center",
+      "Lippo Plaza Pangkal Pinang",
+      "Pangkal Pinang City Center",
+      "Mall Bangka"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Bangka Belitung, terletak di Pulau Bangka",
+      "luas_wilayah": "118.37 km²",
+      "ketinggian": "0-30 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 2.500-3.500 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan kelembaban tinggi",
+      "transportasi": [
+        "Bandar Udara Internasional Depati Amir (PGK)",
+        "Pelabuhan Pangkal Balam",
+        "Terminal Angkutan Darat",
+        "Trans Pangkal Pinang"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Bangka Belitung",
+        "5G network coverage 72%",
+        "Data center di Pangkal Pinang"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Pangkal Pinang untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Pusat pertambangan timah",
+        "Dekat dengan sumber daya mineral",
+        "Akses ke laut Cina Selatan",
+        "Pusat perdagangan regional"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 35-60 juta per tahun",
+      "pertumbuhan_ekonomi": "5.5% per tahun (2023)",
+      "pdb_kota": "Rp 75 triliun (2023)",
+      "sektor_dominan": [
+        "Pertambangan",
+        "Perdagangan",
+        "Perikanan",
+        "Jasa",
+        "Logistik",
+        "Pendidikan"
+      ],
+      "investasi": {
+        "asing": "US$ 2+ miliar per tahun",
+        "domestik": "Rp 18+ triliun per tahun",
+        "startup_ecosystem": "28+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "18% populasi",
+        "kelas_menengah": "48% populasi",
+        "kelas_bawah": "34% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.0% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "24.000",
+      "sektor_usaha": {
+        "mikro": "18.000",
+        "kecil": "4.500",
+        "menengah": "1.200",
+        "besar": "300"
+      },
+      "startup": {
+        "total": "35+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Mining Tech",
+          "Maritime",
+          "E-commerce",
+          "Logistics",
+          "Tourism"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Sudirman Business District",
+        "Mining Complex",
+        "Port Area",
+        "Trade Center"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 10+ triliun per tahun",
+        "ecommerce_gmv": "Rp 4+ triliun per tahun",
+        "startup_funding": "US$ 35+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Fluktuasi harga komoditas",
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Persaingan regional"
+      ],
+      "peluang_bisnis": [
+        "Digital mining solutions",
+        "Maritime technology",
+        "E-commerce platform",
+        "Environmental monitoring",
+        "Sustainable mining"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "220 ribu",
+      "kepadatan_penduduk": "1.900 jiwa/km²",
+      "usia_produktif": "68% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "15%",
+        "diploma": "14%",
+        "sma": "40%",
+        "smp": "20%",
+        "sd": "11%"
+      },
+      "pendapatan_rata_rata": "Rp 2.5-4.5 juta per bulan",
+      "digital_literacy": "65% populasi aktif online",
+      "mobile_penetration": "82% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "140.000",
+      "social_media_users": "125.000",
+      "online_shopping": "95.000",
+      "digital_payment": "75.000",
+      "ecommerce_penetration": "43% populasi",
+      "startup_density": "Rendah untuk kota regional",
+      "tech_talent_pool": "2.500+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Pangkal Pinang, Bangka Belitung",
+    "phone": "085799520350",
+    "email": "pangkal-pinang@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Pangkal Pinang"
+  }
+}

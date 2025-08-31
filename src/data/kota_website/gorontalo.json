@@ -1,0 +1,287 @@
+{
+  "nama": "Gorontalo",
+  "slug": "gorontalo",
+  "provinsi": "Gorontalo",
+  "populasi": 200000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Gorontalo",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Kota Barat",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Kota Selatan",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Kota Timur",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Kota Utara",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Dungingi",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Hulonthalangi",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Kwandang",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Tomilito",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Limboto",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Limboto Barat",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Telaga",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Telaga Biru",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Tilango",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Sipatana",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Biau",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Batudaa Pantai",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Biluhu",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Boliohuto",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Dulupi",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Mananggu",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Paguyaman",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Popayato",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Popayato Barat",
+        "kota": "Gorontalo"
+      },
+      {
+        "nama": "Popayato Timur",
+        "kota": "Gorontalo"
+      }
+    ],
+    "kota_administrasi": [
+      "Gorontalo"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Gorontalo Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Gorontalo terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Gorontalo. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website gorontalo",
+      "pembuatan web gorontalo",
+      "developer gorontalo",
+      "web design gorontalo",
+      "website gorontalo",
+      "toko online gorontalo"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Gorontalo",
+    "subtitle_highlight": "Profesional Gorontalo",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Gorontalo dengan ekonomi strategis - 200+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Gorontalo dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Gorontalo",
+      "SEO khusus untuk pencarian lokal Gorontalo",
+      "Integrasi dengan Google My Business Gorontalo"
+    ],
+    "local_stats": {
+      "businesses": "18.000+ bisnis di Gorontalo",
+      "digital_transformation": "58% bisnis Gorontalo butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Sudirman Gorontalo",
+      "Gorontalo Mall",
+      "Transmart Gorontalo",
+      "Plaza Gorontalo",
+      "Gorontalo Trade Center",
+      "Lippo Plaza Gorontalo",
+      "Gorontalo City Center",
+      "Mall Matahari"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Gorontalo, terletak di pesisir utara Sulawesi",
+      "luas_wilayah": "64.79 km²",
+      "ketinggian": "0-50 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 2.000-3.000 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan angin laut",
+      "transportasi": [
+        "Bandar Udara Internasional Jalaluddin (GTO)",
+        "Pelabuhan Gorontalo",
+        "Terminal Bus Gorontalo",
+        "Trans Gorontalo"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Gorontalo",
+        "5G network coverage 68%",
+        "Data center di Gorontalo"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Gorontalo untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Gerbang utara Sulawesi",
+        "Dekat dengan sumber daya pertanian",
+        "Akses ke laut",
+        "Pusat pendidikan regional"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 25-45 juta per tahun",
+      "pertumbuhan_ekonomi": "4.5% per tahun (2023)",
+      "pdb_kota": "Rp 45 triliun (2023)",
+      "sektor_dominan": [
+        "Pertanian",
+        "Perdagangan",
+        "Pendidikan",
+        "Jasa",
+        "Perikanan",
+        "Logistik"
+      ],
+      "investasi": {
+        "asing": "US$ 800+ juta per tahun",
+        "domestik": "Rp 8+ triliun per tahun",
+        "startup_ecosystem": "20+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "12% populasi",
+        "kelas_menengah": "45% populasi",
+        "kelas_bawah": "43% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.1% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "21.000",
+      "sektor_usaha": {
+        "mikro": "16.000",
+        "kecil": "4.000",
+        "menengah": "900",
+        "besar": "100"
+      },
+      "startup": {
+        "total": "25+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Agritech",
+          "Education",
+          "E-commerce",
+          "Logistics",
+          "Tourism"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Sudirman Business District",
+        "Education Complex",
+        "Port Area",
+        "Trade Center"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 5+ triliun per tahun",
+        "ecommerce_gmv": "Rp 2+ triliun per tahun",
+        "startup_funding": "US$ 20+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Persaingan regional",
+        "Ketersediaan tenaga ahli"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi pendidikan",
+        "Platform logistik",
+        "E-commerce regional",
+        "Agritech solutions",
+        "Education technology"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "200 ribu",
+      "kepadatan_penduduk": "3.100 jiwa/km²",
+      "usia_produktif": "65% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "14%",
+        "diploma": "13%",
+        "sma": "38%",
+        "smp": "22%",
+        "sd": "13%"
+      },
+      "pendapatan_rata_rata": "Rp 1.8-3 juta per bulan",
+      "digital_literacy": "60% populasi aktif online",
+      "mobile_penetration": "76% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "120.000",
+      "social_media_users": "100.000",
+      "online_shopping": "70.000",
+      "digital_payment": "55.000",
+      "ecommerce_penetration": "35% populasi",
+      "startup_density": "Rendah untuk kota regional",
+      "tech_talent_pool": "1.500+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Gorontalo, Gorontalo",
+    "phone": "085799520350",
+    "email": "gorontalo@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Gorontalo"
+  }
+}

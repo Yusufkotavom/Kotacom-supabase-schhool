@@ -1,0 +1,235 @@
+{
+  "nama": "Tanjung Selor",
+  "slug": "tanjung-selor",
+  "provinsi": "Kalimantan Utara",
+  "populasi": 45000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Tanjung Selor",
+        "kota": "Tanjung Selor"
+      },
+      {
+        "nama": "Tanjung Selor Timur",
+        "kota": "Tanjung Selor"
+      },
+      {
+        "nama": "Tanjung Selor Kota",
+        "kota": "Tanjung Selor"
+      },
+      {
+        "nama": "Sesayap",
+        "kota": "Tanjung Selor"
+      },
+      {
+        "nama": "Sesayap Hilir",
+        "kota": "Tanjung Selor"
+      },
+      {
+        "nama": "Tanjung Palas",
+        "kota": "Tanjung Selor"
+      },
+      {
+        "nama": "Tanjung Palas Barat",
+        "kota": "Tanjung Selor"
+      },
+      {
+        "nama": "Tanjung Palas Utara",
+        "kota": "Tanjung Selor"
+      },
+      {
+        "nama": "Tanjung Palas Tengah",
+        "kota": "Tanjung Selor"
+      },
+      {
+        "nama": "Tanjung Palas Timur",
+        "kota": "Tanjung Selor"
+      },
+      {
+        "nama": "Bunyu",
+        "kota": "Tanjung Selor"
+      },
+      {
+        "nama": "Tarakan",
+        "kota": "Tanjung Selor"
+      }
+    ],
+    "kota_administrasi": [
+      "Tanjung Selor"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Tanjung Selor Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Tanjung Selor terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Tanjung Selor. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website tanjung-selor",
+      "pembuatan web tanjung-selor",
+      "developer tanjung-selor",
+      "web design tanjung-selor",
+      "website tanjung-selor",
+      "toko online tanjung-selor"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Tanjung Selor",
+    "subtitle_highlight": "Profesional Tanjung Selor",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Kalimantan Utara dengan ekonomi strategis - 45+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Tanjung Selor dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Tanjung Selor",
+      "SEO khusus untuk pencarian lokal Tanjung Selor",
+      "Integrasi dengan Google My Business Tanjung Selor"
+    ],
+    "local_stats": {
+      "businesses": "8.000+ bisnis di Tanjung Selor",
+      "digital_transformation": "55% bisnis Tanjung Selor butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Sudirman Tanjung Selor",
+      "Tanjung Selor Mall",
+      "Transmart Tanjung Selor",
+      "Plaza Borneo",
+      "Tanjung Selor Trade Center",
+      "Lippo Plaza Tanjung Selor",
+      "Tanjung Selor City Center",
+      "Mall Matahari"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Kalimantan Utara, terletak di pesisir timur laut Kalimantan",
+      "luas_wilayah": "720 km²",
+      "ketinggian": "0-50 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 2.500-3.500 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan kabut asap musiman",
+      "transportasi": [
+        "Bandar Udara Tanjung Harapan",
+        "Pelabuhan Tanjung Selor",
+        "Terminal Bus Tanjung Selor",
+        "Trans Tanjung Selor"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Kalimantan Utara",
+        "5G network coverage 62%",
+        "Data center di Tanjung Selor"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Tanjung Selor untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Gerbang utara Kalimantan",
+        "Dekat dengan perbatasan Malaysia",
+        "Akses ke sumber daya alam",
+        "Pusat perdagangan perbatasan"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 40-70 juta per tahun",
+      "pertumbuhan_ekonomi": "6.5% per tahun (2023)",
+      "pdb_kota": "Rp 25 triliun (2023)",
+      "sektor_dominan": [
+        "Pertambangan",
+        "Perdagangan",
+        "Perikanan",
+        "Jasa",
+        "Logistik",
+        "Industri"
+      ],
+      "investasi": {
+        "asing": "US$ 1.5+ miliar per tahun",
+        "domestik": "Rp 8+ triliun per tahun",
+        "startup_ecosystem": "15+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "18% populasi",
+        "kelas_menengah": "52% populasi",
+        "kelas_bawah": "30% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.5% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "9.500",
+      "sektor_usaha": {
+        "mikro": "7.000",
+        "kecil": "2.000",
+        "menengah": "400",
+        "besar": "100"
+      },
+      "startup": {
+        "total": "20+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Mining Tech",
+          "Logistics",
+          "E-commerce",
+          "Maritime",
+          "Tourism"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Sudirman Business District",
+        "Port Area",
+        "Mining Complex",
+        "Trade Center"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 4+ triliun per tahun",
+        "ecommerce_gmv": "Rp 1.5+ triliun per tahun",
+        "startup_funding": "US$ 15+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Persaingan regional",
+        "Ketersediaan tenaga ahli"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi pertambangan",
+        "Platform logistik",
+        "E-commerce perbatasan",
+        "Maritime services",
+        "Cross-border commerce"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "45 ribu",
+      "kepadatan_penduduk": "63 jiwa/km²",
+      "usia_produktif": "72% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "16%",
+        "diploma": "14%",
+        "sma": "38%",
+        "smp": "22%",
+        "sd": "10%"
+      },
+      "pendapatan_rata_rata": "Rp 3-5 juta per bulan",
+      "digital_literacy": "65% populasi aktif online",
+      "mobile_penetration": "80% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "29.000",
+      "social_media_users": "25.000",
+      "online_shopping": "16.000",
+      "digital_payment": "12.000",
+      "ecommerce_penetration": "36% populasi",
+      "startup_density": "Rendah untuk kota perbatasan",
+      "tech_talent_pool": "800+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Tanjung Selor, Kalimantan Utara",
+    "phone": "085799520350",
+    "email": "tanjung-selor@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Tanjung%20Selor"
+  }
+}

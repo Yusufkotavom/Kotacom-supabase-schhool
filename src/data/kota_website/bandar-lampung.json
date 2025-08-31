@@ -1,0 +1,251 @@
+{
+  "nama": "Bandar Lampung",
+  "slug": "bandar-lampung",
+  "provinsi": "Lampung",
+  "populasi": 950000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Kedaton",
+        "kota": "Bandar Lampung"
+      },
+      {
+        "nama": "Sukarame",
+        "kota": "Bandar Lampung"
+      },
+      {
+        "nama": "Tanjungkarang Barat",
+        "kota": "Bandar Lampung"
+      },
+      {
+        "nama": "Tanjungkarang Timur",
+        "kota": "Bandar Lampung"
+      },
+      {
+        "nama": "Tanjungkarang Pusat",
+        "kota": "Bandar Lampung"
+      },
+      {
+        "nama": "Telukbetung Selatan",
+        "kota": "Bandar Lampung"
+      },
+      {
+        "nama": "Telukbetung Utara",
+        "kota": "Bandar Lampung"
+      },
+      {
+        "nama": "Telukbetung Barat",
+        "kota": "Bandar Lampung"
+      },
+      {
+        "nama": "Bumi Waras",
+        "kota": "Bandar Lampung"
+      },
+      {
+        "nama": "Panjang",
+        "kota": "Bandar Lampung"
+      },
+      {
+        "nama": "Tanjung Senang",
+        "kota": "Bandar Lampung"
+      },
+      {
+        "nama": "Kemiling",
+        "kota": "Bandar Lampung"
+      },
+      {
+        "nama": "Rajabasa",
+        "kota": "Bandar Lampung"
+      },
+      {
+        "nama": "Jati Agung",
+        "kota": "Bandar Lampung"
+      },
+      {
+        "nama": "Natar",
+        "kota": "Bandar Lampung"
+      },
+      {
+        "nama": "Metro",
+        "kota": "Bandar Lampung"
+      }
+    ],
+    "kota_administrasi": [
+      "Bandar Lampung"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Bandar Lampung Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Bandar Lampung terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Bandar Lampung. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website bandar-lampung",
+      "pembuatan web bandar-lampung",
+      "developer bandar-lampung",
+      "web design bandar-lampung",
+      "website bandar-lampung",
+      "toko online bandar-lampung"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Bandar Lampung",
+    "subtitle_highlight": "Profesional Bandar Lampung",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Lampung dengan ekonomi terbesar di Sumatera bagian selatan - 950+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Bandar Lampung dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Bandar Lampung",
+      "SEO khusus untuk pencarian lokal Bandar Lampung",
+      "Integrasi dengan Google My Business Bandar Lampung"
+    ],
+    "local_stats": {
+      "businesses": "75.000+ bisnis di Bandar Lampung",
+      "digital_transformation": "62% bisnis Bandar Lampung butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Teuku Umar Bandar Lampung",
+      "Margo City Mall",
+      "Transmart Bandar Lampung",
+      "Plaza Lampung",
+      "Bandar Lampung Trade Center",
+      "Lippo Plaza Bandar Lampung",
+      "Bandar Lampung City Center",
+      "Mall Kartini"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Lampung, terletak di pesisir timur Sumatera",
+      "luas_wilayah": "197.22 km²",
+      "ketinggian": "0-50 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 2.500-3.500 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan kabut asap musiman",
+      "transportasi": [
+        "Bandar Udara Internasional Radin Inten II (TKG)",
+        "Pelabuhan Panjang",
+        "Terminal Rajabasa",
+        "Trans Bandar Lampung"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Lampung",
+        "5G network coverage 78%",
+        "Data center di Bandar Lampung"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Bandar Lampung untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Gerbang selatan Sumatera",
+        "Dekat dengan perkebunan",
+        "Akses ke sumber daya pertanian",
+        "Pusat perdagangan regional"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 30-50 juta per tahun",
+      "pertumbuhan_ekonomi": "4.8% per tahun (2023)",
+      "pdb_kota": "Rp 140 triliun (2023)",
+      "sektor_dominan": [
+        "Perkebunan",
+        "Perdagangan",
+        "Pendidikan",
+        "Jasa",
+        "Pertanian",
+        "Logistik"
+      ],
+      "investasi": {
+        "asing": "US$ 2+ miliar per tahun",
+        "domestik": "Rp 18+ triliun per tahun",
+        "startup_ecosystem": "45+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "15% populasi",
+        "kelas_menengah": "50% populasi",
+        "kelas_bawah": "35% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.1% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "88.000",
+      "sektor_usaha": {
+        "mikro": "68.000",
+        "kecil": "15.000",
+        "menengah": "4.000",
+        "besar": "1.000"
+      },
+      "startup": {
+        "total": "65+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Agritech",
+          "Education",
+          "E-commerce",
+          "Logistics",
+          "Tourism"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Teuku Umar Business District",
+        "Education Complex",
+        "Port Area",
+        "Trade Center"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 18+ triliun per tahun",
+        "ecommerce_gmv": "Rp 7+ triliun per tahun",
+        "startup_funding": "US$ 55+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Kabut asap musiman",
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Persaingan regional"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi perkebunan",
+        "Platform pendidikan",
+        "E-commerce regional",
+        "Agritech solutions",
+        "Environmental monitoring"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "950 ribu",
+      "kepadatan_penduduk": "4.800 jiwa/km²",
+      "usia_produktif": "68% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "16%",
+        "diploma": "14%",
+        "sma": "40%",
+        "smp": "20%",
+        "sd": "10%"
+      },
+      "pendapatan_rata_rata": "Rp 2-4 juta per bulan",
+      "digital_literacy": "66% populasi aktif online",
+      "mobile_penetration": "83% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "630.000",
+      "social_media_users": "550.000",
+      "online_shopping": "400.000",
+      "digital_payment": "320.000",
+      "ecommerce_penetration": "42% populasi",
+      "startup_density": "Rendah untuk kota regional",
+      "tech_talent_pool": "4.500+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Bandar Lampung, Lampung",
+    "phone": "085799520350",
+    "email": "bandar-lampung@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Bandar Lampung"
+  }
+}

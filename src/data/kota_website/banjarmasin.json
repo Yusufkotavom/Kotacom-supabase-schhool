@@ -1,0 +1,207 @@
+{
+  "nama": "Banjarmasin",
+  "slug": "banjarmasin",
+  "provinsi": "Kalimantan Selatan",
+  "populasi": 680000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Banjarmasin Barat",
+        "kota": "Banjarmasin"
+      },
+      {
+        "nama": "Banjarmasin Selatan",
+        "kota": "Banjarmasin"
+      },
+      {
+        "nama": "Banjarmasin Tengah",
+        "kota": "Banjarmasin"
+      },
+      {
+        "nama": "Banjarmasin Timur",
+        "kota": "Banjarmasin"
+      },
+      {
+        "nama": "Banjarmasin Utara",
+        "kota": "Banjarmasin"
+      }
+    ],
+    "kota_administrasi": [
+      "Banjarmasin"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Banjarmasin Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Banjarmasin terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Banjarmasin. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website banjarmasin",
+      "pembuatan web banjarmasin",
+      "developer banjarmasin",
+      "web design banjarmasin",
+      "website banjarmasin",
+      "toko online banjarmasin"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Banjarmasin",
+    "subtitle_highlight": "Profesional Banjarmasin",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Kalimantan Selatan dengan ekonomi pertanian terbesar - 680+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Banjarmasin dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Banjarmasin",
+      "SEO khusus untuk pencarian lokal Banjarmasin",
+      "Integrasi dengan Google My Business Banjarmasin"
+    ],
+    "local_stats": {
+      "businesses": "58.000+ bisnis di Banjarmasin",
+      "digital_transformation": "63% bisnis Banjarmasin butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Lambung Mangkurat Banjarmasin",
+      "Banjarmasin Plaza",
+      "Mahligai Pancasila",
+      "Trans Studio Mall Banjarmasin",
+      "Banjarmasin Trade Center",
+      "Lippo Plaza Banjarmasin",
+      "Banjarmasin Square",
+      "Delta Mall Banjarmasin"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Kalimantan Selatan, terletak di tepi Sungai Barito",
+      "luas_wilayah": "72.00 km²",
+      "ketinggian": "0-10 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 2.800-3.500 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan banjir musiman",
+      "transportasi": [
+        "Bandar Udara Internasional Syamsudin Noor (BDJ)",
+        "Pelabuhan Trisakti",
+        "Terminal Landasan Ulin",
+        "Trans Banjarmasin"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Kalimantan Selatan",
+        "5G network coverage 80%",
+        "Data center di Banjarmasin"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Banjarmasin untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Pusat perdagangan regional",
+        "Akses ke sumber daya pertanian",
+        "Dekat dengan tambang batubara",
+        "Gerbang selatan Kalimantan"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 40-65 juta per tahun",
+      "pertumbuhan_ekonomi": "4.9% per tahun (2023)",
+      "pdb_kota": "Rp 140 triliun (2023)",
+      "sektor_dominan": [
+        "Pertanian",
+        "Perdagangan",
+        "Industri",
+        "Logistik",
+        "Pertambangan",
+        "Jasa"
+      ],
+      "investasi": {
+        "asing": "US$ 2.5+ miliar per tahun",
+        "domestik": "Rp 22+ triliun per tahun",
+        "startup_ecosystem": "45+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "16% populasi",
+        "kelas_menengah": "48% populasi",
+        "kelas_bawah": "36% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.1% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "68.000",
+      "sektor_usaha": {
+        "mikro": "52.000",
+        "kecil": "12.000",
+        "menengah": "3.000",
+        "besar": "1.000"
+      },
+      "startup": {
+        "total": "70+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Agritech",
+          "Logistics",
+          "E-commerce",
+          "Mining Tech",
+          "Tourism"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Lambung Mangkurat Business District",
+        "Industrial Area",
+        "Port Area",
+        "Trade Center"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 18+ triliun per tahun",
+        "ecommerce_gmv": "Rp 7+ triliun per tahun",
+        "startup_funding": "US$ 60+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Banjir musiman",
+        "Kabut asap",
+        "Biaya logistik tinggi",
+        "Keterbatasan infrastruktur"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi pertanian",
+        "Platform logistik",
+        "E-commerce regional",
+        "Mining technology",
+        "Environmental solutions"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "680 ribu",
+      "kepadatan_penduduk": "9.400 jiwa/km²",
+      "usia_produktif": "69% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "17%",
+        "diploma": "15%",
+        "sma": "38%",
+        "smp": "19%",
+        "sd": "11%"
+      },
+      "pendapatan_rata_rata": "Rp 2.5-4.5 juta per bulan",
+      "digital_literacy": "66% populasi aktif online",
+      "mobile_penetration": "83% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "450.000",
+      "social_media_users": "400.000",
+      "online_shopping": "300.000",
+      "digital_payment": "240.000",
+      "ecommerce_penetration": "44% populasi",
+      "startup_density": "Rendah untuk kota regional",
+      "tech_talent_pool": "5.500+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Banjarmasin, Kalimantan Selatan",
+    "phone": "085799520350",
+    "email": "banjarmasin@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Banjarmasin"
+  }
+}

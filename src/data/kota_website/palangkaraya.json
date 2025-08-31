@@ -1,0 +1,207 @@
+{
+  "nama": "Palangkaraya",
+  "slug": "palangkaraya",
+  "provinsi": "Kalimantan Tengah",
+  "populasi": 300000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Pahandut",
+        "kota": "Palangkaraya"
+      },
+      {
+        "nama": "Jekan Raya",
+        "kota": "Palangkaraya"
+      },
+      {
+        "nama": "Sabangau",
+        "kota": "Palangkaraya"
+      },
+      {
+        "nama": "Bukit Batu",
+        "kota": "Palangkaraya"
+      },
+      {
+        "nama": "Rakumpit",
+        "kota": "Palangkaraya"
+      }
+    ],
+    "kota_administrasi": [
+      "Palangkaraya"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Palangkaraya Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Palangkaraya terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Palangkaraya. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website palangkaraya",
+      "pembuatan web palangkaraya",
+      "developer palangkaraya",
+      "web design palangkaraya",
+      "website palangkaraya",
+      "toko online palangkaraya"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Palangkaraya",
+    "subtitle_highlight": "Profesional Palangkaraya",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Kalimantan Tengah dengan ekonomi strategis - 300+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Palangkaraya dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Palangkaraya",
+      "SEO khusus untuk pencarian lokal Palangkaraya",
+      "Integrasi dengan Google My Business Palangkaraya"
+    ],
+    "local_stats": {
+      "businesses": "25.000+ bisnis di Palangkaraya",
+      "digital_transformation": "58% bisnis Palangkaraya butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Sudirman Palangkaraya",
+      "Palangkaraya Mall",
+      "Transmart Palangkaraya",
+      "Plaza Kalimantan",
+      "Palangkaraya Trade Center",
+      "Lippo Plaza Palangkaraya",
+      "Palangkaraya City Center",
+      "Mall Matahari"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Kalimantan Tengah, terletak di tepi Sungai Kahayan",
+      "luas_wilayah": "2.853 km²",
+      "ketinggian": "0-50 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 2.800-3.500 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan kabut asap musiman",
+      "transportasi": [
+        "Bandar Udara Tjilik Riwut (PKY)",
+        "Pelabuhan Kumai",
+        "Terminal Bus Palangkaraya",
+        "Trans Palangkaraya"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Kalimantan Tengah",
+        "5G network coverage 68%",
+        "Data center di Palangkaraya"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Palangkaraya untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Pusat Kalimantan",
+        "Akses ke hutan tropis",
+        "Dekat dengan sumber daya alam",
+        "Gerbang tengah Kalimantan"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 35-60 juta per tahun",
+      "pertumbuhan_ekonomi": "5.2% per tahun (2023)",
+      "pdb_kota": "Rp 75 triliun (2023)",
+      "sektor_dominan": [
+        "Pertanian",
+        "Perdagangan",
+        "Pertambangan",
+        "Jasa",
+        "Logistik",
+        "Industri"
+      ],
+      "investasi": {
+        "asing": "US$ 2+ miliar per tahun",
+        "domestik": "Rp 15+ triliun per tahun",
+        "startup_ecosystem": "25+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "16% populasi",
+        "kelas_menengah": "48% populasi",
+        "kelas_bawah": "36% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.0% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "30.000",
+      "sektor_usaha": {
+        "mikro": "23.000",
+        "kecil": "5.500",
+        "menengah": "1.200",
+        "besar": "300"
+      },
+      "startup": {
+        "total": "35+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Agritech",
+          "Logistics",
+          "Mining Tech",
+          "E-commerce",
+          "Environmental"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Sudirman Business District",
+        "Port Area",
+        "Mining Complex",
+        "Trade Center"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 8+ triliun per tahun",
+        "ecommerce_gmv": "Rp 3+ triliun per tahun",
+        "startup_funding": "US$ 30+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Kabut asap musiman",
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Persaingan regional"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi pertanian",
+        "Mining technology",
+        "Platform logistik",
+        "Environmental monitoring",
+        "Sustainable development"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "300 ribu",
+      "kepadatan_penduduk": "100 jiwa/km²",
+      "usia_produktif": "68% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "15%",
+        "diploma": "13%",
+        "sma": "40%",
+        "smp": "22%",
+        "sd": "10%"
+      },
+      "pendapatan_rata_rata": "Rp 2.5-4 juta per bulan",
+      "digital_literacy": "62% populasi aktif online",
+      "mobile_penetration": "78% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "185.000",
+      "social_media_users": "160.000",
+      "online_shopping": "110.000",
+      "digital_payment": "85.000",
+      "ecommerce_penetration": "37% populasi",
+      "startup_density": "Rendah untuk kota terpencil",
+      "tech_talent_pool": "2.000+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Palangkaraya, Kalimantan Tengah",
+    "phone": "085799520350",
+    "email": "palangkaraya@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Palangkaraya"
+  }
+}

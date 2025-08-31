@@ -1,0 +1,211 @@
+{
+  "nama": "Balikpapan",
+  "slug": "balikpapan",
+  "provinsi": "Kalimantan Timur",
+  "populasi": 700000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Balikpapan Timur",
+        "kota": "Balikpapan"
+      },
+      {
+        "nama": "Balikpapan Barat",
+        "kota": "Balikpapan"
+      },
+      {
+        "nama": "Balikpapan Utara",
+        "kota": "Balikpapan"
+      },
+      {
+        "nama": "Balikpapan Selatan",
+        "kota": "Balikpapan"
+      },
+      {
+        "nama": "Balikpapan Tengah",
+        "kota": "Balikpapan"
+      },
+      {
+        "nama": "Balikpapan Kota",
+        "kota": "Balikpapan"
+      }
+    ],
+    "kota_administrasi": [
+      "Balikpapan"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Balikpapan Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Balikpapan terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Balikpapan. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website balikpapan",
+      "pembuatan web balikpapan",
+      "developer balikpapan",
+      "web design balikpapan",
+      "website balikpapan",
+      "toko online balikpapan"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Balikpapan",
+    "subtitle_highlight": "Profesional Balikpapan",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Kota minyak dan gas terbesar di Indonesia - 700+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Balikpapan dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Balikpapan",
+      "SEO khusus untuk pencarian lokal Balikpapan",
+      "Integrasi dengan Google My Business Balikpapan"
+    ],
+    "local_stats": {
+      "businesses": "60.000+ bisnis di Balikpapan",
+      "digital_transformation": "67% bisnis Balikpapan butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Sudirman Balikpapan",
+      "Plaza Balikpapan",
+      "Balikpapan Superblock",
+      "Balikpapan Trade Center",
+      "Grand Mall Balikpapan",
+      "Lippo Plaza Balikpapan",
+      "Balikpapan Square",
+      "Botani Square"
+    ],
+    "geografis": {
+      "lokasi": "Kota terbesar di Kalimantan Timur, terletak di pesisir timur Kalimantan",
+      "luas_wilayah": "503.30 km²",
+      "ketinggian": "0-80 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 2.200-3.100 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan kabut asap musiman",
+      "transportasi": [
+        "Bandar Udara Internasional Sultan Aji Muhammad Sulaiman (BPN)",
+        "Pelabuhan Semayang",
+        "Terminal Batu Ampar",
+        "Trans Balikpapan"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Kalimantan Timur",
+        "5G network coverage 88%",
+        "Data center modern di Balikpapan"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Balikpapan untuk air bersih",
+        "Gas untuk industri"
+      ],
+      "keunggulan_lokasi": [
+        "Pusat industri minyak dan gas",
+        "Dekat dengan tambang batubara",
+        "Akses ke sumber daya alam",
+        "Gerbang timur Kalimantan"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 70-100 juta per tahun",
+      "pertumbuhan_ekonomi": "6.2% per tahun (2023)",
+      "pdb_kota": "Rp 280 triliun (2023)",
+      "sektor_dominan": [
+        "Minyak & Gas",
+        "Pertambangan",
+        "Industri",
+        "Logistik",
+        "Perdagangan",
+        "Jasa"
+      ],
+      "investasi": {
+        "asing": "US$ 5+ miliar per tahun",
+        "domestik": "Rp 50+ triliun per tahun",
+        "startup_ecosystem": "60+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "25% populasi",
+        "kelas_menengah": "55% populasi",
+        "kelas_bawah": "20% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 3.8% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "70.000",
+      "sektor_usaha": {
+        "mikro": "50.000",
+        "kecil": "15.000",
+        "menengah": "4.000",
+        "besar": "1.000"
+      },
+      "startup": {
+        "total": "90+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "EnergyTech",
+          "Mining Tech",
+          "Logistics",
+          "E-commerce",
+          "Environmental"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Sudirman Business District",
+        "Balikpapan Industrial Area",
+        "Port Area",
+        "Oil & Gas Complex"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 35+ triliun per tahun",
+        "ecommerce_gmv": "Rp 12+ triliun per tahun",
+        "startup_funding": "US$ 120+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Kabut asap musiman",
+        "Biaya hidup tinggi",
+        "Keterbatasan tenaga ahli",
+        "Fluktuasi harga minyak"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi energy sector",
+        "Mining technology",
+        "Platform logistik",
+        "Environmental monitoring",
+        "Oil & gas tech"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "700 ribu",
+      "kepadatan_penduduk": "1.400 jiwa/km²",
+      "usia_produktif": "72% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "20%",
+        "diploma": "18%",
+        "sma": "35%",
+        "smp": "18%",
+        "sd": "9%"
+      },
+      "pendapatan_rata_rata": "Rp 4-6 juta per bulan",
+      "digital_literacy": "72% populasi aktif online",
+      "mobile_penetration": "88% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "500.000",
+      "social_media_users": "450.000",
+      "online_shopping": "350.000",
+      "digital_payment": "280.000",
+      "ecommerce_penetration": "52% populasi",
+      "startup_density": "Tinggi untuk kota industri",
+      "tech_talent_pool": "10.000+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Balikpapan, Kalimantan Timur",
+    "phone": "085799520350",
+    "email": "balikpapan@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Balikpapan"
+  }
+}

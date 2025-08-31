@@ -1,0 +1,231 @@
+{
+  "nama": "Manado",
+  "slug": "manado",
+  "provinsi": "Sulawesi Utara",
+  "populasi": 450000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Bunaken",
+        "kota": "Manado"
+      },
+      {
+        "nama": "Malalayang",
+        "kota": "Manado"
+      },
+      {
+        "nama": "Wanea",
+        "kota": "Manado"
+      },
+      {
+        "nama": "Tikala",
+        "kota": "Manado"
+      },
+      {
+        "nama": "Paal Dua",
+        "kota": "Manado"
+      },
+      {
+        "nama": "Singkil",
+        "kota": "Manado"
+      },
+      {
+        "nama": "Wenang",
+        "kota": "Manado"
+      },
+      {
+        "nama": "Tuminting",
+        "kota": "Manado"
+      },
+      {
+        "nama": "Sario",
+        "kota": "Manado"
+      },
+      {
+        "nama": "Mapanget",
+        "kota": "Manado"
+      },
+      {
+        "nama": "Sario Tumpaan",
+        "kota": "Manado"
+      }
+    ],
+    "kota_administrasi": [
+      "Manado"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Manado Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Manado terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Manado. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website manado",
+      "pembuatan web manado",
+      "developer manado",
+      "web design manado",
+      "website manado",
+      "toko online manado"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Manado",
+    "subtitle_highlight": "Profesional Manado",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Sulawesi Utara dengan ekonomi wisata terbesar - 450+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Manado dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Manado",
+      "SEO khusus untuk pencarian lokal Manado",
+      "Integrasi dengan Google My Business Manado"
+    ],
+    "local_stats": {
+      "businesses": "38.000+ bisnis di Manado",
+      "digital_transformation": "65% bisnis Manado butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Sam Ratulangi Manado",
+      "Manado Town Square",
+      "Mega Mall Manado",
+      "Plaza Manado",
+      "Lippo Plaza Manado",
+      "Manado Boulevard",
+      "Trans Studio Manado",
+      "Grand Kawanua"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Sulawesi Utara, terletak di pesisir Teluk Manado",
+      "luas_wilayah": "157.26 km²",
+      "ketinggian": "0-500 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan sedang (rata-rata 2.000-3.000 mm/tahun)",
+      "cuaca": "Sejuk dengan suhu 20-30°C sepanjang tahun",
+      "transportasi": [
+        "Bandar Udara Internasional Sam Ratulangi (MDC)",
+        "Pelabuhan Manado",
+        "Terminal Karombasan",
+        "Trans Manado"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Sulawesi Utara",
+        "5G network coverage 78%",
+        "Data center di Manado"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Manado untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Pusat wisata Bunaken",
+        "Dekat dengan Danau Tondano",
+        "Kota pendidikan",
+        "Gerbang utara Sulawesi"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 35-60 juta per tahun",
+      "pertumbuhan_ekonomi": "5.1% per tahun (2023)",
+      "pdb_kota": "Rp 90 triliun (2023)",
+      "sektor_dominan": [
+        "Wisata",
+        "Pendidikan",
+        "Perdagangan",
+        "Perikanan",
+        "Jasa",
+        "Pertanian"
+      ],
+      "investasi": {
+        "asing": "US$ 1.5+ miliar per tahun",
+        "domestik": "Rp 15+ triliun per tahun",
+        "startup_ecosystem": "35+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "18% populasi",
+        "kelas_menengah": "52% populasi",
+        "kelas_bawah": "30% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 3.8% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "45.000",
+      "sektor_usaha": {
+        "mikro": "35.000",
+        "kecil": "8.000",
+        "menengah": "1.800",
+        "besar": "200"
+      },
+      "startup": {
+        "total": "50+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Tourism",
+          "Education",
+          "Maritime",
+          "E-commerce",
+          "Agritech"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Sam Ratulangi Business District",
+        "Education Complex",
+        "Tourism Area",
+        "Port Area"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 12+ triliun per tahun",
+        "ecommerce_gmv": "Rp 5+ triliun per tahun",
+        "startup_funding": "US$ 40+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Persaingan wisata tinggi",
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Musiman pariwisata"
+      ],
+      "peluang_bisnis": [
+        "Digital tourism platform",
+        "Education technology",
+        "Maritime services",
+        "E-commerce regional",
+        "Sustainable tourism"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "450 ribu",
+      "kepadatan_penduduk": "2.900 jiwa/km²",
+      "usia_produktif": "70% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "18%",
+        "diploma": "16%",
+        "sma": "38%",
+        "smp": "18%",
+        "sd": "10%"
+      },
+      "pendapatan_rata_rata": "Rp 2.5-4 juta per bulan",
+      "digital_literacy": "68% populasi aktif online",
+      "mobile_penetration": "84% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "300.000",
+      "social_media_users": "270.000",
+      "online_shopping": "210.000",
+      "digital_payment": "170.000",
+      "ecommerce_penetration": "46% populasi",
+      "startup_density": "Sedang untuk kota pendidikan",
+      "tech_talent_pool": "4.000+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Manado, Sulawesi Utara",
+    "phone": "085799520350",
+    "email": "manado@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Manado"
+  }
+}

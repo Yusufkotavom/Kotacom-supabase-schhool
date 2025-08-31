@@ -1,0 +1,207 @@
+{
+  "nama": "Jayapura",
+  "slug": "jayapura",
+  "provinsi": "Papua",
+  "populasi": 320000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Jayapura Utara",
+        "kota": "Jayapura"
+      },
+      {
+        "nama": "Jayapura Selatan",
+        "kota": "Jayapura"
+      },
+      {
+        "nama": "Abepura",
+        "kota": "Jayapura"
+      },
+      {
+        "nama": "Muara Tami",
+        "kota": "Jayapura"
+      },
+      {
+        "nama": "Heram",
+        "kota": "Jayapura"
+      }
+    ],
+    "kota_administrasi": [
+      "Jayapura"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Jayapura Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Jayapura terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Jayapura. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website jayapura",
+      "pembuatan web jayapura",
+      "developer jayapura",
+      "web design jayapura",
+      "website jayapura",
+      "toko online jayapura"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Jayapura",
+    "subtitle_highlight": "Profesional Jayapura",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Papua dengan ekonomi strategis terbesar - 320+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Jayapura dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Jayapura",
+      "SEO khusus untuk pencarian lokal Jayapura",
+      "Integrasi dengan Google My Business Jayapura"
+    ],
+    "local_stats": {
+      "businesses": "28.000+ bisnis di Jayapura",
+      "digital_transformation": "58% bisnis Jayapura butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Percetakan Jayapura",
+      "Jayapura Mall",
+      "Transmart Jayapura",
+      "Youtefa Mall",
+      "Jayapura Town Square",
+      "Lippo Plaza Jayapura",
+      "Jayapura City Center",
+      "Mansion Plaza"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Papua, terletak di pesisir utara Papua",
+      "luas_wilayah": "935.92 km²",
+      "ketinggian": "0-200 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 3.000-4.000 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan hujan tinggi",
+      "transportasi": [
+        "Bandar Udara Internasional Sentani (DJJ)",
+        "Pelabuhan Jayapura",
+        "Terminal Hamadi",
+        "Trans Jayapura"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Papua",
+        "5G network coverage 65%",
+        "Data center di Jayapura"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Jayapura untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Gerbang utama Papua",
+        "Akses ke sumber daya alam",
+        "Dekat dengan tambang emas",
+        "Pusat perdagangan regional"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 50-80 juta per tahun",
+      "pertumbuhan_ekonomi": "6.0% per tahun (2023)",
+      "pdb_kota": "Rp 100 triliun (2023)",
+      "sektor_dominan": [
+        "Pertambangan",
+        "Perdagangan",
+        "Logistik",
+        "Pendidikan",
+        "Jasa",
+        "Pertanian"
+      ],
+      "investasi": {
+        "asing": "US$ 2.5+ miliar per tahun",
+        "domestik": "Rp 20+ triliun per tahun",
+        "startup_ecosystem": "25+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "20% populasi",
+        "kelas_menengah": "50% populasi",
+        "kelas_bawah": "30% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.5% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "35.000",
+      "sektor_usaha": {
+        "mikro": "25.000",
+        "kecil": "7.000",
+        "menengah": "2.500",
+        "besar": "500"
+      },
+      "startup": {
+        "total": "40+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Mining Tech",
+          "Logistics",
+          "E-commerce",
+          "Education",
+          "Agritech"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Percetakan Business District",
+        "Mining Complex",
+        "Port Area",
+        "Education Complex"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 15+ triliun per tahun",
+        "ecommerce_gmv": "Rp 6+ triliun per tahun",
+        "startup_funding": "US$ 50+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Persaingan regional",
+        "Ketersediaan tenaga ahli"
+      ],
+      "peluang_bisnis": [
+        "Digital mining solutions",
+        "Platform logistik",
+        "E-commerce regional",
+        "Education technology",
+        "Agritech solutions"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "320 ribu",
+      "kepadatan_penduduk": "340 jiwa/km²",
+      "usia_produktif": "70% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "16%",
+        "diploma": "14%",
+        "sma": "35%",
+        "smp": "22%",
+        "sd": "13%"
+      },
+      "pendapatan_rata_rata": "Rp 3-5 juta per bulan",
+      "digital_literacy": "60% populasi aktif online",
+      "mobile_penetration": "75% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "190.000",
+      "social_media_users": "160.000",
+      "online_shopping": "110.000",
+      "digital_payment": "85.000",
+      "ecommerce_penetration": "34% populasi",
+      "startup_density": "Rendah untuk kota terpencil",
+      "tech_talent_pool": "2.500+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Jayapura, Papua",
+    "phone": "085799520350",
+    "email": "jayapura@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Jayapura"
+  }
+}

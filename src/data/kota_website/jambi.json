@@ -1,0 +1,231 @@
+{
+  "nama": "Jambi",
+  "slug": "jambi",
+  "provinsi": "Jambi",
+  "populasi": 600000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Jambi Selatan",
+        "kota": "Jambi"
+      },
+      {
+        "nama": "Jambi Timur",
+        "kota": "Jambi"
+      },
+      {
+        "nama": "Telanaipura",
+        "kota": "Jambi"
+      },
+      {
+        "nama": "Pelayangan",
+        "kota": "Jambi"
+      },
+      {
+        "nama": "Jelutung",
+        "kota": "Jambi"
+      },
+      {
+        "nama": "Pasar Jambi",
+        "kota": "Jambi"
+      },
+      {
+        "nama": "Danau Teluk",
+        "kota": "Jambi"
+      },
+      {
+        "nama": "Danau Sipin",
+        "kota": "Jambi"
+      },
+      {
+        "nama": "Paal Merah",
+        "kota": "Jambi"
+      },
+      {
+        "nama": "Kayu Aro",
+        "kota": "Jambi"
+      },
+      {
+        "nama": "Kota Baru",
+        "kota": "Jambi"
+      }
+    ],
+    "kota_administrasi": [
+      "Jambi"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Jambi Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Jambi terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Jambi. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website jambi",
+      "pembuatan web jambi",
+      "developer jambi",
+      "web design jambi",
+      "website jambi",
+      "toko online jambi"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Jambi",
+    "subtitle_highlight": "Profesional Jambi",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Jambi dengan ekonomi perdagangan terbesar - 600+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Jambi dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Jambi",
+      "SEO khusus untuk pencarian lokal Jambi",
+      "Integrasi dengan Google My Business Jambi"
+    ],
+    "local_stats": {
+      "businesses": "45.000+ bisnis di Jambi",
+      "digital_transformation": "62% bisnis Jambi butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Sudirman Jambi",
+      "Jambi Mall",
+      "Transmart Jambi",
+      "Plaza Jambi",
+      "Jambi Trade Center",
+      "Lippo Plaza Jambi",
+      "Jambi City Center",
+      "Mall Matahari"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Jambi, terletak di tepi Sungai Batanghari",
+      "luas_wilayah": "205.38 km²",
+      "ketinggian": "0-50 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 2.500-3.500 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan kabut asap musiman",
+      "transportasi": [
+        "Bandar Udara Internasional Sultan Thaha (DJB)",
+        "Pelabuhan Talang Duku",
+        "Terminal Pinang Masak",
+        "Trans Jambi"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Jambi",
+        "5G network coverage 75%",
+        "Data center di Jambi"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Jambi untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Gerbang tengah Sumatera",
+        "Dekat dengan perkebunan",
+        "Akses ke sumber daya pertanian",
+        "Pusat perdagangan regional"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 30-55 juta per tahun",
+      "pertumbuhan_ekonomi": "4.8% per tahun (2023)",
+      "pdb_kota": "Rp 95 triliun (2023)",
+      "sektor_dominan": [
+        "Perkebunan",
+        "Perdagangan",
+        "Pertanian",
+        "Jasa",
+        "Industri",
+        "Logistik"
+      ],
+      "investasi": {
+        "asing": "US$ 1.5+ miliar per tahun",
+        "domestik": "Rp 12+ triliun per tahun",
+        "startup_ecosystem": "35+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "14% populasi",
+        "kelas_menengah": "48% populasi",
+        "kelas_bawah": "38% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.1% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "52.000",
+      "sektor_usaha": {
+        "mikro": "40.000",
+        "kecil": "9.000",
+        "menengah": "2.500",
+        "besar": "500"
+      },
+      "startup": {
+        "total": "50+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Agritech",
+          "Logistics",
+          "E-commerce",
+          "Education",
+          "Tourism"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Sudirman Business District",
+        "Port Area",
+        "Trade Center",
+        "Education Complex"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 12+ triliun per tahun",
+        "ecommerce_gmv": "Rp 5+ triliun per tahun",
+        "startup_funding": "US$ 40+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Kabut asap musiman",
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Persaingan regional"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi perkebunan",
+        "Platform logistik",
+        "E-commerce regional",
+        "Agritech solutions",
+        "Environmental monitoring"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "600 ribu",
+      "kepadatan_penduduk": "2.900 jiwa/km²",
+      "usia_produktif": "66% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "16%",
+        "diploma": "14%",
+        "sma": "40%",
+        "smp": "20%",
+        "sd": "10%"
+      },
+      "pendapatan_rata_rata": "Rp 2-3.5 juta per bulan",
+      "digital_literacy": "64% populasi aktif online",
+      "mobile_penetration": "80% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "380.000",
+      "social_media_users": "330.000",
+      "online_shopping": "230.000",
+      "digital_payment": "180.000",
+      "ecommerce_penetration": "38% populasi",
+      "startup_density": "Rendah untuk kota regional",
+      "tech_talent_pool": "3.000+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Jambi, Jambi",
+    "phone": "085799520350",
+    "email": "jambi@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Jambi"
+  }
+}

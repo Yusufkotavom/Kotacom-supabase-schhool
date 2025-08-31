@@ -1,0 +1,211 @@
+{
+  "nama": "Serang",
+  "slug": "serang",
+  "provinsi": "Banten",
+  "populasi": 700000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Serang",
+        "kota": "Serang"
+      },
+      {
+        "nama": "Curug",
+        "kota": "Serang"
+      },
+      {
+        "nama": "Cikande",
+        "kota": "Serang"
+      },
+      {
+        "nama": "Kibin",
+        "kota": "Serang"
+      },
+      {
+        "nama": "Carenang",
+        "kota": "Serang"
+      },
+      {
+        "nama": "Takokak",
+        "kota": "Serang"
+      }
+    ],
+    "kota_administrasi": [
+      "Serang"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Serang Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Serang terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Serang. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website serang",
+      "pembuatan web serang",
+      "developer serang",
+      "web design serang",
+      "website serang",
+      "toko online serang"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Serang",
+    "subtitle_highlight": "Profesional Serang",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Banten dengan ekonomi strategis - 700+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Serang dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Serang",
+      "SEO khusus untuk pencarian lokal Serang",
+      "Integrasi dengan Google My Business Serang"
+    ],
+    "local_stats": {
+      "businesses": "55.000+ bisnis di Serang",
+      "digital_transformation": "65% bisnis Serang butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Veteran Serang",
+      "Serang Mall",
+      "Transmart Serang",
+      "Plaza Banten",
+      "Serang Trade Center",
+      "Lippo Plaza Serang",
+      "Serang City Center",
+      "Mall Cipocok"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Banten, terletak di pesisir utara Jawa",
+      "luas_wilayah": "266.48 km²",
+      "ketinggian": "0-50 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan sedang (rata-rata 1.800-2.500 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan angin laut",
+      "transportasi": [
+        "Bandar Udara Internasional Banten (BTH)",
+        "Pelabuhan Merak",
+        "Terminal Pakupatan",
+        "Trans Pakuan"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Banten",
+        "5G network coverage 80%",
+        "Data center di Serang"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Serang untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Dekat dengan Jakarta",
+        "Akses ke Pelabuhan Merak",
+        "Gerbang barat Jawa",
+        "Pusat industri strategis"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 35-60 juta per tahun",
+      "pertumbuhan_ekonomi": "5.2% per tahun (2023)",
+      "pdb_kota": "Rp 120 triliun (2023)",
+      "sektor_dominan": [
+        "Industri",
+        "Perdagangan",
+        "Logistik",
+        "Jasa",
+        "Pertanian",
+        "Pendidikan"
+      ],
+      "investasi": {
+        "asing": "US$ 2.5+ miliar per tahun",
+        "domestik": "Rp 20+ triliun per tahun",
+        "startup_ecosystem": "40+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "18% populasi",
+        "kelas_menengah": "52% populasi",
+        "kelas_bawah": "30% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 3.9% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "65.000",
+      "sektor_usaha": {
+        "mikro": "48.000",
+        "kecil": "12.000",
+        "menengah": "4.000",
+        "besar": "1.000"
+      },
+      "startup": {
+        "total": "55+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Logistics",
+          "Manufacturing",
+          "E-commerce",
+          "Education",
+          "Tourism"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Veteran Business District",
+        "Industrial Complex",
+        "Port Area",
+        "Trade Center"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 15+ triliun per tahun",
+        "ecommerce_gmv": "Rp 6+ triliun per tahun",
+        "startup_funding": "US$ 50+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Persaingan dengan Jakarta",
+        "Keterbatasan infrastruktur",
+        "Biaya logistik",
+        "Kepadatan lalu lintas"
+      ],
+      "peluang_bisnis": [
+        "Digital logistics",
+        "Manufacturing tech",
+        "E-commerce platform",
+        "Education technology",
+        "Cross-border commerce"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "700 ribu",
+      "kepadatan_penduduk": "2.600 jiwa/km²",
+      "usia_produktif": "70% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "16%",
+        "diploma": "15%",
+        "sma": "38%",
+        "smp": "20%",
+        "sd": "11%"
+      },
+      "pendapatan_rata_rata": "Rp 2.5-4.5 juta per bulan",
+      "digital_literacy": "67% populasi aktif online",
+      "mobile_penetration": "84% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "470.000",
+      "social_media_users": "400.000",
+      "online_shopping": "300.000",
+      "digital_payment": "240.000",
+      "ecommerce_penetration": "43% populasi",
+      "startup_density": "Sedang untuk kota strategis",
+      "tech_talent_pool": "3.500+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Serang, Banten",
+    "phone": "085799520350",
+    "email": "serang@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Serang"
+  }
+}

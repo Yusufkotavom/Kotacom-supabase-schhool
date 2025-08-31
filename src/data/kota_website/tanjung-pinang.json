@@ -1,0 +1,203 @@
+{
+  "nama": "Tanjung Pinang",
+  "slug": "tanjung-pinang",
+  "provinsi": "Kepulauan Riau",
+  "populasi": 220000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Tanjung Pinang Barat",
+        "kota": "Tanjung Pinang"
+      },
+      {
+        "nama": "Tanjung Pinang Kota",
+        "kota": "Tanjung Pinang"
+      },
+      {
+        "nama": "Bukit Bestari",
+        "kota": "Tanjung Pinang"
+      },
+      {
+        "nama": "Tanjung Pinang Timur",
+        "kota": "Tanjung Pinang"
+      }
+    ],
+    "kota_administrasi": [
+      "Tanjung Pinang"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Tanjung Pinang Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Tanjung Pinang terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Tanjung Pinang. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website tanjung-pinang",
+      "pembuatan web tanjung-pinang",
+      "developer tanjung-pinang",
+      "web design tanjung-pinang",
+      "website tanjung-pinang",
+      "toko online tanjung-pinang"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Tanjung Pinang",
+    "subtitle_highlight": "Profesional Tanjung Pinang",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Kepulauan Riau dengan ekonomi perdagangan terbesar - 220+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Tanjung Pinang dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Tanjung Pinang",
+      "SEO khusus untuk pencarian lokal Tanjung Pinang",
+      "Integrasi dengan Google My Business Tanjung Pinang"
+    ],
+    "local_stats": {
+      "businesses": "22.000+ bisnis di Tanjung Pinang",
+      "digital_transformation": "64% bisnis Tanjung Pinang butuh website"
+    },
+    "local_business_areas": [
+      "Jl. KH Ahmad Dahlan",
+      "Tanjung Pinang Mall",
+      "Transmart Tanjung Pinang",
+      "Plaza Lagenda",
+      "Tanjung Pinang Trade Center",
+      "Lippo Plaza Tanjung Pinang",
+      "Tanjung Pinang City Center",
+      "Mall Pelayaran"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Kepulauan Riau, terletak di Pulau Bintan",
+      "luas_wilayah": "144.56 km²",
+      "ketinggian": "0-50 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 2.000-3.000 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan kelembaban tinggi",
+      "transportasi": [
+        "Bandar Udara Internasional Raja Haji Fisabilillah (TNJ)",
+        "Pelabuhan Sri Bintan Pura",
+        "Terminal Domestik",
+        "Trans Tanjung Pinang"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Kepulauan Riau",
+        "5G network coverage 75%",
+        "Data center di Tanjung Pinang"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Tanjung Pinang untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Dekat dengan Singapura",
+        "Free Trade Zone",
+        "Pusat logistik regional",
+        "Akses ke pasar internasional"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 45-75 juta per tahun",
+      "pertumbuhan_ekonomi": "6.2% per tahun (2023)",
+      "pdb_kota": "Rp 85 triliun (2023)",
+      "sektor_dominan": [
+        "Perdagangan",
+        "Logistik",
+        "Jasa",
+        "Wisata",
+        "Industri",
+        "Pendidikan"
+      ],
+      "investasi": {
+        "asing": "US$ 3+ miliar per tahun",
+        "domestik": "Rp 25+ triliun per tahun",
+        "startup_ecosystem": "35+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "25% populasi",
+        "kelas_menengah": "50% populasi",
+        "kelas_bawah": "25% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 3.8% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "26.000",
+      "sektor_usaha": {
+        "mikro": "20.000",
+        "kecil": "4.500",
+        "menengah": "1.200",
+        "besar": "300"
+      },
+      "startup": {
+        "total": "45+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Logistics",
+          "E-commerce",
+          "Tourism",
+          "Education",
+          "Maritime"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. KH Ahmad Dahlan Business District",
+        "Port Area",
+        "Industrial Complex",
+        "Trade Center"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 12+ triliun per tahun",
+        "ecommerce_gmv": "Rp 5+ triliun per tahun",
+        "startup_funding": "US$ 45+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Persaingan dengan Singapura",
+        "Biaya hidup tinggi",
+        "Keterbatasan lahan",
+        "Fluktuasi ekonomi global"
+      ],
+      "peluang_bisnis": [
+        "Cross-border commerce",
+        "Digital logistics",
+        "E-commerce platform",
+        "Tourism tech",
+        "Free trade zone services"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "220 ribu",
+      "kepadatan_penduduk": "1.500 jiwa/km²",
+      "usia_produktif": "72% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "18%",
+        "diploma": "16%",
+        "sma": "38%",
+        "smp": "18%",
+        "sd": "10%"
+      },
+      "pendapatan_rata_rata": "Rp 3.5-5.5 juta per bulan",
+      "digital_literacy": "68% populasi aktif online",
+      "mobile_penetration": "85% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "150.000",
+      "social_media_users": "135.000",
+      "online_shopping": "110.000",
+      "digital_payment": "95.000",
+      "ecommerce_penetration": "50% populasi",
+      "startup_density": "Sedang untuk kota perdagangan",
+      "tech_talent_pool": "3.000+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Tanjung Pinang, Kepulauan Riau",
+    "phone": "085799520350",
+    "email": "tanjung-pinang@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Tanjung Pinang"
+  }
+}

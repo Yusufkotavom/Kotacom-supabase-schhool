@@ -1,0 +1,207 @@
+{
+  "nama": "Ambon",
+  "slug": "ambon",
+  "provinsi": "Maluku",
+  "populasi": 380000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Nusaniwe",
+        "kota": "Ambon"
+      },
+      {
+        "nama": "Sirimau",
+        "kota": "Ambon"
+      },
+      {
+        "nama": "Baguala",
+        "kota": "Ambon"
+      },
+      {
+        "nama": "Teluk Ambon",
+        "kota": "Ambon"
+      },
+      {
+        "nama": "Leitimur Selatan",
+        "kota": "Ambon"
+      }
+    ],
+    "kota_administrasi": [
+      "Ambon"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Ambon Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Ambon terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Ambon. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website ambon",
+      "pembuatan web ambon",
+      "developer ambon",
+      "web design ambon",
+      "website ambon",
+      "toko online ambon"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Ambon",
+    "subtitle_highlight": "Profesional Ambon",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Maluku dengan ekonomi strategis - 380+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Ambon dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Ambon",
+      "SEO khusus untuk pencarian lokal Ambon",
+      "Integrasi dengan Google My Business Ambon"
+    ],
+    "local_stats": {
+      "businesses": "32.000+ bisnis di Ambon",
+      "digital_transformation": "59% bisnis Ambon butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Sudirman Ambon",
+      "Ambon Mall",
+      "Transmart Ambon",
+      "Plaza Ambon",
+      "Ambon Trade Center",
+      "Lippo Plaza Ambon",
+      "Ambon City Center",
+      "Mall Matahari"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Maluku, terletak di Pulau Ambon",
+      "luas_wilayah": "377.00 km²",
+      "ketinggian": "0-50 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 2.500-3.500 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan angin laut",
+      "transportasi": [
+        "Bandar Udara Internasional Pattimura (AMQ)",
+        "Pelabuhan Yos Sudarso",
+        "Terminal Bus Ambon",
+        "Trans Ambon"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Maluku",
+        "5G network coverage 70%",
+        "Data center di Ambon"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Ambon untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Pusat Maluku",
+        "Dekat dengan sumber daya perikanan",
+        "Akses ke kepulauan",
+        "Pusat perdagangan regional"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 28-48 juta per tahun",
+      "pertumbuhan_ekonomi": "4.6% per tahun (2023)",
+      "pdb_kota": "Rp 75 triliun (2023)",
+      "sektor_dominan": [
+        "Perikanan",
+        "Perdagangan",
+        "Pertanian",
+        "Jasa",
+        "Logistik",
+        "Pendidikan"
+      ],
+      "investasi": {
+        "asing": "US$ 1+ miliar per tahun",
+        "domestik": "Rp 9+ triliun per tahun",
+        "startup_ecosystem": "25+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "14% populasi",
+        "kelas_menengah": "46% populasi",
+        "kelas_bawah": "40% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.2% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "37.000",
+      "sektor_usaha": {
+        "mikro": "28.000",
+        "kecil": "7.000",
+        "menengah": "1.800",
+        "besar": "200"
+      },
+      "startup": {
+        "total": "35+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Fishery Tech",
+          "Logistics",
+          "E-commerce",
+          "Education",
+          "Tourism"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Sudirman Business District",
+        "Port Area",
+        "Education Complex",
+        "Trade Center"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 8+ triliun per tahun",
+        "ecommerce_gmv": "Rp 3+ triliun per tahun",
+        "startup_funding": "US$ 28+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Persaingan regional",
+        "Ketersediaan tenaga ahli"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi perikanan",
+        "Platform logistik",
+        "E-commerce regional",
+        "Education technology",
+        "Maritime services"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "380 ribu",
+      "kepadatan_penduduk": "1.000 jiwa/km²",
+      "usia_produktif": "66% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "15%",
+        "diploma": "13%",
+        "sma": "38%",
+        "smp": "22%",
+        "sd": "12%"
+      },
+      "pendapatan_rata_rata": "Rp 2-3.5 juta per bulan",
+      "digital_literacy": "61% populasi aktif online",
+      "mobile_penetration": "77% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "230.000",
+      "social_media_users": "200.000",
+      "online_shopping": "130.000",
+      "digital_payment": "100.000",
+      "ecommerce_penetration": "34% populasi",
+      "startup_density": "Rendah untuk kota regional",
+      "tech_talent_pool": "2.000+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Ambon, Maluku",
+    "phone": "085799520350",
+    "email": "ambon@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Ambon"
+  }
+}

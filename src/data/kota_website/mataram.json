@@ -1,0 +1,207 @@
+{
+  "nama": "Mataram",
+  "slug": "mataram",
+  "provinsi": "Nusa Tenggara Barat",
+  "populasi": 450000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Mataram",
+        "kota": "Mataram"
+      },
+      {
+        "nama": "Selaparang",
+        "kota": "Mataram"
+      },
+      {
+        "nama": "Cakranegara",
+        "kota": "Mataram"
+      },
+      {
+        "nama": "Sandubaya",
+        "kota": "Mataram"
+      },
+      {
+        "nama": "Ampenan",
+        "kota": "Mataram"
+      }
+    ],
+    "kota_administrasi": [
+      "Mataram"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Mataram Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Mataram terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Mataram. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website mataram",
+      "pembuatan web mataram",
+      "developer mataram",
+      "web design mataram",
+      "website mataram",
+      "toko online mataram"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Mataram",
+    "subtitle_highlight": "Profesional Mataram",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Nusa Tenggara Barat dengan ekonomi perdagangan terbesar - 450+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Mataram dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Mataram",
+      "SEO khusus untuk pencarian lokal Mataram",
+      "Integrasi dengan Google My Business Mataram"
+    ],
+    "local_stats": {
+      "businesses": "42.000+ bisnis di Mataram",
+      "digital_transformation": "62% bisnis Mataram butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Pejanggik Mataram",
+      "Mataram Mall",
+      "Transmart Mataram",
+      "Living Plaza Mataram",
+      "Mataram Square",
+      "Mall Ratu Indah",
+      "Grand Mall Mataram",
+      "Lombok City Center"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Nusa Tenggara Barat, terletak di pesisir barat Pulau Lombok",
+      "luas_wilayah": "61.30 km²",
+      "ketinggian": "0-50 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan sedang (rata-rata 1.200-1.800 mm/tahun)",
+      "cuaca": "Panas dengan kelembaban tinggi sepanjang tahun",
+      "transportasi": [
+        "Bandar Udara Internasional Zainuddin Abdul Madjid (LOP)",
+        "Pelabuhan Lembar",
+        "Terminal Mandalika",
+        "Trans Mataram"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di NTB",
+        "5G network coverage 75%",
+        "Data center di Mataram"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Mataram untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Gerbang masuk Lombok",
+        "Dekat dengan destinasi wisata",
+        "Pusat perdagangan regional",
+        "Akses ke sumber daya pertanian"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 30-50 juta per tahun",
+      "pertumbuhan_ekonomi": "5.0% per tahun (2023)",
+      "pdb_kota": "Rp 85 triliun (2023)",
+      "sektor_dominan": [
+        "Wisata",
+        "Pertanian",
+        "Perdagangan",
+        "Kuliner",
+        "Jasa",
+        "Logistik"
+      ],
+      "investasi": {
+        "asing": "US$ 1.8+ miliar per tahun",
+        "domestik": "Rp 15+ triliun per tahun",
+        "startup_ecosystem": "40+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "15% populasi",
+        "kelas_menengah": "48% populasi",
+        "kelas_bawah": "37% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.0% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "50.000",
+      "sektor_usaha": {
+        "mikro": "38.000",
+        "kecil": "9.000",
+        "menengah": "2.500",
+        "besar": "500"
+      },
+      "startup": {
+        "total": "60+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Tourism",
+          "Agritech",
+          "E-commerce",
+          "Logistics",
+          "Hospitality"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Pejanggik Business District",
+        "Tourism Complex",
+        "Port Area",
+        "Trade Center"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 12+ triliun per tahun",
+        "ecommerce_gmv": "Rp 5+ triliun per tahun",
+        "startup_funding": "US$ 45+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Persaingan wisata tinggi",
+        "Keterbatasan infrastruktur",
+        "Musiman pariwisata",
+        "Biaya logistik tinggi"
+      ],
+      "peluang_bisnis": [
+        "Digital tourism platform",
+        "Agritech solutions",
+        "E-commerce regional",
+        "Hospitality tech",
+        "Logistics platform"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "450 ribu",
+      "kepadatan_penduduk": "7.300 jiwa/km²",
+      "usia_produktif": "68% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "15%",
+        "diploma": "14%",
+        "sma": "40%",
+        "smp": "20%",
+        "sd": "11%"
+      },
+      "pendapatan_rata_rata": "Rp 2-3.5 juta per bulan",
+      "digital_literacy": "64% populasi aktif online",
+      "mobile_penetration": "81% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "290.000",
+      "social_media_users": "250.000",
+      "online_shopping": "180.000",
+      "digital_payment": "140.000",
+      "ecommerce_penetration": "40% populasi",
+      "startup_density": "Rendah untuk kota regional",
+      "tech_talent_pool": "3.500+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Mataram, Nusa Tenggara Barat",
+    "phone": "085799520350",
+    "email": "mataram@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Mataram"
+  }
+}

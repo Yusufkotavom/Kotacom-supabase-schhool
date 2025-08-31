@@ -1,0 +1,243 @@
+{
+  "nama": "Makassar",
+  "slug": "makassar",
+  "provinsi": "Sulawesi Selatan",
+  "populasi": 1400000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Mariso",
+        "kota": "Makassar"
+      },
+      {
+        "nama": "Mamajang",
+        "kota": "Makassar"
+      },
+      {
+        "nama": "Tamalate",
+        "kota": "Makassar"
+      },
+      {
+        "nama": "Rappocini",
+        "kota": "Makassar"
+      },
+      {
+        "nama": "Makassar",
+        "kota": "Makassar"
+      },
+      {
+        "nama": "Ujung Pandang",
+        "kota": "Makassar"
+      },
+      {
+        "nama": "Wajo",
+        "kota": "Makassar"
+      },
+      {
+        "nama": "Bontoala",
+        "kota": "Makassar"
+      },
+      {
+        "nama": "Ujung Tanah",
+        "kota": "Makassar"
+      },
+      {
+        "nama": "Tallo",
+        "kota": "Makassar"
+      },
+      {
+        "nama": "Panakukkang",
+        "kota": "Makassar"
+      },
+      {
+        "nama": "Manggala",
+        "kota": "Makassar"
+      },
+      {
+        "nama": "Biringkanaya",
+        "kota": "Makassar"
+      },
+      {
+        "nama": "Tamalanrea",
+        "kota": "Makassar"
+      }
+    ],
+    "kota_administrasi": [
+      "Makassar"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Makassar Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Makassar terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Makassar. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website makassar",
+      "pembuatan web makassar",
+      "developer makassar",
+      "web design makassar",
+      "website makassar",
+      "toko online makassar"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Makassar",
+    "subtitle_highlight": "Profesional Makassar",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Sulawesi dengan ekonomi maritim terbesar - 1.4+ juta penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Makassar dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Makassar",
+      "SEO khusus untuk pencarian lokal Makassar",
+      "Integrasi dengan Google My Business Makassar"
+    ],
+    "local_stats": {
+      "businesses": "120.000+ bisnis di Makassar",
+      "digital_transformation": "65% bisnis Makassar butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Pettarani Makassar",
+      "Trans Studio Makassar",
+      "Mall Ratu Indah",
+      "Panakkukang",
+      "ITC Makassar",
+      "Makassar Town Square",
+      "Lippo Plaza Makassar",
+      "GTC Mall"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Sulawesi Selatan, terletak di pesisir barat daya Sulawesi",
+      "luas_wilayah": "199.26 km²",
+      "ketinggian": "0-25 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 2.500-3.500 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan angin laut",
+      "transportasi": [
+        "Bandar Udara Internasional Sultan Hasanuddin (UPG)",
+        "Pelabuhan Soekarno-Hatta",
+        "Stasiun Makassar",
+        "Trans Mamminasata"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Sulawesi",
+        "5G network coverage 85%",
+        "Data center di Makassar"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Makassar untuk air bersih",
+        "Gas untuk industri"
+      ],
+      "keunggulan_lokasi": [
+        "Gerbang utama Sulawesi",
+        "Akses ke sumber daya maritim",
+        "Dekat dengan tambang nikel",
+        "Pusat logistik regional"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 35-60 juta per tahun",
+      "pertumbuhan_ekonomi": "5.1% per tahun (2023)",
+      "pdb_kota": "Rp 200 triliun (2023)",
+      "sektor_dominan": [
+        "Perdagangan",
+        "Industri",
+        "Maritim",
+        "Pertanian",
+        "Logistik",
+        "Wisata"
+      ],
+      "investasi": {
+        "asing": "US$ 3+ miliar per tahun",
+        "domestik": "Rp 30+ triliun per tahun",
+        "startup_ecosystem": "80+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "15% populasi",
+        "kelas_menengah": "50% populasi",
+        "kelas_bawah": "35% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.1% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "140.000",
+      "sektor_usaha": {
+        "mikro": "110.000",
+        "kecil": "25.000",
+        "menengah": "4.000",
+        "besar": "1.000"
+      },
+      "startup": {
+        "total": "120+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Maritime",
+          "Logistics",
+          "Agritech",
+          "E-commerce",
+          "Tourism"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Pettarani Business District",
+        "ITC Makassar",
+        "Makassar New Port Area",
+        "Industrial Estate"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 30+ triliun per tahun",
+        "ecommerce_gmv": "Rp 12+ triliun per tahun",
+        "startup_funding": "US$ 100+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Persaingan regional",
+        "Ketersediaan tenaga ahli"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi logistik",
+        "E-commerce regional",
+        "Platform maritim",
+        "Agritech",
+        "Smart city solutions"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "1.4 juta",
+      "kepadatan_penduduk": "7.000 jiwa/km²",
+      "usia_produktif": "68% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "18%",
+        "diploma": "15%",
+        "sma": "38%",
+        "smp": "20%",
+        "sd": "9%"
+      },
+      "pendapatan_rata_rata": "Rp 2.5-4.5 juta per bulan",
+      "digital_literacy": "68% populasi aktif online",
+      "mobile_penetration": "85% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "950.000",
+      "social_media_users": "850.000",
+      "online_shopping": "700.000",
+      "digital_payment": "550.000",
+      "ecommerce_penetration": "50% populasi",
+      "startup_density": "Sedang untuk kota regional",
+      "tech_talent_pool": "12.000+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Makassar, Sulawesi Selatan",
+    "phone": "085799520350",
+    "email": "makassar@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Makassar"
+  }
+}

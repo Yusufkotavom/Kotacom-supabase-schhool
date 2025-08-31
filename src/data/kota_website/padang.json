@@ -1,0 +1,231 @@
+{
+  "nama": "Padang",
+  "slug": "padang",
+  "provinsi": "Sumatera Barat",
+  "populasi": 950000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Padang Barat",
+        "kota": "Padang"
+      },
+      {
+        "nama": "Padang Timur",
+        "kota": "Padang"
+      },
+      {
+        "nama": "Padang Utara",
+        "kota": "Padang"
+      },
+      {
+        "nama": "Padang Selatan",
+        "kota": "Padang"
+      },
+      {
+        "nama": "Nanggalo",
+        "kota": "Padang"
+      },
+      {
+        "nama": "Bungus Teluk Kabung",
+        "kota": "Padang"
+      },
+      {
+        "nama": "Lubuk Begalung",
+        "kota": "Padang"
+      },
+      {
+        "nama": "Lubuk Kilangan",
+        "kota": "Padang"
+      },
+      {
+        "nama": "Pauh",
+        "kota": "Padang"
+      },
+      {
+        "nama": "Kuranji",
+        "kota": "Padang"
+      },
+      {
+        "nama": "Koto Tangah",
+        "kota": "Padang"
+      }
+    ],
+    "kota_administrasi": [
+      "Padang"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Padang Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Padang terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Padang. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website padang",
+      "pembuatan web padang",
+      "developer padang",
+      "web design padang",
+      "website padang",
+      "toko online padang"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Padang",
+    "subtitle_highlight": "Profesional Padang",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Sumatera Barat dengan ekonomi perdagangan terbesar - 950+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Padang dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Padang",
+      "SEO khusus untuk pencarian lokal Padang",
+      "Integrasi dengan Google My Business Padang"
+    ],
+    "local_stats": {
+      "businesses": "75.000+ bisnis di Padang",
+      "digital_transformation": "65% bisnis Padang butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Sudirman Padang",
+      "Padang Mall",
+      "Transmart Padang",
+      "Plaza Andalas",
+      "Padang Trade Center",
+      "Lippo Plaza Padang",
+      "Padang City Center",
+      "Mall Matahari"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Sumatera Barat, terletak di pesisir barat Sumatera",
+      "luas_wilayah": "694.96 km²",
+      "ketinggian": "0-20 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 3.000-4.500 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan hujan tinggi sepanjang tahun",
+      "transportasi": [
+        "Bandar Udara Internasional Minangkabau (PDG)",
+        "Pelabuhan Teluk Bayur",
+        "Terminal Arban",
+        "Trans Padang"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Sumatera Barat",
+        "5G network coverage 78%",
+        "Data center di Padang"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Padang untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Gerbang barat Sumatera",
+        "Dekat dengan Danau Maninjau",
+        "Pusat kuliner Padang",
+        "Akses ke sumber daya pertanian"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 40-65 juta per tahun",
+      "pertumbuhan_ekonomi": "5.0% per tahun (2023)",
+      "pdb_kota": "Rp 150 triliun (2023)",
+      "sektor_dominan": [
+        "Perdagangan",
+        "Kuliner",
+        "Pendidikan",
+        "Jasa",
+        "Pertanian",
+        "Wisata"
+      ],
+      "investasi": {
+        "asing": "US$ 2+ miliar per tahun",
+        "domestik": "Rp 18+ triliun per tahun",
+        "startup_ecosystem": "50+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "15% populasi",
+        "kelas_menengah": "50% populasi",
+        "kelas_bawah": "35% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.2% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "88.000",
+      "sektor_usaha": {
+        "mikro": "68.000",
+        "kecil": "15.000",
+        "menengah": "4.000",
+        "besar": "1.000"
+      },
+      "startup": {
+        "total": "75+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "FoodTech",
+          "Education",
+          "E-commerce",
+          "Agritech",
+          "Tourism"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Sudirman Business District",
+        "Education Complex",
+        "Port Area",
+        "Trade Center"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 20+ triliun per tahun",
+        "ecommerce_gmv": "Rp 8+ triliun per tahun",
+        "startup_funding": "US$ 70+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Persaingan regional",
+        "Ketersediaan tenaga ahli"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi kuliner",
+        "Platform pendidikan",
+        "E-commerce regional",
+        "Agritech solutions",
+        "Wisata digital"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "950 ribu",
+      "kepadatan_penduduk": "1.400 jiwa/km²",
+      "usia_produktif": "68% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "18%",
+        "diploma": "16%",
+        "sma": "38%",
+        "smp": "20%",
+        "sd": "8%"
+      },
+      "pendapatan_rata_rata": "Rp 2.5-4.5 juta per bulan",
+      "digital_literacy": "68% populasi aktif online",
+      "mobile_penetration": "85% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "650.000",
+      "social_media_users": "580.000",
+      "online_shopping": "450.000",
+      "digital_payment": "360.000",
+      "ecommerce_penetration": "47% populasi",
+      "startup_density": "Sedang untuk kota pendidikan",
+      "tech_talent_pool": "5.500+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Padang, Sumatera Barat",
+    "phone": "085799520350",
+    "email": "padang@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Padang"
+  }
+}

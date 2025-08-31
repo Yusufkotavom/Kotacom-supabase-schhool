@@ -1,0 +1,211 @@
+{
+  "nama": "Pontianak",
+  "slug": "pontianak",
+  "provinsi": "Kalimantan Barat",
+  "populasi": 650000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Pontianak Kota",
+        "kota": "Pontianak"
+      },
+      {
+        "nama": "Pontianak Barat",
+        "kota": "Pontianak"
+      },
+      {
+        "nama": "Pontianak Selatan",
+        "kota": "Pontianak"
+      },
+      {
+        "nama": "Pontianak Tenggara",
+        "kota": "Pontianak"
+      },
+      {
+        "nama": "Pontianak Timur",
+        "kota": "Pontianak"
+      },
+      {
+        "nama": "Pontianak Utara",
+        "kota": "Pontianak"
+      }
+    ],
+    "kota_administrasi": [
+      "Pontianak"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Pontianak Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Pontianak terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Pontianak. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website pontianak",
+      "pembuatan web pontianak",
+      "developer pontianak",
+      "web design pontianak",
+      "website pontianak",
+      "toko online pontianak"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Pontianak",
+    "subtitle_highlight": "Profesional Pontianak",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Kalimantan Barat dengan ekonomi perdagangan terbesar - 650+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Pontianak dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Pontianak",
+      "SEO khusus untuk pencarian lokal Pontianak",
+      "Integrasi dengan Google My Business Pontianak"
+    ],
+    "local_stats": {
+      "businesses": "55.000+ bisnis di Pontianak",
+      "digital_transformation": "62% bisnis Pontianak butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Gajah Mada Pontianak",
+      "Hayam Wuruk Mall",
+      "Mega Mall Pontianak",
+      "Plaza Maharani",
+      "Living Plaza Pontianak",
+      "Pontianak Mall",
+      "Delta Mall Pontianak",
+      "Paris Mall Pontianak"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Kalimantan Barat, terletak di tepi Sungai Kapuas",
+      "luas_wilayah": "107.82 km²",
+      "ketinggian": "0-5 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 3.000-4.000 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan banjir musiman",
+      "transportasi": [
+        "Bandar Udara Internasional Supadio (PNK)",
+        "Pelabuhan Pontianak",
+        "Terminal Khatulistiwa",
+        "Trans Pontianak"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Kalimantan Barat",
+        "5G network coverage 78%",
+        "Data center di Pontianak"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Pontianak untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Gerbang utama Kalimantan Barat",
+        "Akses ke sumber daya kayu",
+        "Dekat dengan perbatasan Malaysia",
+        "Pusat perdagangan regional"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 35-60 juta per tahun",
+      "pertumbuhan_ekonomi": "4.7% per tahun (2023)",
+      "pdb_kota": "Rp 120 triliun (2023)",
+      "sektor_dominan": [
+        "Perdagangan",
+        "Industri",
+        "Perkayuan",
+        "Logistik",
+        "Pendidikan",
+        "Jasa"
+      ],
+      "investasi": {
+        "asing": "US$ 2+ miliar per tahun",
+        "domestik": "Rp 20+ triliun per tahun",
+        "startup_ecosystem": "40+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "15% populasi",
+        "kelas_menengah": "45% populasi",
+        "kelas_bawah": "40% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.2% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "65.000",
+      "sektor_usaha": {
+        "mikro": "50.000",
+        "kecil": "12.000",
+        "menengah": "2.500",
+        "besar": "500"
+      },
+      "startup": {
+        "total": "60+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Logistics",
+          "E-commerce",
+          "Agritech",
+          "Education",
+          "Tourism"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Gajah Mada Business District",
+        "Industrial Estate",
+        "Port Area",
+        "Trade Center"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 15+ triliun per tahun",
+        "ecommerce_gmv": "Rp 6+ triliun per tahun",
+        "startup_funding": "US$ 50+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Banjir musiman",
+        "Biaya logistik tinggi",
+        "Keterbatasan infrastruktur",
+        "Persaingan regional"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi perdagangan",
+        "Platform logistik",
+        "E-commerce regional",
+        "Agritech",
+        "Cross-border commerce"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "650 ribu",
+      "kepadatan_penduduk": "6.000 jiwa/km²",
+      "usia_produktif": "68% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "16%",
+        "diploma": "14%",
+        "sma": "40%",
+        "smp": "20%",
+        "sd": "10%"
+      },
+      "pendapatan_rata_rata": "Rp 2.5-4 juta per bulan",
+      "digital_literacy": "65% populasi aktif online",
+      "mobile_penetration": "82% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "420.000",
+      "social_media_users": "380.000",
+      "online_shopping": "280.000",
+      "digital_payment": "220.000",
+      "ecommerce_penetration": "43% populasi",
+      "startup_density": "Rendah untuk kota regional",
+      "tech_talent_pool": "5.000+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Pontianak, Kalimantan Barat",
+    "phone": "085799520350",
+    "email": "pontianak@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Pontianak"
+  }
+}

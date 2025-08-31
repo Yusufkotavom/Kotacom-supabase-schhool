@@ -1,0 +1,251 @@
+{
+  "nama": "Palembang",
+  "slug": "palembang",
+  "provinsi": "Sumatera Selatan",
+  "populasi": 1600000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Ilir Barat II",
+        "kota": "Palembang"
+      },
+      {
+        "nama": "Seberang Ulu I",
+        "kota": "Palembang"
+      },
+      {
+        "nama": "Seberang Ulu II",
+        "kota": "Palembang"
+      },
+      {
+        "nama": "Ilir Barat I",
+        "kota": "Palembang"
+      },
+      {
+        "nama": "Ilir Timur I",
+        "kota": "Palembang"
+      },
+      {
+        "nama": "Ilir Timur II",
+        "kota": "Palembang"
+      },
+      {
+        "nama": "Sukarami",
+        "kota": "Palembang"
+      },
+      {
+        "nama": "Sako",
+        "kota": "Palembang"
+      },
+      {
+        "nama": "Pajar Bulan",
+        "kota": "Palembang"
+      },
+      {
+        "nama": "Gandus",
+        "kota": "Palembang"
+      },
+      {
+        "nama": "Seberang Ulu II",
+        "kota": "Palembang"
+      },
+      {
+        "nama": "Kemuning",
+        "kota": "Palembang"
+      },
+      {
+        "nama": "Kertapati",
+        "kota": "Palembang"
+      },
+      {
+        "nama": "Plaju",
+        "kota": "Palembang"
+      },
+      {
+        "nama": "Jakabaring",
+        "kota": "Palembang"
+      },
+      {
+        "nama": "Kalidoni",
+        "kota": "Palembang"
+      }
+    ],
+    "kota_administrasi": [
+      "Palembang"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Palembang Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Palembang terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Palembang. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website palembang",
+      "pembuatan web palembang",
+      "developer palembang",
+      "web design palembang",
+      "website palembang",
+      "toko online palembang"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Palembang",
+    "subtitle_highlight": "Profesional Palembang",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Sumatera Selatan dengan ekonomi perkebunan terbesar - 1.6+ juta penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Palembang dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Palembang",
+      "SEO khusus untuk pencarian lokal Palembang",
+      "Integrasi dengan Google My Business Palembang"
+    ],
+    "local_stats": {
+      "businesses": "130.000+ bisnis di Palembang",
+      "digital_transformation": "63% bisnis Palembang butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Sudirman Palembang",
+      "Palembang Icon",
+      "Palembang Square",
+      "Berkah Mall",
+      "Opi Mall Palembang",
+      "Plaza Atrium",
+      "Palembang Trade Center",
+      "Matahari Department Store"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Sumatera Selatan, terletak di tepi Sungai Musi",
+      "luas_wilayah": "400.61 km²",
+      "ketinggian": "0-50 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 2.300-3.200 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan kabut asap musiman",
+      "transportasi": [
+        "Bandar Udara Internasional Sultan Mahmud Badaruddin II (PLM)",
+        "Pelabuhan Boom Baru",
+        "Stasiun Kertapati",
+        "Trans Musi"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Sumatera Selatan",
+        "5G network coverage 80%",
+        "Data center di Palembang"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Palembang untuk air bersih",
+        "Gas untuk industri"
+      ],
+      "keunggulan_lokasi": [
+        "Pusat perdagangan regional",
+        "Akses ke sumber daya perkebunan",
+        "Dekat dengan tambang batubara",
+        "Gerbang tengah Sumatera"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 30-55 juta per tahun",
+      "pertumbuhan_ekonomi": "4.9% per tahun (2023)",
+      "pdb_kota": "Rp 180 triliun (2023)",
+      "sektor_dominan": [
+        "Perkebunan",
+        "Perdagangan",
+        "Industri",
+        "Logistik",
+        "Pertambangan",
+        "Jasa"
+      ],
+      "investasi": {
+        "asing": "US$ 2.5+ miliar per tahun",
+        "domestik": "Rp 25+ triliun per tahun",
+        "startup_ecosystem": "70+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "12% populasi",
+        "kelas_menengah": "45% populasi",
+        "kelas_bawah": "43% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.3% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "150.000",
+      "sektor_usaha": {
+        "mikro": "120.000",
+        "kecil": "25.000",
+        "menengah": "4.000",
+        "besar": "1.000"
+      },
+      "startup": {
+        "total": "100+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Agritech",
+          "Logistics",
+          "Mining Tech",
+          "E-commerce",
+          "Education"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Sudirman Business District",
+        "Palembang Icon",
+        "Jakabaring Industrial Area",
+        "Port Area"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 25+ triliun per tahun",
+        "ecommerce_gmv": "Rp 10+ triliun per tahun",
+        "startup_funding": "US$ 80+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Kabut asap musiman",
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Ketersediaan tenaga terampil"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi perkebunan",
+        "E-commerce regional",
+        "Platform logistik",
+        "Mining technology",
+        "Environmental solutions"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "1.6 juta",
+      "kepadatan_penduduk": "4.000 jiwa/km²",
+      "usia_produktif": "66% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "15%",
+        "diploma": "13%",
+        "sma": "40%",
+        "smp": "22%",
+        "sd": "10%"
+      },
+      "pendapatan_rata_rata": "Rp 2-4 juta per bulan",
+      "digital_literacy": "65% populasi aktif online",
+      "mobile_penetration": "82% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "1.0 juta",
+      "social_media_users": "900.000",
+      "online_shopping": "700.000",
+      "digital_payment": "500.000",
+      "ecommerce_penetration": "45% populasi",
+      "startup_density": "Rendah untuk kota regional",
+      "tech_talent_pool": "8.000+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Palembang, Sumatera Selatan",
+    "phone": "085799520350",
+    "email": "palembang@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Palembang"
+  }
+}

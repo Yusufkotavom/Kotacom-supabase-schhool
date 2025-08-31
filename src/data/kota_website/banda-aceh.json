@@ -1,0 +1,223 @@
+{
+  "nama": "Banda Aceh",
+  "slug": "banda-aceh",
+  "provinsi": "Aceh",
+  "populasi": 280000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Baiturrahman",
+        "kota": "Banda Aceh"
+      },
+      {
+        "nama": "Kuta Alam",
+        "kota": "Banda Aceh"
+      },
+      {
+        "nama": "Meuraxa",
+        "kota": "Banda Aceh"
+      },
+      {
+        "nama": "Syiah Kuala",
+        "kota": "Banda Aceh"
+      },
+      {
+        "nama": "Lueng Bata",
+        "kota": "Banda Aceh"
+      },
+      {
+        "nama": "Kuta Raja",
+        "kota": "Banda Aceh"
+      },
+      {
+        "nama": "Banda Raya",
+        "kota": "Banda Aceh"
+      },
+      {
+        "nama": "Jaya Baru",
+        "kota": "Banda Aceh"
+      },
+      {
+        "nama": "Ulee Kareng",
+        "kota": "Banda Aceh"
+      }
+    ],
+    "kota_administrasi": [
+      "Banda Aceh"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Banda Aceh Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Banda Aceh terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Banda Aceh. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website banda-aceh",
+      "pembuatan web banda-aceh",
+      "developer banda-aceh",
+      "web design banda-aceh",
+      "website banda-aceh",
+      "toko online banda-aceh"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Banda Aceh",
+    "subtitle_highlight": "Profesional Banda Aceh",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Aceh dengan ekonomi perdagangan terbesar - 280+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Banda Aceh dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Banda Aceh",
+      "SEO khusus untuk pencarian lokal Banda Aceh",
+      "Integrasi dengan Google My Business Banda Aceh"
+    ],
+    "local_stats": {
+      "businesses": "25.000+ bisnis di Banda Aceh",
+      "digital_transformation": "59% bisnis Banda Aceh butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Teuku Umar Banda Aceh",
+      "RTH Banda Aceh",
+      "Transmart Banda Aceh",
+      "Plaza Asia Banda Aceh",
+      "Banda Aceh Grand Mall",
+      "Lippo Plaza Banda Aceh",
+      "Banda Aceh City Center",
+      "Mall Cahaya"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Aceh, terletak di pesisir utara Sumatera",
+      "luas_wilayah": "61.36 km²",
+      "ketinggian": "0-50 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 2.500-3.500 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan angin laut",
+      "transportasi": [
+        "Bandar Udara Internasional Sultan Iskandar Muda (BTJ)",
+        "Pelabuhan Malahayati",
+        "Terminal Terpadu",
+        "Trans Banda Aceh"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Aceh",
+        "5G network coverage 68%",
+        "Data center di Banda Aceh"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Banda Aceh untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Gerbang utama Aceh",
+        "Dekat dengan perbatasan Malaysia",
+        "Pusat perdagangan regional",
+        "Akses ke sumber daya gas"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 30-55 juta per tahun",
+      "pertumbuhan_ekonomi": "4.8% per tahun (2023)",
+      "pdb_kota": "Rp 65 triliun (2023)",
+      "sektor_dominan": [
+        "Perdagangan",
+        "Pendidikan",
+        "Jasa",
+        "Pertanian",
+        "Logistik",
+        "Wisata"
+      ],
+      "investasi": {
+        "asing": "US$ 1.5+ miliar per tahun",
+        "domestik": "Rp 12+ triliun per tahun",
+        "startup_ecosystem": "25+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "15% populasi",
+        "kelas_menengah": "45% populasi",
+        "kelas_bawah": "40% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.0% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "30.000",
+      "sektor_usaha": {
+        "mikro": "23.000",
+        "kecil": "5.500",
+        "menengah": "1.200",
+        "besar": "300"
+      },
+      "startup": {
+        "total": "35+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Education",
+          "Logistics",
+          "E-commerce",
+          "Agritech",
+          "Tourism"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Teuku Umar Business District",
+        "Education Complex",
+        "Port Area",
+        "Trade Center"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 8+ triliun per tahun",
+        "ecommerce_gmv": "Rp 3+ triliun per tahun",
+        "startup_funding": "US$ 30+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Persaingan regional",
+        "Ketersediaan tenaga ahli"
+      ],
+      "peluang_bisnis": [
+        "Digital education platform",
+        "Platform logistik",
+        "E-commerce regional",
+        "Agritech solutions",
+        "Cross-border commerce"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "280 ribu",
+      "kepadatan_penduduk": "4.600 jiwa/km²",
+      "usia_produktif": "67% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "15%",
+        "diploma": "13%",
+        "sma": "38%",
+        "smp": "22%",
+        "sd": "12%"
+      },
+      "pendapatan_rata_rata": "Rp 2-3.5 juta per bulan",
+      "digital_literacy": "61% populasi aktif online",
+      "mobile_penetration": "76% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "170.000",
+      "social_media_users": "150.000",
+      "online_shopping": "100.000",
+      "digital_payment": "75.000",
+      "ecommerce_penetration": "36% populasi",
+      "startup_density": "Rendah untuk kota regional",
+      "tech_talent_pool": "2.000+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Banda Aceh, Aceh",
+    "phone": "085799520350",
+    "email": "banda-aceh@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Banda Aceh"
+  }
+}

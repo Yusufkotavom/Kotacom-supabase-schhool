@@ -1,0 +1,211 @@
+{
+  "nama": "Kupang",
+  "slug": "kupang",
+  "provinsi": "Nusa Tenggara Timur",
+  "populasi": 450000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Alak",
+        "kota": "Kupang"
+      },
+      {
+        "nama": "Kelapa Lima",
+        "kota": "Kupang"
+      },
+      {
+        "nama": "Kota Lama",
+        "kota": "Kupang"
+      },
+      {
+        "nama": "Kota Raja",
+        "kota": "Kupang"
+      },
+      {
+        "nama": "Maulafa",
+        "kota": "Kupang"
+      },
+      {
+        "nama": "Oebobo",
+        "kota": "Kupang"
+      }
+    ],
+    "kota_administrasi": [
+      "Kupang"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Kupang Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Kupang terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Kupang. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website kupang",
+      "pembuatan web kupang",
+      "developer kupang",
+      "web design kupang",
+      "website kupang",
+      "toko online kupang"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Kupang",
+    "subtitle_highlight": "Profesional Kupang",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Nusa Tenggara Timur dengan ekonomi perdagangan terbesar - 450+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Kupang dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Kupang",
+      "SEO khusus untuk pencarian lokal Kupang",
+      "Integrasi dengan Google My Business Kupang"
+    ],
+    "local_stats": {
+      "businesses": "40.000+ bisnis di Kupang",
+      "digital_transformation": "60% bisnis Kupang butuh website"
+    },
+    "local_business_areas": [
+      "Jl. El Tari Kupang",
+      "Kupang Mall",
+      "Transmart Kupang",
+      "Oeba Center",
+      "Kupang Trade Center",
+      "Mall Eka Plaza",
+      "Lippo Plaza Kupang",
+      "Kupang City Center"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Nusa Tenggara Timur, terletak di pesisir utara Pulau Timor",
+      "luas_wilayah": "180.27 km²",
+      "ketinggian": "0-100 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan rendah (rata-rata 800-1.200 mm/tahun)",
+      "cuaca": "Kering dan panas sepanjang tahun",
+      "transportasi": [
+        "Bandar Udara Internasional El Tari (KOE)",
+        "Pelabuhan Tenau",
+        "Terminal Oeba",
+        "Trans Kupang"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di NTT",
+        "5G network coverage 70%",
+        "Data center di Kupang"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Kupang untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Gerbang utama NTT",
+        "Akses ke sumber daya pertanian",
+        "Dekat dengan perbatasan Timor Leste",
+        "Pusat perdagangan regional"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 25-45 juta per tahun",
+      "pertumbuhan_ekonomi": "4.5% per tahun (2023)",
+      "pdb_kota": "Rp 75 triliun (2023)",
+      "sektor_dominan": [
+        "Perdagangan",
+        "Pertanian",
+        "Pendidikan",
+        "Jasa",
+        "Logistik",
+        "Wisata"
+      ],
+      "investasi": {
+        "asing": "US$ 1.2+ miliar per tahun",
+        "domestik": "Rp 12+ triliun per tahun",
+        "startup_ecosystem": "30+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "12% populasi",
+        "kelas_menengah": "45% populasi",
+        "kelas_bawah": "43% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.2% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "48.000",
+      "sektor_usaha": {
+        "mikro": "36.000",
+        "kecil": "9.000",
+        "menengah": "2.500",
+        "besar": "500"
+      },
+      "startup": {
+        "total": "45+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Agritech",
+          "Logistics",
+          "E-commerce",
+          "Education",
+          "Tourism"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. El Tari Business District",
+        "Education Complex",
+        "Port Area",
+        "Trade Center"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 10+ triliun per tahun",
+        "ecommerce_gmv": "Rp 4+ triliun per tahun",
+        "startup_funding": "US$ 35+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Persaingan regional",
+        "Ketersediaan tenaga ahli"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi pertanian",
+        "Platform logistik",
+        "E-commerce regional",
+        "Education technology",
+        "Cross-border commerce"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "450 ribu",
+      "kepadatan_penduduk": "2.500 jiwa/km²",
+      "usia_produktif": "66% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "14%",
+        "diploma": "13%",
+        "sma": "38%",
+        "smp": "22%",
+        "sd": "13%"
+      },
+      "pendapatan_rata_rata": "Rp 1.8-3 juta per bulan",
+      "digital_literacy": "62% populasi aktif online",
+      "mobile_penetration": "78% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "280.000",
+      "social_media_users": "240.000",
+      "online_shopping": "150.000",
+      "digital_payment": "120.000",
+      "ecommerce_penetration": "35% populasi",
+      "startup_density": "Rendah untuk kota regional",
+      "tech_talent_pool": "3.000+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Kupang, Nusa Tenggara Timur",
+    "phone": "085799520350",
+    "email": "kupang@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Kupang"
+  }
+}

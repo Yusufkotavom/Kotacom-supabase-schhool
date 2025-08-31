@@ -1,0 +1,227 @@
+{
+  "nama": "Samarinda",
+  "slug": "samarinda",
+  "provinsi": "Kalimantan Timur",
+  "populasi": 850000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Samarinda Kota",
+        "kota": "Samarinda"
+      },
+      {
+        "nama": "Palaran",
+        "kota": "Samarinda"
+      },
+      {
+        "nama": "Samarinda Seberang",
+        "kota": "Samarinda"
+      },
+      {
+        "nama": "Samarinda Ulu",
+        "kota": "Samarinda"
+      },
+      {
+        "nama": "Samarinda Ilir",
+        "kota": "Samarinda"
+      },
+      {
+        "nama": "Sungai Kunjang",
+        "kota": "Samarinda"
+      },
+      {
+        "nama": "Sambutan",
+        "kota": "Samarinda"
+      },
+      {
+        "nama": "Sungai Pinang",
+        "kota": "Samarinda"
+      },
+      {
+        "nama": "Samarinda Utara",
+        "kota": "Samarinda"
+      },
+      {
+        "nama": "Sungai Pinang Dalam",
+        "kota": "Samarinda"
+      }
+    ],
+    "kota_administrasi": [
+      "Samarinda"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Samarinda Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Samarinda terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Samarinda. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website samarinda",
+      "pembuatan web samarinda",
+      "developer samarinda",
+      "web design samarinda",
+      "website samarinda",
+      "toko online samarinda"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Samarinda",
+    "subtitle_highlight": "Profesional Samarinda",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Kalimantan Timur dengan ekonomi pertambangan terbesar - 850+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Samarinda dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Samarinda",
+      "SEO khusus untuk pencarian lokal Samarinda",
+      "Integrasi dengan Google My Business Samarinda"
+    ],
+    "local_stats": {
+      "businesses": "70.000+ bisnis di Samarinda",
+      "digital_transformation": "66% bisnis Samarinda butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Pahlawan Samarinda",
+      "Plaza Mulia Samarinda",
+      "Big Mall Samarinda",
+      "Lippo Plaza Samarinda",
+      "Samarinda Plaza",
+      "Delta Plaza Samarinda",
+      "Samarinda Square",
+      "Mall Duta"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Kalimantan Timur, terletak di tepi Sungai Mahakam",
+      "luas_wilayah": "718.00 km²",
+      "ketinggian": "0-30 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 2.500-3.200 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan kabut asap musiman",
+      "transportasi": [
+        "Bandar Udara Internasional Sultan Aji Muhammad Sulaiman (BPN)",
+        "Pelabuhan Samarinda",
+        "Terminal Lempake",
+        "Trans Samarinda"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Kalimantan Timur",
+        "5G network coverage 85%",
+        "Data center di Samarinda"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Samarinda untuk air bersih",
+        "Gas untuk industri"
+      ],
+      "keunggulan_lokasi": [
+        "Pusat pertambangan batubara",
+        "Dekat dengan hutan tropis",
+        "Akses ke sumber daya alam",
+        "Gerbang tengah Kalimantan"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 60-90 juta per tahun",
+      "pertumbuhan_ekonomi": "5.8% per tahun (2023)",
+      "pdb_kota": "Rp 240 triliun (2023)",
+      "sektor_dominan": [
+        "Pertambangan",
+        "Industri",
+        "Perdagangan",
+        "Logistik",
+        "Perkayuan",
+        "Jasa"
+      ],
+      "investasi": {
+        "asing": "US$ 4+ miliar per tahun",
+        "domestik": "Rp 40+ triliun per tahun",
+        "startup_ecosystem": "55+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "22% populasi",
+        "kelas_menengah": "52% populasi",
+        "kelas_bawah": "26% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.0% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "80.000",
+      "sektor_usaha": {
+        "mikro": "60.000",
+        "kecil": "15.000",
+        "menengah": "4.000",
+        "besar": "1.000"
+      },
+      "startup": {
+        "total": "85+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Mining Tech",
+          "Agritech",
+          "Logistics",
+          "E-commerce",
+          "Environmental"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Pahlawan Business District",
+        "Mining Complex",
+        "Industrial Area",
+        "Port Area"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 28+ triliun per tahun",
+        "ecommerce_gmv": "Rp 10+ triliun per tahun",
+        "startup_funding": "US$ 90+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Kabut asap musiman",
+        "Biaya logistik tinggi",
+        "Keterbatasan infrastruktur",
+        "Fluktuasi harga komoditas"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi mining",
+        "Agritech solutions",
+        "Platform logistik",
+        "Environmental monitoring",
+        "Sustainable mining"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "850 ribu",
+      "kepadatan_penduduk": "1.200 jiwa/km²",
+      "usia_produktif": "71% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "19%",
+        "diploma": "17%",
+        "sma": "36%",
+        "smp": "18%",
+        "sd": "10%"
+      },
+      "pendapatan_rata_rata": "Rp 3.5-5.5 juta per bulan",
+      "digital_literacy": "70% populasi aktif online",
+      "mobile_penetration": "86% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "590.000",
+      "social_media_users": "520.000",
+      "online_shopping": "400.000",
+      "digital_payment": "320.000",
+      "ecommerce_penetration": "48% populasi",
+      "startup_density": "Sedang untuk kota pertambangan",
+      "tech_talent_pool": "7.000+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Samarinda, Kalimantan Timur",
+    "phone": "085799520350",
+    "email": "samarinda@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Samarinda"
+  }
+}

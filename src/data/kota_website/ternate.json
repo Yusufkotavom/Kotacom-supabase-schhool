@@ -1,0 +1,283 @@
+{
+  "nama": "Ternate",
+  "slug": "ternate",
+  "provinsi": "Maluku Utara",
+  "populasi": 220000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Ternate Utara",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Ternate Selatan",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Ternate Tengah",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Tidore",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Tidore Selatan",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Tidore Utara",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Obi",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Obi Selatan",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Obi Barat",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Obi Timur",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Obi Utara",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Bacau",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Kao",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Kao Barat",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Kao Utara",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Makian",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Kayoa",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Kayoa Barat",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Kayoa Selatan",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Kayoa Utara",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Pulau Ternate",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Pulau Tidore",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Pulau Makian",
+        "kota": "Ternate"
+      },
+      {
+        "nama": "Pulau Kayoa",
+        "kota": "Ternate"
+      }
+    ],
+    "kota_administrasi": [
+      "Ternate"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Ternate Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Ternate terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Ternate. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website ternate",
+      "pembuatan web ternate",
+      "developer ternate",
+      "web design ternate",
+      "website ternate",
+      "toko online ternate"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Ternate",
+    "subtitle_highlight": "Profesional Ternate",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Maluku Utara dengan ekonomi strategis - 220+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Ternate dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Ternate",
+      "SEO khusus untuk pencarian lokal Ternate",
+      "Integrasi dengan Google My Business Ternate"
+    ],
+    "local_stats": {
+      "businesses": "19.000+ bisnis di Ternate",
+      "digital_transformation": "57% bisnis Ternate butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Sudirman Ternate",
+      "Ternate Mall",
+      "Transmart Ternate",
+      "Plaza Maluku",
+      "Ternate Trade Center",
+      "Lippo Plaza Ternate",
+      "Ternate City Center",
+      "Mall Matahari"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Maluku Utara, terletak di Pulau Ternate",
+      "luas_wilayah": "162.25 km²",
+      "ketinggian": "0-1.715 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 2.500-3.500 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan angin laut",
+      "transportasi": [
+        "Bandar Udara Internasional Sultan Babullah (TTE)",
+        "Pelabuhan Ahmad Yani",
+        "Terminal Bus Ternate",
+        "Trans Ternate"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Maluku Utara",
+        "5G network coverage 68%",
+        "Data center di Ternate"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Ternate untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Gerbang utara Maluku",
+        "Dekat dengan sumber daya perikanan",
+        "Akses ke kepulauan",
+        "Pusat perdagangan regional"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 30-55 juta per tahun",
+      "pertumbuhan_ekonomi": "5.0% per tahun (2023)",
+      "pdb_kota": "Rp 55 triliun (2023)",
+      "sektor_dominan": [
+        "Perikanan",
+        "Pertambangan",
+        "Perdagangan",
+        "Jasa",
+        "Logistik",
+        "Pendidikan"
+      ],
+      "investasi": {
+        "asing": "US$ 1.2+ miliar per tahun",
+        "domestik": "Rp 10+ triliun per tahun",
+        "startup_ecosystem": "22+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "15% populasi",
+        "kelas_menengah": "48% populasi",
+        "kelas_bawah": "37% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.0% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "22.000",
+      "sektor_usaha": {
+        "mikro": "17.000",
+        "kecil": "4.000",
+        "menengah": "900",
+        "besar": "100"
+      },
+      "startup": {
+        "total": "30+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Fishery Tech",
+          "Mining Tech",
+          "E-commerce",
+          "Logistics",
+          "Education"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Sudirman Business District",
+        "Port Area",
+        "Education Complex",
+        "Trade Center"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 6+ triliun per tahun",
+        "ecommerce_gmv": "Rp 2.5+ triliun per tahun",
+        "startup_funding": "US$ 25+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Persaingan regional",
+        "Ketersediaan tenaga ahli"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi perikanan",
+        "Platform logistik",
+        "E-commerce regional",
+        "Education technology",
+        "Maritime services"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "220 ribu",
+      "kepadatan_penduduk": "1.400 jiwa/km²",
+      "usia_produktif": "68% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "14%",
+        "diploma": "13%",
+        "sma": "38%",
+        "smp": "22%",
+        "sd": "13%"
+      },
+      "pendapatan_rata_rata": "Rp 2-3.5 juta per bulan",
+      "digital_literacy": "62% populasi aktif online",
+      "mobile_penetration": "78% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "135.000",
+      "social_media_users": "115.000",
+      "online_shopping": "80.000",
+      "digital_payment": "65.000",
+      "ecommerce_penetration": "36% populasi",
+      "startup_density": "Rendah untuk kota regional",
+      "tech_talent_pool": "1.500+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Ternate, Maluku Utara",
+    "phone": "085799520350",
+    "email": "ternate@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Ternate"
+  }
+}

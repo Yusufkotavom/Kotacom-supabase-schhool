@@ -1,0 +1,219 @@
+{
+  "nama": "Palu",
+  "slug": "palu",
+  "provinsi": "Sulawesi Tengah",
+  "populasi": 380000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Palu Barat",
+        "kota": "Palu"
+      },
+      {
+        "nama": "Palu Selatan",
+        "kota": "Palu"
+      },
+      {
+        "nama": "Palu Timur",
+        "kota": "Palu"
+      },
+      {
+        "nama": "Palu Utara",
+        "kota": "Palu"
+      },
+      {
+        "nama": "Ulujadi",
+        "kota": "Palu"
+      },
+      {
+        "nama": "Tatanga",
+        "kota": "Palu"
+      },
+      {
+        "nama": "Tawaeli",
+        "kota": "Palu"
+      },
+      {
+        "nama": "Mantikulore",
+        "kota": "Palu"
+      }
+    ],
+    "kota_administrasi": [
+      "Palu"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Palu Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Palu terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Palu. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website palu",
+      "pembuatan web palu",
+      "developer palu",
+      "web design palu",
+      "website palu",
+      "toko online palu"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Palu",
+    "subtitle_highlight": "Profesional Palu",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Sulawesi Tengah dengan ekonomi strategis - 380+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Palu dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Palu",
+      "SEO khusus untuk pencarian lokal Palu",
+      "Integrasi dengan Google My Business Palu"
+    ],
+    "local_stats": {
+      "businesses": "32.000+ bisnis di Palu",
+      "digital_transformation": "61% bisnis Palu butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Sudirman Palu",
+      "Palu Mall",
+      "Transmart Palu",
+      "Plaza Sulawesi",
+      "Palu Trade Center",
+      "Lippo Plaza Palu",
+      "Palu City Center",
+      "Mall Matahari"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Sulawesi Tengah, terletak di tepi Teluk Palu",
+      "luas_wilayah": "395.06 km²",
+      "ketinggian": "0-50 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 2.000-3.000 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan risiko gempa",
+      "transportasi": [
+        "Bandar Udara Internasional Mutiara SIS Al-Jufrie (PLW)",
+        "Pelabuhan Pantoloan",
+        "Terminal Bus Palu",
+        "Trans Palu"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Sulawesi Tengah",
+        "5G network coverage 75%",
+        "Data center di Palu"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Palu untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Gerbang tengah Sulawesi",
+        "Dekat dengan sumber daya pertambangan",
+        "Akses ke laut",
+        "Pusat perdagangan regional"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 30-55 juta per tahun",
+      "pertumbuhan_ekonomi": "5.0% per tahun (2023)",
+      "pdb_kota": "Rp 85 triliun (2023)",
+      "sektor_dominan": [
+        "Pertambangan",
+        "Perdagangan",
+        "Pertanian",
+        "Jasa",
+        "Logistik",
+        "Industri"
+      ],
+      "investasi": {
+        "asing": "US$ 2+ miliar per tahun",
+        "domestik": "Rp 15+ triliun per tahun",
+        "startup_ecosystem": "30+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "15% populasi",
+        "kelas_menengah": "48% populasi",
+        "kelas_bawah": "37% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.2% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "38.000",
+      "sektor_usaha": {
+        "mikro": "29.000",
+        "kecil": "7.000",
+        "menengah": "1.800",
+        "besar": "200"
+      },
+      "startup": {
+        "total": "45+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Mining Tech",
+          "Logistics",
+          "E-commerce",
+          "Agritech",
+          "Tourism"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Sudirman Business District",
+        "Port Area",
+        "Mining Complex",
+        "Trade Center"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 10+ triliun per tahun",
+        "ecommerce_gmv": "Rp 4+ triliun per tahun",
+        "startup_funding": "US$ 35+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Risiko bencana alam",
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Persaingan regional"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi pertambangan",
+        "Platform logistik",
+        "E-commerce regional",
+        "Agritech solutions",
+        "Disaster management tech"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "380 ribu",
+      "kepadatan_penduduk": "960 jiwa/km²",
+      "usia_produktif": "68% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "16%",
+        "diploma": "14%",
+        "sma": "38%",
+        "smp": "22%",
+        "sd": "10%"
+      },
+      "pendapatan_rata_rata": "Rp 2.5-4 juta per bulan",
+      "digital_literacy": "63% populasi aktif online",
+      "mobile_penetration": "80% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "240.000",
+      "social_media_users": "210.000",
+      "online_shopping": "150.000",
+      "digital_payment": "120.000",
+      "ecommerce_penetration": "39% populasi",
+      "startup_density": "Rendah untuk kota regional",
+      "tech_talent_pool": "2.500+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Palu, Sulawesi Tengah",
+    "phone": "085799520350",
+    "email": "palu@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Palu"
+  }
+}

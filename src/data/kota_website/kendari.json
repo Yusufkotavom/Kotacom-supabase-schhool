@@ -1,0 +1,231 @@
+{
+  "nama": "Kendari",
+  "slug": "kendari",
+  "provinsi": "Sulawesi Tenggara",
+  "populasi": 350000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Mandonga",
+        "kota": "Kendari"
+      },
+      {
+        "nama": "Kendari",
+        "kota": "Kendari"
+      },
+      {
+        "nama": "Kendari Barat",
+        "kota": "Kendari"
+      },
+      {
+        "nama": "Poasia",
+        "kota": "Kendari"
+      },
+      {
+        "nama": "Abeli",
+        "kota": "Kendari"
+      },
+      {
+        "nama": "Baruga",
+        "kota": "Kendari"
+      },
+      {
+        "nama": "Kadia",
+        "kota": "Kendari"
+      },
+      {
+        "nama": "Puuwatu",
+        "kota": "Kendari"
+      },
+      {
+        "nama": "Wua-Wua",
+        "kota": "Kendari"
+      },
+      {
+        "nama": "Kambu",
+        "kota": "Kendari"
+      },
+      {
+        "nama": "Kadia Barat",
+        "kota": "Kendari"
+      }
+    ],
+    "kota_administrasi": [
+      "Kendari"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Kendari Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Kendari terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Kendari. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website kendari",
+      "pembuatan web kendari",
+      "developer kendari",
+      "web design kendari",
+      "website kendari",
+      "toko online kendari"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Kendari",
+    "subtitle_highlight": "Profesional Kendari",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Sulawesi Tenggara dengan ekonomi strategis - 350+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Kendari dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Kendari",
+      "SEO khusus untuk pencarian lokal Kendari",
+      "Integrasi dengan Google My Business Kendari"
+    ],
+    "local_stats": {
+      "businesses": "30.000+ bisnis di Kendari",
+      "digital_transformation": "60% bisnis Kendari butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Sudirman Kendari",
+      "Kendari Mall",
+      "Transmart Kendari",
+      "Plaza Kendari",
+      "Kendari Trade Center",
+      "Lippo Plaza Kendari",
+      "Kendari City Center",
+      "Mall Matahari"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Sulawesi Tenggara, terletak di pesisir tenggara Sulawesi",
+      "luas_wilayah": "289.86 km²",
+      "ketinggian": "0-50 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan sedang (rata-rata 1.500-2.500 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan angin laut",
+      "transportasi": [
+        "Bandar Udara Internasional Halu Oleo (KDI)",
+        "Pelabuhan Kendari",
+        "Terminal Bus Kendari",
+        "Trans Kendari"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Sulawesi Tenggara",
+        "5G network coverage 70%",
+        "Data center di Kendari"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Kendari untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Gerbang tenggara Sulawesi",
+        "Dekat dengan sumber daya perikanan",
+        "Akses ke laut",
+        "Pusat perdagangan regional"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 28-50 juta per tahun",
+      "pertumbuhan_ekonomi": "4.8% per tahun (2023)",
+      "pdb_kota": "Rp 70 triliun (2023)",
+      "sektor_dominan": [
+        "Perikanan",
+        "Pertanian",
+        "Perdagangan",
+        "Jasa",
+        "Logistik",
+        "Industri"
+      ],
+      "investasi": {
+        "asing": "US$ 1.2+ miliar per tahun",
+        "domestik": "Rp 10+ triliun per tahun",
+        "startup_ecosystem": "25+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "14% populasi",
+        "kelas_menengah": "46% populasi",
+        "kelas_bawah": "40% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.0% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "35.000",
+      "sektor_usaha": {
+        "mikro": "27.000",
+        "kecil": "6.500",
+        "menengah": "1.200",
+        "besar": "300"
+      },
+      "startup": {
+        "total": "35+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Fishery Tech",
+          "Logistics",
+          "E-commerce",
+          "Agritech",
+          "Tourism"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Sudirman Business District",
+        "Port Area",
+        "Fishery Complex",
+        "Trade Center"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 8+ triliun per tahun",
+        "ecommerce_gmv": "Rp 3+ triliun per tahun",
+        "startup_funding": "US$ 30+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Persaingan regional",
+        "Ketersediaan tenaga ahli"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi perikanan",
+        "Platform logistik",
+        "E-commerce regional",
+        "Agritech solutions",
+        "Maritime technology"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "350 ribu",
+      "kepadatan_penduduk": "1.200 jiwa/km²",
+      "usia_produktif": "67% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "15%",
+        "diploma": "13%",
+        "sma": "38%",
+        "smp": "22%",
+        "sd": "12%"
+      },
+      "pendapatan_rata_rata": "Rp 2-3.5 juta per bulan",
+      "digital_literacy": "62% populasi aktif online",
+      "mobile_penetration": "78% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "220.000",
+      "social_media_users": "190.000",
+      "online_shopping": "130.000",
+      "digital_payment": "100.000",
+      "ecommerce_penetration": "37% populasi",
+      "startup_density": "Rendah untuk kota regional",
+      "tech_talent_pool": "2.200+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Kendari, Sulawesi Tenggara",
+    "phone": "085799520350",
+    "email": "kendari@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Kendari"
+  }
+}

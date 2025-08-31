@@ -1,0 +1,223 @@
+{
+  "nama": "Bengkulu",
+  "slug": "bengkulu",
+  "provinsi": "Bengkulu",
+  "populasi": 380000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Selebar",
+        "kota": "Bengkulu"
+      },
+      {
+        "nama": "Gading Cempaka",
+        "kota": "Bengkulu"
+      },
+      {
+        "nama": "Teluk Segara",
+        "kota": "Bengkulu"
+      },
+      {
+        "nama": "Ratu Agung",
+        "kota": "Bengkulu"
+      },
+      {
+        "nama": "Ratu Samban",
+        "kota": "Bengkulu"
+      },
+      {
+        "nama": "Singaran Pati",
+        "kota": "Bengkulu"
+      },
+      {
+        "nama": "Muara Bangka Hulu",
+        "kota": "Bengkulu"
+      },
+      {
+        "nama": "Kampung Melayu",
+        "kota": "Bengkulu"
+      },
+      {
+        "nama": "Raja Basa",
+        "kota": "Bengkulu"
+      }
+    ],
+    "kota_administrasi": [
+      "Bengkulu"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Bengkulu Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Bengkulu terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Bengkulu. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website bengkulu",
+      "pembuatan web bengkulu",
+      "developer bengkulu",
+      "web design bengkulu",
+      "website bengkulu",
+      "toko online bengkulu"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Bengkulu",
+    "subtitle_highlight": "Profesional Bengkulu",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Bengkulu dengan ekonomi perdagangan terbesar - 380+ ribu penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Bengkulu dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Bengkulu",
+      "SEO khusus untuk pencarian lokal Bengkulu",
+      "Integrasi dengan Google My Business Bengkulu"
+    ],
+    "local_stats": {
+      "businesses": "32.000+ bisnis di Bengkulu",
+      "digital_transformation": "61% bisnis Bengkulu butuh website"
+    },
+    "local_business_areas": [
+      "Jl. Adam Malik Bengkulu",
+      "Bengkulu Mall",
+      "Transmart Bengkulu",
+      "Plaza Bengkulu",
+      "Bengkulu Trade Center",
+      "Lippo Plaza Bengkulu",
+      "Bengkulu City Center",
+      "Mall Matahari"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Bengkulu, terletak di pesisir barat Sumatera",
+      "luas_wilayah": "144.52 km²",
+      "ketinggian": "0-50 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 3.000-4.000 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan kabut asap musiman",
+      "transportasi": [
+        "Bandar Udara Internasional Fatmawati Soekarno (BKS)",
+        "Pelabuhan Pulau Baai",
+        "Terminal Anggut Atas",
+        "Trans Bengkulu"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Bengkulu",
+        "5G network coverage 70%",
+        "Data center di Bengkulu"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Bengkulu untuk air bersih",
+        "Gas untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Gerbang barat Sumatera",
+        "Dekat dengan perkebunan",
+        "Akses ke sumber daya pertanian",
+        "Pusat perdagangan regional"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 28-48 juta per tahun",
+      "pertumbuhan_ekonomi": "4.3% per tahun (2023)",
+      "pdb_kota": "Rp 70 triliun (2023)",
+      "sektor_dominan": [
+        "Perkebunan",
+        "Perdagangan",
+        "Pendidikan",
+        "Jasa",
+        "Pertanian",
+        "Logistik"
+      ],
+      "investasi": {
+        "asing": "US$ 1.2+ miliar per tahun",
+        "domestik": "Rp 10+ triliun per tahun",
+        "startup_ecosystem": "28+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "13% populasi",
+        "kelas_menengah": "47% populasi",
+        "kelas_bawah": "40% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.1% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "38.000",
+      "sektor_usaha": {
+        "mikro": "29.000",
+        "kecil": "7.000",
+        "menengah": "1.800",
+        "besar": "200"
+      },
+      "startup": {
+        "total": "40+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Agritech",
+          "Education",
+          "E-commerce",
+          "Logistics",
+          "Tourism"
+        ]
+      },
+      "pusat_bisnis": [
+        "Jl. Adam Malik Business District",
+        "Education Complex",
+        "Port Area",
+        "Trade Center"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 9+ triliun per tahun",
+        "ecommerce_gmv": "Rp 4+ triliun per tahun",
+        "startup_funding": "US$ 35+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Kabut asap musiman",
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Persaingan regional"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi perkebunan",
+        "Platform pendidikan",
+        "E-commerce regional",
+        "Agritech solutions",
+        "Environmental monitoring"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "380 ribu",
+      "kepadatan_penduduk": "2.600 jiwa/km²",
+      "usia_produktif": "65% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "14%",
+        "diploma": "12%",
+        "sma": "40%",
+        "smp": "22%",
+        "sd": "12%"
+      },
+      "pendapatan_rata_rata": "Rp 2-3 juta per bulan",
+      "digital_literacy": "63% populasi aktif online",
+      "mobile_penetration": "79% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "240.000",
+      "social_media_users": "200.000",
+      "online_shopping": "140.000",
+      "digital_payment": "110.000",
+      "ecommerce_penetration": "37% populasi",
+      "startup_density": "Rendah untuk kota regional",
+      "tech_talent_pool": "2.800+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Bengkulu, Bengkulu",
+    "phone": "085799520350",
+    "email": "bengkulu@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Bengkulu"
+  }
+}
