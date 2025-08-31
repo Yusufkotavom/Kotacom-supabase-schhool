@@ -1,0 +1,355 @@
+{
+  "nama": "Jakarta",
+  "slug": "jakarta",
+  "provinsi": "DKI Jakarta",
+  "populasi": 10800000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Menteng",
+        "kota": "Jakarta Pusat"
+      },
+      {
+        "nama": "Tanah Abang",
+        "kota": "Jakarta Pusat"
+      },
+      {
+        "nama": "Johar Baru",
+        "kota": "Jakarta Pusat"
+      },
+      {
+        "nama": "Cempaka Putih",
+        "kota": "Jakarta Pusat"
+      },
+      {
+        "nama": "Gambir",
+        "kota": "Jakarta Pusat"
+      },
+      {
+        "nama": "Sawah Besar",
+        "kota": "Jakarta Pusat"
+      },
+      {
+        "nama": "Kemayoran",
+        "kota": "Jakarta Pusat"
+      },
+      {
+        "nama": "Senen",
+        "kota": "Jakarta Pusat"
+      },
+      {
+        "nama": "Cilandak",
+        "kota": "Jakarta Selatan"
+      },
+      {
+        "nama": "Kebayoran Baru",
+        "kota": "Jakarta Selatan"
+      },
+      {
+        "nama": "Kebayoran Lama",
+        "kota": "Jakarta Selatan"
+      },
+      {
+        "nama": "Pancoran",
+        "kota": "Jakarta Selatan"
+      },
+      {
+        "nama": "Jagakarsa",
+        "kota": "Jakarta Selatan"
+      },
+      {
+        "nama": "Pesanggrahan",
+        "kota": "Jakarta Selatan"
+      },
+      {
+        "nama": "Tebet",
+        "kota": "Jakarta Selatan"
+      },
+      {
+        "nama": "Setia Budi",
+        "kota": "Jakarta Selatan"
+      },
+      {
+        "nama": "Mampang Prapatan",
+        "kota": "Jakarta Selatan"
+      },
+      {
+        "nama": "Pasar Minggu",
+        "kota": "Jakarta Selatan"
+      },
+      {
+        "nama": "Penjaringan",
+        "kota": "Jakarta Pusat"
+      },
+      {
+        "nama": "Tanjung Priok",
+        "kota": "Jakarta Utara"
+      },
+      {
+        "nama": "Koja",
+        "kota": "Jakarta Utara"
+      },
+      {
+        "nama": "Kelapa Gading",
+        "kota": "Jakarta Utara"
+      },
+      {
+        "nama": "Cilincing",
+        "kota": "Jakarta Utara"
+      },
+      {
+        "nama": "Pademangan",
+        "kota": "Jakarta Utara"
+      },
+      {
+        "nama": "Tambora",
+        "kota": "Jakarta Barat"
+      },
+      {
+        "nama": "Grogol Petamburan",
+        "kota": "Jakarta Barat"
+      },
+      {
+        "nama": "Palmerah",
+        "kota": "Jakarta Barat"
+      },
+      {
+        "nama": "Kembangan",
+        "kota": "Jakarta Barat"
+      },
+      {
+        "nama": "Kebon Jeruk",
+        "kota": "Jakarta Barat"
+      },
+      {
+        "nama": "Cengkareng",
+        "kota": "Jakarta Barat"
+      },
+      {
+        "nama": "Kalideres",
+        "kota": "Jakarta Barat"
+      },
+      {
+        "nama": "Jatinegara",
+        "kota": "Jakarta Timur"
+      },
+      {
+        "nama": "Matraman",
+        "kota": "Jakarta Timur"
+      },
+      {
+        "nama": "Pulogadung",
+        "kota": "Jakarta Timur"
+      },
+      {
+        "nama": "Cakung",
+        "kota": "Jakarta Timur"
+      },
+      {
+        "nama": "Duren Sawit",
+        "kota": "Jakarta Timur"
+      },
+      {
+        "nama": "Kramat Jati",
+        "kota": "Jakarta Timur"
+      },
+      {
+        "nama": "Makasar",
+        "kota": "Jakarta Timur"
+      },
+      {
+        "nama": "Ciracas",
+        "kota": "Jakarta Timur"
+      },
+      {
+        "nama": "Cipayung",
+        "kota": "Jakarta Timur"
+      },
+      {
+        "nama": "Pasar Rebo",
+        "kota": "Jakarta Timur"
+      }
+    ],
+    "kota_administrasi": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Jakarta Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Jakarta terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Jakarta. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website jakarta",
+      "pembuatan web jakarta",
+      "developer jakarta",
+      "web design jakarta",
+      "website jakarta",
+      "toko online jakarta"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Jakarta",
+    "subtitle_highlight": "Profesional Jakarta",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Indonesia dengan ekonomi terbesar - 10+ juta penduduk aktif",
+    "area_coverage": [
+      "Jakarta Pusat",
+      "Jakarta Utara",
+      "Jakarta Barat",
+      "Jakarta Selatan",
+      "Jakarta Timur"
+    ],
+    "unique_value_props": [
+      "Tim developer Jakarta dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Jakarta",
+      "SEO khusus untuk pencarian lokal Jakarta",
+      "Integrasi dengan Google My Business Jakarta"
+    ],
+    "local_stats": {
+      "businesses": "500.000+ bisnis di Jakarta",
+      "digital_transformation": "75% bisnis Jakarta butuh website"
+    },
+    "local_business_areas": [
+      "SCBD Jakarta",
+      "Grand Indonesia Mall",
+      "PIK Jakarta",
+      "Kebayoran Baru",
+      "Sudirman Central Business District",
+      "Plaza Indonesia",
+      "Senayan City",
+      "Lippo Mall Puri"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Negara Republik Indonesia, terletak di ujung barat laut Pulau Jawa",
+      "luas_wilayah": "661.52 km²",
+      "ketinggian": "0-50 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 2.000-3.000 mm/tahun)",
+      "cuaca": "Panas dan lembab sepanjang tahun dengan musim kemarau dan penghujan",
+      "transportasi": [
+        "Bandar Udara Internasional Soekarno-Hatta (CGK)",
+        "Pelabuhan Tanjung Priok (terbesar di Indonesia)",
+        "Stasiun Jakarta Kota dan Gambir",
+        "MRT Jakarta, LRT Jabodebek, TransJakarta"
+      ],
+      "komunikasi": [
+        "Fiber optic backbone terluas di Indonesia",
+        "5G network coverage 100%",
+        "Data center tier-3 di Jakarta"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup generator",
+        "PDAM Jakarta untuk air bersih",
+        "Gas alam untuk industri"
+      ],
+      "keunggulan_lokasi": [
+        "Akses langsung ke Pelabuhan Tanjung Priok",
+        "Dekat dengan Bandara Soekarno-Hatta",
+        "Pusat distribusi logistik nasional",
+        "Konektivitas tol dan kereta api"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 150-200 juta per tahun",
+      "pertumbuhan_ekonomi": "5.2% per tahun (2023)",
+      "pdb_kota": "Rp 2.500 triliun (2023)",
+      "sektor_dominan": [
+        "Perbankan & Keuangan",
+        "Teknologi & Startup",
+        "Properti & Konstruksi",
+        "Retail & E-commerce",
+        "Logistik & Transportasi",
+        "Jasa Konsultasi"
+      ],
+      "investasi": {
+        "asing": "US$ 20+ miliar per tahun",
+        "domestik": "Rp 150+ triliun per tahun",
+        "startup_ecosystem": "500+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "35% populasi",
+        "kelas_menengah": "45% populasi",
+        "kelas_bawah": "20% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 3.5% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "1.2 juta",
+      "sektor_usaha": {
+        "mikro": "850.000",
+        "kecil": "250.000",
+        "menengah": "80.000",
+        "besar": "20.000"
+      },
+      "startup": {
+        "total": "1.500+",
+        "unicorn": "Gojek, Tokopedia, Traveloka",
+        "sektor": [
+          "Fintech",
+          "E-commerce",
+          "Logistics",
+          "Healthtech",
+          "Edtech"
+        ]
+      },
+      "pusat_bisnis": [
+        "SCBD (Sudirman Central Business District)",
+        "Jakarta CBD (Jakarta Central Business District)",
+        "PIK (Pantai Indah Kapuk)",
+        "Kuningan Business District"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 500+ triliun per tahun",
+        "ecommerce_gmv": "Rp 150+ triliun per tahun",
+        "startup_funding": "US$ 2+ miliar per tahun"
+      },
+      "tantangan_bisnis": [
+        "Kepadatan lalu lintas tinggi",
+        "Biaya operasional tinggi",
+        "Persaingan ketat",
+        "Ketersediaan lahan terbatas"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi UMKM",
+        "Startup ecosystem",
+        "E-commerce platform",
+        "Fintech innovation",
+        "Smart city solutions"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "10.8 juta",
+      "kepadatan_penduduk": "16.000 jiwa/km²",
+      "usia_produktif": "65% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "25%",
+        "diploma": "20%",
+        "sma": "35%",
+        "smp": "15%",
+        "sd": "5%"
+      },
+      "pendapatan_rata_rata": "Rp 5-8 juta per bulan",
+      "digital_literacy": "85% populasi aktif online",
+      "mobile_penetration": "95% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "9.2 juta",
+      "social_media_users": "8.5 juta",
+      "online_shopping": "7.8 juta",
+      "digital_payment": "6.2 juta",
+      "ecommerce_penetration": "72% populasi",
+      "startup_density": "Tertinggi di Indonesia",
+      "tech_talent_pool": "100.000+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Jakarta Pusat, DKI Jakarta",
+    "phone": "085799520350",
+    "email": "jakarta@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Jakarta"
+  }
+}

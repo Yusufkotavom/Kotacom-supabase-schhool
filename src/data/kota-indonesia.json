@@ -1,0 +1,272 @@
+[
+  {
+    "nama": "Jakarta",
+    "slug": "jakarta",
+    "provinsi": "DKI Jakarta",
+    "populasi": 10800000,
+    "bisnisUtama": ["Perbankan", "Teknologi", "Retail", "Konsultan"],
+    "keywords": ["jasa website jakarta", "pembuatan web jakarta", "developer jakarta", "web design jakarta"],
+    "metaTitle": "Jasa Pembuatan Website Jakarta Terpercaya - Professional & Modern",
+    "metaDescription": "Jasa pembuatan website Jakarta terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Jakarta.",
+    "localBusiness": {
+      "address": "Jakarta Pusat, DKI Jakarta",
+      "phone": "085799520350",
+      "email": "info@kotacom.id"
+    },
+    "areaCoverage": ["Jakarta Pusat", "Jakarta Utara", "Jakarta Barat", "Jakarta Selatan", "Jakarta Timur"],
+    "competitors": ["PT Digital Jakarta", "CV Web Solution Jakarta", "WebDev Jakarta"],
+    "marketSize": "Kota dengan bisnis terbesar di Indonesia"
+  },
+  {
+    "nama": "Surabaya",
+    "slug": "surabaya",
+    "provinsi": "Jawa Timur",
+    "populasi": 3000000,
+    "bisnisUtama": ["Industri", "Perdagangan", "Jasa", "Pendidikan"],
+    "keywords": ["jasa website surabaya", "pembuatan web surabaya", "developer surabaya", "web design surabaya"],
+    "metaTitle": "Jasa Pembuatan Website Surabaya Terpercaya - Professional & Modern",
+    "metaDescription": "Jasa pembuatan website Surabaya terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Surabaya.",
+    "localBusiness": {
+      "address": "Surabaya, Jawa Timur",
+      "phone": "085799520350",
+      "email": "info@kotacom.id"
+    },
+    "areaCoverage": ["Surabaya Pusat", "Surabaya Utara", "Surabaya Barat", "Surabaya Selatan", "Surabaya Timur"],
+    "competitors": ["PT Digital Surabaya", "CV Web Solution Surabaya", "WebDev Surabaya"],
+    "marketSize": "Kota terbesar kedua di Indonesia"
+  },
+  {
+    "nama": "Bandung",
+    "slug": "bandung",
+    "provinsi": "Jawa Barat",
+    "populasi": 2500000,
+    "bisnisUtama": ["Fashion", "Kuliner", "Pendidikan", "Kreatif"],
+    "keywords": ["jasa website bandung", "pembuatan web bandung", "developer bandung", "web design bandung"],
+    "metaTitle": "Jasa Pembuatan Website Bandung Terpercaya - Professional & Modern",
+    "metaDescription": "Jasa pembuatan website Bandung terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Bandung.",
+    "localBusiness": {
+      "address": "Bandung, Jawa Barat",
+      "phone": "085799520350",
+      "email": "info@kotacom.id"
+    },
+    "areaCoverage": ["Bandung Kota", "Bandung Barat", "Bandung Timur", "Cimahi"],
+    "competitors": ["PT Digital Bandung", "CV Web Solution Bandung", "WebDev Bandung"],
+    "marketSize": "Kota kreatif dengan industri fashion terbesar"
+  },
+  {
+    "nama": "Medan",
+    "slug": "medan",
+    "provinsi": "Sumatera Utara",
+    "populasi": 2200000,
+    "bisnisUtama": ["Perdagangan", "Industri", "Jasa", "Pendidikan"],
+    "keywords": ["jasa website medan", "pembuatan web medan", "developer medan", "web design medan"],
+    "metaTitle": "Jasa Pembuatan Website Medan Terpercaya - Professional & Modern",
+    "metaDescription": "Jasa pembuatan website Medan terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Medan.",
+    "localBusiness": {
+      "address": "Medan, Sumatera Utara",
+      "phone": "085799520350",
+      "email": "info@kotacom.id"
+    },
+    "areaCoverage": ["Medan Kota", "Medan Baru", "Medan Johor", "Medan Petisah"],
+    "competitors": ["PT Digital Medan", "CV Web Solution Medan", "WebDev Medan"],
+    "marketSize": "Ibukota Sumatera dengan ekonomi terbesar"
+  },
+  {
+    "nama": "Semarang",
+    "slug": "semarang",
+    "provinsi": "Jawa Tengah",
+    "populasi": 1700000,
+    "bisnisUtama": ["Industri", "Pelabuhan", "Pendidikan", "Jasa"],
+    "keywords": ["jasa website semarang", "pembuatan web semarang", "developer semarang", "web design semarang"],
+    "metaTitle": "Jasa Pembuatan Website Semarang Terpercaya - Professional & Modern",
+    "metaDescription": "Jasa pembuatan website Semarang terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Semarang.",
+    "localBusiness": {
+      "address": "Semarang, Jawa Tengah",
+      "phone": "085799520350",
+      "email": "info@kotacom.id"
+    },
+    "areaCoverage": ["Semarang Kota", "Semarang Barat", "Semarang Timur", "Semarang Utara"],
+    "competitors": ["PT Digital Semarang", "CV Web Solution Semarang", "WebDev Semarang"],
+    "marketSize": "Kota pelabuhan strategis di Jawa Tengah"
+  },
+  {
+    "nama": "Yogyakarta",
+    "slug": "yogyakarta",
+    "provinsi": "DI Yogyakarta",
+    "populasi": 400000,
+    "bisnisUtama": ["Pendidikan", "Wisata", "Budaya", "Kuliner"],
+    "keywords": ["jasa website yogyakarta", "pembuatan web yogyakarta", "developer yogyakarta", "web design yogyakarta"],
+    "metaTitle": "Jasa Pembuatan Website Yogyakarta Terpercaya - Professional & Modern",
+    "metaDescription": "Jasa pembuatan website Yogyakarta terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Yogyakarta.",
+    "localBusiness": {
+      "address": "Yogyakarta, DI Yogyakarta",
+      "phone": "085799520350",
+      "email": "info@kotacom.id"
+    },
+    "areaCoverage": ["Yogyakarta Kota", "Sleman", "Bantul", "Gunung Kidul"],
+    "competitors": ["PT Digital Yogyakarta", "CV Web Solution Yogyakarta", "WebDev Yogyakarta"],
+    "marketSize": "Kota pendidikan dan budaya terkemuka"
+  },
+  {
+    "nama": "Makassar",
+    "slug": "makassar",
+    "provinsi": "Sulawesi Selatan",
+    "populasi": 1400000,
+    "bisnisUtama": ["Perdagangan", "Pelabuhan", "Pendidikan", "Jasa"],
+    "keywords": ["jasa website makassar", "pembuatan web makassar", "developer makassar", "web design makassar"],
+    "metaTitle": "Jasa Pembuatan Website Makassar Terpercaya - Professional & Modern",
+    "metaDescription": "Jasa pembuatan website Makassar terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Makassar.",
+    "localBusiness": {
+      "address": "Makassar, Sulawesi Selatan",
+      "phone": "085799520350",
+      "email": "info@kotacom.id"
+    },
+    "areaCoverage": ["Makassar Kota", "Maros", "Gowa", "Takalar"],
+    "competitors": ["PT Digital Makassar", "CV Web Solution Makassar", "WebDev Makassar"],
+    "marketSize": "Ibukota Sulawesi dengan ekonomi terbesar"
+  },
+  {
+    "nama": "Palembang",
+    "slug": "palembang",
+    "provinsi": "Sumatera Selatan",
+    "populasi": 1700000,
+    "bisnisUtama": ["Perdagangan", "Industri", "Pendidikan", "Jasa"],
+    "keywords": ["jasa website palembang", "pembuatan web palembang", "developer palembang", "web design palembang"],
+    "metaTitle": "Jasa Pembuatan Website Palembang Terpercaya - Professional & Modern",
+    "metaDescription": "Jasa pembuatan website Palembang terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Palembang.",
+    "localBusiness": {
+      "address": "Palembang, Sumatera Selatan",
+      "phone": "085799520350",
+      "email": "info@kotacom.id"
+    },
+    "areaCoverage": ["Palembang Kota", "Banyuasin", "Musi Banyuasin", "Ogan Komering Ilir"],
+    "competitors": ["PT Digital Palembang", "CV Web Solution Palembang", "WebDev Palembang"],
+    "marketSize": "Ibukota Sumatera Selatan dengan industri terbesar"
+  },
+  {
+    "nama": "Tangerang",
+    "slug": "tangerang",
+    "provinsi": "Banten",
+    "populasi": 2000000,
+    "bisnisUtama": ["Industri", "Logistik", "Perdagangan", "Jasa"],
+    "keywords": ["jasa website tangerang", "pembuatan web tangerang", "developer tangerang", "web design tangerang"],
+    "metaTitle": "Jasa Pembuatan Website Tangerang Terpercaya - Professional & Modern",
+    "metaDescription": "Jasa pembuatan website Tangerang terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Tangerang.",
+    "localBusiness": {
+      "address": "Tangerang, Banten",
+      "phone": "085799520350",
+      "email": "info@kotacom.id"
+    },
+    "areaCoverage": ["Tangerang Kota", "Tangerang Selatan", "Tangerang Regency"],
+    "competitors": ["PT Digital Tangerang", "CV Web Solution Tangerang", "WebDev Tangerang"],
+    "marketSize": "Kota industri terbesar di Banten"
+  },
+  {
+    "nama": "Depok",
+    "slug": "depok",
+    "provinsi": "Jawa Barat",
+    "populasi": 2100000,
+    "bisnisUtama": ["Pendidikan", "Perumahan", "Jasa", "Retail"],
+    "keywords": ["jasa website depok", "pembuatan web depok", "developer depok", "web design depok"],
+    "metaTitle": "Jasa Pembuatan Website Depok Terpercaya - Professional & Modern",
+    "metaDescription": "Jasa pembuatan website Depok terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Depok.",
+    "localBusiness": {
+      "address": "Depok, Jawa Barat",
+      "phone": "085799520350",
+      "email": "info@kotacom.id"
+    },
+    "areaCoverage": ["Depok Kota", "Cimanggis", "Cibinong", "Parung"],
+    "competitors": ["PT Digital Depok", "CV Web Solution Depok", "WebDev Depok"],
+    "marketSize": "Kota pendidikan terbesar di Jawa Barat"
+  },
+  {
+    "nama": "Bekasi",
+    "slug": "bekasi",
+    "provinsi": "Jawa Barat",
+    "populasi": 2900000,
+    "bisnisUtama": ["Industri", "Logistik", "Perdagangan", "Jasa"],
+    "keywords": ["jasa website bekasi", "pembuatan web bekasi", "developer bekasi", "web design bekasi"],
+    "metaTitle": "Jasa Pembuatan Website Bekasi Terpercaya - Professional & Modern",
+    "metaDescription": "Jasa pembuatan website Bekasi terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Bekasi.",
+    "localBusiness": {
+      "address": "Bekasi, Jawa Barat",
+      "phone": "085799520350",
+      "email": "info@kotacom.id"
+    },
+    "areaCoverage": ["Bekasi Kota", "Bekasi Barat", "Bekasi Timur", "Bekasi Utara"],
+    "competitors": ["PT Digital Bekasi", "CV Web Solution Bekasi", "WebDev Bekasi"],
+    "marketSize": "Kota industri terbesar di Indonesia"
+  },
+  {
+    "nama": "Bogor",
+    "slug": "bogor",
+    "provinsi": "Jawa Barat",
+    "populasi": 1100000,
+    "bisnisUtama": ["Pertanian", "Wisata", "Pendidikan", "Jasa"],
+    "keywords": ["jasa website bogor", "pembuatan web bogor", "developer bogor", "web design bogor"],
+    "metaTitle": "Jasa Pembuatan Website Bogor Terpercaya - Professional & Modern",
+    "metaDescription": "Jasa pembuatan website Bogor terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Bogor.",
+    "localBusiness": {
+      "address": "Bogor, Jawa Barat",
+      "phone": "085799520350",
+      "email": "info@kotacom.id"
+    },
+    "areaCoverage": ["Bogor Kota", "Cibinong", "Cileungsi", "Parung"],
+    "competitors": ["PT Digital Bogor", "CV Web Solution Bogor", "WebDev Bogor"],
+    "marketSize": "Kota hutan dengan wisata terkemuka"
+  },
+  {
+    "nama": "Malang",
+    "slug": "malang",
+    "provinsi": "Jawa Timur",
+    "populasi": 900000,
+    "bisnisUtama": ["Pendidikan", "Wisata", "Kuliner", "Jasa"],
+    "keywords": ["jasa website malang", "pembuatan web malang", "developer malang", "web design malang"],
+    "metaTitle": "Jasa Pembuatan Website Malang Terpercaya - Professional & Modern",
+    "metaDescription": "Jasa pembuatan website Malang terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Malang.",
+    "localBusiness": {
+      "address": "Malang, Jawa Timur",
+      "phone": "085799520350",
+      "email": "info@kotacom.id"
+    },
+    "areaCoverage": ["Malang Kota", "Batu", "Kepanjen", "Dampit"],
+    "competitors": ["PT Digital Malang", "CV Web Solution Malang", "WebDev Malang"],
+    "marketSize": "Kota pendidikan terbesar di Jawa Timur"
+  },
+  {
+    "nama": "Solo",
+    "slug": "solo",
+    "provinsi": "Jawa Tengah",
+    "populasi": 550000,
+    "bisnisUtama": ["Budaya", "Pendidikan", "Kuliner", "Jasa"],
+    "keywords": ["jasa website solo", "pembuatan web solo", "developer solo", "web design solo"],
+    "metaTitle": "Jasa Pembuatan Website Solo Terpercaya - Professional & Modern",
+    "metaDescription": "Jasa pembuatan website Solo terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Solo.",
+    "localBusiness": {
+      "address": "Surakarta (Solo), Jawa Tengah",
+      "phone": "085799520350",
+      "email": "info@kotacom.id"
+    },
+    "areaCoverage": ["Solo Kota", "Sukoharjo", "Karanganyar", "Sragen"],
+    "competitors": ["PT Digital Solo", "CV Web Solution Solo", "WebDev Solo"],
+    "marketSize": "Kota budaya terkemuka di Jawa Tengah"
+  },
+  {
+    "nama": "Padang",
+    "slug": "padang",
+    "provinsi": "Sumatera Barat",
+    "populasi": 950000,
+    "bisnisUtama": ["Perdagangan", "Kuliner", "Pendidikan", "Jasa"],
+    "keywords": ["jasa website padang", "pembuatan web padang", "developer padang", "web design padang"],
+    "metaTitle": "Jasa Pembuatan Website Padang Terpercaya - Professional & Modern",
+    "metaDescription": "Jasa pembuatan website Padang terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Padang.",
+    "localBusiness": {
+      "address": "Padang, Sumatera Barat",
+      "phone": "085799520350",
+      "email": "info@kotacom.id"
+    },
+    "areaCoverage": ["Padang Kota", "Padang Panjang", "Solok", "Sawahlunto"],
+    "competitors": ["PT Digital Padang", "CV Web Solution Padang", "WebDev Padang"],
+    "marketSize": "Ibukota Sumatera Barat dengan kuliner terkenal"
+  }
+]

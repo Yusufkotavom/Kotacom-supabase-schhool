@@ -1,0 +1,267 @@
+{
+  "nama": "Medan",
+  "slug": "medan",
+  "provinsi": "Sumatera Utara",
+  "populasi": 2200000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Medan Amplas",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Area",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Barat",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Baru",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Belawan",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Deli",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Denai",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Helvetia",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Johor",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Kota",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Labuhan",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Maimun",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Marelan",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Perjuangan",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Petisah",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Polonia",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Selayang",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Sunggal",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Tembung",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Timur",
+        "kota": "Medan"
+      },
+      {
+        "nama": "Medan Tuntungan",
+        "kota": "Medan"
+      }
+    ],
+    "kota_administrasi": [
+      "Medan"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Medan Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Medan terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Medan. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website medan",
+      "pembuatan web medan",
+      "developer medan",
+      "web design medan",
+      "website medan",
+      "toko online medan"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Medan",
+    "subtitle_highlight": "Profesional Medan",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Sumatera dengan ekonomi terbesar di luar Jawa - 2.2+ juta penduduk aktif",
+    "area_coverage": [
+      "Medan"
+    ],
+    "unique_value_props": [
+      "Tim developer Medan dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Medan",
+      "SEO khusus untuk pencarian lokal Medan",
+      "Integrasi dengan Google My Business Medan"
+    ],
+    "local_stats": {
+      "businesses": "160.000+ bisnis di Medan",
+      "digital_transformation": "65% bisnis Medan butuh website"
+    },
+    "local_business_areas": [
+      "Merdeka Walk Medan",
+      "Grand Palladium Medan",
+      "Sun Plaza Medan",
+      "Thamrin Plaza Medan",
+      "Cambridge City Square",
+      "Medan Fair Plaza",
+      "Paris Plaza Medan",
+      "Medan Mall"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Sumatera Utara, terletak di pesisir timur Sumatera",
+      "luas_wilayah": "265.10 km²",
+      "ketinggian": "2-50 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan tinggi (rata-rata 2.000-3.000 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan curah hujan tinggi",
+      "transportasi": [
+        "Bandar Udara Internasional Kualanamu (KNO)",
+        "Pelabuhan Belawan",
+        "Stasiun Medan",
+        "Trans Mebidang (Bus Rapid Transit)"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Sumatera",
+        "5G network coverage 85%",
+        "Data center di Medan"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Tirtanadi untuk air bersih",
+        "Gas alam untuk industri"
+      ],
+      "keunggulan_lokasi": [
+        "Gerbang utama Sumatera",
+        "Dekat dengan Pelabuhan Belawan",
+        "Pusat perdagangan regional",
+        "Akses ke sumber daya alam"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 50-80 juta per tahun",
+      "pertumbuhan_ekonomi": "4.8% per tahun (2023)",
+      "pdb_kota": "Rp 320 triliun (2023)",
+      "sektor_dominan": [
+        "Perdagangan",
+        "Perkebunan",
+        "Industri",
+        "Jasa Keuangan",
+        "Pendidikan",
+        "Wisata"
+      ],
+      "investasi": {
+        "asing": "US$ 4+ miliar per tahun",
+        "domestik": "Rp 40+ triliun per tahun",
+        "startup_ecosystem": "80+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "18% populasi",
+        "kelas_menengah": "48% populasi",
+        "kelas_bawah": "34% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.5% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "180.000",
+      "sektor_usaha": {
+        "mikro": "140.000",
+        "kecil": "30.000",
+        "menengah": "8.000",
+        "besar": "2.000"
+      },
+      "startup": {
+        "total": "100+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "AgriTech",
+          "Fintech",
+          "E-commerce",
+          "Education",
+          "Tourism"
+        ]
+      },
+      "pusat_bisnis": [
+        "Merdeka Walk Area",
+        "Grand Palladium",
+        "Sun Plaza",
+        "Thamrin Plaza"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 60+ triliun per tahun",
+        "ecommerce_gmv": "Rp 20+ triliun per tahun",
+        "startup_funding": "US$ 150+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Persaingan dengan kota besar",
+        "Keterbatasan infrastruktur",
+        "Biaya logistik tinggi",
+        "Ketersediaan tenaga ahli"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi perkebunan",
+        "E-commerce regional",
+        "Platform pendidikan",
+        "Wisata digital",
+        "Financial technology"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "2.2 juta",
+      "kepadatan_penduduk": "8.300 jiwa/km²",
+      "usia_produktif": "66% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "18%",
+        "diploma": "16%",
+        "sma": "40%",
+        "smp": "18%",
+        "sd": "8%"
+      },
+      "pendapatan_rata_rata": "Rp 3-5 juta per bulan",
+      "digital_literacy": "70% populasi aktif online",
+      "mobile_penetration": "88% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "1.5 juta",
+      "social_media_users": "1.4 juta",
+      "online_shopping": "1.2 juta",
+      "digital_payment": "1.0 juta",
+      "ecommerce_penetration": "55% populasi",
+      "startup_density": "Sedang untuk kota regional",
+      "tech_talent_pool": "10.000+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Medan, Sumatera Utara",
+    "phone": "085799520350",
+    "email": "medan@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Medan"
+  }
+}

@@ -1,0 +1,303 @@
+{
+  "nama": "Bandung",
+  "slug": "bandung",
+  "provinsi": "Jawa Barat",
+  "populasi": 2500000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Andir",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Antapani",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Arcamanik",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Astana Anyar",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Babakan Ciparay",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Bandung Kidul",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Bandung Kulon",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Bandung Wetan",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Batununggal",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Bojongloa Kaler",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Bojongloa Kidul",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Buahbatu",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Cibeunying Kaler",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Cibeunying Kidul",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Cibiru",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Cicendo",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Cidadap",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Cinambo",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Coblong",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Gedebage",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Kiaracondong",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Lengkong",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Mandalajati",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Panyileukan",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Rancasari",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Regol",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Sukajadi",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Sukasari",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Sumur Bandung",
+        "kota": "Bandung"
+      },
+      {
+        "nama": "Ujungberung",
+        "kota": "Bandung"
+      }
+    ],
+    "kota_administrasi": [
+      "Bandung"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Bandung Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Bandung terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Bandung. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website bandung",
+      "pembuatan web bandung",
+      "developer bandung",
+      "web design bandung",
+      "website bandung",
+      "toko online bandung"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Bandung",
+    "subtitle_highlight": "Profesional Bandung",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Jawa Barat dengan ekonomi kreatif terbesar - 2.5+ juta penduduk aktif",
+    "area_coverage": [
+      "Bandung"
+    ],
+    "unique_value_props": [
+      "Tim developer Bandung dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Bandung",
+      "SEO khusus untuk pencarian lokal Bandung",
+      "Integrasi dengan Google My Business Bandung"
+    ],
+    "local_stats": {
+      "businesses": "180.000+ bisnis di Bandung",
+      "digital_transformation": "68% bisnis Bandung butuh website"
+    },
+    "local_business_areas": [
+      "Dago Bandung",
+      "Braga Bandung",
+      "Paris Van Java",
+      "Bandung Indah Plaza",
+      "Cihampelas Walk",
+      "Trans Studio Bandung",
+      "Istana Plaza Bandung",
+      "BEC Bandung"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Jawa Barat, terletak di dataran tinggi",
+      "luas_wilayah": "167.31 km²",
+      "ketinggian": "600-1.050 meter di atas permukaan laut",
+      "iklim": "Sejuk dengan curah hujan sedang (rata-rata 1.500-2.500 mm/tahun)",
+      "cuaca": "Sejuk sepanjang tahun dengan suhu 20-30°C",
+      "transportasi": [
+        "Bandar Udara Internasional Husein Sastranegara (BDO)",
+        "Stasiun Bandung dan Cimahi",
+        "Light Rail Transit (LRT)",
+        "Trans Metro Bandung"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Jawa Barat",
+        "5G network coverage 90%",
+        "Data center modern di Bandung"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Bandung untuk air bersih",
+        "Gas alam untuk rumah tangga"
+      ],
+      "keunggulan_lokasi": [
+        "Kota kreatif dan pendidikan",
+        "Akses ke Bandara Husein Sastranegara",
+        "Pusat fashion dan kuliner",
+        "Kota wisata terkemuka"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 60-90 juta per tahun",
+      "pertumbuhan_ekonomi": "5.5% per tahun (2023)",
+      "pdb_kota": "Rp 450 triliun (2023)",
+      "sektor_dominan": [
+        "Tekstil & Fashion",
+        "Pendidikan",
+        "Kuliner",
+        "Kreatif",
+        "Teknologi",
+        "Wisata"
+      ],
+      "investasi": {
+        "asing": "US$ 5+ miliar per tahun",
+        "domestik": "Rp 50+ triliun per tahun",
+        "startup_ecosystem": "150+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "20% populasi",
+        "kelas_menengah": "55% populasi",
+        "kelas_bawah": "25% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 3.8% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "220.000",
+      "sektor_usaha": {
+        "mikro": "170.000",
+        "kecil": "40.000",
+        "menengah": "8.000",
+        "besar": "2.000"
+      },
+      "startup": {
+        "total": "200+",
+        "unicorn": "Traveloka",
+        "sektor": [
+          "FashionTech",
+          "Edtech",
+          "FoodTech",
+          "Tourism",
+          "Creative Economy"
+        ]
+      },
+      "pusat_bisnis": [
+        "Dago District",
+        "Braga Creative City",
+        "Paris Van Java",
+        "BEC (Bandung Electronic Center)"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 80+ triliun per tahun",
+        "ecommerce_gmv": "Rp 30+ triliun per tahun",
+        "startup_funding": "US$ 300+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Persaingan bisnis kreatif tinggi",
+        "Biaya sewa properti tinggi",
+        "Kepadatan turis",
+        "Keterbatasan lahan"
+      ],
+      "peluang_bisnis": [
+        "Digital marketing untuk UMKM",
+        "E-commerce fashion",
+        "Platform pendidikan online",
+        "Wisata digital",
+        "Creative technology"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "2.5 juta",
+      "kepadatan_penduduk": "14.800 jiwa/km²",
+      "usia_produktif": "70% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "22%",
+        "diploma": "19%",
+        "sma": "35%",
+        "smp": "17%",
+        "sd": "7%"
+      },
+      "pendapatan_rata_rata": "Rp 3.5-5.5 juta per bulan",
+      "digital_literacy": "75% populasi aktif online",
+      "mobile_penetration": "90% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "1.9 juta",
+      "social_media_users": "1.7 juta",
+      "online_shopping": "1.5 juta",
+      "digital_payment": "1.3 juta",
+      "ecommerce_penetration": "60% populasi",
+      "startup_density": "Tinggi untuk kota kreatif",
+      "tech_talent_pool": "15.000+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Bandung, Jawa Barat",
+    "phone": "085799520350",
+    "email": "bandung@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Bandung"
+  }
+}

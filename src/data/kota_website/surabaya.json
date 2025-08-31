@@ -1,0 +1,283 @@
+{
+  "nama": "Surabaya",
+  "slug": "surabaya",
+  "provinsi": "Jawa Timur",
+  "populasi": 3000000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Bubutan",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Genteng",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Gubeng",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Gununganyar",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Jambangan",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Karangpilang",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Krembangan",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Lakarsantri",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Mulyorejo",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Pabean Cantian",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Pakal",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Rungkut",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Sambikerep",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Sawahan",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Semampir",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Simokerto",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Sukolilo",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Sukomanunggal",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Tambaksari",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Tandes",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Tegalsari",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Tenggilis Mejoyo",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Wiyung",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Wonocolo",
+        "kota": "Surabaya"
+      },
+      {
+        "nama": "Wonokromo",
+        "kota": "Surabaya"
+      }
+    ],
+    "kota_administrasi": [
+      "Surabaya"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Surabaya Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Surabaya terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Surabaya. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website surabaya",
+      "pembuatan web surabaya",
+      "developer surabaya",
+      "web design surabaya",
+      "website surabaya",
+      "toko online surabaya"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Surabaya",
+    "subtitle_highlight": "Profesional Surabaya",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Kota terbesar kedua di Indonesia - 3+ juta penduduk aktif",
+    "area_coverage": [
+      "Surabaya"
+    ],
+    "unique_value_props": [
+      "Tim developer Surabaya dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Surabaya",
+      "SEO khusus untuk pencarian lokal Surabaya",
+      "Integrasi dengan Google My Business Surabaya"
+    ],
+    "local_stats": {
+      "businesses": "250.000+ bisnis di Surabaya",
+      "digital_transformation": "70% bisnis Surabaya butuh website"
+    },
+    "local_business_areas": [
+      "Tunjungan Plaza Surabaya",
+      "Grand City Surabaya",
+      "Pakuwon Mall Surabaya",
+      "Galaxy Mall Surabaya",
+      "Supermal Pakuwon Indah",
+      "Ciputra World Surabaya",
+      "Lenmarc Mall Surabaya",
+      "BG Junction Surabaya"
+    ],
+    "geografis": {
+      "lokasi": "Kota terbesar kedua di Indonesia, terletak di pesisir utara Pulau Jawa",
+      "luas_wilayah": "350.54 km²",
+      "ketinggian": "0-10 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan sedang (rata-rata 1.500-2.000 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan musim kemarau dan penghujan",
+      "transportasi": [
+        "Bandar Udara Internasional Juanda (SUB)",
+        "Pelabuhan Tanjung Perak",
+        "Stasiun Surabaya Kota dan Gubeng",
+        "Trans Surabaya (Bus Rapid Transit)"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Jawa Timur",
+        "5G network coverage 95%",
+        "Data center tier-2 di Surabaya"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Surabaya untuk air bersih",
+        "Gas alam untuk industri"
+      ],
+      "keunggulan_lokasi": [
+        "Akses ke Pelabuhan Tanjung Perak",
+        "Dekat dengan Bandara Juanda",
+        "Pusat industri dan perdagangan",
+        "Gerbang timur Indonesia"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 80-120 juta per tahun",
+      "pertumbuhan_ekonomi": "6.8% per tahun (2023)",
+      "pdb_kota": "Rp 800 triliun (2023)",
+      "sektor_dominan": [
+        "Industri & Manufaktur",
+        "Perdagangan",
+        "Jasa Keuangan",
+        "Logistik & Transportasi",
+        "Teknologi",
+        "Pendidikan"
+      ],
+      "investasi": {
+        "asing": "US$ 8+ miliar per tahun",
+        "domestik": "Rp 80+ triliun per tahun",
+        "startup_ecosystem": "200+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "25% populasi",
+        "kelas_menengah": "50% populasi",
+        "kelas_bawah": "25% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.2% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "350.000",
+      "sektor_usaha": {
+        "mikro": "280.000",
+        "kecil": "60.000",
+        "menengah": "8.000",
+        "besar": "2.000"
+      },
+      "startup": {
+        "total": "300+",
+        "unicorn": "Bukalapak, Halodoc",
+        "sektor": [
+          "Fintech",
+          "Healthtech",
+          "E-commerce",
+          "Logistics",
+          "AgriTech"
+        ]
+      },
+      "pusat_bisnis": [
+        "Tunjungan Plaza Area",
+        "Grand City Mall Area",
+        "Pakuwon Trade Center",
+        "Surabaya Town Square"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 150+ triliun per tahun",
+        "ecommerce_gmv": "Rp 50+ triliun per tahun",
+        "startup_funding": "US$ 500+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Kepadatan lalu lintas di pusat kota",
+        "Biaya operasional tinggi",
+        "Persaingan dengan Jakarta",
+        "Ketersediaan lahan industri"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi UMKM",
+        "E-commerce platform",
+        "Logistics technology",
+        "Manufacturing 4.0",
+        "Smart city solutions"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "3.0 juta",
+      "kepadatan_penduduk": "8.500 jiwa/km²",
+      "usia_produktif": "68% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "20%",
+        "diploma": "18%",
+        "sma": "38%",
+        "smp": "18%",
+        "sd": "6%"
+      },
+      "pendapatan_rata_rata": "Rp 4-6 juta per bulan",
+      "digital_literacy": "78% populasi aktif online",
+      "mobile_penetration": "92% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "2.3 juta",
+      "social_media_users": "2.1 juta",
+      "online_shopping": "1.9 juta",
+      "digital_payment": "1.6 juta",
+      "ecommerce_penetration": "65% populasi",
+      "startup_density": "Kedua terbesar setelah Jakarta",
+      "tech_talent_pool": "25.000+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Surabaya, Jawa Timur",
+    "phone": "085799520350",
+    "email": "surabaya@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Surabaya"
+  }
+}

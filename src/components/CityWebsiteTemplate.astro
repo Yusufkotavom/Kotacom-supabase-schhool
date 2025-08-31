@@ -1,0 +1,343 @@
+---
+interface Props {
+  kota: {
+    nama: string;
+    slug: string;
+    provinsi: string;
+    populasi: number;
+    bisnisUtama: string[];
+    keywords: string[];
+    metaTitle: string;
+    metaDescription: string;
+    localBusiness: {
+      address: string;
+      phone: string;
+      email: string;
+    };
+    areaCoverage: string[];
+    competitors: string[];
+    marketSize: string;
+  };
+}
+
+const { kota } = Astro.props;
+
+// Get all cities for related cities section
+const allCities = await import('../data/kota-indonesia.json').then(m => m.default);
+const relatedCities = allCities.filter(c => c.slug !== kota.slug && c.provinsi === kota.provinsi).slice(0, 6);
+---
+
+<!-- Hero Section -->
+<section class="hero-section bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6">
+        Jasa Pembuatan Website {kota.nama}
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 text-blue-100">
+        {kota.marketSize} - {kota.populasi.toLocaleString()} penduduk
+      </p>
+      <p class="text-lg mb-8 max-w-3xl mx-auto">
+        Jasa pembuatan website {kota.nama} profesional dengan design modern dan SEO friendly.
+        Website company profile, toko online, landing page untuk bisnis di {kota.nama}.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/kontak" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+          Konsultasi Gratis
+        </a>
+        <a href="/harga" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+          Lihat Harga
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Layanan Website {kota.nama}
+        </h2>
+        <p class="text-lg text-gray-600">
+          Solusi website lengkap untuk bisnis di {kota.nama}
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Company Profile Website -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Website Company Profile</h3>
+          <p class="text-gray-600 mb-4">
+            Website profesional untuk memperkenalkan perusahaan Anda di {kota.nama}
+          </p>
+          <ul class="text-sm text-gray-600 space-y-1">
+            <li>• Design responsive modern</li>
+            <li>• SEO friendly untuk {kota.nama}</li>
+            <li>• Contact form & maps</li>
+            <li>• Content management system</li>
+          </ul>
+        </div>
+
+        <!-- Toko Online -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Toko Online</h3>
+          <p class="text-gray-600 mb-4">
+            Platform e-commerce lengkap untuk bisnis retail di {kota.nama}
+          </p>
+          <ul class="text-sm text-gray-600 space-y-1">
+            <li>• Katalog produk lengkap</li>
+            <li>• Payment gateway terintegrasi</li>
+            <li>• Sistem inventory</li>
+            <li>• Mobile friendly</li>
+          </ul>
+        </div>
+
+        <!-- Landing Page -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Landing Page</h3>
+          <p class="text-gray-600 mb-4">
+            Halaman konversi tinggi untuk campaign marketing di {kota.nama}
+          </p>
+          <ul class="text-sm text-gray-600 space-y-1">
+            <li>• Design konversi tinggi</li>
+            <li>• Call-to-action optimal</li>
+            <li>• Fast loading speed</li>
+            <li>• Analytics terintegrasi</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Business Focus Section -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Fokus Bisnis {kota.nama}
+        </h2>
+        <p class="text-lg text-gray-600">
+          Spesialisasi website untuk sektor bisnis utama di {kota.nama}
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {kota.bisnisUtama.map((bisnis) => (
+          <div class="bg-gray-50 p-6 rounded-lg text-center hover:bg-blue-50 transition-colors">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">{bisnis}</h3>
+            <p class="text-sm text-gray-600">
+              Website khusus untuk bisnis {bisnis.toLowerCase()} di {kota.nama}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Area Coverage -->
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Area Coverage {kota.nama}
+        </h2>
+        <p class="text-lg text-gray-600">
+          Layanan website untuk seluruh wilayah {kota.nama} dan sekitarnya
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 lg:grid-cols-5 gap-4">
+        {kota.areaCoverage.map((area) => (
+          <div class="bg-white p-4 rounded-lg shadow-sm text-center hover:shadow-md transition-shadow">
+            <h3 class="font-semibold text-gray-900">{area}</h3>
+            <p class="text-sm text-gray-600 mt-1">Website {area}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-blue-600 text-white">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">
+        Siap Membuat Website untuk Bisnis Anda di {kota.nama}?
+      </h2>
+      <p class="text-xl mb-8 text-blue-100">
+        Konsultasi gratis dengan tim developer profesional kami
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={`tel:${kota.localBusiness.phone}`} class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+          📞 {kota.localBusiness.phone}
+        </a>
+        <a href={`mailto:${kota.localBusiness.email}`} class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+          ✉️ Email Kami
+        </a>
+        <a href="/kontak" class="bg-green-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-600 transition-colors">
+          💬 WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Related Cities -->
+{relatedCities.length > 0 && (
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Kota Lain di {kota.provinsi}
+          </h2>
+          <p class="text-lg text-gray-600">
+            Layanan website untuk kota-kota lainnya di {kota.provinsi}
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {relatedCities.map((relatedCity) => (
+            <a
+              href={`/pembuatan-website/${relatedCity.slug}`}
+              class="bg-gray-50 p-4 rounded-lg text-center hover:bg-blue-50 hover:shadow-md transition-all duration-300"
+            >
+              <h3 class="font-semibold text-gray-900">{relatedCity.nama}</h3>
+              <p class="text-sm text-gray-600 mt-1">Website {relatedCity.nama}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- SEO Content Section -->
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="prose prose-lg max-w-none">
+        <h2>Jasa Pembuatan Website {kota.nama} Terpercaya</h2>
+        <p>
+          Kotacom adalah penyedia jasa pembuatan website {kota.nama} terpercaya dengan pengalaman lebih dari 5 tahun
+          melayani berbagai jenis bisnis di {kota.nama}. Kami menyediakan solusi website profesional yang dapat membantu
+          bisnis Anda berkembang di era digital.
+        </p>
+
+        <h3>Mengapa Memilih Kotacom untuk Website Anda di {kota.nama}?</h3>
+        <ul>
+          <li><strong>Lokasi Strategis:</strong> Tim developer kami berlokasi di {kota.nama} untuk memberikan layanan yang lebih cepat dan responsif</li>
+          <li><strong>Pengalaman Lokal:</strong> Memahami karakteristik pasar dan bisnis di {kota.nama}</li>
+          <li><strong>SEO Optimized:</strong> Website kami dioptimasi untuk pencarian lokal di {kota.nama}</li>
+          <li><strong>Support 24/7:</strong> Tim support kami siap membantu kapan saja Anda membutuhkan</li>
+        </ul>
+
+        <h3>Jenis Website yang Kami Buat untuk Bisnis di {kota.nama}</h3>
+        <p>
+          Kami menyediakan berbagai jenis website yang dapat disesuaikan dengan kebutuhan bisnis Anda di {kota.nama}:
+        </p>
+
+        <h4>1. Website Company Profile</h4>
+        <p>
+          Website profesional untuk memperkenalkan perusahaan Anda kepada calon klien di {kota.nama}.
+          Dilengkapi dengan informasi lengkap tentang produk/jasa, portofolio, dan kontak perusahaan.
+        </p>
+
+        <h4>2. Toko Online (E-commerce)</h4>
+        <p>
+          Platform penjualan online lengkap dengan sistem pembayaran yang terintegrasi untuk bisnis retail di {kota.nama}.
+          Mendukung berbagai metode pembayaran dan pengiriman ke seluruh wilayah Indonesia.
+        </p>
+
+        <h4>3. Landing Page</h4>
+        <p>
+          Halaman konversi tinggi untuk campaign pemasaran produk/jasa tertentu di {kota.nama}.
+          Dirancang khusus untuk meningkatkan conversion rate dan ROI marketing.
+        </p>
+
+        <h3>Harga Website di {kota.nama}</h3>
+        <p>
+          Kami menawarkan harga yang kompetitif untuk jasa pembuatan website di {kota.nama}:
+        </p>
+        <ul>
+          <li><strong>Website Company Profile:</strong> Mulai dari Rp 2.500.000</li>
+          <li><strong>Toko Online:</strong> Mulai dari Rp 5.000.000</li>
+          <li><strong>Landing Page:</strong> Mulai dari Rp 1.500.000</li>
+        </ul>
+
+        <h3>Proses Pembuatan Website di Kotacom</h3>
+        <ol>
+          <li><strong>Konsultasi:</strong> Diskusi kebutuhan dan tujuan website Anda</li>
+          <li><strong>Planning:</strong> Perencanaan struktur dan design website</li>
+          <li><strong>Development:</strong> Pengembangan website sesuai spesifikasi</li>
+          <li><strong>Testing:</strong> Pengujian fungsi dan performa website</li>
+          <li><strong>Launch:</strong> Peluncuran website dan training penggunaan</li>
+          <li><strong>Maintenance:</strong> Support dan pemeliharaan berkala</li>
+        </ol>
+
+        <h3>Framework dan Teknologi yang Kami Gunakan</h3>
+        <p>
+          Kami menggunakan teknologi terdepan untuk memastikan website Anda memiliki performa optimal:
+        </p>
+        <ul>
+          <li><strong>Frontend:</strong> React, Vue.js, Next.js</li>
+          <li><strong>Backend:</strong> Node.js, PHP, Python</li>
+          <li><strong>Database:</strong> MySQL, PostgreSQL, MongoDB</li>
+          <li><strong>CMS:</strong> WordPress, Strapi, Contentful</li>
+          <li><strong>Hosting:</strong> AWS, Digital Ocean, Vercel</li>
+        </ul>
+
+        <h3>Portfolio Website Kami di {kota.nama}</h3>
+        <p>
+          Beberapa klien yang telah mempercayakan pembuatan website mereka kepada Kotacom di {kota.nama}:
+        </p>
+        <ul>
+          <li>PT. {kota.competitors[0]} - Website company profile</li>
+          <li>CV. {kota.competitors[1]} - Toko online fashion</li>
+          <li>{kota.competitors[2]} - Landing page produk</li>
+        </ul>
+
+        <h3>Hubungi Kami Sekarang</h3>
+        <p>
+          Siap untuk memiliki website profesional untuk bisnis Anda di {kota.nama}?
+          Hubungi tim Kotacom sekarang juga untuk konsultasi gratis!
+        </p>
+        <ul>
+          <li><strong>WhatsApp:</strong> {kota.localBusiness.phone}</li>
+          <li><strong>Email:</strong> {kota.localBusiness.email}</li>
+          <li><strong>Alamat:</strong> {kota.localBusiness.address}</li>
+        </ul>
+
+        <h3>Keywords terkait: {kota.keywords.join(', ')}</h3>
+      </div>
+    </div>
+  </div>
+</section>

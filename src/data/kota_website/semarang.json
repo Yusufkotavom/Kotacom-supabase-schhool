@@ -1,0 +1,247 @@
+{
+  "nama": "Semarang",
+  "slug": "semarang",
+  "provinsi": "Jawa Tengah",
+  "populasi": 1600000,
+  "area": {
+    "kecamatan": [
+      {
+        "nama": "Banyumanik",
+        "kota": "Semarang"
+      },
+      {
+        "nama": "Candisari",
+        "kota": "Semarang"
+      },
+      {
+        "nama": "Gajahmungkur",
+        "kota": "Semarang"
+      },
+      {
+        "nama": "Gayamsari",
+        "kota": "Semarang"
+      },
+      {
+        "nama": "Genuk",
+        "kota": "Semarang"
+      },
+      {
+        "nama": "Gunungpati",
+        "kota": "Semarang"
+      },
+      {
+        "nama": "Mijen",
+        "kota": "Semarang"
+      },
+      {
+        "nama": "Ngaliyan",
+        "kota": "Semarang"
+      },
+      {
+        "nama": "Pedurungan",
+        "kota": "Semarang"
+      },
+      {
+        "nama": "Semarang Barat",
+        "kota": "Semarang"
+      },
+      {
+        "nama": "Semarang Selatan",
+        "kota": "Semarang"
+      },
+      {
+        "nama": "Semarang Tengah",
+        "kota": "Semarang"
+      },
+      {
+        "nama": "Semarang Timur",
+        "kota": "Semarang"
+      },
+      {
+        "nama": "Semarang Utara",
+        "kota": "Semarang"
+      },
+      {
+        "nama": "Tembalang",
+        "kota": "Semarang"
+      },
+      {
+        "nama": "Tugu",
+        "kota": "Semarang"
+      }
+    ],
+    "kota_administrasi": [
+      "Semarang"
+    ]
+  },
+  "seo": {
+    "meta_title": "Jasa Pembuatan Website Semarang Terpercaya - Professional & Modern | Kotacom",
+    "meta_description": "Jasa pembuatan website Semarang terbaik dengan design modern dan SEO friendly. Website company profile, toko online, landing page untuk bisnis di Semarang. Harga terjangkau, kualitas premium.",
+    "keywords": [
+      "jasa website semarang",
+      "pembuatan web semarang",
+      "developer semarang",
+      "web design semarang",
+      "website semarang",
+      "toko online semarang"
+    ]
+  },
+  "hero": {
+    "title": "Jasa Pembuatan Website Semarang",
+    "subtitle_highlight": "Profesional Semarang",
+    "badge": "200+ Website Sukses Dibuat"
+  },
+  "local_content": {
+    "market_size": "Ibukota Jawa Tengah dengan ekonomi strategis - 1.6+ juta penduduk aktif",
+    "area_coverage": [
+      "Semarang"
+    ],
+    "unique_value_props": [
+      "Tim developer Semarang dengan pengalaman 5+ tahun",
+      "Support lokal 24/7 di Semarang",
+      "SEO khusus untuk pencarian lokal Semarang",
+      "Integrasi dengan Google My Business Semarang"
+    ],
+    "local_stats": {
+      "businesses": "120.000+ bisnis di Semarang",
+      "digital_transformation": "62% bisnis Semarang butuh website"
+    },
+    "local_business_areas": [
+      "Grand Marina Semarang",
+      "Paragon City Mall",
+      "DP Mall Semarang",
+      "Java Mall Semarang",
+      "Citimall Semarang",
+      "Simpang Lima",
+      "Simpang Enam",
+      "Lawang Sewu Area"
+    ],
+    "geografis": {
+      "lokasi": "Ibukota Provinsi Jawa Tengah, terletak di pesisir utara Pulau Jawa",
+      "luas_wilayah": "373.70 km²",
+      "ketinggian": "0-20 meter di atas permukaan laut",
+      "iklim": "Tropis dengan curah hujan sedang (rata-rata 1.800-2.500 mm/tahun)",
+      "cuaca": "Panas dan lembab dengan angin laut",
+      "transportasi": [
+        "Bandar Udara Internasional Ahmad Yani (SRG)",
+        "Pelabuhan Tanjung Emas",
+        "Stasiun Semarang Tawang",
+        "Trans Semarang (BRT)"
+      ],
+      "komunikasi": [
+        "Fiber optic network terluas di Jawa Tengah",
+        "5G network coverage 82%",
+        "Data center di Semarang"
+      ],
+      "utilities": [
+        "Listrik 24/7 dengan backup",
+        "PDAM Semarang untuk air bersih",
+        "Gas alam untuk industri"
+      ],
+      "keunggulan_lokasi": [
+        "Akses ke Pelabuhan Tanjung Emas",
+        "Dekat dengan Bandara Ahmad Yani",
+        "Pusat logistik strategis",
+        "Gerbang tengah Indonesia"
+      ]
+    },
+    "ekonomi": {
+      "gdp_per_kapita": "Rp 45-70 juta per tahun",
+      "pertumbuhan_ekonomi": "5.2% per tahun (2023)",
+      "pdb_kota": "Rp 220 triliun (2023)",
+      "sektor_dominan": [
+        "Industri",
+        "Perdagangan",
+        "Pendidikan",
+        "Jasa",
+        "Logistik",
+        "Wisata"
+      ],
+      "investasi": {
+        "asing": "US$ 3+ miliar per tahun",
+        "domestik": "Rp 30+ triliun per tahun",
+        "startup_ecosystem": "60+ startup aktif"
+      },
+      "daya_beli": {
+        "kelas_atas": "15% populasi",
+        "kelas_menengah": "52% populasi",
+        "kelas_bawah": "33% populasi"
+      },
+      "indeks_harga": "Inflasi rata-rata 4.0% per tahun"
+    },
+    "bisnis": {
+      "jumlah_perusahaan": "140.000",
+      "sektor_usaha": {
+        "mikro": "110.000",
+        "kecil": "25.000",
+        "menengah": "4.000",
+        "besar": "1.000"
+      },
+      "startup": {
+        "total": "80+",
+        "unicorn": "Tidak ada unicorn lokal",
+        "sektor": [
+          "Logistics",
+          "Education",
+          "E-commerce",
+          "Manufacturing",
+          "Tourism"
+        ]
+      },
+      "pusat_bisnis": [
+        "Simpang Lima Area",
+        "Grand Marina",
+        "Paragon City",
+        "DP Mall"
+      ],
+      "pasar_potential": {
+        "digital_economy": "Rp 40+ triliun per tahun",
+        "ecommerce_gmv": "Rp 15+ triliun per tahun",
+        "startup_funding": "US$ 100+ juta per tahun"
+      },
+      "tantangan_bisnis": [
+        "Persaingan dengan kota besar",
+        "Keterbatasan infrastruktur",
+        "Biaya logistik",
+        "Ketersediaan tenaga terampil"
+      ],
+      "peluang_bisnis": [
+        "Digitalisasi logistik",
+        "E-commerce regional",
+        "Platform pendidikan",
+        "Wisata digital",
+        "Manufacturing tech"
+      ]
+    },
+    "demografi": {
+      "populasi_total": "1.6 juta",
+      "kepadatan_penduduk": "4.300 jiwa/km²",
+      "usia_produktif": "67% (usia 15-64 tahun)",
+      "pendidikan": {
+        "sarjana": "16%",
+        "diploma": "15%",
+        "sma": "42%",
+        "smp": "19%",
+        "sd": "8%"
+      },
+      "pendapatan_rata_rata": "Rp 2.5-4.5 juta per bulan",
+      "digital_literacy": "68% populasi aktif online",
+      "mobile_penetration": "86% populasi"
+    },
+    "digital_economy": {
+      "internet_users": "1.1 juta",
+      "social_media_users": "1.0 juta",
+      "online_shopping": "900.000",
+      "digital_payment": "750.000",
+      "ecommerce_penetration": "52% populasi",
+      "startup_density": "Rendah untuk kota regional",
+      "tech_talent_pool": "8.000+ developer dan IT specialist"
+    }
+  },
+  "contact": {
+    "address": "Semarang, Jawa Tengah",
+    "phone": "085799520350",
+    "email": "semarang@kotacom.id",
+    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20Semarang"
+  }
+}
