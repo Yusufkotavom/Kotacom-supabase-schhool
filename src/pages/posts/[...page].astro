@@ -11,8 +11,8 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const mdxPosts = await getCollection('postsMdx').catch(() => [] as any[]);
 
   // ✅ Get posts directly from Supabase
-  logger.info('Posts page: Fetching posts from Supabase...');
-  const supabasePosts = await getPostsDirectFromSupabase(1000); // Reduced from 10000 to prevent timeout
+  logger.info('Posts page: Fetching all posts from Supabase...');
+  const supabasePosts = await getPostsDirectFromSupabase(null); // Fetch all posts
   logger.success(`Posts page: Successfully fetched ${supabasePosts.length} posts from Supabase`);
   
   const normalizedMdxPosts = mdxPosts.map((entry) => ({

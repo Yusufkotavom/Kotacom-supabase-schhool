@@ -6,9 +6,9 @@ const SUPABASE_URL = import.meta.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = import.meta.env.SUPABASE_ANON_KEY;
 
 // ✅ IMPORTANT: Field mapping for database schema
-// - Use '_status' field for filtering (not 'status')
-// - Use 'published' field for ordering (not 'published_at') for products/services/projects
-// - Use 'published_at' field for ordering for posts table
+// - Use 'status' field for filtering (not 'status')
+// - Use 'published' field for ordering (not 'published') for products/services/projects
+// - Use 'published' field for ordering for posts table
 // - Field fallbacks are implemented for backward compatibility
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -27,6 +27,32 @@ async function withTimeout<T>(
       setTimeout(() => reject(new Error(`Query timeout after ${timeoutMs}ms`)), timeoutMs)
     )
   ]);
+}
+
+// ✅ Utility function untuk membersihkan whitespace berlebihan
+function cleanWhitespace(text: string): string {
+  if (!text || typeof text !== 'string') return '';
+
+  // Split by lines, process each line, then join back
+  const lines = text
+    .split(/\r?\n/) // Split by line endings (handle both \r\n and \n)
+    .map(line => line.trim()) // Trim each line (remove leading/trailing spaces)
+    .filter(line => line.length > 0); // Remove empty lines
+
+  // Join with double line breaks for proper markdown formatting
+  return lines.join('\n\n').trim();
+}
+
+// ✅ Utility function untuk membersihkan markdown content
+function cleanMarkdownContent(content: string): string {
+  if (!content || typeof content !== 'string') return '';
+
+  return cleanWhitespace(content)
+    // Pastikan tidak ada empty lines di awal/akhir yang berlebihan
+    .replace(/^\n+|\n+$/g, '')
+    // Untuk markdown, pastikan ada line break minimal antara paragraphs
+    // tapi jangan terlalu agresif - hanya ganti single line dengan double line jika diperlukan
+    .replace(/([.!?])\n([A-Z])/g, '$1\n\n$2');
 }
 
 export interface SupabasePost {
@@ -54,19 +80,21 @@ export interface SupabasePost {
 // Helper function to get tags for posts
 async function getTagsForPosts(postIds: number[]): Promise<Map<number, string[]>> {
   const tagsMap = new Map<number, string[]>();
-  
+
   if (postIds.length === 0) return tagsMap;
-  
+
   try {
+    logger.info(`Fetching tags for ${postIds.length} posts...`);
+
     const { data: tagsData, error } = await withTimeout(
       supabase
         .from('posts_tags')
         .select('_parent_id, value')
         .in('_parent_id', postIds)
         .order('_order', { ascending: true }),
-      8000 // 8 second timeout for tags query
+      12000 // Increased timeout for large batches (12 seconds)
     ) as any;
-      
+
     if (!error && tagsData) {
       tagsData.forEach((tag: any) => {
         const postId = tag._parent_id;
@@ -75,30 +103,36 @@ async function getTagsForPosts(postIds: number[]): Promise<Map<number, string[]>
         }
         tagsMap.get(postId)!.push(tag.value);
       });
+
+      logger.success(`Successfully fetched ${tagsData.length} tags for ${tagsMap.size} posts`);
+    } else if (error) {
+      logger.warn('Tags query error:', error);
     }
   } catch (error) {
-    console.log('⚠️ Could not fetch tags:', error);
+    logger.warn('Could not fetch tags:', error);
   }
-  
+
   return tagsMap;
 }
 
 // Helper function to get categories for posts (if exists)
 async function getCategoriesForPosts(postIds: number[]): Promise<Map<number, string[]>> {
   const categoriesMap = new Map<number, string[]>();
-  
+
   if (postIds.length === 0) return categoriesMap;
-  
+
   try {
+    logger.info(`Fetching categories for ${postIds.length} posts...`);
+
     const { data: categoriesData, error } = await withTimeout(
       supabase
-        .from('posts_categories')
+        .from('posts_category')
         .select('_parent_id, value')
         .in('_parent_id', postIds)
         .order('_order', { ascending: true }),
-      8000 // 8 second timeout for categories query
+      12000 // Increased timeout for large batches (12 seconds)
     ) as any;
-      
+
     if (!error && categoriesData) {
       categoriesData.forEach((category: any) => {
         const postId = category._parent_id;
@@ -107,11 +141,15 @@ async function getCategoriesForPosts(postIds: number[]): Promise<Map<number, str
         }
         categoriesMap.get(postId)!.push(category.value);
       });
+
+      logger.success(`Successfully fetched ${categoriesData.length} categories for ${categoriesMap.size} posts`);
+    } else if (error) {
+      logger.warn('Categories query error:', error);
     }
   } catch (error) {
-    console.log('⚠️ Could not fetch categories:', error);
+    logger.warn('Could not fetch categories:', error);
   }
-  
+
   return categoriesMap;
 }
 
@@ -268,24 +306,30 @@ function populateMediaIds(obj: any, mediaMap: Map<number, any>): any {
 }
 
 export async function getPostsDirectFromSupabase(
-  limit: number = 1000, // Increased from 100 to 1000 but still reasonable
+  limit: number = null, // null = fetch all posts, or specify limit
   status: 'published' | 'draft' | 'all' = 'published' // Default hanya published
 ): Promise<SupabasePost[]> {
   try {
-    logger.info(`Fetching ${limit} posts from Supabase with status: ${status}...`);
-    
-    // Build query with status filter
+    const fetchMessage = limit === null ? 'all posts' : `${limit} posts`;
+    logger.info(`Fetching ${fetchMessage} from Supabase with status: ${status}...`);
+
+    // Build query with status filter - include all necessary fields for complete post data
     let query = supabase
       .from('posts')
-      .select('*')
-      .order('published_at', { ascending: false }); // ✅ Use 'published_at' field for ordering
+      .select('id, title, slug, description, cover_image, published, body, status, created_at, updated_at, last_updated, format')
+      .order('published', { ascending: false }); // ✅ Use 'published_at' field for ordering
 
     // Filter by status - hanya ambil published posts untuk production
     if (status !== 'all') {
-      query = query.eq('status', status); // ✅ Use '_status' field for filtering
+      query = query.eq('status', status); // ✅ Use 'status' field for filtering
     }
 
-    const { data, error } = await withTimeout(query.limit(limit), 15000) as any; // 15 second timeout
+    // Apply limit only if specified, otherwise fetch all
+    if (limit !== null) {
+      query = query.limit(limit);
+    }
+
+    const { data, error } = await withTimeout(query, 20000) as any; // Increased timeout for large datasets (20 seconds)
 
     if (error) {
       console.error('❌ Supabase error:', error);
@@ -299,13 +343,24 @@ export async function getPostsDirectFromSupabase(
       const postIds = data.map((post: any) => post.id);
       
       // Fetch tags and categories for all posts with timeout
-      const [tagsMap, categoriesMap] = await withTimeout(
-        Promise.all([
-          getTagsForPosts(postIds),
-          getCategoriesForPosts(postIds)
-        ]),
-        10000 // 10 second timeout for metadata fetching
-      ) as [Map<number, string[]>, Map<number, string[]>];
+      let tagsMap = new Map<number, string[]>();
+      let categoriesMap = new Map<number, string[]>();
+
+      try {
+        // Always fetch tags and categories for better content enrichment
+        [tagsMap, categoriesMap] = await withTimeout(
+          Promise.all([
+            getTagsForPosts(postIds),
+            getCategoriesForPosts(postIds)
+          ]),
+          15000 // Increased timeout for larger batches
+        ) as [Map<number, string[]>, Map<number, string[]>];
+
+        logger.success(`Successfully fetched tags/categories for ${postIds.length} posts`);
+      } catch (error) {
+        logger.warn('Failed to fetch tags/categories, continuing without metadata:', error);
+        // Continue with empty maps - posts will still work without metadata
+      }
       
       // Attach tags and categories to posts and process markdown
       const { marked } = await import('marked');
@@ -316,12 +371,23 @@ export async function getPostsDirectFromSupabase(
         gfm: true
       });
       
-      const postsWithMetadata = await Promise.all(data.map(async (post: any) => {
+      // Process posts with optimization for build performance
+      const postsWithMetadata = await Promise.all(data.map(async (post: any, index: number) => {
         let processedBody = post.body || '';
+
+        // ✅ Bersihkan whitespace berlebihan dari markdown content
+        if (processedBody && typeof processedBody === 'string') {
+          processedBody = cleanMarkdownContent(processedBody);
+        }
 
         // Convert markdown to HTML if content exists
         if (processedBody && typeof processedBody === 'string') {
           try {
+            // Add small delay for build performance (only for large batches)
+            if (data.length > 50 && index > 0 && index % 10 === 0) {
+              await new Promise(resolve => setTimeout(resolve, 10)); // 10ms delay every 10 posts
+            }
+
             // Always process through marked for consistent HTML output
             processedBody = await marked(processedBody);
 
@@ -344,15 +410,15 @@ export async function getPostsDirectFromSupabase(
           // Field mapping dengan fallback untuk status dan published
           coverImage: post.cover_image || post.coverImage || '',
           imageUrl: post.cover_image || post.coverImage || post.imageUrl || '',
-          publishedAt: post.published_at || post.published || post.publishedAt || '', // ✅ Fallback: published_at -> published -> publishedAt
+          publishedAt: post.published || post.published || post.publishedAt || '', // ✅ Fallback: published -> published -> publishedAt
           updatedAt: post.updated_at || post.updatedAt || post.last_updated || post.lastUpdated || '', // ✅ Fallback: updated_at -> updatedAt -> last_updated -> lastUpdated
           createdAt: post.created_at || post.createdAt || '', // ✅ Fallback: created_at -> createdAt
           body: processedBody,
           tags: tagsMap.get(post.id) || [],
           categories: categoriesMap.get(post.id) || [],
           category: categoriesMap.get(post.id) || [],
-          // Status field dengan fallback - gunakan _status sebagai primary
-          status: post.status || post.status || 'draft', // ✅ Fallback: _status -> status -> default 'draft'
+          // Status field dengan fallback - gunakan status sebagai primary
+          status: post.status || post.status || 'draft', // ✅ Fallback: status -> status -> default 'draft'
           // Additional fields with fallbacks
           lastUpdated: post.last_updated || post.lastUpdated || post.updated_at || post.updatedAt || '',
           format: post.format || 'article'
@@ -399,7 +465,7 @@ export async function getPostsDirectFromSupabase(
 }
 
 export async function getProductsDirectFromSupabase(
-  limit: number = 1000, // Reduced from 10000 to prevent timeout
+  limit: number = 1000, // Reduced from 1000 for build performance
   status: 'published' | 'draft' | 'all' = 'published' // Default hanya published
 ): Promise<any[]> {
   try {
@@ -495,7 +561,7 @@ async function getCategoriesForServices(serviceIds: number[]): Promise<Map<numbe
   return categoriesMap;
 }
 
-export async function getServicesDirectFromSupabase(limit: number = 1000, status: 'published' | 'draft' | 'all' = 'published'): Promise<any[]> {
+export async function getServicesDirectFromSupabase(limit: number = 200, status: 'published' | 'draft' | 'all' = 'published'): Promise<any[]> {
   try {
     logger.info(`Fetching ${limit} services from Supabase with status: ${status}...`);
 
@@ -541,6 +607,11 @@ export async function getServicesDirectFromSupabase(limit: number = 1000, status
     const processedServices = await Promise.all(data.map(async (service: any) => {
       let processedBody = service.body || '';
 
+      // ✅ Bersihkan whitespace berlebihan dari markdown content
+      if (processedBody && typeof processedBody === 'string') {
+        processedBody = cleanMarkdownContent(processedBody);
+      }
+
       // Convert markdown to HTML if content exists
       if (processedBody && typeof processedBody === 'string') {
         try {
@@ -583,7 +654,7 @@ export async function getServicesDirectFromSupabase(limit: number = 1000, status
   }
 }
 
-export async function getProjectsDirectFromSupabase(limit: number = 1000, status: 'published' | 'draft' | 'all' = 'published'): Promise<any[]> {
+export async function getProjectsDirectFromSupabase(limit: number = 200, status: 'published' | 'draft' | 'all' = 'published'): Promise<any[]> {
   try {
     logger.info(`Fetching ${limit} projects from Supabase with status: ${status}...`);
 
@@ -617,11 +688,11 @@ export async function getProjectsDirectFromSupabase(limit: number = 1000, status
     });
     
     const processedProjects = await Promise.all(data.map(async (project: any) => {
-      // Process body, description, review, and get_involved content
-      let processedBody = project.body || '';
-      let processedDescription = project.description || '';
-      let processedReview = project.review || '';
-      let processedGetInvolved = project.get_involved || '';
+      // ✅ Bersihkan whitespace berlebihan dari semua markdown fields
+      let processedBody = cleanMarkdownContent(project.body || '');
+      let processedDescription = cleanMarkdownContent(project.description || '');
+      let processedReview = cleanMarkdownContent(project.review || '');
+      let processedGetInvolved = cleanMarkdownContent(project.get_involved || '');
 
       // Helper function to process markdown with cleanup
       const processMarkdownField = async (content: string): Promise<string> => {
@@ -722,7 +793,7 @@ export function convertSupabasePost(post: SupabasePost) {
     category: processPayloadField(post.category).map((c: any) => c.value || c),
     body: post.body || '', // ✅ Body tetap markdown string
     content: post.content || null, // ✅ Content untuk Lexical Editor blocks
-    status: post.status || 'published', // ✅ post.status sudah di-mapping dari _status di getPostsDirectFromSupabase
+    status: post.status || 'published', // ✅ post.status sudah di-mapping dari status di getPostsDirectFromSupabase
     author: post.author || 'Kotacom.id',
     source: 'supabase-direct' as const
   };

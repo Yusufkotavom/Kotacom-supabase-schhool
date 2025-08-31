@@ -7,7 +7,7 @@ import { getProjectsDirectFromSupabase } from '../../lib/supabase-direct';
 export async function getStaticPaths() {
 	// MD + Supabase Direct (much faster than Payload API)
 	const mdxProjects = await getCollection('projectsMdx');
-	const supabaseProjects = await getProjectsDirectFromSupabase(10000, 'published'); // Only published projects
+	const supabaseProjects = await getProjectsDirectFromSupabase(500, 'published'); // Only published projects
 	console.log(`� Building static paths for ${supabaseProjects?.length || 0} projects (direct from Supabase)`);
 	
 	const mdxPaths = mdxProjects.map((project) => ({

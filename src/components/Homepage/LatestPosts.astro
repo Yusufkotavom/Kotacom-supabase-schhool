@@ -22,7 +22,7 @@ function parseDate(dateStr: string): Date {
 // Fetch posts from local MD and Supabase Direct (much faster!)
 let mdxPosts: any[] = [];
 try { mdxPosts = await getCollection("postsMdx"); } catch (_) { mdxPosts = []; }
-const supabasePosts = await getPostsDirectFromSupabase(1000); // Get more to ensure enough after filtering
+const supabasePosts = await getPostsDirectFromSupabase(null); // Get all posts to ensure enough after filtering
 
 // Normalize MD posts
 const normalizedMdxPosts = mdxPosts.map((entry) => ({

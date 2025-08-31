@@ -25,7 +25,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   // Fetch products from MD and Supabase
   let mdxProducts = [] as any[];
   try { mdxProducts = await getCollection("productsMdx"); } catch (e) { console.warn("ProductsMdx collection not available:", (e as any).message); }
-  const supabaseProducts = await getProductsDirectFromSupabase(10000, 'published');
+  const supabaseProducts = await getProductsDirectFromSupabase(500, 'published');
 
   // Normalize MDX products
   const normalizedMdxProducts = mdxProducts.map((entry) => ({

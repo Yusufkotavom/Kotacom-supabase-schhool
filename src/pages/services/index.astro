@@ -9,7 +9,7 @@ import { getServicesDirectFromSupabase } from '../../lib/supabase-direct';
 const mdxServices = await getCollection('servicesMdx');
 
 // Fetch services from Supabase
-const supabaseServices = await getServicesDirectFromSupabase(10000, 'published'); // Only published services
+const supabaseServices = await getServicesDirectFromSupabase(500, 'published'); // Only published services
 console.log(`📋 MDX services found: ${mdxServices.length}`);
 console.log(`📋 Supabase services found: ${supabaseServices?.length || 0}`);
 

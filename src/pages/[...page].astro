@@ -10,7 +10,7 @@ import ItemListJsonLd from "../components/partials/ItemListJsonLd.astro";
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   // Ambil semua post dari MDX (postsMdx) dan Supabase
   const mdxPosts = await getCollection('postsMdx').catch(() => [] as any[]);
-  const supabasePosts = await getPostsDirectFromSupabase(10000); // Get all posts from Supabase
+  const supabasePosts = await getPostsDirectFromSupabase(null); // Get all posts from Supabase
   
   const normalizedMdxPosts = mdxPosts.map((entry) => ({
     ...entry,

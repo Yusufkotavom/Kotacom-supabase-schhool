@@ -20,7 +20,7 @@ function parseDate(dateStr: string): Date {
 
 // Fetch services from MD and Supabase Direct (much faster!)
 const mdxServices = await getCollection("servicesMdx");
-const supabaseServices = await getServicesDirectFromSupabase(1000, 'published'); // Only published services
+const supabaseServices = await getServicesDirectFromSupabase(100, 'published'); // Only published services
 
 // Normalize MD services to a common shape
 const normalizedMdxServices = mdxServices.map((entry) => ({

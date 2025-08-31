@@ -14,7 +14,7 @@ const mdxPosts = postFiles.map(post => ({
   url: post.url
 }));
 
-const supabasePosts = await getPostsDirectFromSupabase(10000); // Load all posts to ensure all tags are captured
+const supabasePosts = await getPostsDirectFromSupabase(null); // Load all posts to ensure all tags are captured
 // Debug info removed for production
 
 // Extract unique tags from all posts (MDX + Supabase)

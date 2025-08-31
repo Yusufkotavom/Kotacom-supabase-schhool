@@ -21,7 +21,7 @@ function parseDate(dateStr: string): Date {
 // Fetch from MD and Supabase Direct (much faster!)
 let mdxProducts = [] as any[];
 try { mdxProducts = await getCollection("productsMdx"); } catch {}
-const supabaseProducts = await getProductsDirectFromSupabase(1000, 'published'); // Only published products
+const supabaseProducts = await getProductsDirectFromSupabase(100, 'published'); // Only published products
 
 // Normalize MDX products
 const normalizedMdxProducts = mdxProducts.map((entry) => ({

@@ -17,7 +17,7 @@ function parseDate(dateStr: string): Date {
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   // Fetch services from MDX and Supabase
   const mdxServices = await getCollection('servicesMdx');
-  const supabaseServices = await getServicesDirectFromSupabase(10000, 'published'); // Only published services
+  const supabaseServices = await getServicesDirectFromSupabase(500, 'published'); // Only published services
 
   // Normalize MDX services
   const normalizedMdxServices = mdxServices.map((entry) => ({

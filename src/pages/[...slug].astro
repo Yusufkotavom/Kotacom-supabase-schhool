@@ -17,10 +17,19 @@ export async function getStaticPaths(): Promise<Array<{params: {slug: string}, p
     Content: post.default // Store the component
   }));
   
-  // ✅ Get posts directly from Supabase
+  // ✅ Get posts directly from Supabase (reduced limit for build performance)
   logger.info('Fetching posts from Supabase...');
-  const supabasePostsData = await getPostsDirectFromSupabase(1000, 'published');
-  logger.success(`Successfully fetched ${supabasePostsData.length} posts from Supabase`);
+  let supabasePostsData: any[] = [];
+
+  try {
+    // Fetch all published posts for complete static path generation
+    supabasePostsData = await getPostsDirectFromSupabase(null, 'published');
+    logger.success(`Successfully fetched ${supabasePostsData.length} posts from Supabase`);
+  } catch (error) {
+    logger.error('❌ Failed to fetch Supabase posts, continuing with MDX posts only:', error);
+    // Continue with empty array - at least MDX posts will work
+    supabasePostsData = [];
+  }
 
   // Build popular categories (top 10) once from MDX + Supabase
   const counts: Record<string, number> = {};
@@ -79,7 +88,13 @@ const { post, source } = Astro.props as any;
 
 // Helper function untuk memproses konten HTML (cleanup for prose styles)
 const processContent = (content: string): string => {
+  if (!content || typeof content !== 'string') return '';
+
   return content
+    // Bersihkan whitespace berlebihan yang mungkin tersisa
+    .replace(/\r\n/g, '\n')
+    .replace(/\n{3,}/g, '\n\n')
+    // Cleanup HTML attributes untuk prose styling
     .replace(/<h1[^>]*>/g, '<h1>')
     .replace(/<h2[^>]*>/g, '<h2>')
     .replace(/<h3[^>]*>/g, '<h3>')
@@ -96,8 +111,10 @@ const processContent = (content: string): string => {
     .replace(/<table[^>]*>/g, '<table>')
     .replace(/<th[^>]*>/g, '<th>')
     .replace(/<td[^>]*>/g, '<td>')
+    // Tambahkan lazy loading untuk images
     .replace(/<img([^>]*?)src="([^"]*)"([^>]*?)>/g, '<img$1src="$2"$3 loading="lazy">')
-    .replace(/\s+/g, ' ')
+    // Bersihkan multiple spaces
+    .replace(/ {2,}/g, ' ')
     .trim();
 };
 
@@ -127,13 +144,13 @@ if (source === 'supabase') {
     }
   }
   
-  // 2. Render body markdown jika ada
+  // 2. Render body markdown jika ada (sudah diproses di supabase-direct.ts)
   if (post.body && typeof post.body === 'string') {
     try {
-      const htmlContent = await marked(post.body);
-      bodyHtml = processContent(htmlContent);
+      // ✅ Content sudah diproses di supabase-direct.ts, hanya perlu cleanup HTML
+      bodyHtml = processContent(post.body);
     } catch (error) {
-      logger.error('❌ Error rendering body markdown:', error);
+      logger.error('❌ Error processing body content:', error);
       bodyHtml = '';
     }
   }

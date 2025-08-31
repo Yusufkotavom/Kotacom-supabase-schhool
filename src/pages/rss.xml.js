@@ -6,7 +6,7 @@ import { getPostsDirectFromSupabase, convertSupabasePost } from '../lib/supabase
 export async function GET(context) {
   let mdxPosts = [];
   try { mdxPosts = await getCollection('postsMdx'); } catch (_) { mdxPosts = []; }
-  const supabasePosts = await getPostsDirectFromSupabase(200);
+  const supabasePosts = await getPostsDirectFromSupabase(null); // Fetch all for RSS feed
   const supa = supabasePosts.map(convertSupabasePost);
 
   const items = [

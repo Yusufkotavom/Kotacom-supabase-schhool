@@ -21,7 +21,7 @@ function parseDate(dateStr: string): Date {
 
 // Fetch projects from MD and Supabase Direct (much faster!)
 const mdxProjects = await getCollection("projectsMdx");
-const supabaseProjects = await getProjectsDirectFromSupabase(1000, 'published'); // Only published projects
+const supabaseProjects = await getProjectsDirectFromSupabase(100, 'published'); // Only published projects
 
 // Normalize MD projects to a common shape
 const normalizedMdxProjects = mdxProjects.map((entry) => ({

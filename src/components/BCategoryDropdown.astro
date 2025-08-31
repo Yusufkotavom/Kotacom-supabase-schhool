@@ -11,7 +11,7 @@ const currentCategoryPromise = (async () => {
   // Fetch posts from both sources
   const [mdxPosts, supabasePosts] = await Promise.all([
     getCollection('postsMdx').catch(() => [] as any[]),
-    getPostsDirectFromSupabase(1000, 'published').catch(() => [] as any[])
+    getPostsDirectFromSupabase(null, 'published').catch(() => [] as any[])
   ]);
 
   // Normalize MDX posts
@@ -71,7 +71,7 @@ const currentCategory = await currentCategoryPromise;
 // Fetch posts from both sources
 const [mdxPosts, supabasePosts] = await Promise.all([
   getCollection('postsMdx').catch(() => [] as any[]),
-  getPostsDirectFromSupabase(1000, 'published').catch(() => [] as any[])
+  getPostsDirectFromSupabase(null, 'published').catch(() => [] as any[])
 ]);
 
 // Normalize MDX posts (reuse the same logic)

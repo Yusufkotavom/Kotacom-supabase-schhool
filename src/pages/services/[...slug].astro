@@ -6,7 +6,7 @@ import { getServicesDirectFromSupabase } from '../../lib/supabase-direct';
 export async function getStaticPaths() {
 	// MD + Supabase Direct (much faster than Payload API)
 	const mdxServices = await getCollection('servicesMdx');
-	const supabaseServices = await getServicesDirectFromSupabase(10000, 'published'); // Only published services
+	const supabaseServices = await getServicesDirectFromSupabase(500, 'published'); // Only published services
 	console.log(`� Building static paths for ${supabaseServices?.length || 0} services (direct from Supabase)`);
 	
 	const mdxPaths = mdxServices.map((service) => ({
