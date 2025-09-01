@@ -42,6 +42,39 @@ export function cleanMarkdownContent(content: string): string {
     .replace(/([.!?])\n([A-Z])/g, '$1\n\n$2');
 }
 
+// ✅ Utility function untuk membersihkan dan memperbaiki HTML yang dihasilkan dari markdown
+export function cleanAndRepairHtml(html: string): string {
+  if (!html || typeof html !== 'string') return '';
+
+  return html
+    // Remove malformed paragraph tags inside list items
+    .replace(/<p><li>/g, '<li>')
+    .replace(/<\/li><\/p>/g, '</li>')
+    .replace(/<p><\/li>/g, '</li>')
+    .replace(/<li><p>/g, '<li>')
+    .replace(/<\/p><\/li>/g, '</li>')
+    // Remove empty paragraphs
+    .replace(/<p><\/p>/g, '')
+    // Fix nested paragraph issues with lists
+    .replace(/<p>(<[uo]l[^>]*>)/g, '$1')
+    .replace(/(<\/[uo]l>)<\/p>/g, '$1')
+    .replace(/<p>(<li[^>]*>)/g, '$1')
+    .replace(/(<\/li>)<\/p>/g, '$1')
+    // Handle headings that might be wrapped in paragraphs
+    .replace(/<p>(<h[1-6][^>]*>)/g, '$1')
+    .replace(/(<\/h[1-6]>)<\/p>/g, '$1')
+    // Handle blockquotes that might be wrapped in paragraphs
+    .replace(/<p>(<blockquote[^>]*>)/g, '$1')
+    .replace(/(<\/blockquote>)<\/p>/g, '$1')
+    // Clean up multiple consecutive line breaks
+    .replace(/\n\s*\n/g, '\n')
+    // Clean up extra whitespace between tags
+    .replace(/\s+</g, '<')
+    .replace(/>\s+/g, '>')
+    // Remove trailing/leading whitespace
+    .trim();
+}
+
 // ✅ Recursive function untuk collect media IDs dari Lexical structure
 export function collectMediaIds(obj: any, mediaIds: Set<number>): void {
   if (!obj || typeof obj !== 'object') return;

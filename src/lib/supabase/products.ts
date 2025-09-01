@@ -1,5 +1,5 @@
 import { supabase, Product, MetadataMap } from './types';
-import { withTimeout, cleanMarkdownContent } from './utils';
+import { withTimeout, cleanMarkdownContent, cleanAndRepairHtml } from './utils';
 import { logger } from '../logger';
 
 // Helper function to get categories for products
@@ -117,13 +117,9 @@ export async function getProductsDirectFromSupabase(
     console.log(`🏷️ Found tags for ${tagsMap.size} products`);
 
     // Process products with categories, tags, and markdown content
-    const { marked } = await import('marked');
+    const { marked, Renderer } = await import('marked');
 
-    // Configure marked for better HTML output
-    marked.setOptions({
-      breaks: true,
-      gfm: true
-    });
+    // Marked options will be configured per renderer instance
 
     const processedProducts = await Promise.all(data.map(async (product: any, index: number) => {
       let processedBody = product.body || '';
@@ -137,24 +133,36 @@ export async function getProductsDirectFromSupabase(
         processedDescription = cleanMarkdownContent(processedDescription);
       }
 
-      // Helper function to process markdown with cleanup
+      // Helper function to process markdown with better cleanup
       const processMarkdownField = async (content: string): Promise<string> => {
         if (!content || typeof content !== 'string') return '';
 
         try {
-          let processed = await marked(content);
+          // Configure marked for better HTML output with custom renderer
+          const renderer = new Renderer();
 
-          // Clean up the HTML for better prose rendering
-          processed = processed
-            .replace(/\n\s*\n/g, '</p>\n<p>')
-            .replace(/^(?!<[ph])/gm, '<p>')
-            .replace(/(?<!>)$/gm, '</p>')
-            .replace(/<p><\/p>/g, '')
-            .replace(/<p>(<[h|u|o|b])/g, '$1')
-            .replace(/(<\/[h|u|o|b][^>]*>)<\/p>/g, '$1')
-            .trim();
+          // Override list item rendering to avoid nested <p> tags
+          renderer.listitem = (text: string, task: boolean, checked: boolean) => {
+            if (task) {
+              return `<li class="task-list-item"><input type="checkbox" disabled${checked ? ' checked' : ''}> ${text}</li>`;
+            }
+            return `<li>${text}</li>`;
+          };
 
-          return processed;
+          // Override paragraph rendering to avoid wrapping lists
+          renderer.paragraph = (text: string) => {
+            // Don't wrap paragraphs around lists
+            if (text.includes('<ul>') || text.includes('<ol>') || text.includes('<li>')) {
+              return text;
+            }
+            return `<p>${text}</p>`;
+          };
+
+          // Use custom renderer
+          const processed = await marked(content, { renderer });
+
+          // Apply additional HTML cleanup
+          return cleanAndRepairHtml(processed);
         } catch (error) {
           console.log('⚠️ Could not process markdown for product field:', product.slug, error);
           return content;
