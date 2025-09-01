@@ -2,6 +2,9 @@
 import { Image } from "astro:assets";
 import KotacomLogo from "../assets/kotacom-logo.svg";
 import ThemeToggle from "./ThemeToggle.astro";
+import UnifiedMegaMenu from "./UnifiedMegaMenu.astro";
+import MobileUnifiedMegaMenu from "./MobileUnifiedMegaMenu.astro";
+import { MEGA_MENU_CONFIG, SIMPLE_NAV_ITEMS, MOBILE_MENU_CONFIG } from "../data/mega-menu-config";
 
 const companyWhatsapp = '085799520350';
 ---
@@ -115,72 +118,79 @@ const companyWhatsapp = '085799520350';
         id="mobile-menu-2"
       >
         <nav class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-2 lg:mt-0" role="navigation">
-          <!-- Desktop: Simple Navigation Items -->
-          <div class="hidden lg:flex lg:flex-row lg:space-x-2">
-            <a
-              href="/services"
-              class="block py-2 px-3 text-gray-700 hover:bg-gray-50 lg:hover:bg-transparent hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 lg:dark:hover:bg-transparent dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md"
-            >
-              Layanan
-            </a>
-            <a
-              href="/projects"
-              class="block py-2 px-3 text-gray-700 hover:bg-gray-50 lg:hover:bg-transparent hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 lg:dark:hover:bg-transparent dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md"
-            >
-              Portfolio
-            </a>
-            <a
-              href="/products"
-              class="block py-2 px-3 text-gray-700 hover:bg-gray-50 lg:hover:bg-transparent hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 lg:dark:hover:bg-transparent dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md"
-            >
-              Produk
-            </a>
-            <a
-              href="/posts"
-              class="block py-2 px-3 text-gray-700 hover:bg-gray-50 lg:hover:bg-transparent hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 lg:dark:hover:bg-transparent dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md"
-            >
-              Artikel
-            </a>
+          <!-- Desktop: Unified Mega Menu Items -->
+          <div class="hidden lg:flex lg:space-x-2">
+            <UnifiedMegaMenu 
+              trigger={MEGA_MENU_CONFIG.layanan.trigger}
+              sections={MEGA_MENU_CONFIG.layanan.sections}
+            />
+            <UnifiedMegaMenu 
+              trigger={MEGA_MENU_CONFIG.portfolio.trigger}
+              sections={MEGA_MENU_CONFIG.portfolio.sections}
+            />
+            <UnifiedMegaMenu 
+              trigger={MEGA_MENU_CONFIG.produk.trigger}
+              sections={MEGA_MENU_CONFIG.produk.sections}
+            />
           </div>
-
-          <!-- Mobile: Simple Navigation Items -->
+          
+          <!-- Mobile: Unified Mega Menu Items -->
           <div class="flex flex-col lg:hidden">
-            <a
-              href="/services"
-              class="block py-3 px-4 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md"
-            >
-              Layanan
-            </a>
-            <a
-              href="/projects"
-              class="block py-3 px-4 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md"
-            >
-              Portfolio
-            </a>
-            <a
-              href="/products"
-              class="block py-3 px-4 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md"
-            >
-              Produk
-            </a>
-            <a
-              href="/posts"
-              class="block py-3 px-4 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md"
-            >
-              Artikel
-            </a>
-            <a
-              href="/about"
-              class="block py-3 px-4 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md"
-            >
-              Tentang Kami
-            </a>
-            <a
-              href="/contact"
-              class="block py-3 px-4 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md"
-            >
-              Kontak
-            </a>
+            <MobileUnifiedMegaMenu 
+              trigger={MEGA_MENU_CONFIG.layanan.trigger}
+              sections={MEGA_MENU_CONFIG.layanan.sections}
+            />
+            <MobileUnifiedMegaMenu 
+              trigger={MEGA_MENU_CONFIG.portfolio.trigger}
+              sections={MEGA_MENU_CONFIG.portfolio.sections}
+            />
+            <MobileUnifiedMegaMenu 
+              trigger={MEGA_MENU_CONFIG.produk.trigger}
+              sections={MEGA_MENU_CONFIG.produk.sections}
+            />
+            
+            <!-- Simple Navigation Items on Mobile -->
+            <div class="pt-4 mt-4 border-t border-gray-200 dark:border-gray-700">
+              {MOBILE_MENU_CONFIG.secondaryItems.map((item) => (
+                <a
+                  href={item.url}
+                  class="block py-3 px-4 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md border-b border-gray-100 dark:border-gray-700 last:border-b-0"
+                >
+                  {item.title}
+                </a>
+              ))}
+            </div>
+            
+            <!-- Mobile Menu Footer -->
+            <div class="pt-4 mt-4 border-t border-gray-200 dark:border-gray-700">
+              <div class="text-center">
+                <h4 class="text-sm font-medium text-gray-900 dark:text-white mb-2">
+                  {MOBILE_MENU_CONFIG.footer.title}
+                </h4>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">
+                  {MOBILE_MENU_CONFIG.footer.description}
+                </p>
+                <a
+                  href={MOBILE_MENU_CONFIG.footer.cta.url}
+                  class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                >
+                  <div class="text-white" set:html={MOBILE_MENU_CONFIG.footer.cta.icon}></div>
+                  {MOBILE_MENU_CONFIG.footer.cta.text}
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Simple Navigation Items (Desktop Only) -->
+          <div class="hidden lg:flex lg:flex-row lg:space-x-2">
+            {MOBILE_MENU_CONFIG.secondaryItems.map((item) => (
+              <a
+                href={item.url}
+                class="block py-2 px-3 text-gray-700 hover:bg-gray-50 lg:hover:bg-transparent hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 lg:dark:hover:bg-transparent dark:hover:text-white font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md"
+              >
+                {item.title}
+              </a>
+            ))}
           </div>
         </nav>
       </div>

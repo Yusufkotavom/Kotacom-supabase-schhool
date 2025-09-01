@@ -103,7 +103,7 @@ if (source === 'mdx') {
       content: product.body || product.content || "",
       country: Array.isArray(product.country) ? product.country.map((x:any)=>x.value||x) : (product.country ? [product.country] : []),
       locale: Array.isArray(product.locale) ? product.locale.map((x:any)=>x.value||x) : (product.locale ? [product.locale] : []),
-      category: Array.isArray(product.category) ? product.category.map((x:any)=>x.value||x) : (product.category ? [product.category] : []),
+      category: Array.isArray(product.category) ? product.category : (product.category ? [product.category] : []),
       slug: product.slug,
       imageUrl: product.imageUrl || product.cover_image || product.image_url || product.image_url_1 || product.image1 || "",
       published: product.published ? (product.published instanceof Date ? product.published : new Date(product.published)) : new Date(),

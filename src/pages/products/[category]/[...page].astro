@@ -62,7 +62,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
       data: { 
         properties: {
           pTitle: product.title,
-          pCategory: Array.isArray(product.category) ? product.category.map((c: any) => c?.value || c) : (product.category ? [product.category] : []),
+          pCategory: Array.isArray(product.category) ? product.category : (product.category ? [product.category] : []),
           pSlug: product.slug,
           pImageURL1: product.imageUrl || "",
           pPublished: { start: product.published ? new Date(product.published) : new Date(0) },

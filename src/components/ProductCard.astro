@@ -290,9 +290,7 @@ const categories = Array.isArray(properties?.pCategory) ? properties.pCategory.f
 
     <!-- Description -->
     {description && showFullDescription && (
-      <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 line-clamp-2">
-        {description}
-      </p>
+      <div class="text-sm text-gray-600 dark:text-gray-300 mb-3 line-clamp-2 prose prose-sm max-w-none" set:html={description}></div>
     )}
 
     <!-- Store Info -->

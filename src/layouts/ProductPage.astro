@@ -19,7 +19,8 @@ type Props = any;
 
 const { properties = {} } = Astro.props as any;
 const isNotionProduct = !!(properties && (properties as any).pTitle);
-const isMdxProduct = !isNotionProduct;
+const isSupabaseProduct = !!(properties && !isNotionProduct && (properties as any).body);
+const isMdxProduct = !isNotionProduct && !isSupabaseProduct;
 
 // Normalize data for consistent access with all affiliate fields
 const productData = isNotionProduct 
@@ -105,7 +106,9 @@ const productData = isNotionProduct
     };
 
 const title = productData.title + " - Products";
-const description = productData.description || productData.review || `${productData.title} - Produk berkualitas dari ${COMPANY_NAME}`;
+const description = (isSupabaseProduct && productData.description && productData.description.includes('<'))
+  ? productData.description.replace(/<[^>]*>/g, '').substring(0, 160) // Strip HTML tags for meta description
+  : (productData.description || productData.review || `${productData.title} - Produk berkualitas dari ${COMPANY_NAME}`);
 const DEFAULT_IMAGE = 'https://res.cloudinary.com/dxyjku3eh/image/upload/v1754820661/Tanpa_judul_Presentasi__20250810_170926_0000_vdiibn.png';
 const image = productData.imageUrl || DEFAULT_IMAGE;
 
@@ -379,9 +382,7 @@ const images: string[] = oneSec.length > 0 ? oneSec : [fallbackImage];
             </div>
             
             {productData.description && (
-              <p class="text-gray-700 dark:text-gray-300 mb-6 text-lg leading-relaxed">
-                {productData.description}
-              </p>
+              <div class="text-gray-700 dark:text-gray-300 mb-6 text-lg leading-relaxed prose prose-lg max-w-none" set:html={productData.description}></div>
             )}
             
             {productData.category && productData.category.length > 0 && (
@@ -498,6 +499,8 @@ const images: string[] = oneSec.length > 0 ? oneSec : [fallbackImage];
         <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Informasi Tambahan</h2>
         {isNotionProduct ? (
           <div class="prose md:prose-lg max-w-none text-gray-700 dark:text-gray-300" set:html={productData.content} />
+        ) : isSupabaseProduct ? (
+          <div class="prose md:prose-lg max-w-none text-gray-700 dark:text-gray-300" set:html={productData.content} />
         ) : (
           <div class="prose md:prose-lg max-w-none text-gray-700 dark:text-gray-300">
             {productData.content}
@@ -513,8 +516,12 @@ const images: string[] = oneSec.length > 0 ? oneSec : [fallbackImage];
       <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="text-center">
           <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Customer Review</h2>
-          <blockquote class="text-xl italic text-gray-700 dark:text-gray-300 mb-6">
-            "{productData.review}"
+          <blockquote class="text-xl italic text-gray-700 dark:text-gray-300 mb-6 prose prose-lg max-w-none">
+            {isSupabaseProduct ? (
+              <span set:html={`"${productData.review}"`} />
+            ) : (
+              `"${productData.review}"`
+            )}
           </blockquote>
           <div class="flex justify-center items-center space-x-1">
             {[1,2,3,4,5].map(() => (
