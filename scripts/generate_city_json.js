@@ -128,9 +128,9 @@ const universalTemplate = {
 
   "contact": {
     "address": "[ADDRESS]",
-    "phone": "085799520350",
+    "phone": "081232109396",
     "email": "[EMAIL]",
-    "whatsapp": "https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20[NAMA]"
+    "whatsapp": "https://wa.me/6281232109396?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20[NAMA]"
   }
 };
 
@@ -2401,9 +2401,9 @@ function generateCityJSON() {
       },
       contact: {
         address: kota.contact_info.address,
-        phone: "085799520350",
+        phone: "+6281232109396",
         email: kota.contact_info.email,
-        whatsapp: `https://wa.me/6285799520350?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20${kota.nama}`
+        whatsapp: `https://wa.me/6281232109396?text=Halo,%20saya%20mau%20konsultasi%20website%20untuk%20bisnis%20di%20${kota.nama}`
       }
     };
 

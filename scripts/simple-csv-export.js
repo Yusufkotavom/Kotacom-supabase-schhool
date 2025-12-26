@@ -50,7 +50,7 @@ KOTACOM adalah salah satu spesialis jasa Rakit pc murah namun dengan spek yang m
     category: 'kotacom',
     country: 'Indonesia',
     locale: 'Jawa Timur',
-    imageUrl1: 'https://res.cloudinary.com/dxyjku3eh/image/upload/v1754963342/image-fallback/modern%20web%2Ccomputer%2Ccoding%2Cillutration%2Cgradient.%20with%20text%20kotacom.id%20-%20085799520350%20%281%29.jpg',
+    imageUrl1: 'https://res.cloudinary.com/dxyjku3eh/image/upload/v1754963342/image-fallback/modern%20web%2Ccomputer%2Ccoding%2Cillutration%2Cgradient.%20with%20text%20kotacom.id%20-%20+6281232109396%20%281%29.jpg',
     published: '2024-08-18',
     verify: 'Terverifikasi',
     url: 'https://www.kotacom.id',

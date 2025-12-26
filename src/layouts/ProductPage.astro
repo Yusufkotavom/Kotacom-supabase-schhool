@@ -139,7 +139,7 @@ const affiliateProduct: AffiliateProduct = {
 // Get affiliate marketplaces with tracking
 const affiliateMarketplaces = getAffiliateMarketplaces(affiliateProduct, 'single-page');
 const primaryMarketplace = affiliateMarketplaces[0];
-const whatsappUrl = `https://wa.me/62085799520350?text=${encodeURIComponent('Halo, saya tertarik dengan produk ' + productData.title)}`;
+const whatsappUrl = `https://wa.me/6281232109396?text=${encodeURIComponent('Halo, saya tertarik dengan produk ' + productData.title)}`;
 const stickyCta = primaryMarketplace
   ? { href: primaryMarketplace.affiliateUrl, label: getCTAText(affiliateProduct, primaryMarketplace.marketplace), marketplace: primaryMarketplace.marketplace }
   : { href: whatsappUrl, label: 'Konsultasi via WhatsApp', marketplace: 'whatsapp' };
@@ -457,7 +457,7 @@ const images: string[] = oneSec.length > 0 ? oneSec : [fallbackImage];
             
                          <!-- WhatsApp Contact -->
              <a 
-               href={`https://wa.me/62085799520350?text=Halo,%20saya%20tertarik%20dengan%20produk%20${encodeURIComponent(productData.title)}`}
+               href={`https://wa.me/6281232109396?text=Halo,%20saya%20tertarik%20dengan%20produk%20${encodeURIComponent(productData.title)}`}
                class="flex items-center justify-center gap-2 px-4 py-3 sm:px-6 sm:py-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold text-sm sm:text-base"
              >
                <svg class="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">

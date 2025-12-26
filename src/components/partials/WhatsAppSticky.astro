@@ -6,7 +6,7 @@ export interface Props {
 }
 
 const { 
-  phoneNumber = '085799520350',
+  phoneNumber = '+6281232109396',
   defaultMessage = 'Halo Kotacom'
 } = Astro.props;
 
@@ -166,7 +166,7 @@ Nama: ${name}
 Kebutuhan: ${needs}`;
       
       // Open WhatsApp with optimized URL
-      const whatsappUrl = `https://wa.me/085799520350?text=${encodeURIComponent(message)}`;
+      const whatsappUrl = `https://wa.me/+6281232109396?text=${encodeURIComponent(message)}`;
       
       // Use window.open with optimized parameters
       const whatsappWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
