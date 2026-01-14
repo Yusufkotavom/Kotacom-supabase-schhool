@@ -143,19 +143,23 @@ export async function getProductsDirectFromSupabase(
 
           // Override list item rendering to avoid nested <p> tags
           renderer.listitem = (text: string, task: boolean, checked: boolean) => {
+            // Ensure text is a string
+            const textStr = typeof text === 'string' ? text : String(text || '');
             if (task) {
-              return `<li class="task-list-item"><input type="checkbox" disabled${checked ? ' checked' : ''}> ${text}</li>`;
+              return `<li class="task-list-item"><input type="checkbox" disabled${checked ? ' checked' : ''}> ${textStr}</li>`;
             }
-            return `<li>${text}</li>`;
+            return `<li>${textStr}</li>`;
           };
 
           // Override paragraph rendering to avoid wrapping lists
           renderer.paragraph = (text: string) => {
+            // Ensure text is a string
+            const textStr = typeof text === 'string' ? text : String(text || '');
             // Don't wrap paragraphs around lists
-            if (text.includes('<ul>') || text.includes('<ol>') || text.includes('<li>')) {
-              return text;
+            if (textStr.includes('<ul>') || textStr.includes('<ol>') || textStr.includes('<li>')) {
+              return textStr;
             }
-            return `<p>${text}</p>`;
+            return `<p>${textStr}</p>`;
           };
 
           // Use custom renderer
