@@ -18,8 +18,14 @@ const {
 
 // Get current page URL
 const currentUrl = Astro.url.href;
-const formattedMessage = whatsappMessage.replace('{url}', currentUrl);
-const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(formattedMessage)}`;
+let finalMessage = whatsappMessage;
+if (whatsappMessage.includes('{url}')) {
+  finalMessage = whatsappMessage.replace('{url}', currentUrl);
+} else {
+  // Append the URL if the placeholder isn't explicitly used
+  finalMessage = `${whatsappMessage} - ${currentUrl}`;
+}
+const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(finalMessage)}`;
 ---
 
 <a 
